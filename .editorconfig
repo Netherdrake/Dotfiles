@@ -1,0 +1,19 @@
+; top-most EditorConfig file
+root = true
+
+; Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+
+; Python, Java, PHP
+{*.java, *.php}
+indent_style = tab
+tab_width = 4
+
+; Ruby, JavaScript
+{*.js, *.rb, *.py}
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
