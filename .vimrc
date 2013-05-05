@@ -27,6 +27,9 @@ set tw=99
 
 "make enter break and do newlines
 nnoremap <CR> O<Esc>j
+
+"make space in normal mode add space
+nnoremap <Space> i<Space><Esc>l
  
 "map workspace movements
 nmap <c-h> <c-w>h<c-w>
