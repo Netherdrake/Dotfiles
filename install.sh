@@ -1,2 +1,2 @@
-mv .vimrc ~/.vimrc
-mv .editorconfig ../.editorconfig
+cp -f .vimrc ~/.vimrc
+cp -f .editorconfig ../.editorconfig
