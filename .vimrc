@@ -26,8 +26,8 @@ highlight ColorColumn ctermbg=233
 set tw=99
 
 "make enter break and do newlines
-map <CR> i<CR><Esc>
-
+nnoremap <CR> O<Esc>j
+ 
 "map workspace movements
 nmap <c-h> <c-w>h<c-w>
 nmap <c-j> <c-w>j<c-w>
@@ -55,10 +55,10 @@ set noswapfile
 
 "paste mode
 set pastetoggle=<F2>
-set clipboard=unnamed
+"set clipboard=unnamed
 
 "lets cheat with mouse
-set mouse=a
+"set mouse=a
 
 "history
 set history=500
