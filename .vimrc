@@ -15,7 +15,13 @@ set showmatch
 set incsearch
 set nohls
 set number
+set title
 let mapleader=","
+
+"show trailing whitespaces
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+autocmd filetype html,xml set listchars-=tab:>.
 
 "make sure we have colors right
 syntax on
@@ -30,7 +36,7 @@ nnoremap <CR> O<Esc>j
 
 "make space in normal mode add space
 nnoremap <Space> i<Space><Esc>l
- 
+
 "map workspace movements
 nmap <c-h> <c-w>h<c-w>
 nmap <c-j> <c-w>j<c-w>
@@ -64,5 +70,5 @@ set pastetoggle=<F2>
 "set mouse=a
 
 "history
-set history=500
-set undolevels=500
+set history=1000
+set undolevels=1000
