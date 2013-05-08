@@ -1,7 +1,7 @@
 execute pathogen#infect()
-set nocompatible "no vi compatibility mode
 filetype plugin indent on
 filetype indent on
+set nocompatible "no vi compatibility mode
 set smarttab
 set shiftwidth=2
 set softtabstop=2
@@ -14,8 +14,9 @@ set smartcase
 set showmatch
 set incsearch
 set nohls
-set number
-set title
+set number ls=2
+"set title
+"set cursorline
 let mapleader=","
 
 "show trailing whitespaces
