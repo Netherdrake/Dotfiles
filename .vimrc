@@ -10,6 +10,7 @@ set autoindent
 set expandtab
 set ruler
 set hidden
+set ignorecase
 set smartcase
 set showmatch
 set incsearch
@@ -18,6 +19,7 @@ set number ls=2
 "set title
 "set cursorline
 let mapleader=","
+set guitablabel=%N/\ %t\ %M
 
 "show trailing whitespaces
 set list
@@ -39,22 +41,36 @@ nnoremap <CR> O<Esc>j
 nnoremap <Space> i<Space><Esc>l
 
 "map workspace movements
-nmap <c-h> <c-w>h<c-w>
-nmap <c-j> <c-w>j<c-w>
-nmap <c-k> <c-w>k<c-w>
-nmap <c-l> <c-w>l<c-w>
+nnoremap <c-h> <c-w>h<c-w>
+nnoremap <c-j> <c-w>j<c-w>
+nnoremap <c-k> <c-w>k<c-w>
+nnoremap <c-l> <c-w>l<c-w>
 
 "functions I may or may not want
 nnoremap <leader>a :set number ls=2<CR>
 nnoremap <leader>s :set nonumber ls=1<CR>
-nmap <leader>r :NERDTreeToggle<CR>
+nnoremap <leader>r :NERDTreeToggle<CR>
 nnoremap <leader>f :CommandTFlush<CR>
+nnoremap <F3> :TlistToggle<CR>
 
 "map tab movements
 nnoremap <leader>1 :tabp<CR>
 nnoremap <leader>2 :tabn<CR>
 nnoremap <leader>m :bp<CR>
 nnoremap <leader>. :bn<CR>
+
+"ms 4000 mappings
+nnoremap <PageUp> {
+nnoremap <PageDown> }
+
+"alt+key mappings
+nnoremap <A-1> :1gt
+nnoremap <A-2> :2gt
+nnoremap <A-3> :3gt
+nnoremap <A-4> :4gt
+nnoremap <A-5> :5gt
+nnoremap <A-6> :6gt
+nnoremap <A-0> :0gt
 
 "backup dir not to clutter
 set backupdir=./.backup,.,/tmp
