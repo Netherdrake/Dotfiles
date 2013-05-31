@@ -36,6 +36,7 @@ set tw=99
 
 "make enter break and do newlines
 nnoremap <CR> O<Esc>j
+nnoremap <leader>j i<CR><Esc>
 
 "make space in normal mode add space
 nnoremap <Space> i<Space><Esc>l
@@ -64,13 +65,13 @@ nnoremap <PageUp> {
 nnoremap <PageDown> }
 
 "alt+key mappings
-nnoremap <A-1> :1gt
-nnoremap <A-2> :2gt
-nnoremap <A-3> :3gt
-nnoremap <A-4> :4gt
-nnoremap <A-5> :5gt
-nnoremap <A-6> :6gt
-nnoremap <A-0> :0gt
+nnoremap <M-1> :1gt
+nnoremap <M-2> :2gt
+nnoremap <M-3> :3gt
+nnoremap <M-4> :4gt
+nnoremap <M-5> :5gt
+nnoremap <M-6> :6gt
+nnoremap <M-0> :0gt
 
 "backup dir not to clutter
 set backupdir=./.backup,.,/tmp
