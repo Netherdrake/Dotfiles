@@ -125,7 +125,6 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-
 "lets cheat with mouse
 " set mouse=a
 
@@ -246,3 +245,7 @@ augroup line_return
         \     execute 'normal! g`"zvzz' |
         \ endif
 augroup END
+
+" automatically save and restore folds
+autocmd BufWinLeave * if expand("%") != "" | mkview | endif
+autocmd BufWinEnter * if expand("%") != "" | loadview | endif
