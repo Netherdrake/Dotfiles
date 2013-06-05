@@ -55,15 +55,24 @@ set showmatch
 set incsearch
 set hls
 set number ls=2
+set cursorline
+set nowrap
 "set title
 "set cursorline
 let mapleader=","
 set guitablabel=%N/\ %t\ %M
+au VimResized * exe "normal! \<c-w>="
 
-"show trailing whitespaces
+set pastetoggle=<F2>
+"set clipboard=unnamed
+
+" show trailing whitespaces
 set list
 set listchars=tab:▸\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
 autocmd filetype html,xml set listchars-=tab:▸\ "dont remove comment
+
+" ControlP Start
+let g:ctrlp_map = '<c-p>'
 
 "make sure we have colors right
 syntax on
@@ -75,8 +84,6 @@ highlight ColorColumn ctermbg=233
 set tw=99
 " indent helpers <leader>ig
 
-" ControlP Start
-let g:ctrlp_map = '<c-p>'
 "make enter break and do newlines
 nnoremap <CR> O<Esc>j
 nnoremap <leader>j i<CR><Esc>
@@ -125,9 +132,6 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-"paste mode
-set pastetoggle=<F2>
-"set clipboard=unnamed
 
 "lets cheat with mouse
 " set mouse=a
@@ -135,11 +139,6 @@ set pastetoggle=<F2>
 "history
 set history=1000
 set undolevels=1000
-
-"EXPERIMENTAL STUFF
-au VimResized * exe "normal! \<c-w>="
-set cursorline
-set nowrap
 
 " Use sane regexes.
 nnoremap / /\v
