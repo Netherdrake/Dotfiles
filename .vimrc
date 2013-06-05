@@ -32,6 +32,11 @@ Bundle "thoughtbot/vim-rspec"
 Bundle "fsouza/go.vim"
 Bundle "nsf/gocode"
 
+" experimental vundles
+Bundle "corntrace/bufexplorer"
+Bundle "edsono/vim-matchit"
+Bundle "sjl/gundo.vim"
+
 " problematic vundles
 Bundle "wincent/Command-T"
 Bundle "tpope/vim-pathogen"
@@ -64,9 +69,6 @@ let mapleader=","
 set guitablabel=%N/\ %t\ %M
 au VimResized * exe "normal! \<c-w>="
 
-set pastetoggle=<F2>
-"set clipboard=unnamed
-
 " show trailing whitespaces
 set list
 set listchars=tab:▸\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
@@ -96,8 +98,10 @@ nnoremap <Space> i<Space><Esc>l
 nnoremap <leader>a :set number ls=2<CR>
 nnoremap <leader>s :set nonumber ls=1<CR>
 nnoremap <leader>r :NERDTreeToggle<CR>
-nnoremap <F5> :CommandTFlush<CR>
+set pastetoggle=<F2>
 nnoremap <F3> :TlistToggle<CR>
+nnoremap <F4> :GundoToggle<CR>
+nnoremap <F5> :CommandTFlush<CR>
 
 "map next-previous files
 nnoremap <leader>m :bp<CR>
@@ -127,6 +131,7 @@ set noswapfile
 
 "lets cheat with mouse
 " set mouse=a
+" set clipboard=unnamed
 
 "history
 set history=1000
