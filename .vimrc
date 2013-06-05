@@ -1,7 +1,35 @@
-execute pathogen#infect()
+set nocompatible
+set encoding=utf-8
+
+" start vundler
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 filetype plugin indent on
-filetype indent on
-set nocompatible "no vi compatibility mode
+
+" vundles
+Bundle "gmarik/vundle"
+Bundle "scrooloose/nerdtree"
+Bundle "vim-scripts/taglist.vim"
+Bundle "tpope/vim-fugitive"
+Bundle "pangloss/vim-javascript"
+Bundle "vim-ruby/vim-ruby"
+Bundle "tpope/vim-rails"
+Bundle "thoughtbot/vim-rspec"
+Bundle "fsouza/go.vim"
+Bundle "nsf/gocode"
+Bundle "ervandew/supertab"
+Bundle "vim-scripts/tComment"
+Bundle "Lokaltog/vim-easymotion"
+Bundle "nathanaelkane/vim-indent-guides"
+" Bundle "Lokaltog/powerline"
+Bundle "Lokaltog/vim-powerline"
+Bundle "flazz/vim-colorschemes"
+
+"start pathogen
+" execute pathogen#infect()
+
+" general configs
 set smarttab
 set shiftwidth=2
 set softtabstop=2
@@ -14,7 +42,7 @@ set ignorecase
 set smartcase
 set showmatch
 set incsearch
-set nohls
+set hls
 set number ls=2
 "set title
 "set cursorline
@@ -23,16 +51,18 @@ set guitablabel=%N/\ %t\ %M
 
 "show trailing whitespaces
 set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
-autocmd filetype html,xml set listchars-=tab:>.
+set listchars=tab:▸\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
+autocmd filetype html,xml set listchars-=tab:▸\ "dont remove comment
 
 "make sure we have colors right
 syntax on
 set t_Co=256
+set background=dark
 colorscheme candyman  "wombat256mod very nice
 "set colorcolumn=100
 highlight ColorColumn ctermbg=233
 set tw=99
+" indent helpers <leader>ig
 
 "make enter break and do newlines
 nnoremap <CR> O<Esc>j
@@ -47,7 +77,7 @@ nnoremap <c-j> <c-w>j<c-w>
 nnoremap <c-k> <c-w>k<c-w>
 nnoremap <c-l> <c-w>l<c-w>
 
-"functions I may or may not want
+"some togglables
 nnoremap <leader>a :set number ls=2<CR>
 nnoremap <leader>s :set nonumber ls=1<CR>
 nnoremap <leader>r :NERDTreeToggle<CR>
@@ -74,8 +104,10 @@ nnoremap <M-6> :6gt
 nnoremap <M-0> :0gt
 
 "backup dir not to clutter
-set backupdir=./.backup,.,/tmp
-set directory=.,./.backup,/tmp
+set undodir=~/.vim/tmp/undo//
+set backupdir=~/.vim/tmp/backup//
+set directory=~/.vim/tmp/swap//
+set backupskip=/tmp/*,/private/tmp/*"
 set nobackup
 set nowritebackup
 set noswapfile
@@ -85,8 +117,96 @@ set pastetoggle=<F2>
 "set clipboard=unnamed
 
 "lets cheat with mouse
-"set mouse=a
+" set mouse=a
 
 "history
 set history=1000
 set undolevels=1000
+
+"EXPERIMENTAL STUFF
+au VimResized * exe "normal! \<c-w>="
+set cursorline
+set nowrap
+
+" Use sane regexes.
+nnoremap / /\v
+vnoremap / /\v
+
+" Keep search matches in the middle of the window.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Make sure Vim returns to the same line when you reopen a file.
+" Thanks, Amit
+augroup line_return
+    au!
+    au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \     execute 'normal! g`"zvzz' |
+        \ endif
+augroup END
+
+
+" highlighter
+function! HiInterestingWord(n) " {{{
+    " Save our location.
+    normal! mz
+
+    " Yank the current word into the z register.
+    normal! "zyiw
+
+    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
+    let mid = 86750 + a:n
+
+    " Clear existing matches, but don't worry if they don't exist.
+    silent! call matchdelete(mid)
+
+    " Construct a literal pattern that has to match at boundaries.
+    let pat = '\V\<' . escape(@z, '\') . '\>'
+
+    " Actually match the words.
+    call matchadd("InterestingWord" . a:n, pat, 1, mid)
+
+    " Move back to our original location.
+    normal! `z
+endfunction " }}}
+
+
+nnoremap <leader>hh :call clearmatches()<CR>:noh<CR>
+nnoremap <silent> <leader>h1 :call HiInterestingWord(1)<cr>
+nnoremap <silent> <leader>h2 :call HiInterestingWord(2)<cr>
+nnoremap <silent> <leader>h3 :call HiInterestingWord(3)<cr>
+nnoremap <silent> <leader>h4 :call HiInterestingWord(4)<cr>
+nnoremap <silent> <leader>h5 :call HiInterestingWord(5)<cr>
+nnoremap <silent> <leader>h6 :call HiInterestingWord(6)<cr>
+
+hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
+hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
+hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
+hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
+hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
+hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
+
+" Visual Mode */# from Scrooloose {{{
+function! s:VSetSearch()
+  let temp = @@
+  norm! gvy
+  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+  let @@ = temp
+endfunction
+vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
+vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
+
+
+"language specific stuff
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+
+" Rspec.vim mappings
+map <Leader>Rt :call RunCurrentSpecFile()<CR>
+map <Leader>Rs :call RunNearestSpec()<CR>
+map <Leader>Rl :call RunLastSpec()<CR>
+
+" Golang compile TODO
+" Golang autocomplete TODO
