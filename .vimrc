@@ -23,6 +23,7 @@ Bundle "flazz/vim-colorschemes"
 " code manipulation tools
 Bundle "ervandew/supertab"
 Bundle "vim-scripts/tComment"
+Bundle "tpope/vim-surround"
 
 " language vundles
 Bundle "pangloss/vim-javascript"
