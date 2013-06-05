@@ -7,24 +7,35 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 filetype plugin indent on
 
-" vundles
+" vim vundles
 Bundle "gmarik/vundle"
+Bundle "kien/ctrlp.vim"
 Bundle "scrooloose/nerdtree"
 Bundle "vim-scripts/taglist.vim"
 Bundle "tpope/vim-fugitive"
+Bundle "Lokaltog/vim-easymotion"
+Bundle "nathanaelkane/vim-indent-guides"
+Bundle "Lokaltog/vim-powerline"
+Bundle "editorconfig/editorconfig-vim"
+Bundle "mileszs/ack.vim"
+Bundle "flazz/vim-colorschemes"
+
+" code manipulation tools
+Bundle "ervandew/supertab"
+Bundle "vim-scripts/tComment"
+
+" language vundles
 Bundle "pangloss/vim-javascript"
 Bundle "vim-ruby/vim-ruby"
 Bundle "tpope/vim-rails"
 Bundle "thoughtbot/vim-rspec"
 Bundle "fsouza/go.vim"
 Bundle "nsf/gocode"
-Bundle "ervandew/supertab"
-Bundle "vim-scripts/tComment"
-Bundle "Lokaltog/vim-easymotion"
-Bundle "nathanaelkane/vim-indent-guides"
+
+" disabled vundles
+" Bundle "wincent/Command-T"
 " Bundle "Lokaltog/powerline"
-Bundle "Lokaltog/vim-powerline"
-Bundle "flazz/vim-colorschemes"
+" Bundle "garbas/vim-snipmate"
 
 "start pathogen
 " execute pathogen#infect()
@@ -64,6 +75,8 @@ highlight ColorColumn ctermbg=233
 set tw=99
 " indent helpers <leader>ig
 
+" ControlP Start
+let g:ctrlp_map = '<c-p>'
 "make enter break and do newlines
 nnoremap <CR> O<Esc>j
 nnoremap <leader>j i<CR><Esc>
@@ -136,18 +149,20 @@ vnoremap / /\v
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-" Make sure Vim returns to the same line when you reopen a file.
-" Thanks, Amit
-augroup line_return
-    au!
-    au BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \     execute 'normal! g`"zvzz' |
-        \ endif
-augroup END
+" ruby specific stuff
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
+" Rspec.vim mappings
+map <Leader>Rt :call RunCurrentSpecFile()<CR>
+map <Leader>Rs :call RunNearestSpec()<CR>
+map <Leader>Rl :call RunLastSpec()<CR>
 
-" highlighter
+" Golang compile TODO
+" Golang autocomplete TODO
+
+" Text Highlighter = <leader>hx
 function! HiInterestingWord(n) " {{{
     " Save our location.
     normal! mz
@@ -197,16 +212,45 @@ endfunction
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 
+" Motions to Ack for things.  Works with pretty much everything, including:
+"
+"   w, W, e, E, b, B, t*, f*, i*, a*, and custom text objects
+"
+" Awesome.
+"
+" Note: If the text covered by a motion contains a newline it won't work.  Ack
+" searches line-by-line.
 
-"language specific stuff
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+nnoremap <silent> <leader>A :set opfunc=<SID>AckMotion<CR>g@
+xnoremap <silent> <leader>A :<C-U>call <SID>AckMotion(visualmode())<CR>
 
-" Rspec.vim mappings
-map <Leader>Rt :call RunCurrentSpecFile()<CR>
-map <Leader>Rs :call RunNearestSpec()<CR>
-map <Leader>Rl :call RunLastSpec()<CR>
+nnoremap <bs> :Ack! '\b<c-r><c-w>\b'<cr>
+xnoremap <silent> <bs> :<C-U>call <SID>AckMotion(visualmode())<CR>
 
-" Golang compile TODO
-" Golang autocomplete TODO
+function! s:CopyMotionForType(type)
+    if a:type ==# 'v'
+        silent execute "normal! `<" . a:type . "`>y"
+    elseif a:type ==# 'char'
+        silent execute "normal! `[v`]y"
+    endif
+endfunction
+
+function! s:AckMotion(type) abort
+    let reg_save = @@
+
+    call s:CopyMotionForType(a:type)
+
+    execute "normal! :Ack! --literal " . shellescape(@@) . "\<cr>"
+
+    let @@ = reg_save
+endfunction
+
+" Make sure Vim returns to the same line when you reopen a file.
+" Thanks, Amit
+augroup line_return
+    au!
+    au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \     execute 'normal! g`"zvzz' |
+        \ endif
+augroup END
