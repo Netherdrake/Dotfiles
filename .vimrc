@@ -32,13 +32,14 @@ Bundle "thoughtbot/vim-rspec"
 Bundle "fsouza/go.vim"
 Bundle "nsf/gocode"
 
-" disabled vundles
-" Bundle "wincent/Command-T"
+" problematic vundles
+Bundle "wincent/Command-T"
+Bundle "tpope/vim-pathogen"
 " Bundle "Lokaltog/powerline"
 " Bundle "garbas/vim-snipmate"
 
 "start pathogen
-" execute pathogen#infect()
+execute pathogen#infect()
 
 " general configs
 set smarttab
@@ -91,22 +92,14 @@ nnoremap <leader>j i<CR><Esc>
 "make space in normal mode add space
 nnoremap <Space> i<Space><Esc>l
 
-"map workspace movements
-nnoremap <c-h> <c-w>h<c-w>
-nnoremap <c-j> <c-w>j<c-w>
-nnoremap <c-k> <c-w>k<c-w>
-nnoremap <c-l> <c-w>l<c-w>
-
 "some togglables
 nnoremap <leader>a :set number ls=2<CR>
 nnoremap <leader>s :set nonumber ls=1<CR>
 nnoremap <leader>r :NERDTreeToggle<CR>
-nnoremap <leader>f :CommandTFlush<CR>
+nnoremap <F5> :CommandTFlush<CR>
 nnoremap <F3> :TlistToggle<CR>
 
-"map tab movements
-nnoremap <leader>1 :tabp<CR>
-nnoremap <leader>2 :tabn<CR>
+"map next-previous files
 nnoremap <leader>m :bp<CR>
 nnoremap <leader>. :bn<CR>
 
@@ -115,13 +108,13 @@ nnoremap <PageUp> {
 nnoremap <PageDown> }
 
 "alt+key mappings
-nnoremap <M-1> :1gt
-nnoremap <M-2> :2gt
-nnoremap <M-3> :3gt
-nnoremap <M-4> :4gt
-nnoremap <M-5> :5gt
-nnoremap <M-6> :6gt
-nnoremap <M-0> :0gt
+nnoremap <M-1> 1gt
+nnoremap <M-2> 2gt
+nnoremap <M-3> 3gt
+nnoremap <M-4> 4gt
+nnoremap <M-5> 5gt
+nnoremap <M-6> 6gt
+nnoremap <M-0> 0gt
 
 "backup dir not to clutter
 set undodir=~/.vim/tmp/undo//
