@@ -18,6 +18,7 @@ Bundle "nathanaelkane/vim-indent-guides"
 Bundle "Lokaltog/vim-powerline"
 Bundle "editorconfig/editorconfig-vim"
 Bundle "mileszs/ack.vim"
+Bundle "edsono/vim-matchit"
 Bundle "flazz/vim-colorschemes"
 
 " code manipulation tools
@@ -35,7 +36,6 @@ Bundle "nsf/gocode"
 
 " experimental vundles
 Bundle "corntrace/bufexplorer"
-Bundle "edsono/vim-matchit"
 Bundle "sjl/gundo.vim"
 
 " problematic vundles
