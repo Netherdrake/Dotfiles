@@ -101,7 +101,7 @@ nnoremap <leader>r :NERDTreeToggle<CR>
 set pastetoggle=<F2>
 nnoremap <F3> :TlistToggle<CR>
 nnoremap <F4> :GundoToggle<CR>
-nnoremap <F5> :CommandTFlush<CR>
+nnoremap <F5> :NERDTreeToggle<CR>
 
 "map next-previous files
 nnoremap <leader>m :bp<CR>
@@ -241,8 +241,8 @@ function! s:AckMotion(type) abort
     let @@ = reg_save
 endfunction
 
-" Make sure Vim returns to the same line when you reopen a file.
-" Thanks, Amit
+" " Make sure Vim returns to the same line when you reopen a file.
+" " Thanks, Amit
 augroup line_return
     au!
     au BufReadPost *
@@ -251,6 +251,4 @@ augroup line_return
         \ endif
 augroup END
 
-" automatically save and restore folds
-autocmd BufWinLeave * if expand("%") != "" | mkview | endif
-autocmd BufWinEnter * if expand("%") != "" | loadview | endif
+" NOTE to self. all fold persist methods are breaking on random files, discarded
