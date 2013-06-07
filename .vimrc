@@ -33,6 +33,7 @@ Bundle "tpope/vim-rails"
 Bundle "thoughtbot/vim-rspec"
 Bundle "fsouza/go.vim"
 Bundle "nsf/gocode"
+Bundle 'Blackrush/vim-gocode'
 
 " experimental vundles
 Bundle "corntrace/bufexplorer"
