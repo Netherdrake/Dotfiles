@@ -1,4 +1,3 @@
 cp -f .vimrc ~/.vimrc
-cp -f .vimrc ~/.vimrc
+cp -f .gitignore ~/.gitignore
 cp -f .editorconfig ../.editorconfig
-cp -f .bashrc ~/.bashrc
