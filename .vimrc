@@ -30,7 +30,7 @@ Bundle "tpope/vim-surround"
 Bundle "pangloss/vim-javascript"
 Bundle "vim-ruby/vim-ruby"
 Bundle "tpope/vim-rails"
-Bundle "thoughtbot/vim-rspec"
+Bundle "duskhacker/sweet-rspec-vim"
 Bundle "fsouza/go.vim"
 Bundle "nsf/gocode"
 Bundle 'Blackrush/vim-gocode'
@@ -105,6 +105,9 @@ nnoremap <F3> :TlistToggle<CR>
 nnoremap <F4> :GundoToggle<CR>
 nnoremap <F5> :NERDTreeToggle<CR>
 
+" open vimrc
+nnoremap <leader>v :tabnew  ~/.vimrc<CR>
+
 "map next-previous files
 nnoremap <leader>m :bp<CR>
 nnoremap <leader>. :bn<CR>
@@ -152,11 +155,10 @@ autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
-" Rspec.vim mappings
-map <Leader>Rt :call RunCurrentSpecFile()<CR>
-map <Leader>Rs :call RunNearestSpec()<CR>
-map <Leader>Rl :call RunLastSpec()<CR>
-
+" sweet vim rspec
+map <Leader>Rf :SweetVimRspecRunFile<CR>
+map <Leader>Rs :SweetVimRspecRunFocused<CR>
+map <Leader>Rp :SweetVimRspecRunPrevious<CR>
 " Golang compile TODO
 " Golang autocomplete TODO
 
@@ -254,3 +256,13 @@ augroup line_return
 augroup END
 
 " NOTE to self. all fold persist methods are breaking on random files, discarded
+
+" reload all open files in buffer just after pulling master
+fun! PullAndRefresh()
+  set noconfirm
+  " !git pull
+  bufdo e!
+  set confirm
+endfun
+nmap <leader>ra call PullAndRefresh()
+
