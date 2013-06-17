@@ -1,0 +1,19 @@
+Host viewly
+  HostName 198.199.121.65
+  User root
+
+Host js3
+  HostName 198.199.84.204
+  User root
+
+Host vpn
+  HostName 198.211.120.60
+  User root
+
+Host old
+  HostName 64.64.15.167
+  User root
+
+Host ltc
+  HostName 82.196.11.152
+  User root
