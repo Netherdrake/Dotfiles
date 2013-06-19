@@ -107,6 +107,9 @@ nnoremap <F5> :NERDTreeToggle<CR>
 " open vimrc
 nnoremap <leader>v :tabnew  ~/.vimrc<CR>
 
+" reload all open buffers
+nmap <leader>ra :tabdo exec 'windo e'
+
 "map next-previous files
 nnoremap <leader>m :bp<CR>
 nnoremap <leader>. :bn<CR>
@@ -255,13 +258,4 @@ augroup line_return
 augroup END
 
 " NOTE to self. all fold persist methods are breaking on random files, discarded
-
-" reload all open files in buffer just after pulling master
-fun! PullAndRefresh()
-  set noconfirm
-  " !git pull
-  bufdo e!
-  set confirm
-endfun
-nmap <leader>ra call PullAndRefresh()
 
