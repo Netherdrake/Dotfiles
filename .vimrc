@@ -99,7 +99,6 @@ nnoremap <Space> i<Space><Esc>l
 "some togglables
 nnoremap <leader>a :set number ls=2<CR>
 nnoremap <leader>s :set nonumber ls=1<CR>
-nnoremap <leader>r :NERDTreeToggle<CR>
 set pastetoggle=<F2>
 nnoremap <F3> :TlistToggle<CR>
 nnoremap <F4> :GundoToggle<CR>
