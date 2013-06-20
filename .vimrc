@@ -38,6 +38,7 @@ Bundle 'Blackrush/vim-gocode'
 " experimental vundles
 Bundle "corntrace/bufexplorer"
 Bundle "sjl/gundo.vim"
+Bundle "henrik/vim-indexed-search"
 
 " problematic vundles
 Bundle "wincent/Command-T"
@@ -145,8 +146,8 @@ set history=1000
 set undolevels=1000
 
 " Use sane regexes.
-nnoremap / /\v
-vnoremap / /\v
+nnoremap // /\v
+vnoremap // /\v
 
 " Keep search matches in the middle of the window.
 nnoremap n nzzzv
