@@ -136,7 +136,8 @@ set backupskip=/tmp/*,/private/tmp/*"
 set nobackup
 set nowritebackup
 set noswapfile
-
+" make C-a, C-x work properly
+set nrformats=
 "lets cheat with mouse
 " set mouse=a
 " set clipboard=unnamed
@@ -227,7 +228,7 @@ vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 nnoremap <silent> <leader>A :set opfunc=<SID>AckMotion<CR>g@
 xnoremap <silent> <leader>A :<C-U>call <SID>AckMotion(visualmode())<CR>
 
-nnoremap <bs> :Ack! '\b<c-r><c-w>\b'<cr>
+" nnoremap <bs> :Ack! '\b<c-r><c-w>\b'<cr>
 xnoremap <silent> <bs> :<C-U>call <SID>AckMotion(visualmode())<CR>
 
 function! s:CopyMotionForType(type)
