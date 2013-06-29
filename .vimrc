@@ -7,24 +7,30 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 filetype plugin indent on
 
-" vim vundles
+" vim buffered plugins
 Bundle "gmarik/vundle"
 Bundle "kien/ctrlp.vim"
 Bundle "scrooloose/nerdtree"
 Bundle "vim-scripts/taglist.vim"
-Bundle "tpope/vim-fugitive"
-Bundle "Lokaltog/vim-easymotion"
-Bundle "nathanaelkane/vim-indent-guides"
+Bundle "sjl/gundo.vim"
 Bundle "Lokaltog/vim-powerline"
-Bundle "editorconfig/editorconfig-vim"
-Bundle "mileszs/ack.vim"
-Bundle "edsono/vim-matchit"
+Bundle "corntrace/bufexplorer"
+
 Bundle "flazz/vim-colorschemes"
 
-" code manipulation tools
+" convenience tools
 Bundle "ervandew/supertab"
 Bundle "vim-scripts/tComment"
 Bundle "tpope/vim-surround"
+Bundle "mileszs/ack.vim"
+Bundle "edsono/vim-matchit"
+Bundle "Lokaltog/vim-easymotion"
+Bundle "henrik/vim-indexed-search"
+Bundle "tpope/vim-fugitive"
+
+" rarely used
+Bundle "nathanaelkane/vim-indent-guides"
+Bundle "editorconfig/editorconfig-vim"
 
 " language vundles
 Bundle "pangloss/vim-javascript"
@@ -36,18 +42,17 @@ Bundle "nsf/gocode"
 Bundle 'Blackrush/vim-gocode'
 
 " experimental vundles
-Bundle "corntrace/bufexplorer"
-Bundle "sjl/gundo.vim"
-Bundle "henrik/vim-indexed-search"
-
-" problematic vundles
-Bundle "wincent/Command-T"
-Bundle "tpope/vim-pathogen"
+Bundle "vim-scripts/mru.vim"
+Bundle "vim-scripts/FuzzyFinder"
+Bundle "vim-scripts/L9"
+Bundle "Shougo/neocomplcache.vim"
 " Bundle "Lokaltog/powerline"
-" Bundle "garbas/vim-snipmate"
 
-"start pathogen
-execute pathogen#infect()
+" snipMate with dependencies
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+Bundle "honza/vim-snippets"
 
 " general configs
 set smarttab
@@ -72,13 +77,17 @@ let mapleader=","
 set guitablabel=%N/\ %t\ %M
 au VimResized * exe "normal! \<c-w>="
 
+" make C-a, C-x work properly
+set nrformats=
+
+" enable omni complete
+set omnifunc=syntaxcomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+
 " show trailing whitespaces
 set list
 set listchars=tab:▸\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
 autocmd filetype html,xml set listchars-=tab:▸\ "dont remove comment
-
-" ControlP Start
-let g:ctrlp_map = '<c-p>'
 
 "make sure we have colors right
 syntax on
@@ -104,6 +113,9 @@ set pastetoggle=<F2>
 nnoremap <F3> :TlistToggle<CR>
 nnoremap <F4> :GundoToggle<CR>
 nnoremap <F5> :NERDTreeToggle<CR>
+nnoremap <F6> :MRU<CR>
+let g:ctrlp_map = '<c-p>'
+nnoremap <leader>t :CtrlPMixed<CR>
 
 " open vimrc
 nnoremap <leader>v :tabnew  ~/.vimrc<CR>
@@ -112,21 +124,12 @@ nnoremap <leader>v :tabnew  ~/.vimrc<CR>
 nmap <leader>ra :tabdo exec 'windo e'
 
 "map next-previous files
-nnoremap <leader>m :bp<CR>
-nnoremap <leader>. :bn<CR>
+nnoremap <leader>m <C-o>
+nnoremap <leader>. <C-i>
 
 "ms 4000 mappings
 nnoremap <PageUp> {
 nnoremap <PageDown> }
-
-"alt+key mappings
-nnoremap <M-1> 1gt
-nnoremap <M-2> 2gt
-nnoremap <M-3> 3gt
-nnoremap <M-4> 4gt
-nnoremap <M-5> 5gt
-nnoremap <M-6> 6gt
-nnoremap <M-0> 0gt
 
 "backup dir not to clutter
 set undodir=~/.vim/tmp/undo//
@@ -136,8 +139,6 @@ set backupskip=/tmp/*,/private/tmp/*"
 set nobackup
 set nowritebackup
 set noswapfile
-" make C-a, C-x work properly
-set nrformats=
 "lets cheat with mouse
 " set mouse=a
 " set clipboard=unnamed
