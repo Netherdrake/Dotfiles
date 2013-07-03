@@ -42,6 +42,8 @@ Bundle "nsf/gocode"
 Bundle 'Blackrush/vim-gocode'
 
 " experimental vundles
+Bundle "tpope/vim-abolish"
+Bundle "tpope/vim-repeat"
 Bundle "vim-scripts/mru.vim"
 Bundle "Shougo/neocomplcache.vim"
 " Bundle "Lokaltog/powerline"
