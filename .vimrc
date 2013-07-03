@@ -43,8 +43,6 @@ Bundle 'Blackrush/vim-gocode'
 
 " experimental vundles
 Bundle "vim-scripts/mru.vim"
-Bundle "vim-scripts/FuzzyFinder"
-Bundle "vim-scripts/L9"
 Bundle "Shougo/neocomplcache.vim"
 " Bundle "Lokaltog/powerline"
 
@@ -170,6 +168,7 @@ map <Leader>Rf :SweetVimRspecRunFile<CR>
 map <Leader>Rs :SweetVimRspecRunFocused<CR>
 map <Leader>Rp :SweetVimRspecRunPrevious<CR>
 " Golang compile TODO
+map <leader>Gr :!go run %<cr>
 " Golang autocomplete TODO
 
 " Text Highlighter = <leader>hx
