@@ -43,7 +43,6 @@ Bundle 'Blackrush/vim-gocode'
 " experimental vundles
 Bundle "tpope/vim-abolish"
 Bundle "tpope/vim-repeat"
-Bundle "vim-scripts/mru.vim"
 Bundle "Shougo/neocomplcache.vim"
 " Bundle "Lokaltog/powerline"
 
@@ -118,7 +117,6 @@ set pastetoggle=<F2>
 nnoremap <F3> :TlistToggle<CR>
 nnoremap <F4> :GundoToggle<CR>
 nnoremap <F5> :NERDTreeToggle<CR>
-nnoremap <F6> :MRU<CR>
 let g:ctrlp_map = '<c-p>'
 nnoremap <leader>t :CtrlPMixed<CR>
 
