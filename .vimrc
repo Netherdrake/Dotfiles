@@ -65,7 +65,6 @@ set autoindent
 set expandtab
 set ruler
 set hidden
-set ignorecase
 set smartcase
 set showmatch
 set incsearch
@@ -154,6 +153,10 @@ set undolevels=1000
 " Use sane regexes.
 nnoremap // /\v
 vnoremap // /\v
+
+" Use :Subvert search
+nnoremap /// :S /
+vnoremap /// :S /
 
 " Keep search matches in the middle of the window.
 nnoremap n nzzzv
