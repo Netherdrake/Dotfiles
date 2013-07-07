@@ -27,7 +27,6 @@ Bundle "edsono/vim-matchit"
 Bundle "Lokaltog/vim-easymotion"
 Bundle "henrik/vim-indexed-search"
 Bundle "tpope/vim-fugitive"
-
 " rarely used
 Bundle "nathanaelkane/vim-indent-guides"
 Bundle "editorconfig/editorconfig-vim"
@@ -72,12 +71,14 @@ set smartcase
 set showmatch
 set incsearch
 set hls
-set number ls=2
+set number
+set ls=2
 set cursorline
 set nowrap
 "set title
 "set cursorline
 let mapleader=","
+noremap \ ,
 set guitablabel=%N/\ %t\ %M
 au VimResized * exe "normal! \<c-w>="
 
@@ -91,7 +92,7 @@ let g:SuperTabDefaultCompletionType = "context"
 " show trailing whitespaces
 set list
 set listchars=tab:▸\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
-autocmd filetype html,xml set listchars-=tab:▸\ "dont remove comment
+autocmd filetype html,xml set listchars-=tab:▸\ 
 
 "make sure we have colors right
 syntax on
@@ -125,7 +126,7 @@ nnoremap <leader>t :CtrlPMixed<CR>
 nnoremap <leader>v :tabnew  ~/.vimrc<CR>
 
 " reload all open buffers
-nmap <leader>ra :tabdo exec 'windo e'
+nmap <leader>ra :tabdo exec 'windo e!'
 
 "map next-previous files
 nnoremap <leader>m <C-o>
@@ -165,12 +166,16 @@ autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
+" autocmd FileType html,eruby,erb set wrap
+
 " sweet vim rspec
 map <Leader>Rf :SweetVimRspecRunFile<CR>
 map <Leader>Rs :SweetVimRspecRunFocused<CR>
 map <Leader>Rp :SweetVimRspecRunPrevious<CR>
 " Golang compile TODO
 map <leader>Gr :!go run %<cr>
+" git buffer (set mark G to be able to quickly go back)
+map <leader>G mG:Git! 
 " Golang autocomplete TODO
 
 " Text Highlighter = <leader>hx
@@ -265,6 +270,3 @@ augroup line_return
         \     execute 'normal! g`"zvzz' |
         \ endif
 augroup END
-
-" NOTE to self. all fold persist methods are breaking on random files, discarded
-
