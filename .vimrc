@@ -25,7 +25,6 @@ Bundle "tpope/vim-surround"
 Bundle "mileszs/ack.vim"
 Bundle "edsono/vim-matchit"
 Bundle "Lokaltog/vim-easymotion"
-Bundle "henrik/vim-indexed-search"
 Bundle "tpope/vim-fugitive"
 " rarely used
 Bundle "nathanaelkane/vim-indent-guides"
@@ -41,6 +40,7 @@ Bundle "nsf/gocode"
 Bundle 'Blackrush/vim-gocode'
 
 " experimental vundles
+Bundle "henrik/vim-indexed-search"
 Bundle "tpope/vim-abolish"
 Bundle "tpope/vim-repeat"
 Bundle "Shougo/neocomplcache.vim"
@@ -65,6 +65,7 @@ set autoindent
 set expandtab
 set ruler
 set hidden
+set ignorecase
 set smartcase
 set showmatch
 set incsearch
@@ -151,12 +152,16 @@ set history=1000
 set undolevels=1000
 
 " Use sane regexes.
-nnoremap // /\v
-vnoremap // /\v
+nnoremap <leader>/ /\v
+vnoremap <leader>/ /\v
+
+" verbatim search
+nnoremap <leader>// /\V
+vnoremap <leader>// /\V
 
 " Use :Subvert search
-nnoremap /// :S /
-vnoremap /// :S /
+nnoremap <leader>S :S /
+vnoremap <leader>S :S /
 
 " Keep search matches in the middle of the window.
 nnoremap n nzzzv
