@@ -127,8 +127,6 @@ nnoremap <leader>j i<CR><Esc>
 nnoremap <Space> i<Space><Esc>l
 
 "some togglables
-nnoremap <leader>a :set number ls=2<CR>
-nnoremap <leader>s :set nonumber ls=1<CR>
 set pastetoggle=<F2>
 nnoremap <F3> :TlistToggle<CR>
 nnoremap <F4> :GundoToggle<CR>
@@ -146,21 +144,25 @@ nmap <leader>ra :tabdo exec 'windo e!'
 nnoremap <leader>m <C-o>
 nnoremap <leader>. <C-i>
 
-"ms 4000 mappings
+" ms 4000 mappings
 nnoremap <PageUp> {
 nnoremap <PageDown> }
 
-" Use sane regexes.
+" Use sane regexes
 nnoremap <leader>/ /\v
 vnoremap <leader>/ /\v
 
-" verbatim search
+" Verbatim search
 nnoremap <leader>// /\V
 vnoremap <leader>// /\V
 
 " Use :Subvert search
-nnoremap <leader>S :S /
-vnoremap <leader>S :S /
+nnoremap <leader>s :S /
+vnoremap <leader>s :S /
+
+" Use :Subvert replace
+nnoremap <leader>S :%S /
+vnoremap <leader>S :%S /
 
 " Keep search matches in the middle of the window.
 nnoremap n nzzzv
