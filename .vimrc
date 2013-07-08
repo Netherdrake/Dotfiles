@@ -101,7 +101,23 @@ colorscheme candyman  "wombat256mod very nice
 "set colorcolumn=100
 highlight ColorColumn ctermbg=233
 set tw=99
-" indent helpers <leader>ig
+
+"backup dir not to clutter
+set undodir=~/.vim/tmp/undo//
+set backupdir=~/.vim/tmp/backup//
+set directory=~/.vim/tmp/swap//
+set backupskip=/tmp/*,/private/tmp/*"
+set nobackup
+set nowritebackup
+set noswapfile
+"lets cheat with mouse
+" set mouse=a
+" set clipboard=unnamed
+set clipboard+=unnamed
+
+"history
+set history=1000
+set undolevels=1000
 
 "make enter break and do newlines
 nnoremap <CR> O<Esc>j
@@ -134,23 +150,6 @@ nnoremap <leader>. <C-i>
 nnoremap <PageUp> {
 nnoremap <PageDown> }
 
-"backup dir not to clutter
-set undodir=~/.vim/tmp/undo//
-set backupdir=~/.vim/tmp/backup//
-set directory=~/.vim/tmp/swap//
-set backupskip=/tmp/*,/private/tmp/*"
-set nobackup
-set nowritebackup
-set noswapfile
-"lets cheat with mouse
-" set mouse=a
-" set clipboard=unnamed
-set clipboard+=unnamed
-
-"history
-set history=1000
-set undolevels=1000
-
 " Use sane regexes.
 nnoremap <leader>/ /\v
 vnoremap <leader>/ /\v
@@ -167,25 +166,18 @@ vnoremap <leader>S :S /
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-" ruby specific stuff
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-
-" autocmd FileType html,eruby,erb set wrap
-
-" sweet vim rspec
-map <Leader>Rf :SweetVimRspecRunFile<CR>
-map <Leader>Rs :SweetVimRspecRunFocused<CR>
-map <Leader>Rp :SweetVimRspecRunPrevious<CR>
-" Golang compile TODO
-map <leader>Gr :!go run %<cr>
-" git buffer (set mark G to be able to quickly go back)
-map <leader>G mG:Git! 
-" Golang autocomplete TODO
+" Visual Mode */# from Scrooloose
+function! s:VSetSearch()
+  let temp = @@
+  norm! gvy
+  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+  let @@ = temp
+endfunction
+vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
+vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 
 " Text Highlighter = <leader>hx
-function! HiInterestingWord(n) " {{{
+function! HiInterestingWord(n)
     " Save our location.
     normal! mz
 
@@ -206,8 +198,7 @@ function! HiInterestingWord(n) " {{{
 
     " Move back to our original location.
     normal! `z
-endfunction " }}}
-
+endfunction
 
 nnoremap <leader>hh :call clearmatches()<CR>:noh<CR>
 nnoremap <silent> <leader>h1 :call HiInterestingWord(1)<cr>
@@ -223,16 +214,6 @@ hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
 hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
 hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
 hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
-
-" Visual Mode */# from Scrooloose {{{
-function! s:VSetSearch()
-  let temp = @@
-  norm! gvy
-  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-  let @@ = temp
-endfunction
-vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
-vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 
 " Motions to Ack for things.  Works with pretty much everything, including:
 "
@@ -276,3 +257,20 @@ augroup line_return
         \     execute 'normal! g`"zvzz' |
         \ endif
 augroup END
+
+" ruby specific stuff
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+
+" autocmd FileType html,eruby,erb set wrap
+
+" sweet vim rspec
+map <Leader>Rf :SweetVimRspecRunFile<CR>
+map <Leader>Rs :SweetVimRspecRunFocused<CR>
+map <Leader>Rp :SweetVimRspecRunPrevious<CR>
+" Golang compile TODO
+map <leader>Gr :!go run %<cr>
+" git buffer (set mark G to be able to quickly go back)
+map <leader>G mG:Git! 
+" Golang autocomplete TODO
