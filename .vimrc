@@ -81,16 +81,8 @@ set nrformats=
 
 " experimental auto-complete stuff
 set omnifunc=syntaxcomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-p>"
-
-function MyTagContext()
-  if filereadable(expand('%:p:h') . '/tags')
-    return "\<c-x>\<c-]>"
-  endif
-endfunction
-let g:SuperTabCompletionContexts =
-      \ ['MyTagContext', 's:ContextText', 's:ContextDiscover']
+" let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabContextDefaultCompletionType = "<c-p>"
 
 " show trailing whitespaces
 set list
