@@ -27,7 +27,6 @@ Bundle "edsono/vim-matchit"
 Bundle "Lokaltog/vim-easymotion"
 Bundle "tpope/vim-fugitive"
 " rarely used
-Bundle "nathanaelkane/vim-indent-guides"
 Bundle "editorconfig/editorconfig-vim"
 
 " language vundles
@@ -80,9 +79,18 @@ au VimResized * exe "normal! \<c-w>="
 " make C-a, C-x work properly
 set nrformats=
 
-" enable omni complete
+" experimental auto-complete stuff
 set omnifunc=syntaxcomplete#Complete
 let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-p>"
+
+function MyTagContext()
+  if filereadable(expand('%:p:h') . '/tags')
+    return "\<c-x>\<c-]>"
+  endif
+endfunction
+let g:SuperTabCompletionContexts =
+      \ ['MyTagContext', 's:ContextText', 's:ContextDiscover']
 
 " show trailing whitespaces
 set list
@@ -108,7 +116,6 @@ set nowritebackup
 set noswapfile
 "lets cheat with mouse
 " set mouse=a
-" set clipboard=unnamed
 set clipboard+=unnamed
 
 "history
@@ -216,20 +223,8 @@ hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
 hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
 hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 
-" Motions to Ack for things.  Works with pretty much everything, including:
-"
-"   w, W, e, E, b, B, t*, f*, i*, a*, and custom text objects
-"
-" Awesome.
-"
-" Note: If the text covered by a motion contains a newline it won't work.  Ack
-" searches line-by-line.
-
 nnoremap <silent> <leader>A :set opfunc=<SID>AckMotion<CR>g@
 xnoremap <silent> <leader>A :<C-U>call <SID>AckMotion(visualmode())<CR>
-
-" nnoremap <bs> :Ack! '\b<c-r><c-w>\b'<cr>
-xnoremap <silent> <bs> :<C-U>call <SID>AckMotion(visualmode())<CR>
 
 function! s:CopyMotionForType(type)
     if a:type ==# 'v'
@@ -263,8 +258,6 @@ augroup END
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-
-" autocmd FileType html,eruby,erb set wrap
 
 " sweet vim rspec
 map <Leader>Rf :SweetVimRspecRunFile<CR>
