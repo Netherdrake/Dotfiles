@@ -136,6 +136,9 @@ nnoremap <leader>v :tabnew  ~/.vimrc<CR>
 " reload all open buffers
 nmap <leader>ra :tabdo exec 'windo e!'
 
+" reload ctags
+nmap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
+
 "map next-previous files
 nnoremap <leader>m <C-o>
 nnoremap <leader>. <C-i>
