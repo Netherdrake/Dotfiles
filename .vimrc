@@ -52,10 +52,6 @@ Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
 
-"keeping pathogen only for its 'syntax on' bug workaround
-Bundle "tpope/vim-pathogen"
-execute pathogen#infect()
-
 " general configs
 set smarttab
 set shiftwidth=2
