@@ -31,6 +31,7 @@ Bundle "editorconfig/editorconfig-vim"
 
 " language vundles
 Bundle "pangloss/vim-javascript"
+Bundle "othree/javascript-libraries-syntax.vim"
 Bundle "vim-ruby/vim-ruby"
 Bundle "tpope/vim-rails"
 Bundle "duskhacker/sweet-rspec-vim"
@@ -255,8 +256,11 @@ autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 map <Leader>Rf :SweetVimRspecRunFile<CR>
 map <Leader>Rs :SweetVimRspecRunFocused<CR>
 map <Leader>Rp :SweetVimRspecRunPrevious<CR>
+
 " Golang compile TODO
 map <leader>Gr :!go run %<cr>
 " git buffer (set mark G to be able to quickly go back)
 map <leader>G mG:Git! 
-" Golang autocomplete TODO
+
+" javascript stuff
+let g:used_javascript_libs = "angularjs,jquery"
