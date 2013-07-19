@@ -52,6 +52,10 @@ Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
 
+"keeping pathogen only for its 'syntax on' bug workaround
+Bundle "tpope/vim-pathogen"
+execute pathogen#infect()
+
 " general configs
 set smarttab
 set shiftwidth=2
@@ -109,7 +113,9 @@ set nowritebackup
 set noswapfile
 "lets cheat with mouse
 " set mouse=a
-set clipboard+=unnamed
+if $TMUX == ""
+  set clipboard+=unnamed
+endif
 
 "history
 set history=1000
