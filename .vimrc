@@ -57,12 +57,12 @@ Bundle "tpope/vim-pathogen"
 execute pathogen#infect()
 
 " general configs
+set expandtab
 set smarttab
 set shiftwidth=2
 set softtabstop=2
-set tabstop=2
+set tabstop=4
 set autoindent
-set expandtab
 set ruler
 set hidden
 set ignorecase
@@ -253,6 +253,16 @@ augroup line_return
         \ endif
 augroup END
 
+" go tabbing
+autocmd FileType go,golang setlocal ts=4
+autocmd FileType go,golang setlocal sts=4
+autocmd FileType go,golang setlocal sw=4
+
+" Golang compile TODO
+map <leader>Gr :!go run %<cr>
+" git buffer (set mark G to be able to quickly go back)
+map <leader>G mG:Git! 
+
 " ruby specific stuff
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
@@ -262,11 +272,6 @@ autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 map <Leader>Rf :SweetVimRspecRunFile<CR>
 map <Leader>Rs :SweetVimRspecRunFocused<CR>
 map <Leader>Rp :SweetVimRspecRunPrevious<CR>
-
-" Golang compile TODO
-map <leader>Gr :!go run %<cr>
-" git buffer (set mark G to be able to quickly go back)
-map <leader>G mG:Git! 
 
 " javascript stuff
 let g:used_javascript_libs = "angularjs,jquery"
