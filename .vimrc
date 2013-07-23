@@ -123,7 +123,7 @@ set undolevels=1000
 
 "make enter break and do newlines
 nnoremap <CR> O<Esc>j
-nnoremap <leader>j i<CR><Esc>
+nnoremap <leader>j i<CR><Esc>==
 
 "make space in normal mode add space
 nnoremap <Space> i<Space><Esc>l
@@ -260,8 +260,10 @@ autocmd FileType go,golang setlocal sw=4
 
 " Golang compile TODO
 map <leader>Gr :!go run %<cr>
+
 " git buffer (set mark G to be able to quickly go back)
 map <leader>G mG:Git! 
+map <leader>g mG:Git 
 
 " ruby specific stuff
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
