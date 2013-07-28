@@ -115,6 +115,8 @@ set noswapfile
 " set mouse=a
 if $TMUX == ""
   set clipboard+=unnamed
+else
+  " set shell /bin/sh
 endif
 
 "history
@@ -222,9 +224,6 @@ hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
 hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
 hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 
-nnoremap <silent> <leader>A :set opfunc=<SID>AckMotion<CR>g@
-xnoremap <silent> <leader>A :<C-U>call <SID>AckMotion(visualmode())<CR>
-
 function! s:CopyMotionForType(type)
     if a:type ==# 'v'
         silent execute "normal! `<" . a:type . "`>y"
@@ -253,6 +252,16 @@ augroup line_return
         \ endif
 augroup END
 
+" git and ack stuff
+map <leader>G mG:Git! 
+map <leader>g :Git 
+map <leader>A :Ack 
+map <leader>a :!ack 
+" ack motion (eg. ,amiw finds current word like ,A C-rC-w)
+nnoremap <silent> <leader>am :set opfunc=<SID>AckMotion<CR>g@
+xnoremap <silent> <leader>am :<C-U>call <SID>AckMotion(visualmode())<CR>
+
+
 " go tabbing
 autocmd FileType go,golang setlocal ts=4
 autocmd FileType go,golang setlocal sts=4
@@ -260,10 +269,6 @@ autocmd FileType go,golang setlocal sw=4
 
 " Golang compile TODO
 map <leader>Gr :!go run %<cr>
-
-" git buffer (set mark G to be able to quickly go back)
-map <leader>G mG:Git! 
-map <leader>g mG:Git 
 
 " ruby specific stuff
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
@@ -274,6 +279,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 map <Leader>Rf :SweetVimRspecRunFile<CR>
 map <Leader>Rs :SweetVimRspecRunFocused<CR>
 map <Leader>Rp :SweetVimRspecRunPrevious<CR>
+map <Leader>Rr :!rspec %<CR>
 
 " javascript stuff
 let g:used_javascript_libs = "angularjs,jquery"
