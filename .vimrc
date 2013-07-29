@@ -101,7 +101,7 @@ set background=dark
 colorscheme candyman  "wombat256mod very nice
 "set colorcolumn=100
 highlight ColorColumn ctermbg=233
-highlight search ctermfg=white ctermbg=3423513
+highlight search ctermfg=4328 ctermbg=3423513
 set tw=99
 
 "backup dir not to clutter
@@ -117,7 +117,7 @@ set noswapfile
 if $TMUX == ""
   set clipboard+=unnamed
 else
-  " set shell /bin/sh
+  set shell=/bin/bash
 endif
 
 "history
