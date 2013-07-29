@@ -101,6 +101,7 @@ set background=dark
 colorscheme candyman  "wombat256mod very nice
 "set colorcolumn=100
 highlight ColorColumn ctermbg=233
+highlight search ctermfg=white ctermbg=3423513
 set tw=99
 
 "backup dir not to clutter
