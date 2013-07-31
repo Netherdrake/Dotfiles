@@ -101,5 +101,7 @@ export PATH=$PATH:$GOPATH/bin:$HOME/.gem/ruby/2.0.0/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
+bind -r '\C-s'
+stty -ixon -ixoff
 archey
+fish
