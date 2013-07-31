@@ -120,6 +120,9 @@ else
   set shell=/bin/bash
 endif
 
+" visual reselect of pasted stuff
+nnoremap gp `[v`]
+
 "history
 set history=1000
 set undolevels=1000
