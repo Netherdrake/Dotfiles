@@ -28,6 +28,7 @@ Bundle "Lokaltog/vim-easymotion"
 Bundle "tpope/vim-fugitive"
 " rarely used
 Bundle "editorconfig/editorconfig-vim"
+Bundle "nathanaelkane/vim-indent-guides"
 
 " language vundles
 Bundle "pangloss/vim-javascript"
@@ -37,7 +38,7 @@ Bundle "tpope/vim-rails"
 Bundle "duskhacker/sweet-rspec-vim"
 Bundle "fsouza/go.vim"
 Bundle "nsf/gocode"
-Bundle 'Blackrush/vim-gocode'
+Bundle "Blackrush/vim-gocode"
 
 " experimental vundles
 Bundle "henrik/vim-indexed-search"
@@ -101,7 +102,6 @@ set background=dark
 colorscheme candyman  "wombat256mod very nice
 "set colorcolumn=100
 highlight ColorColumn ctermbg=233
-highlight search ctermfg=4328 ctermbg=3423513
 set tw=99
 
 "backup dir not to clutter
@@ -120,7 +120,7 @@ else
   set shell=/bin/bash
 endif
 
-" visual reselect of pasted stuff
+" visual reselect of just pasted
 nnoremap gp `[v`]
 
 "history
@@ -147,9 +147,6 @@ nnoremap <leader>v :tabnew  ~/.vimrc<CR>
 
 " reload all open buffers
 nmap <leader>ra :tabdo exec 'windo e!'
-
-" reload ctags
-nmap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 
 "map next-previous files
 nnoremap <leader>m <C-o>
@@ -228,6 +225,12 @@ hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
 hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
 hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 
+highlight search ctermfg=white ctermbg=3423513
+
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=091534
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+
 function! s:CopyMotionForType(type)
     if a:type ==# 'v'
         silent execute "normal! `<" . a:type . "`>y"
@@ -261,10 +264,13 @@ map <leader>G mG:Git!
 map <leader>g :Git 
 map <leader>A :Ack 
 map <leader>a :!ack 
+
 " ack motion (eg. ,amiw finds current word like ,A C-rC-w)
 nnoremap <silent> <leader>am :set opfunc=<SID>AckMotion<CR>g@
 xnoremap <silent> <leader>am :<C-U>call <SID>AckMotion(visualmode())<CR>
 
+" reload ctags
+nmap <leader>c :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 
 " go tabbing
 autocmd FileType go,golang setlocal ts=4
