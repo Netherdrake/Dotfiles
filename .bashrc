@@ -102,6 +102,8 @@ export PATH=$PATH:$GOPATH/bin:$HOME/.gem/ruby/2.0.0/bin
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 bind -r '\C-s'
-stty -ixon -ixoff
+stty -ixon
+stty stop undef
+# stty -ixon -ixoff
 archey
 fish
