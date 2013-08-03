@@ -39,6 +39,7 @@ Bundle "duskhacker/sweet-rspec-vim"
 Bundle "fsouza/go.vim"
 Bundle "nsf/gocode"
 Bundle "Blackrush/vim-gocode"
+Bundle "scrooloose/syntastic.git"
 
 " experimental vundles
 Bundle "henrik/vim-indexed-search"
@@ -293,3 +294,7 @@ map <Leader>Rr :!rspec %<CR>
 
 " javascript stuff
 let g:used_javascript_libs = "angularjs,jquery"
+
+" syntastic check
+" JS requires npm install -g jshint
+nnoremap <Leader>l :SyntasticCheck<CR>
