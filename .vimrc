@@ -7,7 +7,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 filetype plugin indent on
 
-" vim buffered plugins
+" vim main plugins
 Bundle "gmarik/vundle"
 Bundle "kien/ctrlp.vim"
 Bundle "scrooloose/nerdtree"
@@ -15,10 +15,8 @@ Bundle "vim-scripts/taglist.vim"
 Bundle "sjl/gundo.vim"
 Bundle "Lokaltog/vim-powerline"
 Bundle "corntrace/bufexplorer"
-
+Bundle "scrooloose/syntastic.git"
 Bundle "flazz/vim-colorschemes"
-
-" convenience tools
 Bundle "ervandew/supertab"
 Bundle "vim-scripts/tComment"
 Bundle "tpope/vim-surround"
@@ -26,9 +24,11 @@ Bundle "mileszs/ack.vim"
 Bundle "edsono/vim-matchit"
 Bundle "Lokaltog/vim-easymotion"
 Bundle "tpope/vim-fugitive"
+
 " rarely used
 Bundle "editorconfig/editorconfig-vim"
 Bundle "nathanaelkane/vim-indent-guides"
+Bundle "godlygeek/tabular"
 
 " language vundles
 Bundle "pangloss/vim-javascript"
@@ -38,8 +38,9 @@ Bundle "tpope/vim-rails"
 Bundle "duskhacker/sweet-rspec-vim"
 Bundle "fsouza/go.vim"
 Bundle "nsf/gocode"
-Bundle "Blackrush/vim-gocode"
-Bundle "scrooloose/syntastic.git"
+" Bundle "Blackrush/vim-gocode"
+
+" make sure to go get -u github.com/nsf/gocode after nsf/gocode
 
 " experimental vundles
 Bundle "henrik/vim-indexed-search"
@@ -144,7 +145,8 @@ let g:ctrlp_map = '<c-p>'
 nnoremap <leader>t :CtrlPMixed<CR>
 
 " open vimrc
-nnoremap <leader>v :tabnew  ~/.vimrc<CR>
+nnoremap <leader>v :e  ~/.vimrc<CR>
+nnoremap <leader>V :tabnew  ~/.vimrc<CR>
 
 " reload all open buffers
 nmap <leader>ra :tabdo exec 'windo e!'
