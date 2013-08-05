@@ -40,8 +40,6 @@ Bundle "fsouza/go.vim"
 Bundle "nsf/gocode"
 " Bundle "Blackrush/vim-gocode"
 
-" make sure to go get -u github.com/nsf/gocode after nsf/gocode
-
 " experimental vundles
 Bundle "henrik/vim-indexed-search"
 Bundle "tpope/vim-abolish"
@@ -147,6 +145,9 @@ nnoremap <leader>t :CtrlPMixed<CR>
 " open vimrc
 nnoremap <leader>v :e  ~/.vimrc<CR>
 nnoremap <leader>V :tabnew  ~/.vimrc<CR>
+
+" syntastic check
+nnoremap <Leader>l :SyntasticCheck<CR>
 
 " reload all open buffers
 nmap <leader>ra :tabdo exec 'windo e!'
@@ -297,6 +298,8 @@ map <Leader>Rr :!rspec %<CR>
 " javascript stuff
 let g:used_javascript_libs = "angularjs,jquery"
 
-" syntastic check
-" JS requires npm install -g jshint
-nnoremap <Leader>l :SyntasticCheck<CR>
+" THINGS TODO ON NEW INSTALL
+" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+" install ctags and ack
+" js requires npm install -g jshint
+" make sure to go get -u github.com/nsf/gocode after nsf/gocode
