@@ -285,6 +285,7 @@ autocmd FileType go,golang setlocal sw=4
 map <leader>Gr :!go run %<cr>
 
 " ruby specific stuff
+set tags+=gems.tags
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
@@ -293,7 +294,8 @@ autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 map <Leader>Rf :SweetVimRspecRunFile<CR>
 map <Leader>Rs :SweetVimRspecRunFocused<CR>
 map <Leader>Rp :SweetVimRspecRunPrevious<CR>
-map <Leader>Rr :!rspec %<CR>
+map <Leader>Rf :!rspec %<CR>
+map <Leader>Rr :!rspec<CR>
 
 " javascript stuff
 let g:used_javascript_libs = "angularjs,jquery"
