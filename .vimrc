@@ -77,6 +77,9 @@ set cursorline
 set nowrap
 "set title
 "set cursorline
+set clipboard+=unnamed
+set shell=/bin/bash
+
 let mapleader=","
 noremap \ ,
 set guitablabel=%N/\ %t\ %M
@@ -112,13 +115,6 @@ set backupskip=/tmp/*,/private/tmp/*"
 set nobackup
 set nowritebackup
 set noswapfile
-"lets cheat with mouse
-" set mouse=a
-if $TMUX == ""
-  set clipboard+=unnamed
-else
-  set shell=/bin/bash
-endif
 
 " visual reselect of just pasted
 nnoremap gp `[v`]
