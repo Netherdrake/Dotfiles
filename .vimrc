@@ -35,10 +35,8 @@ Bundle "pangloss/vim-javascript"
 Bundle "othree/javascript-libraries-syntax.vim"
 Bundle "vim-ruby/vim-ruby"
 Bundle "tpope/vim-rails"
-Bundle "duskhacker/sweet-rspec-vim"
 Bundle "fsouza/go.vim"
 Bundle "nsf/gocode"
-" Bundle "Blackrush/vim-gocode"
 
 " experimental vundles
 Bundle "henrik/vim-indexed-search"
@@ -262,15 +260,15 @@ augroup END
 " git and ack stuff
 map <leader>G mG:Git! 
 map <leader>g :Git 
-map <leader>A :Ack 
-map <leader>a :!ack 
+map <leader>A :!ack 
+map <leader>a :Ack 
 
 " ack motion (eg. ,amiw finds current word like ,A C-rC-w)
-nnoremap <silent> <leader>am :set opfunc=<SID>AckMotion<CR>g@
-xnoremap <silent> <leader>am :<C-U>call <SID>AckMotion(visualmode())<CR>
+nmap <silent> <leader>w :set opfunc=<SID>AckMotion<CR>g@
+xmap <silent> <leader>w :<C-U>call <SID>AckMotion(visualmode())<CR>
 
 " reload ctags
-nmap <leader>c :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
+nmap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 
 " go tabbing
 autocmd FileType go,golang setlocal ts=4
@@ -287,9 +285,6 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
 " sweet vim rspec
-map <Leader>Rf :SweetVimRspecRunFile<CR>
-map <Leader>Rs :SweetVimRspecRunFocused<CR>
-map <Leader>Rp :SweetVimRspecRunPrevious<CR>
 map <Leader>Rf :!rspec %<CR>
 map <Leader>Rr :!rspec<CR>
 
