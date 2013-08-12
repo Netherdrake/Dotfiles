@@ -56,6 +56,7 @@ if [ -z $TMUX_POWERLINE_LEFT_STATUS_SEGMENTS ]; then
     "tmux_session_info 24 255" \
     # "hostname 33 0" \
     # "ifstat_sys 30 255" \
+    # "lan_ip 59 255" \
     "wan_ip 59 255" \
     # "ifstat_sys 64 255" \
     "vcs_branch 64 255" \
