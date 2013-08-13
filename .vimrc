@@ -277,6 +277,7 @@ autocmd FileType go,golang setlocal sw=4
 
 " Golang compile TODO
 map <leader>Gr :!go run %<cr>
+map <leader>Gt :!go test<cr>
 
 " ruby specific stuff
 set tags+=gems.tags
