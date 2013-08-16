@@ -285,7 +285,7 @@ autocmd FileType go,golang setlocal sts=4
 autocmd FileType go,golang setlocal sw=4
 let g:godef_split = 0
 au FileType go au BufWritePre <buffer> Fmt
-au FileType go au BufwritePre <buffer> retab
+au FileType go au BufWritePre <buffer> retab
 
 " Golang compile TODO
 map <leader>Gr :!go run %<cr>
