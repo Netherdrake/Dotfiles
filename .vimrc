@@ -48,7 +48,8 @@ Bundle "dgryski/vim-godef"
 " experimental vundles
 Bundle "Shougo/neocomplcache.vim"
 " Bundle "maxbrunsfeld/vim-yankstack"
-Bundle "Townk/vim-autoclose"
+" Bundle "Townk/vim-autoclose"
+Bundle "Raimondi/delimitMate"
 " Bundle "Lokaltog/powerline"
 
 " snipMate with dependencies
@@ -58,8 +59,8 @@ Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
 
 "keeping pathogen only for its 'syntax on' bug workaround
-Bundle "tpope/vim-pathogen"
-execute pathogen#infect()
+" Bundle "tpope/vim-pathogen"
+" execute pathogen#infect()
 
 " general configs
 set expandtab
