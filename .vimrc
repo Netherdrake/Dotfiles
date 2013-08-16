@@ -41,10 +41,13 @@ Bundle "tpope/vim-rails"
 Bundle "fsouza/go.vim"
 Bundle "nsf/gocode"
 Bundle "dgryski/vim-godef"
+" Bundle "eagletmt/ghcmod-vim"
+" Bundle "ujihisa/neco-ghc"
+" Bundle "dag/vim2hs"
 
 " experimental vundles
 Bundle "Shougo/neocomplcache.vim"
-Bundle "maxbrunsfeld/vim-yankstack"
+" Bundle "maxbrunsfeld/vim-yankstack"
 Bundle "Townk/vim-autoclose"
 " Bundle "Lokaltog/powerline"
 
@@ -85,6 +88,9 @@ let mapleader=","
 noremap \ ,
 set guitablabel=%N/\ %t\ %M
 au VimResized * exe "normal! \<c-w>="
+
+" vim powerline lag fix
+set timeoutlen=1000 ttimeoutlen=0
 
 " make C-a, C-x work properly
 set nrformats=
@@ -278,6 +284,8 @@ autocmd FileType go,golang setlocal ts=4
 autocmd FileType go,golang setlocal sts=4
 autocmd FileType go,golang setlocal sw=4
 let g:godef_split = 0
+au FileType go au BufWritePre <buffer> Fmt
+au FileType go au BufwritePre <buffer> retab
 
 " Golang compile TODO
 map <leader>Gr :!go run %<cr>
