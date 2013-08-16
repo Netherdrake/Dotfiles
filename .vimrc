@@ -24,6 +24,9 @@ Bundle "mileszs/ack.vim"
 Bundle "edsono/vim-matchit"
 Bundle "Lokaltog/vim-easymotion"
 Bundle "tpope/vim-fugitive"
+Bundle "henrik/vim-indexed-search"
+Bundle "tpope/vim-abolish"
+Bundle "tpope/vim-repeat"
 
 " rarely used
 Bundle "editorconfig/editorconfig-vim"
@@ -40,10 +43,9 @@ Bundle "nsf/gocode"
 Bundle "dgryski/vim-godef"
 
 " experimental vundles
-Bundle "henrik/vim-indexed-search"
-Bundle "tpope/vim-abolish"
-Bundle "tpope/vim-repeat"
 Bundle "Shougo/neocomplcache.vim"
+Bundle "maxbrunsfeld/vim-yankstack"
+Bundle "Townk/vim-autoclose"
 " Bundle "Lokaltog/powerline"
 
 " snipMate with dependencies
