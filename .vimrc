@@ -37,6 +37,7 @@ Bundle "vim-ruby/vim-ruby"
 Bundle "tpope/vim-rails"
 Bundle "fsouza/go.vim"
 Bundle "nsf/gocode"
+Bundle "dgryski/vim-godef"
 
 " experimental vundles
 Bundle "henrik/vim-indexed-search"
@@ -274,10 +275,13 @@ nmap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 autocmd FileType go,golang setlocal ts=4
 autocmd FileType go,golang setlocal sts=4
 autocmd FileType go,golang setlocal sw=4
+let g:godef_split = 0
 
 " Golang compile TODO
 map <leader>Gr :!go run %<cr>
 map <leader>Gt :!go test<cr>
+map <leader>Gb :!go build<cr>
+map <leader>Gi :!go install<cr>
 
 " ruby specific stuff
 set tags+=gems.tags
@@ -297,3 +301,5 @@ let g:used_javascript_libs = "angularjs,jquery"
 " install ctags and ack
 " js requires npm install -g jshint
 " make sure to go get -u github.com/nsf/gocode after nsf/gocode
+" go get -v code.google.com/p/rog-go/exp/cmd/godef
+" go install -v code.google.com/p/rog-go/exp/cmd/godef
