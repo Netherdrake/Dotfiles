@@ -41,6 +41,7 @@ Bundle "tpope/vim-rails"
 Bundle "fsouza/go.vim"
 Bundle "nsf/gocode"
 Bundle "dgryski/vim-godef"
+" Bundle "jnwhiteh/vim-golang"
 " Bundle "eagletmt/ghcmod-vim"
 " Bundle "ujihisa/neco-ghc"
 " Bundle "dag/vim2hs"
@@ -59,8 +60,8 @@ Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
 
 "keeping pathogen only for its 'syntax on' bug workaround
-" Bundle "tpope/vim-pathogen"
-" execute pathogen#infect()
+Bundle "tpope/vim-pathogen"
+execute pathogen#infect()
 
 " general configs
 set expandtab
@@ -281,9 +282,9 @@ xmap <silent> <leader>w :<C-U>call <SID>AckMotion(visualmode())<CR>
 nmap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 
 " go tabbing
-autocmd FileType go,golang setlocal ts=4
-autocmd FileType go,golang setlocal sts=4
-autocmd FileType go,golang setlocal sw=4
+" autocmd FileType go,golang setlocal ts=4
+" autocmd FileType go,golang setlocal sts=4
+" autocmd FileType go,golang setlocal sw=4
 let g:godef_split = 0
 au FileType go au BufWritePre <buffer> Fmt
 au FileType go au BufWritePre <buffer> retab
