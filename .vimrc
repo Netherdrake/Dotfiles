@@ -41,10 +41,9 @@ Bundle "tpope/vim-rails"
 Bundle "fsouza/go.vim"
 Bundle "nsf/gocode"
 Bundle "dgryski/vim-godef"
-" Bundle "jnwhiteh/vim-golang"
-" Bundle "eagletmt/ghcmod-vim"
-" Bundle "ujihisa/neco-ghc"
-" Bundle "dag/vim2hs"
+Bundle "eagletmt/ghcmod-vim"
+Bundle "ujihisa/neco-ghc"
+Bundle "dag/vim2hs"
 
 " experimental vundles
 Bundle "Shougo/neocomplcache.vim"
@@ -92,7 +91,15 @@ set guitablabel=%N/\ %t\ %M
 au VimResized * exe "normal! \<c-w>="
 
 " vim powerline lag fix
-set timeoutlen=1000 ttimeoutlen=0
+" set timeoutlen=1000 ttimeoutlen=0
+if ! has('gui_running')
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
+endif
 
 " make C-a, C-x work properly
 set nrformats=
@@ -291,7 +298,9 @@ au FileType go au BufWritePre <buffer> retab
 
 " Golang compile TODO
 map <leader>Gr :!go run %<cr>
-map <leader>Gt :!go test<cr>
+map <leader>GR :!go run -race %<cr>
+map <leader>Gt :!go test -race %<cr>
+map <leader>GT :!go test -race<cr>
 map <leader>Gb :!go build<cr>
 map <leader>Gi :!go install<cr>
 
