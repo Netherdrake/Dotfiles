@@ -17,6 +17,7 @@ Bundle "Lokaltog/vim-powerline"
 Bundle "corntrace/bufexplorer"
 Bundle "scrooloose/syntastic.git"
 Bundle "flazz/vim-colorschemes"
+Bundle "gorodinskiy/vim-coloresque.git"
 Bundle "ervandew/supertab"
 Bundle "vim-scripts/tComment"
 Bundle "tpope/vim-surround"
@@ -44,6 +45,11 @@ Bundle "dgryski/vim-godef"
 Bundle "eagletmt/ghcmod-vim"
 Bundle "ujihisa/neco-ghc"
 Bundle "dag/vim2hs"
+
+" databases
+Bundle "vim-scripts/sql_iabbr.vim"
+Bundle "vim-scripts/dbext.vim"
+Bundle "vim-scripts/SQLComplete.vim"
 
 " experimental vundles
 Bundle "Shougo/neocomplcache.vim"
@@ -82,6 +88,7 @@ set cursorline
 set nowrap
 "set title
 "set cursorline
+nmap <C-s> :w<CR>
 set clipboard+=unnamed
 set shell=/bin/bash
 
@@ -164,7 +171,7 @@ nnoremap <Leader>l :SyntasticCheck<CR>
 " reload all open buffers
 nmap <leader>ra :tabdo exec 'windo e!'
 
-"map next-previous files
+"map next-previous jumps
 nnoremap <leader>m <C-o>
 nnoremap <leader>. <C-i>
 
@@ -293,7 +300,15 @@ nmap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 " autocmd FileType go,golang setlocal sts=4
 " autocmd FileType go,golang setlocal sw=4
 let g:godef_split = 0
-au FileType go au BufWritePre <buffer> Fmt
+function! GoFmt()
+    try
+        exe "undojoin"
+        exe "Fmt"
+    catch
+    endtry
+endfunction
+au FileType go au BufWritePre <buffer> call GoFmt()
+" au FileType go au BufWritePre <buffer> undojoin | Fmt
 au FileType go au BufWritePre <buffer> retab
 
 " Golang compile TODO
