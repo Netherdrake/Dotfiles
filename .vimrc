@@ -88,7 +88,7 @@ set cursorline
 set nowrap
 "set title
 "set cursorline
-nmap <C-s> :w<CR>
+" nmap <C-s> :w<CR>
 set clipboard+=unnamed
 set shell=/bin/bash
 
@@ -339,3 +339,4 @@ let g:used_javascript_libs = "angularjs,jquery"
 " make sure to go get -u github.com/nsf/gocode after nsf/gocode
 " go get -v code.google.com/p/rog-go/exp/cmd/godef
 " go install -v code.google.com/p/rog-go/exp/cmd/godef
+" https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
