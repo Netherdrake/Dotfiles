@@ -42,9 +42,9 @@ Bundle "tpope/vim-rails"
 Bundle "fsouza/go.vim"
 Bundle "nsf/gocode"
 Bundle "dgryski/vim-godef"
-Bundle "eagletmt/ghcmod-vim"
-Bundle "ujihisa/neco-ghc"
-Bundle "dag/vim2hs"
+" Bundle "eagletmt/ghcmod-vim"
+" Bundle "ujihisa/neco-ghc"
+" Bundle "dag/vim2hs"
 
 " databases
 Bundle "vim-scripts/sql_iabbr.vim"
@@ -314,8 +314,10 @@ au FileType go au BufWritePre <buffer> retab
 " Golang compile TODO
 map <leader>Gr :!go run %<cr>
 map <leader>GR :!go run -race %<cr>
-map <leader>Gt :!go test -race %<cr>
-map <leader>GT :!go test -race<cr>
+map <leader>Gt :!go test <cr>
+map <leader>Gta :!go test *.go<cr>
+map <leader>GT :!go test -race %<cr>
+map <leader>GTA :!go test -race *.go<cr>
 map <leader>Gb :!go build<cr>
 map <leader>Gi :!go install<cr>
 
@@ -326,8 +328,9 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
 " sweet vim rspec
-map <Leader>Rf :!rspec %<CR>
-map <Leader>Rr :!rspec<CR>
+map <Leader>Rf :!zeus rspec %<CR>
+map <Leader>Rr :!ruby %<CR>
+map <Leader>Rt :!rspec<CR>
 
 " javascript stuff
 let g:used_javascript_libs = "angularjs,jquery"
