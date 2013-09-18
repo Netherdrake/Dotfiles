@@ -111,8 +111,9 @@ endif
 " make C-a, C-x work properly
 set nrformats=
 
-" experimental auto-complete stuff
+" experimental shady stuff
 set omnifunc=syntaxcomplete#Complete
+" let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 " let g:SuperTabDefaultCompletionType = "context"
 " let g:SuperTabContextDefaultCompletionType = "<c-p>"
 
@@ -328,8 +329,8 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
 " sweet vim rspec
-map <Leader>Rf :!zeus rspec %<CR>
 map <Leader>Rr :!ruby %<CR>
+map <Leader>Rf :!zeus rspec %<CR>
 map <Leader>Rt :!rspec<CR>
 
 " javascript stuff
@@ -343,3 +344,37 @@ let g:used_javascript_libs = "angularjs,jquery"
 " go get -v code.google.com/p/rog-go/exp/cmd/godef
 " go install -v code.google.com/p/rog-go/exp/cmd/godef
 " https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
+
+" tabline stuff from SO
+fu! MyTabLabel(n)
+let buflist = tabpagebuflist(a:n)
+let winnr = tabpagewinnr(a:n)
+let string = fnamemodify(bufname(buflist[winnr - 1]), ':t')
+return empty(string) ? '[unnamed]' : string
+endfu
+
+fu! MyTabLine()
+let s = ''
+for i in range(tabpagenr('$'))
+" select the highlighting
+    if i + 1 == tabpagenr()
+    let s .= '%#TabLineSel#'
+    else
+    let s .= '%#TabLine#'
+    endif
+
+    " set the tab page number (for mouse clicks)
+    "let s .= '%' . (i + 1) . 'T'
+    " display tabnumber (for use with <count>gt, etc)
+    let s .= ' '. (i+1) . ' '
+
+    " the label is made by MyTabLabel()
+    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+
+    if i+1 < tabpagenr('$')
+        let s .= ' |'
+    endif
+endfor
+return s
+endfu
+set tabline=%!MyTabLine()
