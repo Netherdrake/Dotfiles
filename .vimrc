@@ -29,6 +29,10 @@ Bundle "henrik/vim-indexed-search"
 Bundle "tpope/vim-abolish"
 Bundle "tpope/vim-repeat"
 
+Bundle "xolox/vim-session"
+Bundle "xolox/vim-misc"
+Bundle "Raimondi/delimitMate"
+
 " rarely used
 Bundle "editorconfig/editorconfig-vim"
 Bundle "nathanaelkane/vim-indent-guides"
@@ -42,9 +46,6 @@ Bundle "tpope/vim-rails"
 Bundle "fsouza/go.vim"
 Bundle "nsf/gocode"
 Bundle "dgryski/vim-godef"
-" Bundle "eagletmt/ghcmod-vim"
-" Bundle "ujihisa/neco-ghc"
-" Bundle "dag/vim2hs"
 
 " databases
 Bundle "vim-scripts/sql_iabbr.vim"
@@ -53,10 +54,9 @@ Bundle "vim-scripts/SQLComplete.vim"
 
 " experimental vundles
 Bundle "Shougo/neocomplcache.vim"
-Bundle "mhinz/vim-startify"
+" Bundle "mhinz/vim-startify"
 " Bundle "maxbrunsfeld/vim-yankstack"
 " Bundle "Townk/vim-autoclose"
-Bundle "Raimondi/delimitMate"
 " Bundle "Lokaltog/powerline"
 
 " snipMate with dependencies
@@ -131,6 +131,16 @@ colorscheme candyman  "wombat256mod very nice
 "set colorcolumn=100
 highlight ColorColumn ctermbg=233
 set tw=99
+
+" session management
+let g:session_directory = '~/.vim/session'
+let g:session_autoload = 'no'
+let g:session_autosave = 'no'
+let g:session_command_aliases = 1
+nnoremap <leader>so :OpenSession 
+nnoremap <leader>ss :SaveSession<CR>
+nnoremap <leader>sd :DeleteSession<CR>
+nnoremap <leader>sc :CloseSession<CR>
 
 "backup dir not to clutter
 set undodir=~/.vim/tmp/undo//
@@ -378,33 +388,4 @@ for i in range(tabpagenr('$'))
 endfor
 return s
 endfu
-
 set tabline=%!MyTabLine()
-function! Cowsay()
-    try
-        exe "silent !fortune | ponysay"
-    catch
-    endtry
-endfunction
-
-let g:startify_session_dir = '~/.vim/session'
-let g:startify_list_order = ['sessions', 'files', 'dir']
-let g:startify_files_number = 5
-let g:startify_session_detection = 1
-let g:startify_session_persistence = 1
-let g:startify_custom_header = [
-\ "" ,
-\ " `8.`888b           ,8'  8 8888          ,8.       ,8.         ",
-\ "  `8.`888b         ,8'   8 8888         ,888.     ,888.        ",
-\ "   `8.`888b       ,8'    8 8888        .`8888.   .`8888.       ",
-\ "    `8.`888b     ,8'     8 8888       ,8.`8888. ,8.`8888.      ",
-\ "     `8.`888b   ,8'      8 8888      ,8'8.`8888,8^8.`8888.     ",
-\ "      `8.`888b ,8'       8 8888     ,8' `8.`8888' `8.`8888.    ",
-\ "       `8.`888b8'        8 8888    ,8'   `8.`88'   `8.`8888.   ",
-\ "        `8.`888'         8 8888   ,8'     `8.`'     `8.`8888.  ",
-\ "         `8.`8'          8 8888  ,8'       `8        `8.`8888. ",
-\ "" ,
-\]
-let g:startify_custom_footer = system("cowsay 'moo'")
-let g:startify_restore_position = 1
-let g:startify_enable_special = 1
