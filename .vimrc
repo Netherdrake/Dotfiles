@@ -14,7 +14,7 @@ Bundle "scrooloose/nerdtree"
 Bundle "vim-scripts/taglist.vim"
 Bundle "sjl/gundo.vim"
 Bundle "Lokaltog/vim-powerline"
-Bundle "corntrace/bufexplorer"
+Bundle "vim-scripts/bufexplorer.zip"
 Bundle "scrooloose/syntastic.git"
 Bundle "flazz/vim-colorschemes"
 Bundle "gorodinskiy/vim-coloresque.git"
@@ -54,9 +54,7 @@ Bundle "vim-scripts/SQLComplete.vim"
 
 " experimental vundles
 Bundle "Shougo/neocomplcache.vim"
-" Bundle "mhinz/vim-startify"
 " Bundle "maxbrunsfeld/vim-yankstack"
-" Bundle "Townk/vim-autoclose"
 " Bundle "Lokaltog/powerline"
 
 " snipMate with dependencies
