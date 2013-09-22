@@ -1,4 +1,3 @@
-set nocompatible
 set encoding=utf-8
 
 " start vundler
@@ -18,7 +17,6 @@ Bundle "vim-scripts/bufexplorer.zip"
 Bundle "scrooloose/syntastic.git"
 Bundle "flazz/vim-colorschemes"
 Bundle "gorodinskiy/vim-coloresque.git"
-Bundle "ervandew/supertab"
 Bundle "vim-scripts/tComment"
 Bundle "tpope/vim-surround"
 Bundle "mileszs/ack.vim"
@@ -42,10 +40,11 @@ Bundle "godlygeek/tabular"
 Bundle "pangloss/vim-javascript"
 Bundle "othree/javascript-libraries-syntax.vim"
 Bundle "vim-ruby/vim-ruby"
-Bundle "tpope/vim-rails"
+" Bundle "tpope/vim-rails"
 Bundle "fsouza/go.vim"
 Bundle "nsf/gocode"
 Bundle "dgryski/vim-godef"
+" Bundle "Blackrush/vim-gocode"
 
 " databases
 Bundle "vim-scripts/sql_iabbr.vim"
@@ -53,9 +52,13 @@ Bundle "vim-scripts/dbext.vim"
 Bundle "vim-scripts/SQLComplete.vim"
 
 " experimental vundles
-Bundle "Shougo/neocomplcache.vim"
 " Bundle "maxbrunsfeld/vim-yankstack"
 " Bundle "Lokaltog/powerline"
+
+" autocomplete
+Bundle "Shougo/neocomplete"
+Bundle "Shougo/neosnippet"
+" Bundle "ervandew/supertab"
 
 " snipMate with dependencies
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -90,6 +93,7 @@ set nowrap
 " nmap <C-s> :w<CR>
 set clipboard+=unnamed
 set shell=/bin/bash
+set completeopt-=preview
 
 let mapleader=","
 noremap \ ,
@@ -110,11 +114,11 @@ endif
 " make C-a, C-x work properly
 set nrformats=
 
-" experimental shady stuff
-set omnifunc=syntaxcomplete#Complete
+" experimental stuff
+" set omnifunc=syntaxcomplete#Complete
 " let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 " let g:SuperTabDefaultCompletionType = "context"
-" let g:SuperTabContextDefaultCompletionType = "<c-p>"
+" let g:SuperTabContextDefaultCompletionType = "<C-n>"
 
 " show trailing whitespaces
 set list
@@ -333,9 +337,9 @@ map <leader>Gi :!go install<cr>
 
 " ruby specific stuff
 set tags+=gems.tags
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+" autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+" autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+" autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
 " sweet vim rspec
 map <Leader>Rr :!ruby %<CR>
@@ -387,3 +391,92 @@ endfor
 return s
 endfu
 set tabline=%!MyTabLine()
+
+
+" neocomplete
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  " return neocomplete#smart_close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
+" Close popup by <Space>.
+" inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+
+" AutoComplPop like behavior.
+let g:neocomplete#enable_auto_select = 1
+
+" Enable omni completion.
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType go setlocal omnifunc=gocomplete#Complete
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+" neosnippet
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" " SuperTab like snippets behavior. (cannot use together with snipMate)
+" imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" \ "\<Plug>(neosnippet_expand_or_jump)"
+" \: pumvisible() ? "\<C-n>" : "\<TAB>"
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" \ "\<Plug>(neosnippet_expand_or_jump)"
+" \: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
