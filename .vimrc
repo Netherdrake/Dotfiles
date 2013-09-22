@@ -10,9 +10,8 @@ filetype plugin indent on
 Bundle "gmarik/vundle"
 Bundle "kien/ctrlp.vim"
 Bundle "scrooloose/nerdtree"
-Bundle "vim-scripts/taglist.vim"
 Bundle "sjl/gundo.vim"
-Bundle "Lokaltog/vim-powerline"
+Bundle "bling/vim-airline"
 Bundle "vim-scripts/bufexplorer.zip"
 Bundle "scrooloose/syntastic.git"
 Bundle "flazz/vim-colorschemes"
@@ -26,15 +25,16 @@ Bundle "tpope/vim-fugitive"
 Bundle "henrik/vim-indexed-search"
 Bundle "tpope/vim-abolish"
 Bundle "tpope/vim-repeat"
-
+Bundle "vim-scripts/Auto-Pairs"
 Bundle "xolox/vim-session"
 Bundle "xolox/vim-misc"
-Bundle "Raimondi/delimitMate"
+Bundle "vim-scripts/taglist.vim"
+Bundle "majutsushi/tagbar"
+Bundle "editorconfig/editorconfig-vim"
+Bundle "godlygeek/tabular"
 
 " rarely used
-Bundle "editorconfig/editorconfig-vim"
 Bundle "nathanaelkane/vim-indent-guides"
-Bundle "godlygeek/tabular"
 
 " language vundles
 Bundle "pangloss/vim-javascript"
@@ -52,13 +52,14 @@ Bundle "vim-scripts/dbext.vim"
 Bundle "vim-scripts/SQLComplete.vim"
 
 " experimental vundles
+Bundle "airblade/vim-gitgutter"
 " Bundle "maxbrunsfeld/vim-yankstack"
-" Bundle "Lokaltog/powerline"
+" Bundle "Valloric/YouCompleteMe"
+" Bundle "terryma/vim-multiple-cursors"
 
 " autocomplete
 Bundle "Shougo/neocomplete"
 Bundle "Shougo/neosnippet"
-" Bundle "ervandew/supertab"
 
 " snipMate with dependencies
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -100,7 +101,7 @@ noremap \ ,
 set guitablabel=%N/\ %t\ %M
 au VimResized * exe "normal! \<c-w>="
 
-" vim powerline lag fix
+" vim mode-switch lag fix
 " set timeoutlen=1000 ttimeoutlen=0
 if ! has('gui_running')
     set ttimeoutlen=10
@@ -114,11 +115,8 @@ endif
 " make C-a, C-x work properly
 set nrformats=
 
-" experimental stuff
-" set omnifunc=syntaxcomplete#Complete
-" let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-" let g:SuperTabDefaultCompletionType = "context"
-" let g:SuperTabContextDefaultCompletionType = "<C-n>"
+" warning: very slow on ~/ - but better on projects
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " show trailing whitespaces
 set list
@@ -169,9 +167,11 @@ nnoremap <Space> i<Space><Esc>l
 
 "some togglables
 set pastetoggle=<F2>
-nnoremap <F3> :TlistToggle<CR>
+nnoremap <F3> :GitGutterToggle<CR>
 nnoremap <F4> :GundoToggle<CR>
 nnoremap <F5> :NERDTreeToggle<CR>
+nnoremap <F7> :TlistToggle<CR>
+nnoremap <F9> :TagbarToggle<CR>
 let g:ctrlp_map = '<c-p>'
 nnoremap <leader>t :CtrlPMixed<CR>
 
@@ -297,6 +297,9 @@ augroup line_return
 augroup END
 
 " git and ack stuff
+let g:gitgutter_enabled = 0
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
 map <leader>G mG:Git! 
 map <leader>g :Git 
 map <leader>A :!ack 
@@ -357,40 +360,6 @@ let g:used_javascript_libs = "angularjs,jquery"
 " go get -v code.google.com/p/rog-go/exp/cmd/godef
 " go install -v code.google.com/p/rog-go/exp/cmd/godef
 " https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
-
-" tabline stuff from SO
-fu! MyTabLabel(n)
-let buflist = tabpagebuflist(a:n)
-let winnr = tabpagewinnr(a:n)
-let string = fnamemodify(bufname(buflist[winnr - 1]), ':t')
-return empty(string) ? '[unnamed]' : string
-endfu
-
-fu! MyTabLine()
-let s = ''
-for i in range(tabpagenr('$'))
-" select the highlighting
-    if i + 1 == tabpagenr()
-    let s .= '%#TabLineSel#'
-    else
-    let s .= '%#TabLine#'
-    endif
-
-    " set the tab page number (for mouse clicks)
-    "let s .= '%' . (i + 1) . 'T'
-    " display tabnumber (for use with <count>gt, etc)
-    let s .= ' '. (i+1) . ' '
-
-    " the label is made by MyTabLabel()
-    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
-
-    if i+1 < tabpagenr('$')
-        let s .= ' |'
-    endif
-endfor
-return s
-endfu
-set tabline=%!MyTabLine()
 
 
 " neocomplete
@@ -480,3 +449,25 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 
 " Tell Neosnippet about the other snippets
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+"
+" end neosnippet
+
+" airline
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_theme="powerlineish"
+let g:airline_powerline_fonts=1
+" let g:airline_section_warning = airline#section#create([ "syntastic" ])
+let g:airline#extensions#branch#empty_message  =  "No SCM"
+let g:airline#extensions#whitespace#enabled    =  0
+let g:airline#extensions#syntastic#enabled     =  1
+let g:airline#extensions#tabline#enabled       =  1
+let g:airline#extensions#tabline#tab_nr_type   =  1   " tab number
+let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
+let g:airline#extensions#hunks#non_zero_only   =  1   " git gutter
+
+"
+" end airline
+
