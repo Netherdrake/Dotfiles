@@ -388,27 +388,32 @@ if !exists('g:neocomplete#keyword_patterns')
 endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
 
-" Recommended key-mappings.
+" consistent menu navigation
+inoremap <C-j> <C-n>
+inoremap <C-k> <C-p>
+
+" Plugin key-mappings.
+inoremap <expr><C-g>  neocomplete#undo_completion()
+inoremap <expr><C-l>  neocomplete#complete_common_string()
+inoremap <expr><BS>   neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-u>  neocomplete#close_popup() . "\<C-u>"
+inoremap <expr><C-h>  neocomplete#smart_close_popup() . "\<C-w>"
+
+" Plugin key-mappings.
+imap <C-i>     <Plug>(neosnippet_expand_or_jump)
+smap <C-i>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-i>     <Plug>(neosnippet_expand_target)
+
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  " return neocomplete#smart_close_popup() . "\<CR>"
-  " For no inserting <CR> key.
   return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
+
 " <TAB>: completion.
 " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
-" Close popup by <Space>.
-" inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
 " AutoComplPop like behavior.
 let g:neocomplete#enable_auto_select = 1
@@ -428,19 +433,6 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
 endif
 
 " neosnippet
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" " SuperTab like snippets behavior. (cannot use together with snipMate)
-" imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-" \ "\<Plug>(neosnippet_expand_or_jump)"
-" \: pumvisible() ? "\<C-n>" : "\<TAB>"
-" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-" \ "\<Plug>(neosnippet_expand_or_jump)"
-" \: "\<TAB>"
-
 " For snippet_complete marker.
 if has('conceal')
   set conceallevel=2 concealcursor=i
@@ -451,8 +443,6 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 
 " Tell Neosnippet about the other snippets
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-"
-" end neosnippet
 
 " airline
 if !exists('g:airline_symbols')
