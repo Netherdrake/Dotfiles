@@ -41,7 +41,7 @@ Bundle "majutsushi/tagbar"
 Bundle "pangloss/vim-javascript"
 Bundle "othree/javascript-libraries-syntax.vim"
 Bundle "vim-ruby/vim-ruby"
-" Bundle "tpope/vim-rails"
+Bundle "tpope/vim-rails"
 Bundle "fsouza/go.vim"
 Bundle "nsf/gocode"
 Bundle "dgryski/vim-godef"
@@ -54,12 +54,12 @@ Bundle "vim-scripts/SQLComplete.vim"
 
 " experimental vundles
 " Bundle "maxbrunsfeld/vim-yankstack"
-" Bundle "Valloric/YouCompleteMe"
 " Bundle "terryma/vim-multiple-cursors"
 
 " autocomplete
-Bundle "Shougo/neocomplete"
-Bundle "Shougo/neosnippet"
+Bundle "Valloric/YouCompleteMe"
+" Bundle "Shougo/neocomplete"
+" Bundle "Shougo/neosnippet"
 
 " snipMate with dependencies
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -153,6 +153,15 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" " Make sure Vim returns to the same line when you reopen a file.
+augroup line_return
+    au!
+    au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \     execute 'normal! g`"zvzz' |
+        \ endif
+augroup END
+
 " visual reselect of just pasted
 nnoremap gp `[v`]
 
@@ -214,6 +223,22 @@ vnoremap <leader>S :%S /
 " Keep search matches in the middle of the window.
 nnoremap n nzzzv
 nnoremap N Nzzzv
+
+" airline
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+let g:airline_theme="powerlineish"
+let g:airline_powerline_fonts=1
+" let g:airline_section_warning = airline#section#create([ "syntastic" ])
+let g:airline#extensions#branch#empty_message  =  "No SCM"
+let g:airline#extensions#whitespace#enabled    =  0
+let g:airline#extensions#syntastic#enabled     =  1
+let g:airline#extensions#tabline#enabled       =  1
+let g:airline#extensions#tabline#tab_nr_type   =  1 " tab number
+let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
+let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
 
 " Visual Mode */# from Scrooloose
 function! s:VSetSearch()
@@ -288,16 +313,6 @@ function! s:AckMotion(type) abort
     let @@ = reg_save
 endfunction
 
-" " Make sure Vim returns to the same line when you reopen a file.
-" " Thanks, Amit
-augroup line_return
-    au!
-    au BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \     execute 'normal! g`"zvzz' |
-        \ endif
-augroup END
-
 " git and ack stuff
 let g:gitgutter_enabled = 0
 let g:gitgutter_realtime = 0
@@ -354,112 +369,106 @@ map <Leader>Rt :!rspec<CR>
 " javascript stuff
 let g:used_javascript_libs = "angularjs,jquery"
 
-" THINGS TODO ON NEW INSTALL
-" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-" install ctags and ack
-" js requires npm install -g jshint
-" make sure to go get -u github.com/nsf/gocode after nsf/gocode
-" go get -v code.google.com/p/rog-go/exp/cmd/godef
-" go install -v code.google.com/p/rog-go/exp/cmd/godef
-" https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
-
-
-" neocomplete
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
+" " neocomplete
+" " Disable AutoComplPop.
+" let g:acp_enableAtStartup = 0
+" " Use neocomplete.
+" let g:neocomplete#enable_at_startup = 1
+" " Use smartcase.
+" let g:neocomplete#enable_smart_case = 1
+" " Set minimum syntax keyword length.
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
+" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" 
+" " Define dictionary.
+" let g:neocomplete#sources#dictionary#dictionaries = {
+"     \ 'default' : '',
+"     \ 'vimshell' : $HOME.'/.vimshell_hist',
+"     \ 'scheme' : $HOME.'/.gosh_completions'
+"         \ }
+" 
+" " Define keyword.
+" if !exists('g:neocomplete#keyword_patterns')
+"     let g:neocomplete#keyword_patterns = {}
+" endif
+" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
 " consistent menu navigation
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
 
-" Plugin key-mappings.
-inoremap <expr><C-g>  neocomplete#undo_completion()
-inoremap <expr><C-l>  neocomplete#complete_common_string()
-inoremap <expr><BS>   neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-u>  neocomplete#close_popup() . "\<C-u>"
-inoremap <expr><C-h>  neocomplete#smart_close_popup() . "\<C-w>"
+" snipmate rebind
+imap <C-l> <esc>a<Plug>snipMateNextOrTrigger
+smap <C-l> <Plug>snipMateNextOrTrigger
 
-" Plugin key-mappings.
-imap <C-i>     <Plug>(neosnippet_expand_or_jump)
-smap <C-i>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-i>     <Plug>(neosnippet_expand_target)
+" " Plugin key-mappings.
+" inoremap <expr><C-g>  neocomplete#undo_completion()
+" inoremap <expr><C-l>  neocomplete#complete_common_string()
+" inoremap <expr><BS>   neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-y>  neocomplete#close_popup()
+" inoremap <expr><C-u>  neocomplete#close_popup() . "\<C-u>"
+" inoremap <expr><C-h>  neocomplete#smart_close_popup() . "\<C-w>"
+" 
+" " Plugin key-mappings.
+" imap <C-i>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-i>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-i>     <Plug>(neosnippet_expand_target)
+" 
+" " <CR>: close popup and save indent.
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+"   return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+" endfunction
+" 
+" " AutoComplPop like behavior.
+" let g:neocomplete#enable_auto_select = 1
+" 
+" " Enable omni completion.
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" autocmd FileType go setlocal omnifunc=gocomplete#Complete
+" 
+" " Enable heavy omni completion.
+" if !exists('g:neocomplete#sources#omni#input_patterns')
+"   let g:neocomplete#sources#omni#input_patterns = {}
+" endif
+" 
+" " neosnippet
+" " For snippet_complete marker.
+" if has('conceal')
+"   set conceallevel=2 concealcursor=i
+" endif
+" 
+" " Enable snipMate compatibility feature.
+" let g:neosnippet#enable_snipmate_compatibility = 1
+" 
+" " Tell Neosnippet about the other snippets
+" let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
 
-" <TAB>: completion.
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" YouCompleteMe
+let g:ycm_filetype_blacklist = {}
+let g:ycm_key_list_select_completion = []
+let g:ycm_key_list_previous_completion = []
+let g:ycm_key_invoke_completion = '<C-j>'
+let g:ycm_collect_identifiers_from_tags_files = 1
 
-" AutoComplPop like behavior.
-let g:neocomplete#enable_auto_select = 1
 
-" Enable omni completion.
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType go setlocal omnifunc=gocomplete#Complete
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-
-" neosnippet
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-
-" airline
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-let g:airline_theme="powerlineish"
-let g:airline_powerline_fonts=1
-" let g:airline_section_warning = airline#section#create([ "syntastic" ])
-let g:airline#extensions#branch#empty_message  =  "No SCM"
-let g:airline#extensions#whitespace#enabled    =  0
-let g:airline#extensions#syntastic#enabled     =  1
-let g:airline#extensions#tabline#enabled       =  1
-let g:airline#extensions#tabline#tab_nr_type   =  1   " tab number
-let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
-let g:airline#extensions#hunks#non_zero_only   =  1   " git gutter
-
+" THINGS TODO ON NEW INSTALL
+" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 "
-" end airline
-
+" install ctags, ack, ag
+" js requires npm install -g jshint
+"
+" make sure to go get -u github.com/nsf/gocode after nsf/gocode
+" go get -v code.google.com/p/rog-go/exp/cmd/godef
+" go install -v code.google.com/p/rog-go/exp/cmd/godef
+"
+" https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
+"
+" cd ~/.vim/bundle/YouCompleteMe
+" ./install.sh --clang-completer
