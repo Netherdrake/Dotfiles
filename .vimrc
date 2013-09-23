@@ -9,7 +9,6 @@ filetype plugin indent on
 " vim main plugins
 Bundle "gmarik/vundle"
 Bundle "kien/ctrlp.vim"
-Bundle "scrooloose/nerdtree"
 Bundle "sjl/gundo.vim"
 Bundle "bling/vim-airline"
 Bundle "vim-scripts/bufexplorer.zip"
@@ -28,13 +27,15 @@ Bundle "tpope/vim-repeat"
 Bundle "vim-scripts/Auto-Pairs"
 Bundle "xolox/vim-session"
 Bundle "xolox/vim-misc"
-Bundle "vim-scripts/taglist.vim"
-Bundle "majutsushi/tagbar"
 Bundle "editorconfig/editorconfig-vim"
 Bundle "godlygeek/tabular"
 
 " rarely used
 Bundle "nathanaelkane/vim-indent-guides"
+Bundle "scrooloose/nerdtree"
+Bundle "airblade/vim-gitgutter"
+Bundle "vim-scripts/taglist.vim"
+Bundle "majutsushi/tagbar"
 
 " language vundles
 Bundle "pangloss/vim-javascript"
@@ -52,7 +53,6 @@ Bundle "vim-scripts/dbext.vim"
 Bundle "vim-scripts/SQLComplete.vim"
 
 " experimental vundles
-Bundle "airblade/vim-gitgutter"
 " Bundle "maxbrunsfeld/vim-yankstack"
 " Bundle "Valloric/YouCompleteMe"
 " Bundle "terryma/vim-multiple-cursors"
@@ -89,12 +89,10 @@ set number
 set ls=2
 set cursorline
 set nowrap
-"set title
-"set cursorline
-" nmap <C-s> :w<CR>
 set clipboard+=unnamed
 set shell=/bin/bash
 set completeopt-=preview
+" set autoread
 
 let mapleader=","
 noremap \ ,
@@ -115,8 +113,12 @@ endif
 " make C-a, C-x work properly
 set nrformats=
 
-" warning: very slow on ~/ - but better on projects
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+if executable('ag')
+  let g:ackprg = 'ag --nogroup --column'
+
+  " warning: very slow on ~/ - but better on projects
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 " show trailing whitespaces
 set list
