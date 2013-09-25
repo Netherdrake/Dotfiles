@@ -39,13 +39,19 @@ Bundle "majutsushi/tagbar"
 
 " language vundles
 Bundle "pangloss/vim-javascript"
+Bundle "vim-scripts/SyntaxComplete"
 Bundle "othree/javascript-libraries-syntax.vim"
+Bundle "kchmck/vim-coffee-script"
+
 Bundle "vim-ruby/vim-ruby"
+Bundle "kana/vim-textobj-user"
+Bundle "nelstrom/vim-textobj-rubyblock"
 Bundle "tpope/vim-rails"
+
 Bundle "fsouza/go.vim"
-Bundle "nsf/gocode"
 Bundle "dgryski/vim-godef"
-" Bundle "Blackrush/vim-gocode"
+Bundle "nsf/gocode"
+Bundle "Blackrush/vim-gocode"
 
 " databases
 Bundle "vim-scripts/sql_iabbr.vim"
@@ -89,7 +95,8 @@ set number
 set ls=2
 set cursorline
 set nowrap
-set clipboard+=unnamed
+set backspace=indent,eol,start
+set clipboard+=unnamed,unnamedplus
 set shell=/bin/bash
 set completeopt-=preview
 " set autoread
@@ -457,6 +464,12 @@ let g:ycm_key_list_previous_completion = []
 let g:ycm_key_invoke_completion = '<C-j>'
 let g:ycm_collect_identifiers_from_tags_files = 1
 
+" if has("autocmd") && exists("+omnifunc")
+"   autocmd Filetype *
+"         \	if &omnifunc == "" |
+"         \		setlocal omnifunc=syntaxcomplete#Complete |
+"         \	endif
+" endif
 
 " THINGS TODO ON NEW INSTALL
 " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
