@@ -6,15 +6,16 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 filetype plugin indent on
 
-" vim main plugins
+" core plugins
 Bundle "gmarik/vundle"
+Bundle "flazz/vim-colorschemes"
 Bundle "kien/ctrlp.vim"
+
+" vim main plugins
 Bundle "sjl/gundo.vim"
 Bundle "bling/vim-airline"
 Bundle "vim-scripts/bufexplorer.zip"
 Bundle "scrooloose/syntastic.git"
-Bundle "flazz/vim-colorschemes"
-Bundle "gorodinskiy/vim-coloresque.git"
 Bundle "vim-scripts/tComment"
 Bundle "tpope/vim-surround"
 Bundle "mileszs/ack.vim"
@@ -60,6 +61,7 @@ Bundle "vim-scripts/SQLComplete.vim"
 " experimental vundles
 " Bundle "maxbrunsfeld/vim-yankstack"
 " Bundle "terryma/vim-multiple-cursors"
+" Bundle "gorodinskiy/vim-coloresque.git"
 
 " autocomplete
 Bundle "Valloric/YouCompleteMe"
