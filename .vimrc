@@ -104,12 +104,9 @@ set textwidth=95
 " set autoread
 
 let mapleader=","
-noremap \ ,
-set guitablabel=%N/\ %t\ %M
-au VimResized * exe "normal! \<c-w>="
+" au VimResized * exe "normal! \<c-w>="
 
 " vim mode-switch lag fix
-" set timeoutlen=1000 ttimeoutlen=0
 if ! has('gui_running')
     set ttimeoutlen=10
     augroup FastEscape
@@ -125,12 +122,13 @@ set nrformats=
 " show trailing whitespaces
 set list
 set listchars=tab:▸\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
-autocmd filetype html,xml set listchars-=tab:▸\ 
+augroup FileTypes
+  autocmd!
+  autocmd filetype html,xml set listchars-=tab:▸\ 
+augroup END
 
-" syntax highlightin
+" syntax highlighting
 syntax on
-set t_Co=256
-set background=dark
 colorscheme candyman
 
 " session management
@@ -152,7 +150,7 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-" " Make sure Vim returns to the same line when you reopen a file.
+" Make sure Vim returns to the same line when you reopen a file.
 augroup line_return
     au!
     au BufReadPost *
@@ -174,6 +172,10 @@ nnoremap <leader>j i<CR><Esc>==
 
 "make space in normal mode add space
 nnoremap <Space> i<Space><Esc>l
+
+" consistent menu navigation
+inoremap <C-j> <C-n>
+inoremap <C-k> <C-p>
 
 "some togglables
 set pastetoggle=<F2>
@@ -310,11 +312,8 @@ endfunction
 
 if executable('ag')
   let g:ackprg = 'ag --nogroup --column'
-
-  " warning: very slow on ~/ - but better on projects
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
-
 
 " git and ack stuff
 let g:gitgutter_enabled = 0
@@ -332,10 +331,6 @@ xmap <silent> <leader>w :<C-U>call <SID>AckMotion(visualmode())<CR>
 " reload ctags
 nmap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 
-" go tabbing
-" autocmd FileType go,golang setlocal ts=4
-" autocmd FileType go,golang setlocal sts=4
-" autocmd FileType go,golang setlocal sw=4
 let g:godef_split = 0
 function! GoFmt()
     try
@@ -344,11 +339,14 @@ function! GoFmt()
     catch
     endtry
 endfunction
-au FileType go au BufWritePre <buffer> call GoFmt()
-" au FileType go au BufWritePre <buffer> undojoin | Fmt
-au FileType go au BufWritePre <buffer> retab
 
-" Golang compile TODO
+augroup Golang
+  autocmd!
+  au FileType go au BufWritePre <buffer> call GoFmt()
+  au FileType go au BufWritePre <buffer> retab
+augroup END
+
+" Golang shortcuts
 map <leader>Gr :!go run %<cr>
 map <leader>GR :!go run -race %<cr>
 map <leader>Gt :!go test <cr>
@@ -360,19 +358,41 @@ map <leader>Gi :!go install<cr>
 
 " ruby specific stuff
 set tags+=gems.tags
+map <Leader>Rr :!ruby %<CR>
+map <Leader>Rf :!zeus rspec %<CR>
+map <Leader>Rt :!rspec<CR>
 " autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 " autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
-" sweet vim rspec
-map <Leader>Rr :!ruby %<CR>
-map <Leader>Rf :!zeus rspec %<CR>
-map <Leader>Rt :!rspec<CR>
-
 " javascript stuff
 let g:used_javascript_libs = "angularjs,jquery"
 
-" " neocomplete
+" YouCompleteMe
+let g:ycm_filetype_blacklist = {}
+let g:ycm_key_list_select_completion = []
+let g:ycm_key_list_previous_completion = []
+let g:ycm_key_invoke_completion = '<C-j>'
+let g:ycm_collect_identifiers_from_tags_files = 1
+
+" THINGS TODO ON NEW INSTALL
+" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+"
+" install ctags, ack, ag
+" js requires npm install -g jshint
+"
+" make sure to go get -u github.com/nsf/gocode after nsf/gocode
+" go get -v code.google.com/p/rog-go/exp/cmd/godef
+" go install -v code.google.com/p/rog-go/exp/cmd/godef
+"
+" https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
+"
+" cd ~/.vim/bundle/YouCompleteMe
+" ./install.sh --clang-completer
+
+
+" " NEOCOMPLETE
+"
 " " Disable AutoComplPop.
 " let g:acp_enableAtStartup = 0
 " " Use neocomplete.
@@ -396,13 +416,9 @@ let g:used_javascript_libs = "angularjs,jquery"
 " endif
 " let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-" consistent menu navigation
-inoremap <C-j> <C-n>
-inoremap <C-k> <C-p>
-
-" snipmate rebind
-imap <C-l> <esc>a<Plug>snipMateNextOrTrigger
-smap <C-l> <Plug>snipMateNextOrTrigger
+" " snipmate rebind
+" imap <C-l> <esc>a<Plug>snipMateNextOrTrigger
+" smap <C-l> <Plug>snipMateNextOrTrigger
 
 " " Plugin key-mappings.
 " inoremap <expr><C-g>  neocomplete#undo_completion()
@@ -452,32 +468,3 @@ smap <C-l> <Plug>snipMateNextOrTrigger
 " " Tell Neosnippet about the other snippets
 " let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
-
-" YouCompleteMe
-let g:ycm_filetype_blacklist = {}
-let g:ycm_key_list_select_completion = []
-let g:ycm_key_list_previous_completion = []
-let g:ycm_key_invoke_completion = '<C-j>'
-let g:ycm_collect_identifiers_from_tags_files = 1
-
-" if has("autocmd") && exists("+omnifunc")
-"   autocmd Filetype *
-"         \	if &omnifunc == "" |
-"         \		setlocal omnifunc=syntaxcomplete#Complete |
-"         \	endif
-" endif
-
-" THINGS TODO ON NEW INSTALL
-" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-"
-" install ctags, ack, ag
-" js requires npm install -g jshint
-"
-" make sure to go get -u github.com/nsf/gocode after nsf/gocode
-" go get -v code.google.com/p/rog-go/exp/cmd/godef
-" go install -v code.google.com/p/rog-go/exp/cmd/godef
-"
-" https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
-"
-" cd ~/.vim/bundle/YouCompleteMe
-" ./install.sh --clang-completer
