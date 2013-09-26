@@ -31,7 +31,6 @@ Bundle "editorconfig/editorconfig-vim"
 Bundle "godlygeek/tabular"
 
 " rarely used
-Bundle "nathanaelkane/vim-indent-guides"
 Bundle "scrooloose/nerdtree"
 Bundle "airblade/vim-gitgutter"
 Bundle "vim-scripts/taglist.vim"
@@ -39,9 +38,9 @@ Bundle "majutsushi/tagbar"
 
 " language vundles
 Bundle "pangloss/vim-javascript"
-Bundle "vim-scripts/SyntaxComplete"
-Bundle "othree/javascript-libraries-syntax.vim"
 Bundle "kchmck/vim-coffee-script"
+" Bundle "vim-scripts/SyntaxComplete"
+" Bundle "othree/javascript-libraries-syntax.vim"
 
 Bundle "vim-ruby/vim-ruby"
 Bundle "kana/vim-textobj-user"
@@ -297,10 +296,6 @@ hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
 hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 
 highlight search ctermfg=white ctermbg=3423513
-
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=091534
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
 function! s:CopyMotionForType(type)
     if a:type ==# 'v'
