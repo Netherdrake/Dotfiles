@@ -98,6 +98,7 @@ set backspace=indent,eol,start
 set clipboard+=unnamed,unnamedplus
 set shell=/bin/bash
 set completeopt-=preview
+set textwidth=95
 " set autoread
 
 let mapleader=","
@@ -119,26 +120,16 @@ endif
 " make C-a, C-x work properly
 set nrformats=
 
-if executable('ag')
-  let g:ackprg = 'ag --nogroup --column'
-
-  " warning: very slow on ~/ - but better on projects
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
 " show trailing whitespaces
 set list
 set listchars=tab:▸\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
 autocmd filetype html,xml set listchars-=tab:▸\ 
 
-"make sure we have colors right
+" syntax highlightin
 syntax on
 set t_Co=256
 set background=dark
-colorscheme candyman  "wombat256mod very nice
-"set colorcolumn=100
-highlight ColorColumn ctermbg=233
-set tw=99
+colorscheme candyman
 
 " session management
 let g:session_directory = '~/.vim/session'
@@ -146,7 +137,7 @@ let g:session_autoload = 'no'
 let g:session_autosave = 'no'
 let g:session_command_aliases = 1
 nnoremap <leader>so :OpenSession 
-nnoremap <leader>ss :SaveSession<CR>
+nnoremap <leader>ss :SaveSession 
 nnoremap <leader>sd :DeleteSession<CR>
 nnoremap <leader>sc :CloseSession<CR>
 
@@ -314,6 +305,14 @@ function! s:AckMotion(type) abort
 
     let @@ = reg_save
 endfunction
+
+if executable('ag')
+  let g:ackprg = 'ag --nogroup --column'
+
+  " warning: very slow on ~/ - but better on projects
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
 
 " git and ack stuff
 let g:gitgutter_enabled = 0
