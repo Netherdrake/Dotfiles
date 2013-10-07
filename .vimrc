@@ -61,7 +61,7 @@ Bundle "vim-scripts/SQLComplete.vim"
 " experimental vundles
 " Bundle "maxbrunsfeld/vim-yankstack"
 " Bundle "terryma/vim-multiple-cursors"
-" Bundle "gorodinskiy/vim-coloresque.git"
+" Bundle "chrisbra/color_highlight"
 
 " autocomplete
 Bundle "Valloric/YouCompleteMe"
@@ -93,6 +93,7 @@ set showmatch
 set incsearch
 set hls
 set number
+set relativenumber
 set ls=2
 set cursorline
 set nowrap
@@ -467,4 +468,6 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 " 
 " " Tell Neosnippet about the other snippets
 " let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-
+" 
+" vim-rails ovveride fix
+" g:neocomplete#force_overwrite_completefunc
