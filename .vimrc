@@ -92,7 +92,6 @@ set smartcase
 set showmatch
 set incsearch
 set hls
-set number
 set relativenumber
 set ls=2
 set cursorline
@@ -105,7 +104,12 @@ set textwidth=95
 " set autoread
 
 let mapleader=","
-" au VimResized * exe "normal! \<c-w>="
+
+" realign buffers when iterm goes fullscreen
+augroup FixProportionsOnResize
+  au!
+  au VimResized * exe "normal! \<c-w>="
+augroup END
 
 " vim mode-switch lag fix
 if ! has('gui_running')
@@ -119,6 +123,9 @@ endif
 
 " make C-a, C-x work properly
 set nrformats=
+
+" fix bufexplorer bug with hidden
+let g:bufExplorerFindActive=0
 
 " show trailing whitespaces
 set list
