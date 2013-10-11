@@ -74,6 +74,10 @@ Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
 
+"keeping pathogen only for its 'syntax on' bug workaround
+Bundle "tpope/vim-pathogen"
+execute pathogen#infect()
+
 " general configs
 set expandtab
 set smarttab
@@ -150,8 +154,8 @@ set undodir=~/.vim/tmp/undo//
 set backupdir=~/.vim/tmp/backup//
 set directory=~/.vim/tmp/swap//
 set backupskip=/tmp/*,/private/tmp/*"
-set nobackup
-set nowritebackup
+set backup
+set writebackup
 set noswapfile
 
 " Make sure Vim returns to the same line when you reopen a file.
@@ -393,3 +397,5 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 "
 " cd ~/.vim/bundle/YouCompleteMe
 " ./install.sh --clang-completer
+"
+" Inside of ~/.vim make /tmp, inside of which mkdir swap backup undo
