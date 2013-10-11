@@ -59,8 +59,9 @@ Bundle "vim-scripts/SQLComplete.vim"
 
 " experimental vundles
 Bundle "chrisbra/color_highlight"
-" Bundle "maxbrunsfeld/vim-yankstack"
-" Bundle "terryma/vim-multiple-cursors"
+Bundle "maxbrunsfeld/vim-yankstack"
+Bundle "terryma/vim-multiple-cursors"
+" Bundle "goldfeld/vim-seek"
 
 " autocomplete
 if experimental_mode == 1
@@ -483,3 +484,10 @@ if experimental_mode == 1
     autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
   augroup END
 endif
+
+" highly experimental multiple-cursor mapping
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-j>'
+let g:multi_cursor_prev_key='<C-k>'
+let g:multi_cursor_skip_key='<C-l>'
+let g:multi_cursor_quit_key='<Esc>'
