@@ -59,9 +59,9 @@ Bundle "vim-scripts/dbext.vim"
 Bundle "vim-scripts/SQLComplete.vim"
 
 " experimental vundles
+Bundle "chrisbra/color_highlight"
 " Bundle "maxbrunsfeld/vim-yankstack"
 " Bundle "terryma/vim-multiple-cursors"
-" Bundle "chrisbra/color_highlight"
 
 " autocomplete
 Bundle "Valloric/YouCompleteMe"
@@ -73,10 +73,6 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
-
-"keeping pathogen only for its 'syntax on' bug workaround
-Bundle "tpope/vim-pathogen"
-execute pathogen#infect()
 
 " general configs
 set expandtab
@@ -97,7 +93,7 @@ set ls=2
 set cursorline
 set nowrap
 set backspace=indent,eol,start
-set clipboard+=unnamed,unnamedplus
+set clipboard=unnamedplus
 set shell=/bin/bash
 set completeopt-=preview
 set textwidth=95
@@ -140,9 +136,9 @@ syntax on
 colorscheme candyman
 
 " session management
-let g:session_directory = '~/.vim/session'
-let g:session_autoload = 'no'
-let g:session_autosave = 'no'
+let g:session_directory = "~/.vim/session"
+let g:session_autoload = "no"
+let g:session_autosave = "no"
 let g:session_command_aliases = 1
 nnoremap <leader>so :OpenSession 
 nnoremap <leader>ss :SaveSession 
@@ -192,7 +188,7 @@ nnoremap <F4> :GundoToggle<CR>
 nnoremap <F5> :NERDTreeToggle<CR>
 nnoremap <F7> :TlistToggle<CR>
 nnoremap <F9> :TagbarToggle<CR>
-let g:ctrlp_map = '<c-p>'
+let g:ctrlp_map = "<c-p>"
 nnoremap <leader>t :CtrlPMixed<CR>
 
 " open vimrc
@@ -203,7 +199,7 @@ nnoremap <leader>V :tabnew  ~/.vimrc<CR>
 nnoremap <Leader>l :SyntasticCheck<CR>
 
 " reload all open buffers
-nmap <leader>ra :tabdo exec 'windo e!'
+nnoremap <leader>ra :tabdo exec "windo e!"
 
 "map next-previous jumps
 nnoremap <leader>m <C-o>
@@ -234,7 +230,7 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " airline
-if !exists('g:airline_symbols')
+if !exists("g:airline_symbols")
   let g:airline_symbols = {}
 endif
 
@@ -301,9 +297,9 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 highlight search ctermfg=white ctermbg=3423513
 
 function! s:CopyMotionForType(type)
-    if a:type ==# 'v'
+    if a:type ==# "v"
         silent execute "normal! `<" . a:type . "`>y"
-    elseif a:type ==# 'char'
+    elseif a:type ==# "char"
         silent execute "normal! `[v`]y"
     endif
 endfunction
@@ -318,8 +314,8 @@ function! s:AckMotion(type) abort
     let @@ = reg_save
 endfunction
 
-if executable('ag')
-  let g:ackprg = 'ag --nogroup --column'
+if executable("ag")
+  let g:ackprg = "ag --nogroup --column"
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
@@ -327,17 +323,17 @@ endif
 let g:gitgutter_enabled = 0
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
-map <leader>G mG:Git! 
-map <leader>g :Git 
-map <leader>A :!ack 
-map <leader>a :Ack 
+nnoremap <leader>G mG:Git! 
+nnoremap <leader>g :Git 
+nnoremap <leader>A :!ack 
+nnoremap <leader>a :Ack 
 
 " ack motion (eg. ,amiw finds current word like ,A C-rC-w)
-nmap <silent> <leader>w :set opfunc=<SID>AckMotion<CR>g@
+nnoremap <silent> <leader>w :set opfunc=<SID>AckMotion<CR>g@
 xmap <silent> <leader>w :<C-U>call <SID>AckMotion(visualmode())<CR>
 
 " reload ctags
-nmap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
+nnoremap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 
 let g:godef_split = 0
 function! GoFmt()
@@ -355,20 +351,20 @@ augroup Golang
 augroup END
 
 " Golang shortcuts
-map <leader>Gr :!go run %<cr>
-map <leader>GR :!go run -race %<cr>
-map <leader>Gt :!go test <cr>
-map <leader>Gta :!go test *.go<cr>
-map <leader>GT :!go test -race %<cr>
-map <leader>GTA :!go test -race *.go<cr>
-map <leader>Gb :!go build<cr>
-map <leader>Gi :!go install<cr>
+nnoremap <leader>Gr  :!go run %<cr>
+nnoremap <leader>GR  :!go run -race %<cr>
+nnoremap <leader>Gt  :!go test <cr>
+nnoremap <leader>Gta :!go test *.go<cr>
+nnoremap <leader>GT  :!go test -race %<cr>
+nnoremap <leader>GTA :!go test -race *.go<cr>
+nnoremap <leader>Gb  :!go build<cr>
+nnoremap <leader>Gi  :!go install<cr>
 
 " ruby specific stuff
 set tags+=gems.tags
-map <Leader>Rr :!ruby %<CR>
-map <Leader>Rf :!zeus rspec %<CR>
-map <Leader>Rt :!rspec<CR>
+nnoremap <Leader>Rr :!ruby %<CR>
+nnoremap <Leader>Rf :!zeus rspec %<CR>
+nnoremap <Leader>Rt :!rspec<CR>
 " autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 " autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
@@ -380,7 +376,7 @@ let g:used_javascript_libs = "angularjs,jquery"
 let g:ycm_filetype_blacklist = {}
 let g:ycm_key_list_select_completion = []
 let g:ycm_key_list_previous_completion = []
-let g:ycm_key_invoke_completion = '<C-j>'
+let g:ycm_key_invoke_completion = "<C-j>"
 let g:ycm_collect_identifiers_from_tags_files = 1
 
 " THINGS TODO ON NEW INSTALL
@@ -397,84 +393,3 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 "
 " cd ~/.vim/bundle/YouCompleteMe
 " ./install.sh --clang-completer
-
-
-" " NEOCOMPLETE
-"
-" " Disable AutoComplPop.
-" let g:acp_enableAtStartup = 0
-" " Use neocomplete.
-" let g:neocomplete#enable_at_startup = 1
-" " Use smartcase.
-" let g:neocomplete#enable_smart_case = 1
-" " Set minimum syntax keyword length.
-" let g:neocomplete#sources#syntax#min_keyword_length = 3
-" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-" 
-" " Define dictionary.
-" let g:neocomplete#sources#dictionary#dictionaries = {
-"     \ 'default' : '',
-"     \ 'vimshell' : $HOME.'/.vimshell_hist',
-"     \ 'scheme' : $HOME.'/.gosh_completions'
-"         \ }
-" 
-" " Define keyword.
-" if !exists('g:neocomplete#keyword_patterns')
-"     let g:neocomplete#keyword_patterns = {}
-" endif
-" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" " snipmate rebind
-" imap <C-l> <esc>a<Plug>snipMateNextOrTrigger
-" smap <C-l> <Plug>snipMateNextOrTrigger
-
-" " Plugin key-mappings.
-" inoremap <expr><C-g>  neocomplete#undo_completion()
-" inoremap <expr><C-l>  neocomplete#complete_common_string()
-" inoremap <expr><BS>   neocomplete#smart_close_popup()."\<C-h>"
-" inoremap <expr><C-y>  neocomplete#close_popup()
-" inoremap <expr><C-u>  neocomplete#close_popup() . "\<C-u>"
-" inoremap <expr><C-h>  neocomplete#smart_close_popup() . "\<C-w>"
-" 
-" " Plugin key-mappings.
-" imap <C-i>     <Plug>(neosnippet_expand_or_jump)
-" smap <C-i>     <Plug>(neosnippet_expand_or_jump)
-" xmap <C-i>     <Plug>(neosnippet_expand_target)
-" 
-" " <CR>: close popup and save indent.
-" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" function! s:my_cr_function()
-"   return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-" endfunction
-" 
-" " AutoComplPop like behavior.
-" let g:neocomplete#enable_auto_select = 1
-" 
-" " Enable omni completion.
-" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-" autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" autocmd FileType go setlocal omnifunc=gocomplete#Complete
-" 
-" " Enable heavy omni completion.
-" if !exists('g:neocomplete#sources#omni#input_patterns')
-"   let g:neocomplete#sources#omni#input_patterns = {}
-" endif
-" 
-" " neosnippet
-" " For snippet_complete marker.
-" if has('conceal')
-"   set conceallevel=2 concealcursor=i
-" endif
-" 
-" " Enable snipMate compatibility feature.
-" let g:neosnippet#enable_snipmate_compatibility = 1
-" 
-" " Tell Neosnippet about the other snippets
-" let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-" 
-" vim-rails ovveride fix
-" g:neocomplete#force_overwrite_completefunc
