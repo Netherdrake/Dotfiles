@@ -97,7 +97,6 @@ set ls=2
 set cursorline
 set nowrap
 set backspace=indent,eol,start
-set clipboard=unnamedplus
 set shell=/bin/bash
 set completeopt-=preview
 set textwidth=95
@@ -112,13 +111,20 @@ augroup FixProportionsOnResize
 augroup END
 
 " vim mode-switch lag fix
-if ! has('gui_running')
+if ! has("gui_running")
     set ttimeoutlen=10
     augroup FastEscape
         autocmd!
         au InsertEnter * set timeoutlen=0
         au InsertLeave * set timeoutlen=1000
     augroup END
+endif
+
+" macos vs linux clipboard
+if has("mac")
+  set clipboard=unnamedplus
+else
+  set clipboard+=unnamed,unnamedplus
 endif
 
 " make C-a, C-x work properly
