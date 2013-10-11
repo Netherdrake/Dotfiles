@@ -4,7 +4,6 @@ set encoding=utf-8
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-filetype plugin indent on
 
 " core plugins
 Bundle "gmarik/vundle"
@@ -74,9 +73,8 @@ Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
 
-"keeping pathogen only for its 'syntax on' bug workaround
-Bundle "tpope/vim-pathogen"
-execute pathogen#infect()
+" enable all the plugins
+filetype plugin indent on
 
 " general configs
 set expandtab
@@ -122,7 +120,7 @@ endif
 
 " macos vs linux clipboard
 if has("mac")
-  set clipboard+=unnamed,unnamedplus
+  set clipboard+=unnamed
 else
   set clipboard=unnamedplus
 endif
