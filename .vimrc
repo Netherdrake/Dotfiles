@@ -122,9 +122,9 @@ endif
 
 " macos vs linux clipboard
 if has("mac")
-  set clipboard=unnamedplus
-else
   set clipboard+=unnamed,unnamedplus
+else
+  set clipboard=unnamedplus
 endif
 
 " make C-a, C-x work properly
