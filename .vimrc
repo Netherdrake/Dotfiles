@@ -1,4 +1,4 @@
-let experimental_mode = 1
+let neocomplete_mode = 0
 set encoding=utf-8
 
 " start vundler
@@ -40,7 +40,6 @@ Bundle "majutsushi/tagbar"
 " language vundles
 Bundle "pangloss/vim-javascript"
 Bundle "kchmck/vim-coffee-script"
-" Bundle "othree/javascript-libraries-syntax.vim"
 
 Bundle "vim-ruby/vim-ruby"
 Bundle "kana/vim-textobj-user"
@@ -58,17 +57,17 @@ Bundle "vim-scripts/dbext.vim"
 Bundle "vim-scripts/SQLComplete.vim"
 
 " experimental vundles
+Bundle "rhysd/clever-f.vim"
 Bundle "chrisbra/color_highlight"
-Bundle "maxbrunsfeld/vim-yankstack"
 Bundle "terryma/vim-multiple-cursors"
-" Bundle "goldfeld/vim-seek"
+" Bundle "maxbrunsfeld/vim-yankstack"
+" Bundle "justinmk/vim-sneak"
 
-" autocomplete
-if experimental_mode == 1
+if neocomplete_mode == 1
   Bundle "Shougo/neocomplete"
   Bundle "Shougo/neosnippet"
 else
-  " snipMate with dependencies
+  " snipMate + vim-snippets with dependencies
   Bundle "MarcWeber/vim-addon-mw-utils"
   Bundle "tomtom/tlib_vim"
   Bundle "garbas/vim-snipmate"
@@ -378,34 +377,7 @@ nnoremap <Leader>Rr :!ruby %<CR>
 nnoremap <Leader>Rf :!zeus rspec %<CR>
 nnoremap <Leader>Rt :!rspec<CR>
 
-" javascript stuff
-let g:used_javascript_libs = "angularjs,jquery"
-
-" YouCompleteMe
-let g:ycm_filetype_blacklist = {}
-let g:ycm_key_list_select_completion = []
-let g:ycm_key_list_previous_completion = []
-let g:ycm_key_invoke_completion = "<C-j>"
-let g:ycm_collect_identifiers_from_tags_files = 1
-
-" THINGS TODO ON NEW INSTALL
-" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-"
-" install ctags, ack, ag
-" js requires npm install -g jshint
-"
-" make sure to go get -u github.com/nsf/gocode after nsf/gocode
-" go get -v code.google.com/p/rog-go/exp/cmd/godef
-" go install -v code.google.com/p/rog-go/exp/cmd/godef
-"
-" https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
-"
-" cd ~/.vim/bundle/YouCompleteMe
-" ./install.sh --clang-completer
-"
-" Inside of ~/.vim make /tmp, inside of which mkdir swap backup undo
-
-if experimental_mode == 1
+if neocomplete_mode == 1
   " " NEOCOMPLETE (experimental)
   " Disable AutoComplPop.
   let g:acp_enableAtStartup = 0
@@ -453,9 +425,6 @@ if experimental_mode == 1
     return pumvisible() ? neocomplete#close_popup() : "\<CR>"
   endfunction
 
-  " AutoComplPop like behavior. (no thanks)
-  " let g:neocomplete#enable_auto_select = 1
-
   " Enable heavy omni completion.
   if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns = {}
@@ -483,6 +452,13 @@ if experimental_mode == 1
     autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
     autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
   augroup END
+else
+  " YouCompleteMe
+  let g:ycm_filetype_blacklist = {}
+  let g:ycm_key_list_select_completion = []
+  let g:ycm_key_list_previous_completion = []
+  let g:ycm_key_invoke_completion = "<C-j>"
+  let g:ycm_collect_identifiers_from_tags_files = 1
 endif
 
 " highly experimental multiple-cursor mapping
@@ -491,3 +467,23 @@ let g:multi_cursor_next_key='<C-j>'
 let g:multi_cursor_prev_key='<C-k>'
 let g:multi_cursor_skip_key='<C-l>'
 let g:multi_cursor_quit_key='<Esc>'
+
+" clever-f prompt
+let g:clever_f_show_prompt = 1
+
+" THINGS TODO ON NEW INSTALL
+" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+"
+" install ctags, ack, ag
+" js requires npm install -g jshint
+"
+" make sure to go get -u github.com/nsf/gocode after nsf/gocode
+" go get -v code.google.com/p/rog-go/exp/cmd/godef
+" go install -v code.google.com/p/rog-go/exp/cmd/godef
+"
+" https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
+"
+" cd ~/.vim/bundle/YouCompleteMe
+" ./install.sh --clang-completer
+"
+" Inside of ~/.vim make /tmp, inside of which mkdir swap backup undo
