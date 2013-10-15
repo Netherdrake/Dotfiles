@@ -14,11 +14,12 @@ Bundle "kien/ctrlp.vim"
 " vim main plugins
 Bundle "sjl/gundo.vim"
 Bundle "bling/vim-airline"
-Bundle "vim-scripts/bufexplorer.zip"
+Bundle "jlanzarotta/bufexplorer"
 Bundle "scrooloose/syntastic.git"
 Bundle "vim-scripts/tComment"
 Bundle "tpope/vim-surround"
 Bundle "mileszs/ack.vim"
+Bundle "rking/ag.vim"
 Bundle "edsono/vim-matchit"
 Bundle "Lokaltog/vim-easymotion"
 Bundle "tpope/vim-fugitive"
@@ -58,7 +59,7 @@ Bundle "vim-scripts/SQLComplete.vim"
 
 " experimental vundles
 Bundle "rhysd/clever-f.vim"
-Bundle "chrisbra/color_highlight"
+Bundle "gorodinskiy/vim-coloresque.git"
 Bundle "terryma/vim-multiple-cursors"
 " Bundle "maxbrunsfeld/vim-yankstack"
 " Bundle "justinmk/vim-sneak"
@@ -336,8 +337,8 @@ let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 nnoremap <leader>G mG:Git! 
 nnoremap <leader>g :Git 
-nnoremap <leader>A :!ack 
-nnoremap <leader>a :Ack 
+nnoremap <leader>A :!ag 
+nnoremap <leader>a :Ag 
 
 " ack motion (eg. ,amiw finds current word like ,A C-rC-w)
 nnoremap <silent> <leader>w :set opfunc=<SID>AckMotion<CR>g@
@@ -474,7 +475,10 @@ let g:clever_f_show_prompt = 1
 " THINGS TODO ON NEW INSTALL
 " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 "
+" Inside of ~/.vim make /tmp, inside of which mkdir swap backup undo
+"
 " install ctags, ack, ag
+" sudo packer -S silver-searcher-git ack ctags
 " js requires npm install -g jshint
 "
 " make sure to go get -u github.com/nsf/gocode after nsf/gocode
@@ -485,5 +489,3 @@ let g:clever_f_show_prompt = 1
 "
 " cd ~/.vim/bundle/YouCompleteMe
 " ./install.sh --clang-completer
-"
-" Inside of ~/.vim make /tmp, inside of which mkdir swap backup undo
