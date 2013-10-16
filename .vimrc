@@ -338,7 +338,7 @@ let g:gitgutter_eager = 0
 nnoremap <leader>G mG:Git! 
 nnoremap <leader>g :Git 
 nnoremap <leader>A :!ag 
-nnoremap <leader>a :Ag 
+nnoremap <leader>a :Ag! 
 
 " ack motion (eg. ,amiw finds current word like ,A C-rC-w)
 nnoremap <silent> <leader>w :set opfunc=<SID>AckMotion<CR>g@
