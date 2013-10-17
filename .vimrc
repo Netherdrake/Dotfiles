@@ -59,8 +59,8 @@ Bundle "vim-scripts/SQLComplete.vim"
 
 " experimental vundles
 Bundle "rhysd/clever-f.vim"
-Bundle "gorodinskiy/vim-coloresque.git"
 Bundle "terryma/vim-multiple-cursors"
+" Bundle "gorodinskiy/vim-coloresque.git"
 " Bundle "maxbrunsfeld/vim-yankstack"
 " Bundle "justinmk/vim-sneak"
 
@@ -100,8 +100,11 @@ set cursorline
 set nowrap
 set backspace=indent,eol,start
 set shell=/bin/bash
-set completeopt-=preview
+set completeopt -=preview
 set textwidth=95
+set wildmenu
+set ttyfast
+set noshowmode
 " set autoread
 
 let mapleader=","
@@ -157,7 +160,7 @@ nnoremap <leader>ss :SaveSession
 nnoremap <leader>sd :DeleteSession<CR>
 nnoremap <leader>sc :CloseSession<CR>
 
-"backup dir not to clutter
+" backup/persistance settings
 set undodir=~/.vim/tmp/undo//
 set backupdir=~/.vim/tmp/backup//
 set directory=~/.vim/tmp/swap//
@@ -165,6 +168,11 @@ set backupskip=/tmp/*,/private/tmp/*"
 set backup
 set writebackup
 set noswapfile
+
+" persist (g)undo tree between sessions
+set undofile
+set history=200
+set undolevels=200
 
 " Make sure Vim returns to the same line when you reopen a file.
 augroup line_return
@@ -177,10 +185,6 @@ augroup END
 
 " visual reselect of just pasted
 nnoremap gp `[v`]
-
-"history
-set history=1000
-set undolevels=1000
 
 "make enter break and do newlines
 nnoremap <CR> O<Esc>j
