@@ -67,6 +67,7 @@ Bundle "terryma/vim-multiple-cursors"
 if neocomplete_mode == 1
   Bundle "Shougo/neocomplete"
   Bundle "Shougo/neosnippet"
+  Bundle "honza/vim-snippets"
 else
   " snipMate + vim-snippets with dependencies
   Bundle "MarcWeber/vim-addon-mw-utils"
@@ -456,6 +457,7 @@ if neocomplete_mode == 1
     autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
     autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
     autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+    autocmd FileType eruby set filetype=html.eruby
   augroup END
 else
   " YouCompleteMe
