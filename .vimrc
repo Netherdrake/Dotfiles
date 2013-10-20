@@ -1,4 +1,4 @@
-let neocomplete_mode = 0
+let neocomplete_mode = 1
 set encoding=utf-8
 
 " start vundler
@@ -26,7 +26,7 @@ Bundle "tpope/vim-fugitive"
 Bundle "henrik/vim-indexed-search"
 Bundle "tpope/vim-abolish"
 Bundle "tpope/vim-repeat"
-Bundle "vim-scripts/Auto-Pairs"
+Bundle "jiangmiao/auto-pairs"
 Bundle "xolox/vim-session"
 Bundle "xolox/vim-misc"
 Bundle "editorconfig/editorconfig-vim"
@@ -53,9 +53,11 @@ Bundle "nsf/gocode"
 Bundle "Blackrush/vim-gocode"
 
 " databases
-Bundle "vim-scripts/sql_iabbr.vim"
-Bundle "vim-scripts/dbext.vim"
+Bundle "krisajenkins/dbext.vim"
 Bundle "vim-scripts/SQLComplete.vim"
+Bundle "vim-scripts/SQLUtilities"
+Bundle "NagatoPain/AutoSQLUpperCase.vim"
+" Bundle "vim-scripts/dbext.vim"
 
 " experimental vundles
 Bundle "rhysd/clever-f.vim"
@@ -69,13 +71,12 @@ if neocomplete_mode == 1
   Bundle "Shougo/neosnippet"
   Bundle "honza/vim-snippets"
 else
+  Bundle "Valloric/YouCompleteMe"
   " snipMate + vim-snippets with dependencies
   Bundle "MarcWeber/vim-addon-mw-utils"
   Bundle "tomtom/tlib_vim"
   Bundle "garbas/vim-snipmate"
   Bundle "honza/vim-snippets"
-
-  Bundle "Valloric/YouCompleteMe"
 endif
 
 " enable all the plugins
@@ -208,6 +209,12 @@ nnoremap <F9> :TagbarToggle<CR>
 let g:ctrlp_map = "<c-p>"
 nnoremap <leader>t :CtrlPMixed<CR>
 
+" clever-f prompt
+let g:clever_f_show_prompt = 1
+
+" easy motion rebinded
+let g:EasyMotion_leader_key = "<Leader>"
+
 " open vimrc
 nnoremap <leader>v :e  ~/.vimrc<CR>
 nnoremap <leader>V :tabnew  ~/.vimrc<CR>
@@ -230,13 +237,13 @@ nnoremap <PageDown> }
 nnoremap <leader>/ /\v
 vnoremap <leader>/ /\v
 
-" Verbatim search
-nnoremap <leader>// /\V
-vnoremap <leader>// /\V
-
 " Use :Subvert search
-nnoremap <leader>s :S /
-vnoremap <leader>s :S /
+nnoremap <leader>// :S /
+vnoremap <leader>// :S /
+
+" Use regular replace
+nnoremap <leader>s :%s /
+vnoremap <leader>s :%s /
 
 " Use :Subvert replace
 nnoremap <leader>S :%S /
@@ -475,8 +482,9 @@ let g:multi_cursor_prev_key='<C-k>'
 let g:multi_cursor_skip_key='<C-l>'
 let g:multi_cursor_quit_key='<Esc>'
 
-" clever-f prompt
-let g:clever_f_show_prompt = 1
+" linked databases
+let g:dbext_default_profile_vincere = 'type=PGSQL:user=vincere:passwd=:dbname=vincere_development'
+let g:dbext_default_profile='vincere'
 
 " THINGS TODO ON NEW INSTALL
 " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
