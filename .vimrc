@@ -442,6 +442,8 @@ if neocomplete_mode == 1
   if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns = {}
   endif
+  " golang fix
+  let g:neocomplete#sources#omni#input_patterns.go = '[^.[:digit:] *\t]\.\w*'
 
   " neosnippet
   " For snippet_complete marker.
