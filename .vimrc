@@ -1,4 +1,4 @@
-let neocomplete_mode = 1
+let neocomplete_mode = 0
 set encoding=utf-8
 
 " start vundler
@@ -72,7 +72,6 @@ if neocomplete_mode == 1
   Bundle "honza/vim-snippets"
 else
   Bundle "Valloric/YouCompleteMe"
-  " snipMate + vim-snippets with dependencies
   Bundle "MarcWeber/vim-addon-mw-utils"
   Bundle "tomtom/tlib_vim"
   Bundle "garbas/vim-snipmate"
@@ -137,6 +136,9 @@ endif
 " make C-a, C-x work properly
 set nrformats=
 
+" potential lag fix
+let g:matchparen_insert_timeout=1
+
 " fix bufexplorer bug with hidden
 let g:bufExplorerFindActive=0
 
@@ -173,8 +175,8 @@ set noswapfile
 
 " persist (g)undo tree between sessions
 set undofile
-set history=200
-set undolevels=200
+set history=100
+set undolevels=100
 
 " Make sure Vim returns to the same line when you reopen a file.
 augroup line_return
@@ -213,7 +215,7 @@ nnoremap <leader>t :CtrlPMixed<CR>
 let g:clever_f_show_prompt = 1
 
 " easy motion rebinded
-let g:EasyMotion_leader_key = "<Leader>"
+let g:EasyMotion_mapping_f = "<leader>f"
 
 " open vimrc
 nnoremap <leader>v :e  ~/.vimrc<CR>
@@ -442,6 +444,7 @@ if neocomplete_mode == 1
   if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns = {}
   endif
+
   " golang fix
   let g:neocomplete#sources#omni#input_patterns.go = '[^.[:digit:] *\t]\.\w*'
 
@@ -487,6 +490,9 @@ let g:multi_cursor_quit_key='<Esc>'
 " linked databases
 let g:dbext_default_profile_vincere = 'type=PGSQL:user=vincere:passwd=:dbname=vincere_development'
 let g:dbext_default_profile='vincere'
+
+" angularjs syntasic ovveride
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 
 " THINGS TODO ON NEW INSTALL
 " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
