@@ -1,4 +1,4 @@
-let neocomplete_mode = 0
+let neocomplete_mode = 1
 set encoding=utf-8
 
 " start vundler
@@ -61,7 +61,7 @@ Bundle "NagatoPain/AutoSQLUpperCase.vim"
 
 " experimental vundles
 Bundle "rhysd/clever-f.vim"
-Bundle "terryma/vim-multiple-cursors"
+" Bundle "terryma/vim-multiple-cursors"
 " Bundle "gorodinskiy/vim-coloresque.git"
 " Bundle "maxbrunsfeld/vim-yankstack"
 " Bundle "justinmk/vim-sneak"
@@ -380,10 +380,9 @@ augroup END
 nnoremap <leader>Gr  :!go run %<cr>
 nnoremap <leader>GR  :!go run -race %<cr>
 nnoremap <leader>Gt  :!go test <cr>
-nnoremap <leader>Gta :!go test *.go<cr>
-nnoremap <leader>GT  :!go test -race %<cr>
-nnoremap <leader>GTA :!go test -race *.go<cr>
+nnoremap <leader>GT  :!go test -race<cr>
 nnoremap <leader>Gb  :!go build<cr>
+nnoremap <leader>GB  :!go build -race<cr>
 nnoremap <leader>Gi  :!go install<cr>
 
 " ruby specific stuff
