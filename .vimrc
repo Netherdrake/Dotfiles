@@ -70,6 +70,7 @@ if neocomplete_mode == 1
   Bundle "Shougo/neocomplete"
   Bundle "Shougo/neosnippet"
   Bundle "honza/vim-snippets"
+  Bundle "Shougo/echodoc.vim"
 else
   Bundle "Valloric/YouCompleteMe"
   Bundle "MarcWeber/vim-addon-mw-utils"
@@ -395,6 +396,7 @@ if neocomplete_mode == 1
   " " NEOCOMPLETE (experimental)
   " Disable AutoComplPop.
   let g:acp_enableAtStartup = 0
+  let g:neocomplete#data_directory = "~/.vim/tmp/swap"
   " Use neocomplete.
   let g:neocomplete#enable_at_startup = 1
   " Use smartcase.
@@ -487,11 +489,15 @@ let g:multi_cursor_skip_key='<C-l>'
 let g:multi_cursor_quit_key='<Esc>'
 
 " linked databases
+let g:dbext_default_profile_bitstampplus = 'type=PGSQL:user=bspu:passwd=:dbname=bsp'
 let g:dbext_default_profile_vincere = 'type=PGSQL:user=vincere:passwd=:dbname=vincere_development'
 let g:dbext_default_profile='vincere'
 
 " angularjs syntasic ovveride
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+
+" enable neocomplete helper
+let g:echodoc_enable_at_startup = 1
 
 " THINGS TODO ON NEW INSTALL
 " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
