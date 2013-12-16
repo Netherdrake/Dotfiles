@@ -41,6 +41,7 @@ Bundle "majutsushi/tagbar"
 " language vundles
 Bundle "pangloss/vim-javascript"
 Bundle "kchmck/vim-coffee-script"
+Bundle "othree/javascript-libraries-syntax.vim"
 
 Bundle "vim-ruby/vim-ruby"
 Bundle "kana/vim-textobj-user"
@@ -495,9 +496,15 @@ let g:dbext_default_profile='vincere'
 
 " angularjs syntasic ovveride
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+let g:syntastic_mode_map={ 'mode': 'active',
+                     \ 'active_filetypes': [],
+                     \ 'passive_filetypes': ['html'] }
 
 " enable neocomplete helper
 let g:echodoc_enable_at_startup = 1
+
+" enable angular syntax
+let g:used_javascript_libs = 'jquery,angularjs'
 
 " THINGS TODO ON NEW INSTALL
 " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
