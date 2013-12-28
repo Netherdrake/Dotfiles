@@ -34,6 +34,7 @@ Bundle "godlygeek/tabular"
 
 " rarely used
 Bundle "scrooloose/nerdtree"
+Bundle "tpope/vim-vinegar"
 Bundle "airblade/vim-gitgutter"
 Bundle "vim-scripts/taglist.vim"
 Bundle "majutsushi/tagbar"
@@ -523,3 +524,7 @@ let g:used_javascript_libs = 'jquery,angularjs'
 "
 " cd ~/.vim/bundle/YouCompleteMe
 " ./install.sh --clang-completer
+fu! Retab()
+  :retab
+  :%s/\s\+$//
+endfunction
