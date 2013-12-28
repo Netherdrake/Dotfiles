@@ -49,7 +49,7 @@ Bundle "kana/vim-textobj-user"
 Bundle "nelstrom/vim-textobj-rubyblock"
 Bundle "tpope/vim-rails"
 
-Bundle "fsouza/go.vim"
+Bundle "jnwhiteh/vim-golang"
 Bundle "dgryski/vim-godef"
 Bundle "nsf/gocode"
 Bundle "Blackrush/vim-gocode"
@@ -507,6 +507,12 @@ let g:echodoc_enable_at_startup = 1
 " enable angular syntax
 let g:used_javascript_libs = 'jquery,angularjs'
 
+" retab
+fu! Retab()
+  :retab
+  :%s/\s\+$//
+endfunction
+
 " THINGS TODO ON NEW INSTALL
 " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 "
@@ -519,12 +525,10 @@ let g:used_javascript_libs = 'jquery,angularjs'
 " make sure to go get -u github.com/nsf/gocode after nsf/gocode
 " go get -v code.google.com/p/rog-go/exp/cmd/godef
 " go install -v code.google.com/p/rog-go/exp/cmd/godef
+" unofficial imports
+" go get -u github.com/bradfitz/goimports
 "
 " https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
 "
 " cd ~/.vim/bundle/YouCompleteMe
 " ./install.sh --clang-completer
-fu! Retab()
-  :retab
-  :%s/\s\+$//
-endfunction
