@@ -31,6 +31,7 @@ Bundle "xolox/vim-session"
 Bundle "xolox/vim-misc"
 Bundle "editorconfig/editorconfig-vim"
 Bundle "godlygeek/tabular"
+Bundle "rhysd/clever-f.vim"
 
 " rarely used
 Bundle "scrooloose/nerdtree"
@@ -54,6 +55,8 @@ Bundle "dgryski/vim-godef"
 Bundle "nsf/gocode"
 Bundle "Blackrush/vim-gocode"
 
+Bundle 'wting/rust.vim'
+
 " databases
 Bundle "krisajenkins/dbext.vim"
 Bundle "vim-scripts/SQLComplete.vim"
@@ -62,7 +65,6 @@ Bundle "NagatoPain/AutoSQLUpperCase.vim"
 " Bundle "vim-scripts/dbext.vim"
 
 " experimental vundles
-Bundle "rhysd/clever-f.vim"
 " Bundle "terryma/vim-multiple-cursors"
 " Bundle "gorodinskiy/vim-coloresque.git"
 " Bundle "maxbrunsfeld/vim-yankstack"
@@ -211,11 +213,16 @@ nnoremap <F4> :GundoToggle<CR>
 nnoremap <F5> :NERDTreeToggle<CR>
 nnoremap <F7> :TlistToggle<CR>
 nnoremap <F9> :TagbarToggle<CR>
+
+" ctrlP config
 let g:ctrlp_map = "<c-p>"
-nnoremap <leader>t :CtrlPMixed<CR>
+nnoremap <leader>t :CtrlPMRU<CR>
+nnoremap <leader>bp :CtrlPBuffer<CR>
 
 " clever-f prompt
 let g:clever_f_show_prompt = 1
+let g:clever_f_across_no_line = 1
+" let g:clever_f_fix_key_direction = 1
 
 " easy motion rebinded
 let g:EasyMotion_mapping_f = "<leader>f"
@@ -393,6 +400,10 @@ set tags+=gems.tags
 nnoremap <Leader>Rr :!ruby %<CR>
 nnoremap <Leader>Rf :!zeus rspec %<CR>
 nnoremap <Leader>Rt :!rspec<CR>
+
+" Rust shortcuts
+nnoremap <leader>RR :!rust run %<cr>
+nnoremap <leader>Rc :!rustc %<cr>
 
 if neocomplete_mode == 1
   " " NEOCOMPLETE (experimental)
