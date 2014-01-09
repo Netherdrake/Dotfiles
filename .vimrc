@@ -50,6 +50,7 @@ Bundle "kana/vim-textobj-user"
 Bundle "nelstrom/vim-textobj-rubyblock"
 Bundle "tpope/vim-rails"
 
+Bundle "fsouza/go.vim"
 Bundle "jnwhiteh/vim-golang"
 Bundle "dgryski/vim-godef"
 Bundle "nsf/gocode"
@@ -459,8 +460,10 @@ if neocomplete_mode == 1
     let g:neocomplete#sources#omni#input_patterns = {}
   endif
 
-  " golang fix
-  let g:neocomplete#sources#omni#input_patterns.go = '[^.[:digit:] *\t]\.\w*'
+  " " golang fix
+  " let g:neocomplete#sources#omni#functions = {'go': 'go#complete#Complete'}
+  " let g:neocomplete#sources#omni#input_patterns.go = '[^.[:digit:] *\t]\.\w*'
+  " let g:neocomplete#sources#omni#functions.go = 'go#complete#Complete'
 
   " neosnippet
   " For snippet_complete marker.

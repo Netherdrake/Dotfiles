@@ -7,6 +7,6 @@ function fish_prompt
   echo -n ' % '
 end
 
-function lockme
+function lockon
   /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend
 end
