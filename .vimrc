@@ -50,11 +50,8 @@ Bundle "kana/vim-textobj-user"
 Bundle "nelstrom/vim-textobj-rubyblock"
 Bundle "tpope/vim-rails"
 
-Bundle "fsouza/go.vim"
-Bundle "jnwhiteh/vim-golang"
-Bundle "dgryski/vim-godef"
-Bundle "nsf/gocode"
 Bundle "Blackrush/vim-gocode"
+Bundle "dgryski/vim-godef"
 
 Bundle 'wting/rust.vim'
 
@@ -460,7 +457,8 @@ if neocomplete_mode == 1
     let g:neocomplete#sources#omni#input_patterns = {}
   endif
 
-  " " golang fix
+  " golang fix
+  let g:gofmt_command = 'goimports'
   " let g:neocomplete#sources#omni#functions = {'go': 'go#complete#Complete'}
   " let g:neocomplete#sources#omni#input_patterns.go = '[^.[:digit:] *\t]\.\w*'
   " let g:neocomplete#sources#omni#functions.go = 'go#complete#Complete'
