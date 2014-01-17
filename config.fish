@@ -7,6 +7,14 @@ function fish_prompt
   echo -n ' % '
 end
 
-function lockon
+function lockme
   /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend
+end
+
+function gaeon
+ set GOPATH ~/Documents/go/go_appengine/
+end
+
+function gaeoff
+ set GOPATH ~/Documents/go/
 end

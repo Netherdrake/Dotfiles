@@ -21,7 +21,7 @@ Bundle "tpope/vim-surround"
 Bundle "mileszs/ack.vim"
 Bundle "rking/ag.vim"
 Bundle "edsono/vim-matchit"
-Bundle "Lokaltog/vim-easymotion"
+Bundle "haya14busa/vim-easymotion"
 Bundle "tpope/vim-fugitive"
 Bundle "henrik/vim-indexed-search"
 Bundle "tpope/vim-abolish"
@@ -46,9 +46,9 @@ Bundle "kchmck/vim-coffee-script"
 Bundle "othree/javascript-libraries-syntax.vim"
 
 Bundle "vim-ruby/vim-ruby"
+Bundle "tpope/vim-rails"
 Bundle "kana/vim-textobj-user"
 Bundle "nelstrom/vim-textobj-rubyblock"
-Bundle "tpope/vim-rails"
 
 Bundle "Blackrush/vim-gocode"
 Bundle "dgryski/vim-godef"
@@ -224,6 +224,9 @@ let g:clever_f_across_no_line = 1
 
 " easy motion rebinded
 let g:EasyMotion_mapping_f = "<leader>f"
+let g:EasyMotion_mapping_F = "<leader>F"
+let g:EasyMotion_mapping_w = "<leader>w"
+let g:EasyMotion_mapping_b = "<leader>W"
 
 " open vimrc
 nnoremap <leader>v :e  ~/.vimrc<CR>
@@ -369,7 +372,15 @@ xmap <silent> <leader>w :<C-U>call <SID>AckMotion(visualmode())<CR>
 " reload ctags
 nnoremap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 
-let g:godef_split = 0
+" Golang settings
+let g:gofmt_command = 'goimports'
+let g:godef_split=0
+" let g:godef_split=2
+" let g:godef_same_file_in_same_window=1
+" let g:neocomplete#sources#omni#functions = {'go': 'go#complete#Complete'}
+" let g:neocomplete#sources#omni#input_patterns.go = '[^.[:digit:] *\t]\.\w*'
+" let g:neocomplete#sources#omni#functions.go = 'go#complete#Complete'
+
 function! GoFmt()
     try
         exe "undojoin"
@@ -382,16 +393,17 @@ augroup Golang
   autocmd!
   au FileType go au BufWritePre <buffer> call GoFmt()
   au FileType go au BufWritePre <buffer> retab
+  " au FileType go au BufWritePost *.go :silent !gotags *.go > tags
 augroup END
 
 " Golang shortcuts
-nnoremap <leader>Gr  :!go run %<cr>
-nnoremap <leader>GR  :!go run -race %<cr>
-nnoremap <leader>Gt  :!go test <cr>
-nnoremap <leader>GT  :!go test -race<cr>
-nnoremap <leader>Gb  :!go build<cr>
-nnoremap <leader>GB  :!go build -race<cr>
-nnoremap <leader>Gi  :!go install<cr>
+nnoremap <leader>Gr :!go run %<cr>
+nnoremap <leader>GR :!go run -race %<cr>
+nnoremap <leader>Gt :!go test <cr>
+nnoremap <leader>GT :!go test -race<cr>
+nnoremap <leader>Gb :!go build<cr>
+nnoremap <leader>GB :!go build -race<cr>
+nnoremap <leader>Gi :!go install<cr>
 
 " ruby specific stuff
 set tags+=gems.tags
@@ -456,12 +468,6 @@ if neocomplete_mode == 1
   if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns = {}
   endif
-
-  " golang fix
-  let g:gofmt_command = 'goimports'
-  " let g:neocomplete#sources#omni#functions = {'go': 'go#complete#Complete'}
-  " let g:neocomplete#sources#omni#input_patterns.go = '[^.[:digit:] *\t]\.\w*'
-  " let g:neocomplete#sources#omni#functions.go = 'go#complete#Complete'
 
   " neosnippet
   " For snippet_complete marker.
@@ -534,11 +540,10 @@ endfunction
 " sudo packer -S silver-searcher-git ack ctags
 " js requires npm install -g jshint
 "
-" make sure to go get -u github.com/nsf/gocode after nsf/gocode
+" go get -u code.google.com/p/go.tools/cmd/goimports
+" go get -u github.com/nsf/gocode
 " go get -v code.google.com/p/rog-go/exp/cmd/godef
 " go install -v code.google.com/p/rog-go/exp/cmd/godef
-" unofficial imports
-" go get -u github.com/bradfitz/goimports
 "
 " https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
 "
