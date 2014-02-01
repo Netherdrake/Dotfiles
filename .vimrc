@@ -42,6 +42,7 @@ Bundle "majutsushi/tagbar"
 
 " language vundles
 Bundle "pangloss/vim-javascript"
+Bundle "marijnh/tern_for_vim"
 Bundle "kchmck/vim-coffee-script"
 Bundle "othree/javascript-libraries-syntax.vim"
 
@@ -63,7 +64,6 @@ Bundle "NagatoPain/AutoSQLUpperCase.vim"
 " Bundle "vim-scripts/dbext.vim"
 
 " experimental vundles
-" Bundle "terryma/vim-multiple-cursors"
 " Bundle "gorodinskiy/vim-coloresque.git"
 " Bundle "maxbrunsfeld/vim-yankstack"
 " Bundle "justinmk/vim-sneak"
@@ -399,8 +399,8 @@ augroup END
 " Golang shortcuts
 nnoremap <leader>Gr :!go run %<cr>
 nnoremap <leader>GR :!go run -race %<cr>
-nnoremap <leader>Gt :!go test <cr>
-nnoremap <leader>GT :!go test -race<cr>
+nnoremap <leader>Gt :!go test -v -cover<cr>
+nnoremap <leader>GT :!go test -race -v -cover<cr>
 nnoremap <leader>Gb :!go build<cr>
 nnoremap <leader>GB :!go build -race<cr>
 nnoremap <leader>Gi :!go install<cr>
@@ -501,13 +501,6 @@ else
   let g:ycm_collect_identifiers_from_tags_files = 1
 endif
 
-" highly experimental multiple-cursor mapping
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-j>'
-let g:multi_cursor_prev_key='<C-k>'
-let g:multi_cursor_skip_key='<C-l>'
-let g:multi_cursor_quit_key='<Esc>'
-
 " linked databases
 let g:dbext_default_profile_bitstampplus = 'type=PGSQL:user=bspu:passwd=:dbname=bsp'
 let g:dbext_default_profile_vincere = 'type=PGSQL:user=vincere:passwd=:dbname=vincere_development'
@@ -538,7 +531,6 @@ endfunction
 "
 " install ctags, ack, ag
 " sudo packer -S silver-searcher-git ack ctags
-" js requires npm install -g jshint
 "
 " go get -u code.google.com/p/go.tools/cmd/goimports
 " go get -u github.com/nsf/gocode
@@ -549,3 +541,6 @@ endfunction
 "
 " cd ~/.vim/bundle/YouCompleteMe
 " ./install.sh --clang-completer
+"
+" cd .vim/bundle/tern_for_vim/ && npm install
+" npm install -g jshint
