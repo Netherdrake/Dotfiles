@@ -204,19 +204,11 @@ nnoremap <Space> i<Space><Esc>l
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
 
-" "some togglables
-" set pastetoggle=<F2>
-" nnoremap <F3> :GitGutterToggle<CR>
-" nnoremap <F4> :GundoToggle<CR>
-" nnoremap <F5> :NERDTreeToggle<CR>
-" nnoremap <F7> :TlistToggle<CR>
-" nnoremap <F9> :TagbarToggle<CR>
-
 " togglables without FN keys
 nnoremap <leader>1 :GundoToggle<CR>
 set pastetoggle=<leader>2
-nnoremap <leader>3 :TagbarToggle<CR>
-nnoremap <leader>4 :TlistToggle<CR>
+nnoremap <leader>3 :TlistToggle<CR>
+nnoremap <leader>4 :TagbarToggle<CR>
 nnoremap <leader>5 :NERDTreeToggle<CR>
 
 " ctrlP config
