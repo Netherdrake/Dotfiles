@@ -109,6 +109,7 @@ set textwidth=95
 set wildmenu
 set ttyfast
 set noshowmode
+set cmdheight=1
 " set autoread
 
 let mapleader=","
@@ -491,6 +492,7 @@ if neocomplete_mode == 1
     autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
     autocmd FileType eruby set filetype=html.eruby
   augroup END
+
 else
   " YouCompleteMe
   let g:ycm_filetype_blacklist = {}
