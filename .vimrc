@@ -1,5 +1,9 @@
-let neocomplete_mode = 1
+" not a vi
+set nocompatible
 set encoding=utf-8
+
+" switch between YCM and NeoComplete
+let neocomplete_mode = 1
 
 " start vundler
 filetype off
@@ -32,11 +36,11 @@ Bundle "xolox/vim-misc"
 Bundle "editorconfig/editorconfig-vim"
 Bundle "godlygeek/tabular"
 Bundle "rhysd/clever-f.vim"
+Bundle "airblade/vim-gitgutter"
 
-" rarely used
+" togglable panels
 Bundle "scrooloose/nerdtree"
 Bundle "tpope/vim-vinegar"
-Bundle "airblade/vim-gitgutter"
 Bundle "vim-scripts/taglist.vim"
 Bundle "majutsushi/tagbar"
 
@@ -53,8 +57,6 @@ Bundle "nelstrom/vim-textobj-rubyblock"
 
 Bundle "Blackrush/vim-gocode"
 Bundle "dgryski/vim-godef"
-
-Bundle 'wting/rust.vim'
 
 " databases
 Bundle "krisajenkins/dbext.vim"
@@ -220,7 +222,6 @@ nnoremap <leader>bp :CtrlPBuffer<CR>
 " clever-f prompt
 let g:clever_f_show_prompt = 1
 let g:clever_f_across_no_line = 1
-" let g:clever_f_fix_key_direction = 1
 
 " easy motion rebinded
 let g:EasyMotion_mapping_f = "<leader>f"
@@ -375,11 +376,6 @@ nnoremap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><C
 " Golang settings
 let g:gofmt_command = 'goimports'
 let g:godef_split=0
-" let g:godef_split=2
-" let g:godef_same_file_in_same_window=1
-" let g:neocomplete#sources#omni#functions = {'go': 'go#complete#Complete'}
-" let g:neocomplete#sources#omni#input_patterns.go = '[^.[:digit:] *\t]\.\w*'
-" let g:neocomplete#sources#omni#functions.go = 'go#complete#Complete'
 
 function! GoFmt()
     try
@@ -410,10 +406,6 @@ set tags+=gems.tags
 nnoremap <Leader>Rr :!ruby %<CR>
 nnoremap <Leader>Rf :!zeus rspec %<CR>
 nnoremap <Leader>Rt :!rspec<CR>
-
-" Rust shortcuts
-nnoremap <leader>RR :!rust run %<cr>
-nnoremap <leader>Rc :!rustc %<cr>
 
 if neocomplete_mode == 1
   " " NEOCOMPLETE (experimental)
@@ -481,9 +473,6 @@ if neocomplete_mode == 1
   " Tell Neosnippet about the other snippets
   let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
-  " vim-rails ovveride fix
-  let g:neocomplete#force_overwrite_completefunc = 1
-
   " ruby au's
   augroup RubyCompletion
     au!
@@ -503,9 +492,8 @@ else
 endif
 
 " linked databases
-let g:dbext_default_profile_bitstampplus = 'type=PGSQL:user=bspu:passwd=:dbname=bsp'
-let g:dbext_default_profile_vincere = 'type=PGSQL:user=vincere:passwd=:dbname=vincere_development'
-let g:dbext_default_profile='vincere'
+" let g:dbext_default_profile='vincere'
+" let g:dbext_default_profile_vincere = 'type=PGSQL:user=vincere:passwd=:dbname=vincere_development'
 
 " angularjs syntasic ovveride
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
@@ -513,7 +501,7 @@ let g:syntastic_mode_map={ 'mode': 'active',
                      \ 'active_filetypes': [],
                      \ 'passive_filetypes': ['html'] }
 
-" enable neocomplete helper
+" enable neocomplete Golang helper
 let g:echodoc_enable_at_startup = 1
 
 " enable angular syntax
