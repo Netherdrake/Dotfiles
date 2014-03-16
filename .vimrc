@@ -25,7 +25,6 @@ Bundle "tpope/vim-surround"
 Bundle "mileszs/ack.vim"
 Bundle "rking/ag.vim"
 Bundle "edsono/vim-matchit"
-Bundle "haya14busa/vim-easymotion"
 Bundle "tpope/vim-fugitive"
 Bundle "henrik/vim-indexed-search"
 Bundle "tpope/vim-abolish"
@@ -35,8 +34,9 @@ Bundle "xolox/vim-session"
 Bundle "xolox/vim-misc"
 Bundle "editorconfig/editorconfig-vim"
 Bundle "godlygeek/tabular"
-Bundle "rhysd/clever-f.vim"
 Bundle "airblade/vim-gitgutter"
+Bundle "Lokaltog/vim-easymotion"
+Bundle "rhysd/clever-f.vim"
 
 " togglable panels
 Bundle "scrooloose/nerdtree"
@@ -68,7 +68,6 @@ Bundle "NagatoPain/AutoSQLUpperCase.vim"
 " experimental vundles
 " Bundle "gorodinskiy/vim-coloresque.git"
 " Bundle "maxbrunsfeld/vim-yankstack"
-" Bundle "justinmk/vim-sneak"
 
 if neocomplete_mode == 1
   Bundle "Shougo/neocomplete"
@@ -224,10 +223,12 @@ let g:clever_f_show_prompt = 1
 let g:clever_f_across_no_line = 1
 
 " easy motion rebinded
-let g:EasyMotion_mapping_f = "<leader>f"
-let g:EasyMotion_mapping_F = "<leader>F"
-let g:EasyMotion_mapping_w = "<leader>w"
-let g:EasyMotion_mapping_b = "<leader>W"
+nmap <leader>f <Plug>(easymotion-f2)
+nmap <leader>F <Plug>(easymotion-F2)
+" let g:EasyMotion_mapping_f = "<leader>f"
+" let g:EasyMotion_mapping_F = "<leader>F"
+" let g:EasyMotion_mapping_w = "<leader>w"
+" let g:EasyMotion_mapping_b = "<leader>W"
 
 " open vimrc
 nnoremap <leader>v :e  ~/.vimrc<CR>
@@ -366,9 +367,9 @@ nnoremap <leader>g :Git
 nnoremap <leader>A :!ag 
 nnoremap <leader>a :Ag! 
 
-" ack motion (eg. ,amiw finds current word like ,A C-rC-w)
-nnoremap <silent> <leader>w :set opfunc=<SID>AckMotion<CR>g@
-xmap <silent> <leader>w :<C-U>call <SID>AckMotion(visualmode())<CR>
+" " ack motion (eg. ,amiw finds current word like ,A C-rC-w)
+" nnoremap <silent> <lnnoremapeader>w :set opfunc=<SID>AckMotion<CR>g@
+" xmap <silent> <leader>w :<C-U>call <SID>AckMotion(visualmode())<CR>
 
 " reload ctags
 nnoremap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
