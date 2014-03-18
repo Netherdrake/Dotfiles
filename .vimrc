@@ -58,6 +58,8 @@ Bundle "nelstrom/vim-textobj-rubyblock"
 Bundle "Blackrush/vim-gocode"
 Bundle "dgryski/vim-godef"
 
+Bundle "dart-lang/dart-vim-plugin"
+
 " databases
 Bundle "krisajenkins/dbext.vim"
 Bundle "vim-scripts/SQLComplete.vim"
@@ -205,6 +207,10 @@ nnoremap <Space> i<Space><Esc>l
 " consistent menu navigation
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
+
+" intellij style autocomplete shortcut
+inoremap <C-@> <C-x><C-o>
+inoremap <C-Space> <C-x><C-o>
 
 " togglables without FN keys
 nnoremap <leader>1 :GundoToggle<CR>
