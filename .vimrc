@@ -4,6 +4,9 @@ set encoding=utf-8
 
 " switch between YCM and NeoComplete
 let neocomplete_mode = 1
+if has("mac")
+  let neocomplete_mode = 0
+endif
 
 " start vundler
 filetype off
@@ -381,7 +384,9 @@ nnoremap <leader>a :Ag!
 nnoremap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 
 " Golang settings
-let g:gofmt_command = 'goimports'
+if has("mac")
+  let g:gofmt_command = 'goimports'
+endif
 let g:godef_split=0
 
 function! GoFmt()
