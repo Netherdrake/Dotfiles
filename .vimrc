@@ -386,8 +386,9 @@ let g:godef_split=0
 
 function! GoFmt()
     try
-        exe "undojoin"
-        exe "Fmt"
+        silent undojoin
+        silent exe "Fmt"
+        silent retab
     catch
     endtry
 endfunction
@@ -395,7 +396,6 @@ endfunction
 augroup Golang
   autocmd!
   au FileType go au BufWritePre <buffer> call GoFmt()
-  au FileType go au BufWritePre <buffer> retab
   " au FileType go au BufWritePost *.go :silent !gotags *.go > tags
 augroup END
 
