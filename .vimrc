@@ -383,6 +383,9 @@ nnoremap <leader>a :Ag!
 " reload ctags
 nnoremap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 
+" ctag ruby gems
+set tags+=gems.tags
+
 " Golang settings
 if has("mac")
   let g:gofmt_command = 'goimports'
@@ -413,11 +416,13 @@ nnoremap <leader>Gb :!go build<cr>
 nnoremap <leader>GB :!go build -race<cr>
 nnoremap <leader>Gi :!go install<cr>
 
-" ruby specific stuff
-set tags+=gems.tags
+" Ruby shortcuts
 nnoremap <Leader>Rr :!ruby %<CR>
 nnoremap <Leader>Rf :!zeus rspec %<CR>
 nnoremap <Leader>Rt :!rspec<CR>
+
+" Dart shortcuts
+nnoremap <leader>Dr :!dart %<cr>
 
 if neocomplete_mode == 1
   " " NEOCOMPLETE (experimental)
