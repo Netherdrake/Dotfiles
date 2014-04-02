@@ -58,8 +58,7 @@ Bundle "tpope/vim-rails"
 Bundle "kana/vim-textobj-user"
 Bundle "nelstrom/vim-textobj-rubyblock"
 
-Bundle "Blackrush/vim-gocode"
-Bundle "dgryski/vim-godef"
+Bundle "fatih/vim-go"
 
 Bundle "dart-lang/dart-vim-plugin"
 
@@ -376,10 +375,6 @@ nnoremap <leader>g :Git
 nnoremap <leader>A :!ag 
 nnoremap <leader>a :Ag! 
 
-" " ack motion (eg. ,amiw finds current word like ,A C-rC-w)
-" nnoremap <silent> <lnnoremapeader>w :set opfunc=<SID>AckMotion<CR>g@
-" xmap <silent> <leader>w :<C-U>call <SID>AckMotion(visualmode())<CR>
-
 " reload ctags
 nnoremap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 
@@ -387,25 +382,7 @@ nnoremap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><C
 set tags+=gems.tags
 
 " Golang settings
-if has("mac")
-  let g:gofmt_command = 'goimports'
-endif
-let g:godef_split=0
-
-function! GoFmt()
-    try
-        silent undojoin
-        silent exe "Fmt"
-        silent retab
-    catch
-    endtry
-endfunction
-
-augroup Golang
-  autocmd!
-  au FileType go au BufWritePre <buffer> call GoFmt()
-  " au FileType go au BufWritePost *.go :silent !gotags *.go > tags
-augroup END
+let g:go_fmt_command = "gofmt -tabs=false -tabwidth=4"
 
 " Golang shortcuts
 nnoremap <leader>Gr :!go run %<cr>
@@ -537,11 +514,6 @@ endfunction
 "
 " install ctags, ack, ag
 " sudo packer -S silver-searcher-git ack ctags
-"
-" go get -u code.google.com/p/go.tools/cmd/goimports
-" go get -u github.com/nsf/gocode
-" go get -v code.google.com/p/rog-go/exp/cmd/godef
-" go install -v code.google.com/p/rog-go/exp/cmd/godef
 "
 " https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
 "
