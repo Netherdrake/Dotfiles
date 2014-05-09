@@ -402,6 +402,8 @@ function! SetDefaultRunner()
     nnoremap <leader>r :!ruby %<cr>
   elseif(&ft=="go")
     nnoremap <leader>r :!go run %<cr>
+  elseif(&ft=="javascript")
+    nnoremap <leader>r :!node %<cr>
   elseif(&ft=="dart")
     nnoremap <leader>r :!dart %<cr>
   endif
