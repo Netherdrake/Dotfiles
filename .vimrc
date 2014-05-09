@@ -246,7 +246,7 @@ nnoremap <leader>V :tabnew  ~/.vimrc<CR>
 nnoremap <Leader>l :SyntasticCheck<CR>
 
 " reload all open buffers
-nnoremap <leader>ra :tabdo exec "windo e!"
+nnoremap <leader>Ra :tabdo exec "windo e!"
 
 "map next-previous jumps
 nnoremap <leader>m <C-o>
@@ -393,13 +393,21 @@ nnoremap <leader>Gb :!go build<cr>
 nnoremap <leader>GB :!go build -race<cr>
 nnoremap <leader>Gi :!go install<cr>
 
-" Ruby shortcuts
-nnoremap <Leader>Rr :!ruby %<CR>
-nnoremap <Leader>Rf :!zeus rspec %<CR>
-nnoremap <Leader>Rt :!rspec<CR>
 
-" Dart shortcuts
-nnoremap <leader>Dr :!dart %<cr>
+" General file runners for various languages
+function! SetDefaultRunner()
+  if(&ft=="python")
+    nnoremap <leader>r :!python2 %<cr>
+  elseif(&ft=="ruby")
+    nnoremap <leader>r :!ruby %<cr>
+  elseif(&ft=="go")
+    nnoremap <leader>r :!go run %<cr>
+  elseif(&ft=="dart")
+    nnoremap <leader>r :!dart %<cr>
+  endif
+endfunction
+
+au BufEnter * call SetDefaultRunner()
 
 if neocomplete_mode == 1
   " " NEOCOMPLETE (experimental)
