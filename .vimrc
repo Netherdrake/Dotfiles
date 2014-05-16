@@ -59,8 +59,8 @@ Bundle "kana/vim-textobj-user"
 Bundle "nelstrom/vim-textobj-rubyblock"
 
 Bundle "fatih/vim-go"
-
 Bundle "dart-lang/dart-vim-plugin"
+Bundle "plasticboy/vim-markdown"
 
 " databases
 Bundle "krisajenkins/dbext.vim"
@@ -256,6 +256,10 @@ nnoremap <leader>. <C-i>
 nnoremap <PageUp> {
 nnoremap <PageDown> }
 
+" better navigation
+nnoremap <C-j> }
+nnoremap <C-k> {
+
 " Use sane regexes
 nnoremap <leader>/ /\v
 vnoremap <leader>/ /\v
@@ -383,6 +387,7 @@ set tags+=gems.tags
 
 " Golang settings
 let g:go_fmt_command = "gofmt -tabs=false -tabwidth=4"
+nnoremap gd :GoDef<cr>
 
 " Golang shortcuts
 nnoremap <leader>Gr :!go run %<cr>
