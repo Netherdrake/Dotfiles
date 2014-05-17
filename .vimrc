@@ -257,8 +257,8 @@ nnoremap <PageUp> {
 nnoremap <PageDown> }
 
 " better navigation
-nnoremap <C-j> }
-nnoremap <C-k> {
+nnoremap <C-j> <C-d>
+nnoremap <C-k> <C-u>
 
 " Use sane regexes
 nnoremap <leader>/ /\v
