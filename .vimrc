@@ -110,7 +110,7 @@ set nowrap
 set backspace=indent,eol,start
 set shell=/bin/bash
 set completeopt -=preview
-set textwidth=95
+set textwidth=100
 set wildmenu
 set ttyfast
 set noshowmode
