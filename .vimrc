@@ -92,8 +92,8 @@ filetype plugin indent on
 " general configs
 set expandtab
 set smarttab
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
 set tabstop=4
 set autoindent
 set ruler
@@ -154,9 +154,11 @@ let g:bufExplorerFindActive=0
 " show trailing whitespaces
 set list
 set listchars=tab:▸\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
-augroup FileTypes
-  autocmd!
-  autocmd filetype html,xml set listchars-=tab:▸\ 
+
+augroup ListChars2
+    au!
+    autocmd filetype go set listchars+=tab:\ \ 
+    autocmd ColorScheme * hi! link SpecialKey Normal
 augroup END
 
 " syntax highlighting
@@ -386,8 +388,20 @@ nnoremap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><C
 set tags+=gems.tags
 
 " Golang settings
-let g:go_fmt_command = "gofmt -tabs=false -tabwidth=4"
-nnoremap gd :GoDef<cr>
+augroup FileType go
+  au!
+  au FileType go nmap gd <Plug>(go-def)
+  au FileType go nmap <Leader>dd <Plug>(go-def-vertical)
+
+  au FileType go nmap <Leader>dv <Plug>(go-doc-vertical)
+  au FileType go nmap <Leader>db <Plug>(go-doc-browser)
+
+  au FileType go nmap <Leader>i <Plug>(go-info)
+
+  au FileType go nmap <leader>r <Plug>(go-run)
+  au FileType go nmap <leader>b <Plug>(go-build)
+  au FileType go nmap <leader>t <Plug>(go-test)
+augroup END
 
 " Golang shortcuts
 nnoremap <leader>Gr :!go run %<cr>
@@ -405,8 +419,6 @@ function! SetDefaultRunner()
     nnoremap <leader>r :!python2 %<cr>
   elseif(&ft=="ruby")
     nnoremap <leader>r :!ruby %<cr>
-  elseif(&ft=="go")
-    nnoremap <leader>r :!go run %<cr>
   elseif(&ft=="javascript")
     nnoremap <leader>r :!node %<cr>
   elseif(&ft=="dart")
