@@ -67,11 +67,6 @@ Bundle "krisajenkins/dbext.vim"
 Bundle "vim-scripts/SQLComplete.vim"
 Bundle "vim-scripts/SQLUtilities"
 Bundle "NagatoPain/AutoSQLUpperCase.vim"
-" Bundle "vim-scripts/dbext.vim"
-
-" experimental vundles
-" Bundle "gorodinskiy/vim-coloresque.git"
-" Bundle "maxbrunsfeld/vim-yankstack"
 
 if neocomplete_mode == 1
   Bundle "Shougo/neocomplete"
@@ -235,10 +230,6 @@ let g:clever_f_across_no_line = 1
 " easy motion rebinded
 nmap <leader>f <Plug>(easymotion-f2)
 nmap <leader>F <Plug>(easymotion-F2)
-" let g:EasyMotion_mapping_f = "<leader>f"
-" let g:EasyMotion_mapping_F = "<leader>F"
-" let g:EasyMotion_mapping_w = "<leader>w"
-" let g:EasyMotion_mapping_b = "<leader>W"
 
 " open vimrc
 nnoremap <leader>v :e  ~/.vimrc<CR>
@@ -428,8 +419,8 @@ endfunction
 
 au BufEnter * call SetDefaultRunner()
 
+" " NEOCOMPLETE (experimental)
 if neocomplete_mode == 1
-  " " NEOCOMPLETE (experimental)
   " Disable AutoComplPop.
   let g:acp_enableAtStartup = 0
   let g:neocomplete#data_directory = "~/.vim/tmp/swap"
@@ -511,10 +502,6 @@ else
   let g:ycm_key_invoke_completion = "<C-j>"
   let g:ycm_collect_identifiers_from_tags_files = 1
 endif
-
-" linked databases
-" let g:dbext_default_profile='vincere'
-" let g:dbext_default_profile_vincere = 'type=PGSQL:user=vincere:passwd=:dbname=vincere_development'
 
 " angularjs syntasic ovveride
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]

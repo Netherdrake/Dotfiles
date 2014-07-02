@@ -11,10 +11,10 @@ function lockme
   /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend
 end
 
-function gaeon
- set GOPATH ~/Documents/go/go_appengine/
+function update
+  brew update ;and brew cleanup
 end
 
-function gaeoff
- set GOPATH ~/Documents/go/
+function upgrade
+  brew update ;and brew upgrade ;and brew cleanup ;and brew cask cleanup
 end
