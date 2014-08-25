@@ -2,12 +2,6 @@
 set nocompatible
 set encoding=utf-8
 
-" switch between YCM and NeoComplete
-let neocomplete_mode = 1
-if has("mac")
-  let neocomplete_mode = 0
-endif
-
 " start vundler
 filetype off
 set rtp+=~/.vim/bundle/vundle/
@@ -68,18 +62,15 @@ Bundle "vim-scripts/SQLComplete.vim"
 Bundle "vim-scripts/SQLUtilities"
 Bundle "NagatoPain/AutoSQLUpperCase.vim"
 
-if neocomplete_mode == 1
-  Bundle "Shougo/neocomplete"
-  Bundle "Shougo/neosnippet"
-  Bundle "honza/vim-snippets"
-  Bundle "Shougo/echodoc.vim"
-else
-  Bundle "Valloric/YouCompleteMe"
-  Bundle "MarcWeber/vim-addon-mw-utils"
-  Bundle "tomtom/tlib_vim"
-  Bundle "garbas/vim-snipmate"
-  Bundle "honza/vim-snippets"
-endif
+" autocomplete
+Bundle "Valloric/YouCompleteMe"
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+
+" snippets
+" Bundle "garbas/vim-snipmate"
+Bundle "SirVer/ultisnips"
+Bundle "honza/vim-snippets"
 
 " enable all the plugins
 filetype plugin indent on
@@ -235,19 +226,12 @@ nmap <leader>F <Plug>(easymotion-F2)
 nnoremap <leader>v :e  ~/.vimrc<CR>
 nnoremap <leader>V :tabnew  ~/.vimrc<CR>
 
-" syntastic check
-nnoremap <Leader>l :SyntasticCheck<CR>
-
 " reload all open buffers
 nnoremap <leader>Ra :tabdo exec "windo e!"
 
 "map next-previous jumps
 nnoremap <leader>m <C-o>
 nnoremap <leader>. <C-i>
-
-" ms 4000 mappings
-nnoremap <PageUp> {
-nnoremap <PageDown> }
 
 " better navigation
 nnoremap <C-j> <C-d>
@@ -405,7 +389,7 @@ nnoremap <leader>Gi :!go install<cr>
 
 
 " General file runners for various languages
-function! SetDefaultRunner()
+function! LangRunner()
   if(&ft=="python")
     nnoremap <leader>r :!python2 %<cr>
   elseif(&ft=="ruby")
@@ -417,100 +401,14 @@ function! SetDefaultRunner()
   endif
 endfunction
 
-au BufEnter * call SetDefaultRunner()
+au BufEnter * call LangRunner()
 
-" " NEOCOMPLETE (experimental)
-if neocomplete_mode == 1
-  " Disable AutoComplPop.
-  let g:acp_enableAtStartup = 0
-  let g:neocomplete#data_directory = "~/.vim/tmp/swap"
-  " Use neocomplete.
-  let g:neocomplete#enable_at_startup = 1
-  " Use smartcase.
-  let g:neocomplete#enable_smart_case = 1
-  " Set minimum syntax keyword length.
-  let g:neocomplete#sources#syntax#min_keyword_length = 2
-  let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-  " Define dictionary.
-  let g:neocomplete#sources#dictionary#dictionaries = {
-      \ 'default' : '',
-      \ 'vimshell' : $HOME.'/.vimshell_hist',
-      \ 'scheme' : $HOME.'/.gosh_completions'
-          \ }
-
-  " Define keyword.
-  if !exists('g:neocomplete#keyword_patterns')
-      let g:neocomplete#keyword_patterns = {}
-  endif
-  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-  " " snipmate rebind
-  " imap <C-l> <esc>a<Plug>snipMateNextOrTrigger
-  " smap <C-l> <Plug>snipMateNextOrTrigger
-
-  " Plugin key-mappings.
-  inoremap <expr><C-g>  neocomplete#undo_completion()
-  inoremap <expr><C-l>  neocomplete#complete_common_string()
-  inoremap <expr><BS>   neocomplete#smart_close_popup()."\<C-h>"
-  inoremap <expr><C-y>  neocomplete#close_popup()
-  inoremap <expr><C-u>  neocomplete#close_popup() . "\<C-u>"
-  inoremap <expr><C-h>  neocomplete#smart_close_popup() . "\<C-w>"
-
-  " Plugin key-mappings.
-  imap <C-i>     <Plug>(neosnippet_expand_or_jump)
-  smap <C-i>     <Plug>(neosnippet_expand_or_jump)
-  xmap <C-i>     <Plug>(neosnippet_expand_target)
-
-  " <CR>: close popup and save indent.
-  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-  function! s:my_cr_function()
-    return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-  endfunction
-
-  " Enable heavy omni completion.
-  if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
-  endif
-
-  " neosnippet
-  " For snippet_complete marker.
-  if has('conceal')
-    set conceallevel=2 concealcursor=i
-  endif
-
-  " Enable snipMate compatibility feature.
-  let g:neosnippet#enable_snipmate_compatibility = 1
-
-  " Tell Neosnippet about the other snippets
-  let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-
-  " ruby au's
-  augroup RubyCompletion
-    au!
-    autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-    autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-    autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-    autocmd FileType eruby set filetype=html.eruby
-  augroup END
-
-else
-  " YouCompleteMe
-  let g:ycm_filetype_blacklist = {}
-  let g:ycm_key_list_select_completion = []
-  let g:ycm_key_list_previous_completion = []
-  let g:ycm_key_invoke_completion = "<C-j>"
-  let g:ycm_collect_identifiers_from_tags_files = 1
-endif
-
-" angularjs syntasic ovveride
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-let g:syntastic_mode_map={ 'mode': 'active',
-                     \ 'active_filetypes': [],
-                     \ 'passive_filetypes': ['html'] }
-
-" enable neocomplete Golang helper
-let g:echodoc_enable_at_startup = 1
+" YouCompleteMe
+let g:ycm_filetype_blacklist = {}
+let g:ycm_key_list_select_completion = []
+let g:ycm_key_list_previous_completion = []
+let g:ycm_key_invoke_completion = "<C-j>"
+let g:ycm_collect_identifiers_from_tags_files = 1
 
 " enable angular syntax
 let g:used_javascript_libs = 'jquery,angularjs'

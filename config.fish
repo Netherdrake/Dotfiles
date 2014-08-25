@@ -12,9 +12,17 @@ function lockme
 end
 
 function update
-  brew update ;and brew cleanup
+  brew update ;and brew upgrade
 end
 
 function upgrade
-  brew update ;and brew upgrade ;and brew cleanup ;and brew cask cleanup
+  brew cask update
+end
+
+function cleanup
+  brew cleanup ;and brew cask cleanup
+end
+
+function vimu
+  vim +BundleUpdate
 end
