@@ -363,6 +363,7 @@ nnoremap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><C
 set tags+=gems.tags
 
 " Golang settings
+let g:go_fmt_command = "goimports"
 augroup FileType go
   au!
   au FileType go nmap gd <Plug>(go-def)
