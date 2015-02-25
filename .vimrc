@@ -53,7 +53,6 @@ Bundle "kana/vim-textobj-user"
 Bundle "nelstrom/vim-textobj-rubyblock"
 
 Bundle "fatih/vim-go"
-Bundle "dart-lang/dart-vim-plugin"
 Bundle "plasticboy/vim-markdown"
 
 " databases
@@ -359,11 +358,11 @@ nnoremap <leader>a :Ag!
 " reload ctags
 nnoremap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 
-" ctag ruby gems
-set tags+=gems.tags
-
 " Golang settings
 let g:go_fmt_command = "goimports"
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
 augroup FileType go
   au!
   au FileType go nmap gd <Plug>(go-def)
@@ -427,8 +426,6 @@ endfunction
 "
 " install ctags, ack, ag
 " sudo packer -S silver-searcher-git ack ctags
-"
-" https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
 "
 " cd ~/.vim/bundle/YouCompleteMe
 " ./install.sh --clang-completer
