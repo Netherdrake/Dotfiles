@@ -249,9 +249,6 @@ nnoremap <leader>g :Git
 nnoremap <leader>A :!ag 
 nnoremap <leader>a :Ag! 
 
-" enable angular syntax
-let g:used_javascript_libs = 'jquery,angularjs'
-
 """"""""""""""""""""""""""""""""
 "
 " PROGRAMMING LANGUAGES
@@ -303,6 +300,9 @@ function! LangRunner()
 endfunction
 
 au BufEnter * call LangRunner()
+
+" enable angular syntax
+let g:used_javascript_libs = 'jquery,angularjs'
 
 """"""""""""""""""""""""""""""""
 "
