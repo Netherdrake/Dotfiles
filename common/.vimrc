@@ -55,8 +55,6 @@ Bundle "fatih/vim-go"
 Bundle "plasticboy/vim-markdown"
 
 " databases
-Bundle "krisajenkins/dbext.vim"
-Bundle "vim-scripts/SQLComplete.vim"
 Bundle "vim-scripts/SQLUtilities"
 Bundle "NagatoPain/AutoSQLUpperCase.vim"
 
@@ -66,7 +64,6 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 
 " snippets
-" Bundle "garbas/vim-snipmate"
 Bundle "SirVer/ultisnips"
 Bundle "honza/vim-snippets"
 
@@ -153,6 +150,10 @@ nnoremap <leader>j i<CR><Esc>==
 "make space in normal mode add space
 nnoremap <Space> i<Space><Esc>l
 
+" better scrolling
+nnoremap <C-j> <C-d>
+nnoremap <C-k> <C-u>
+
 " consistent menu navigation
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
@@ -180,10 +181,6 @@ nnoremap <leader>Ra :tabdo exec "windo e!"
 "map next-previous jumps
 nnoremap <leader>m <C-o>
 nnoremap <leader>. <C-i>
-
-" better navigation
-nnoremap <C-j> <C-d>
-nnoremap <C-k> <C-u>
 
 " Keep search matches in the middle of the window.
 nnoremap n nzzzv
@@ -213,11 +210,9 @@ let g:clever_f_across_no_line = 1
 if !exists("g:airline_symbols")
   let g:airline_symbols = {}
 endif
-
 let g:airline_theme="powerlineish"
 let g:airline_powerline_fonts=1
-" let g:airline_section_warning = airline#section#create([ "syntastic" ])
-let g:airline#extensions#branch#empty_message  =  "No SCM"
+let g:airline#extensions#branch#empty_message  =  "no .git"
 let g:airline#extensions#whitespace#enabled    =  0
 let g:airline#extensions#syntastic#enabled     =  1
 let g:airline#extensions#tabline#enabled       =  1
@@ -313,7 +308,6 @@ augroup END
 " show trailing whitespaces
 set list
 set listchars=tab:▸\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
-
 augroup ListChars2
     au!
     autocmd filetype go set listchars+=tab:\ \ 
@@ -330,26 +324,20 @@ endfunction
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 
-" Text Highlighter = <leader>hx
+" Text Highlighter = <leader>h[1-4]
 function! HiInterestingWord(n)
     " Save our location.
     normal! mz
-
     " Yank the current word into the z register.
     normal! "zyiw
-
     " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
     let mid = 86750 + a:n
-
     " Clear existing matches, but don't worry if they don't exist.
     silent! call matchdelete(mid)
-
     " Construct a literal pattern that has to match at boundaries.
     let pat = '\V\<' . escape(@z, '\') . '\>'
-
     " Actually match the words.
     call matchadd("InterestingWord" . a:n, pat, 1, mid)
-
     " Move back to our original location.
     normal! `z
 endfunction
@@ -371,25 +359,7 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 
 highlight search ctermfg=white ctermbg=3423513
 
-function! s:CopyMotionForType(type)
-    if a:type ==# "v"
-        silent execute "normal! `<" . a:type . "`>y"
-    elseif a:type ==# "char"
-        silent execute "normal! `[v`]y"
-    endif
-endfunction
-
-function! s:AckMotion(type) abort
-    let reg_save = @@
-
-    call s:CopyMotionForType(a:type)
-
-    execute "normal! :Ack! --literal " . shellescape(@@) . "\<cr>"
-
-    let @@ = reg_save
-endfunction
-
-" retab
+" better retab
 fu! Retab()
   :retab
   :%s/\s\+$//
