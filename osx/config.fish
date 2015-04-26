@@ -15,6 +15,11 @@ function update
   brew update ;and brew upgrade
 end
 
+function updateall
+  brew update ;and brew upgrade
+  vim +BundleUpdate
+end
+
 function upgrade
   brew cask update
 end
@@ -25,4 +30,8 @@ end
 
 function vimu
   vim +BundleUpdate
+end
+
+function dlaudio
+    youtube-dl -f bestaudio --extract-audio --audio-format mp3 $argv
 end
