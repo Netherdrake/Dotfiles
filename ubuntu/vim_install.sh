@@ -23,17 +23,9 @@ cd
 curl https://raw.githubusercontent.com/Alex7Kom/nvm-fish/master/install.fish | fish
 
 # restart shell required
+source ~/.bashrc
 nvm install v0.11.14
 
 # install js autocompletion
 cd .vim/bundle/tern_for_vim/ && npm install
 npm install -g jshint
-
-# optional stuff
-
-# mongodb
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
-echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee
-/etc/apt/sources.list.d/mongodb.list
-sudo apt-get update
-sudo apt-get install -y mongodb-org
