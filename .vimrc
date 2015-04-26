@@ -1,3 +1,8 @@
+""""""""""""""""""""""""""""""""
+"
+" PACKAGE MANAGEMENT
+"
+""""""""""""""""""""""""""""""""
 " not a vi
 set nocompatible
 set encoding=utf-8
@@ -44,13 +49,7 @@ Bundle "majutsushi/tagbar"
 " language vundles
 Bundle "pangloss/vim-javascript"
 Bundle "marijnh/tern_for_vim"
-Bundle "kchmck/vim-coffee-script"
 Bundle "othree/javascript-libraries-syntax.vim"
-
-Bundle "vim-ruby/vim-ruby"
-Bundle "tpope/vim-rails"
-Bundle "kana/vim-textobj-user"
-Bundle "nelstrom/vim-textobj-rubyblock"
 
 Bundle "fatih/vim-go"
 Bundle "plasticboy/vim-markdown"
@@ -74,7 +73,11 @@ Bundle "honza/vim-snippets"
 " enable all the plugins
 filetype plugin indent on
 
-" general configs
+""""""""""""""""""""""""""""""""
+"
+" SETTINGS & KEYBINDINGS
+"
+""""""""""""""""""""""""""""""""
 set expandtab
 set smarttab
 set shiftwidth=4
@@ -100,65 +103,6 @@ set wildmenu
 set ttyfast
 set noshowmode
 set cmdheight=1
-" set autoread
-
-let mapleader=","
-
-" realign buffers when iterm goes fullscreen
-augroup FixProportionsOnResize
-  au!
-  au VimResized * exe "normal! \<c-w>="
-augroup END
-
-" vim mode-switch lag fix
-if ! has("gui_running")
-    set ttimeoutlen=10
-    augroup FastEscape
-        autocmd!
-        au InsertEnter * set timeoutlen=0
-        au InsertLeave * set timeoutlen=1000
-    augroup END
-endif
-
-" macos vs linux clipboard
-if has("mac")
-  set clipboard+=unnamed
-else
-  set clipboard=unnamedplus
-endif
-
-" make C-a, C-x work properly
-set nrformats=
-
-" potential lag fix
-let g:matchparen_insert_timeout=1
-
-" fix bufexplorer bug with hidden
-let g:bufExplorerFindActive=0
-
-" show trailing whitespaces
-set list
-set listchars=tab:▸\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
-
-augroup ListChars2
-    au!
-    autocmd filetype go set listchars+=tab:\ \ 
-    autocmd ColorScheme * hi! link SpecialKey Normal
-augroup END
-
-" syntax highlighting
-syntax on
-colorscheme candyman
-
-" session management
-let g:session_directory = "~/.vim/session"
-let g:session_autoload = "no"
-let g:session_autosave = "no"
-let g:session_command_aliases = 1
-nnoremap <leader>so :OpenSession 
-nnoremap <leader>ss :SaveSession 
-nnoremap <leader>sd :DeleteSession<CR>
-nnoremap <leader>sc :CloseSession<CR>
 
 " backup/persistance settings
 set undodir=~/.vim/tmp/undo//
@@ -174,14 +118,30 @@ set undofile
 set history=100
 set undolevels=100
 
-" Make sure Vim returns to the same line when you reopen a file.
-augroup line_return
-    au!
-    au BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \     execute 'normal! g`"zvzz' |
-        \ endif
-augroup END
+" set autoread
+
+let mapleader=","
+
+" syntax highlighting
+syntax on
+colorscheme candyman
+
+" session management
+let g:session_directory = "~/.vim/session"
+let g:session_autoload = "no"
+let g:session_autosave = "no"
+let g:session_command_aliases = 1
+nnoremap <leader>so :OpenSession 
+nnoremap <leader>ss :SaveSession 
+nnoremap <leader>sd :DeleteSession<CR>
+nnoremap <leader>sc :CloseSession<CR>
+
+" togglables without FN keys
+nnoremap <leader>1 :GundoToggle<CR>
+set pastetoggle=<leader>2
+nnoremap <leader>3 :TlistToggle<CR>
+nnoremap <leader>4 :TagbarToggle<CR>
+nnoremap <leader>5 :NERDTreeToggle<CR>
 
 " visual reselect of just pasted
 nnoremap gp `[v`]
@@ -201,21 +161,10 @@ inoremap <C-k> <C-p>
 inoremap <C-@> <C-x><C-o>
 inoremap <C-Space> <C-x><C-o>
 
-" togglables without FN keys
-nnoremap <leader>1 :GundoToggle<CR>
-set pastetoggle=<leader>2
-nnoremap <leader>3 :TlistToggle<CR>
-nnoremap <leader>4 :TagbarToggle<CR>
-nnoremap <leader>5 :NERDTreeToggle<CR>
-
 " ctrlP config
 let g:ctrlp_map = "<c-p>"
 nnoremap <leader>t :CtrlPMRU<CR>
 nnoremap <leader>bp :CtrlPBuffer<CR>
-
-" clever-f prompt
-let g:clever_f_show_prompt = 1
-let g:clever_f_across_no_line = 1
 
 " easy motion rebinded
 nmap <leader>f <Plug>(easymotion-f2)
@@ -236,6 +185,10 @@ nnoremap <leader>. <C-i>
 nnoremap <C-j> <C-d>
 nnoremap <C-k> <C-u>
 
+" Keep search matches in the middle of the window.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
 " Use sane regexes
 nnoremap <leader>/ /\v
 vnoremap <leader>/ /\v
@@ -252,9 +205,9 @@ vnoremap <leader>s :%s /
 nnoremap <leader>S :%S /
 vnoremap <leader>S :%S /
 
-" Keep search matches in the middle of the window.
-nnoremap n nzzzv
-nnoremap N Nzzzv
+" clever-f prompt
+let g:clever_f_show_prompt = 1
+let g:clever_f_across_no_line = 1
 
 " airline
 if !exists("g:airline_symbols")
@@ -271,6 +224,109 @@ let g:airline#extensions#tabline#enabled       =  1
 let g:airline#extensions#tabline#tab_nr_type   =  1 " tab number
 let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
 let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
+
+" YouCompleteMe
+let g:ycm_filetype_blacklist = {}
+let g:ycm_key_list_select_completion = []
+let g:ycm_key_list_previous_completion = []
+let g:ycm_key_invoke_completion = "<C-j>"
+let g:ycm_collect_identifiers_from_tags_files = 1
+
+if executable("ag")
+  let g:ackprg = "ag --nogroup --column"
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+" reload ctags
+nnoremap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
+
+" git and ack stuff
+let g:gitgutter_enabled = 1
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
+nnoremap <leader>G mG:Git! 
+nnoremap <leader>g :Git 
+nnoremap <leader>A :!ag 
+nnoremap <leader>a :Ag! 
+
+" enable angular syntax
+let g:used_javascript_libs = 'jquery,angularjs'
+
+""""""""""""""""""""""""""""""""
+"
+" PROGRAMMING LANGUAGES
+"
+""""""""""""""""""""""""""""""""
+" Golang settings
+let g:go_fmt_command = "goimports"
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+augroup FileType go
+  au!
+  au FileType go nmap gd <Plug>(go-def)
+  au FileType go nmap <Leader>dd <Plug>(go-def-vertical)
+
+  au FileType go nmap <Leader>dv <Plug>(go-doc-vertical)
+  au FileType go nmap <Leader>db <Plug>(go-doc-browser)
+
+  au FileType go nmap <Leader>i <Plug>(go-info)
+
+  au FileType go nmap <leader>r <Plug>(go-run)
+  au FileType go nmap <leader>b <Plug>(go-build)
+  au FileType go nmap <leader>t <Plug>(go-test)
+augroup END
+
+" Golang shortcuts
+nnoremap <leader>Gr :!go run %<cr>
+nnoremap <leader>GR :!go run -race %<cr>
+nnoremap <leader>Gt :!go test -v -cover<cr>
+nnoremap <leader>GT :!go test -race -v -cover<cr>
+nnoremap <leader>Gb :!go build<cr>
+nnoremap <leader>GB :!go build -race<cr>
+nnoremap <leader>Gi :!go install<cr>
+
+
+" General file runners for various languages
+function! LangRunner()
+  if(&ft=="python")
+    nnoremap <leader>r :!python2 %<cr>
+  elseif(&ft=="ruby")
+    nnoremap <leader>r :!ruby %<cr>
+  elseif(&ft=="javascript")
+    nnoremap <leader>r :!node %<cr>
+  elseif(&ft=="php")
+    nnoremap <leader>r :!php %<cr>
+  elseif(&ft=="dart")
+    nnoremap <leader>r :!dart %<cr>
+  endif
+endfunction
+
+au BufEnter * call LangRunner()
+
+""""""""""""""""""""""""""""""""
+"
+" COOL HACKS
+"
+""""""""""""""""""""""""""""""""
+" Make sure Vim returns to the same line when you reopen a file.
+augroup line_return
+    au!
+    au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \     execute 'normal! g`"zvzz' |
+        \ endif
+augroup END
+
+" show trailing whitespaces
+set list
+set listchars=tab:▸\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
+
+augroup ListChars2
+    au!
+    autocmd filetype go set listchars+=tab:\ \ 
+    autocmd ColorScheme * hi! link SpecialKey Normal
+augroup END
 
 " Visual Mode */# from Scrooloose
 function! s:VSetSearch()
@@ -341,85 +397,54 @@ function! s:AckMotion(type) abort
     let @@ = reg_save
 endfunction
 
-if executable("ag")
-  let g:ackprg = "ag --nogroup --column"
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
-" git and ack stuff
-let g:gitgutter_enabled = 1
-let g:gitgutter_realtime = 0
-let g:gitgutter_eager = 0
-nnoremap <leader>G mG:Git! 
-nnoremap <leader>g :Git 
-nnoremap <leader>A :!ag 
-nnoremap <leader>a :Ag! 
-
-" reload ctags
-nnoremap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
-
-" Golang settings
-let g:go_fmt_command = "goimports"
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-augroup FileType go
-  au!
-  au FileType go nmap gd <Plug>(go-def)
-  au FileType go nmap <Leader>dd <Plug>(go-def-vertical)
-
-  au FileType go nmap <Leader>dv <Plug>(go-doc-vertical)
-  au FileType go nmap <Leader>db <Plug>(go-doc-browser)
-
-  au FileType go nmap <Leader>i <Plug>(go-info)
-
-  au FileType go nmap <leader>r <Plug>(go-run)
-  au FileType go nmap <leader>b <Plug>(go-build)
-  au FileType go nmap <leader>t <Plug>(go-test)
-augroup END
-
-" Golang shortcuts
-nnoremap <leader>Gr :!go run %<cr>
-nnoremap <leader>GR :!go run -race %<cr>
-nnoremap <leader>Gt :!go test -v -cover<cr>
-nnoremap <leader>GT :!go test -race -v -cover<cr>
-nnoremap <leader>Gb :!go build<cr>
-nnoremap <leader>GB :!go build -race<cr>
-nnoremap <leader>Gi :!go install<cr>
-
-
-" General file runners for various languages
-function! LangRunner()
-  if(&ft=="python")
-    nnoremap <leader>r :!python2 %<cr>
-  elseif(&ft=="ruby")
-    nnoremap <leader>r :!ruby %<cr>
-  elseif(&ft=="javascript")
-    nnoremap <leader>r :!node %<cr>
-  elseif(&ft=="dart")
-    nnoremap <leader>r :!dart %<cr>
-  endif
-endfunction
-
-au BufEnter * call LangRunner()
-
-" YouCompleteMe
-let g:ycm_filetype_blacklist = {}
-let g:ycm_key_list_select_completion = []
-let g:ycm_key_list_previous_completion = []
-let g:ycm_key_invoke_completion = "<C-j>"
-let g:ycm_collect_identifiers_from_tags_files = 1
-
-" enable angular syntax
-let g:used_javascript_libs = 'jquery,angularjs'
-
 " retab
 fu! Retab()
   :retab
   :%s/\s\+$//
 endfunction
 
+""""""""""""""""""""""""""""""""
+"
+" BUG WORKAROUNDS
+"
+""""""""""""""""""""""""""""""""
+" realign buffers when iterm goes fullscreen
+augroup FixProportionsOnResize
+  au!
+  au VimResized * exe "normal! \<c-w>="
+augroup END
+
+" vim mode-switch lag fix
+if ! has("gui_running")
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
+endif
+
+" macos vs linux clipboard
+if has("mac")
+  set clipboard+=unnamed
+else
+  set clipboard=unnamedplus
+endif
+
+" make C-a, C-x work properly
+set nrformats=
+
+" potential lag fix
+let g:matchparen_insert_timeout=1
+
+" fix bufexplorer bug with hidden
+let g:bufExplorerFindActive=0
+
+""""""""""""""""""""""""""""""""
+"
 " THINGS TODO ON NEW INSTALL
+"
+""""""""""""""""""""""""""""""""
 " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 "
 " Inside of ~/.vim make /tmp, inside of which mkdir swap backup undo
