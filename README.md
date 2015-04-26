@@ -7,7 +7,6 @@
 ├── osx
 │   ├── config.fish
 │   └── .tmux.conf
-├── README.md
 └── ubuntu
     ├── config.fish
     ├── .tmux.conf
