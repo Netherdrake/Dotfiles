@@ -254,11 +254,13 @@ nnoremap <leader>a :Ag!
 " PROGRAMMING LANGUAGES
 "
 """"""""""""""""""""""""""""""""
-" Golang settings
+" vim-go settings
 let g:go_fmt_command = "goimports"
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
+
+" vim-go bindings
 augroup FileType go
   au!
   au FileType go nmap gd <Plug>(go-def)
@@ -273,16 +275,6 @@ augroup FileType go
   au FileType go nmap <leader>b <Plug>(go-build)
   au FileType go nmap <leader>t <Plug>(go-test)
 augroup END
-
-" Golang shortcuts
-nnoremap <leader>Gr :!go run %<cr>
-nnoremap <leader>GR :!go run -race %<cr>
-nnoremap <leader>Gt :!go test -v -cover<cr>
-nnoremap <leader>GT :!go test -race -v -cover<cr>
-nnoremap <leader>Gb :!go build<cr>
-nnoremap <leader>GB :!go build -race<cr>
-nnoremap <leader>Gi :!go install<cr>
-
 
 " General file runners for various languages
 function! LangRunner()
