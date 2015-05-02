@@ -100,6 +100,7 @@ set wildmenu
 set ttyfast
 set noshowmode
 set cmdheight=1
+" set autoread
 
 " backup/persistance settings
 set undodir=~/.vim/tmp/undo//
@@ -115,9 +116,17 @@ set undofile
 set history=100
 set undolevels=100
 
-" set autoread
-
+" set <leader>
 let mapleader=","
+
+" show trailing whitespaces
+set list
+set listchars=tab:▸\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
+augroup ListChars2
+    au!
+    autocmd filetype go set listchars+=tab:\ \ 
+    autocmd ColorScheme * hi! link SpecialKey Normal
+augroup END
 
 " syntax highlighting
 syntax on
@@ -303,15 +312,6 @@ augroup line_return
         \ if line("'\"") > 0 && line("'\"") <= line("$") |
         \     execute 'normal! g`"zvzz' |
         \ endif
-augroup END
-
-" show trailing whitespaces
-set list
-set listchars=tab:▸\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
-augroup ListChars2
-    au!
-    autocmd filetype go set listchars+=tab:\ \ 
-    autocmd ColorScheme * hi! link SpecialKey Normal
 augroup END
 
 " Visual Mode */# from Scrooloose
