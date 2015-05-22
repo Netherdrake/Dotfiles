@@ -12,11 +12,11 @@ function lockme
 end
 
 function update
-  brew update ;and brew upgrade
+  brew update --all ;and brew upgrade --all
 end
 
 function updateall
-  brew update ;and brew upgrade
+  brew update --all ;and brew upgrade --all
   vim +BundleUpdate
 end
 
@@ -35,3 +35,5 @@ end
 function dlaudio
     youtube-dl -f bestaudio --extract-audio --audio-format mp3 $argv
 end
+
+alias vim="nvim"
