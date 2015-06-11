@@ -404,20 +404,3 @@ let g:matchparen_insert_timeout=1
 " fix bufexplorer bug with hidden
 let g:bufExplorerFindActive=0
 
-""""""""""""""""""""""""""""""""
-"
-" THINGS TODO ON NEW INSTALL
-"
-""""""""""""""""""""""""""""""""
-" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-"
-" Inside of ~/.vim make /tmp, inside of which mkdir swap backup undo
-"
-" install ctags, ack, ag
-" sudo packer -S silver-searcher-git ack ctags
-"
-" cd ~/.vim/bundle/YouCompleteMe
-" ./install.sh --clang-completer
-"
-" cd .vim/bundle/tern_for_vim/ && npm install
-" npm install -g jshint
