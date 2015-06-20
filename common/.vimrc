@@ -241,8 +241,8 @@ if executable("ag")
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
-" reload ctags
-nnoremap <leader>C :!ctags -R --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
+" reload ctags, --fields=+l needs by YCM
+nnoremap <leader>C :!ctags -R --fields=+l --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 
 " git and ack stuff
 let g:gitgutter_enabled = 1
