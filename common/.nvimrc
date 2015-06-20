@@ -121,6 +121,9 @@ set undolevels=100
 " set <leader>
 let mapleader=","
 
+" enable mouse
+set mouse=a
+
 " show trailing whitespaces
 set list
 set listchars=tab:▸\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
@@ -403,4 +406,3 @@ let g:matchparen_insert_timeout=1
 
 " fix bufexplorer bug with hidden
 let g:bufExplorerFindActive=0
-
