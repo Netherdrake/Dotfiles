@@ -3,7 +3,7 @@
 ├── common
 │   ├── tmux
 │   │   └── default.sh
-│   └── .vimrc
+│   └── .nvimrc
 ├── osx
 │   ├── config.fish
 │   └── .tmux.conf
