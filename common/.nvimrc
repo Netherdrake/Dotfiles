@@ -4,7 +4,6 @@
 "
 """"""""""""""""""""""""""""""""
 " not a vi
-set nocompatible
 set encoding=utf-8
 
 " start vundler
@@ -52,6 +51,7 @@ Bundle "marijnh/tern_for_vim"
 Bundle "othree/javascript-libraries-syntax.vim"
 
 Bundle "fatih/vim-go"
+" Bundle "klen/python-mode"
 Bundle "plasticboy/vim-markdown"
 
 Bundle "vim-scripts/c.vim"
@@ -99,7 +99,6 @@ set shell=/bin/bash
 set completeopt -=preview
 set textwidth=100
 set wildmenu
-set ttyfast
 set noshowmode
 set cmdheight=1
 " set autoread

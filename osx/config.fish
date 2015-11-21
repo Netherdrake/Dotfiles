@@ -17,6 +17,7 @@ end
 
 function updateall
   brew update --all ;and brew upgrade --all
+  brew reinstall --HEAD neovim
   vim +BundleUpdate
 end
 
