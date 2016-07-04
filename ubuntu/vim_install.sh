@@ -1,7 +1,13 @@
+#!/bin/bash
+
 # ubuntu install
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install vim-gtk cmake build-essential silversearcher-ag git fish -y
+
+# install vimrc
+cp .nvimrc  ~/.config/nvim/init.vim
+
 
 # Inside of ~/.vim make /tmp, inside of which mkdir swap backup undo
 cd ~/.vim
