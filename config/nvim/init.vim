@@ -185,8 +185,8 @@ nmap <leader>f <Plug>(easymotion-f2)
 nmap <leader>F <Plug>(easymotion-F2)
 
 " open vimrc
-nnoremap <leader>v :e  ~/.nvimrc<CR>
-nnoremap <leader>V :tabnew  ~/.nvimrc<CR>
+nnoremap <leader>v :e  ~/.config/nvim/init.vim<CR>
+nnoremap <leader>V :tabnew  ~/.config/nvim/init.vim<CR>
 
 " reload all open buffers
 nnoremap <leader>Ra :tabdo exec "windo e!"
@@ -287,7 +287,7 @@ augroup END
 " General file runners for various languages
 function! LangRunner()
   if(&ft=="python")
-    nnoremap <leader>r :!python2 %<cr>
+    nnoremap <leader>r :!python %<cr>
   elseif(&ft=="ruby")
     nnoremap <leader>r :!ruby %<cr>
   elseif(&ft=="javascript")

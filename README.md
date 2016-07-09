@@ -1,14 +1,17 @@
 ```
 42
-├── common
-│   ├── tmux
-│   │   └── default.sh
-│   └── .nvimrc
+├── config
+│   ├── fish
+│   │   └── config.fish
+│   ├── nvim
+│   │   └── init.vim
+│   └── tmux
+│       └── default.sh
 ├── osx
-│   ├── config.fish
-│   └── .tmux.conf
-└── ubuntu
-    ├── config.fish
-    ├── .tmux.conf
-    └── vim_install.sh
+│   └── config.fish
+├── README.md
+├── ubuntu
+│   └── vim_install.sh
+└── windows
+    └── AutoHotkey.ahk
 ```
