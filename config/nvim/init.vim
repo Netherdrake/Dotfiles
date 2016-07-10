@@ -19,6 +19,7 @@ Bundle "kien/ctrlp.vim"
 " vim main plugins
 Bundle "sjl/gundo.vim"
 Bundle "bling/vim-airline"
+Bundle "vim-airline/vim-airline-themes"
 Bundle "jlanzarotta/bufexplorer"
 Bundle "scrooloose/syntastic.git"
 Bundle "vim-scripts/tComment"
