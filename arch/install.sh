@@ -8,6 +8,7 @@ sudo pacman -Sy --needed fish neovim python-neovim python2-neovim tmux ack the_s
 grep -q -F 'fish' ~/.bashrc || echo 'fish' >> ~/.bashrc
 
 # Install dotfiles
+mkdir ~/.config/fish
 cp -rv ../config/fish/config.fish ~/.config/fish/config.fish
 cp -rv ../config/tmux/tmux.conf ~/.tmux.conf
 
@@ -25,6 +26,7 @@ cd
 # install vundle
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 nvim +BundleInstall
+nvim +GoInstallBinaries
 
 # install YCM
 cd ~/.vim/bundle/YouCompleteMe
