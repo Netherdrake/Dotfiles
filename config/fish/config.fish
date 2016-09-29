@@ -49,6 +49,14 @@ function Mdfind
     sudo find / -name $argv
 end
 
+function r
+    eval $argv > /dev/null 2>&1 &
+end
+
+function sr
+    eval $argv > /dev/null 2>&1 &
+end
+
 alias subl "subl3"
 alias vim "nvim"
 
