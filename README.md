@@ -6,11 +6,19 @@
 │   ├── nvim
 │   │   └── init.vim
 │   └── tmux
-│       └── default.sh
+│       ├── default.sh
+│       └── tmux.conf
+├── arch
+│   ├── dev.sh
+│   ├── install.sh
+│   ├── personal.sh
+│   ├── privacy.sh
+│   └── tmp
 ├── osx
 │   └── config.fish
-├── README.md
 ├── ubuntu
+│   ├── install.sh
+│   ├── ubuntu.sh
 │   └── vim_install.sh
 └── windows
     └── AutoHotkey.ahk
