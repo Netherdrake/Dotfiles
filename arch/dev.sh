@@ -7,7 +7,8 @@ sudo pacman -Sy --needed docker docker-compose docker-machine
 sudo pacman -Sy --needed virtualbox virtualbox-host-dkms virtualbox-sdk
 sudo pacman -Sy --needed nodejs npm go
 sudo pacman -Sy --needed pycharm-pro-eap
-yaourt -Sy --needed robomongo atom-editor redis-desktop-manager sublime-text-dev abricotine gitkraken
+yaourt -Sy --needed robomongo atom-editor redis-desktop-manager sublime-text-dev abricotine
+gitkraken virtualbox-ext-oracle
 
 ## Enable Services
 sudo systemctl enable mongodb.service
@@ -20,6 +21,9 @@ sudo ufw allow 4644
 
 ## Todo Install Python via Anaconda
 ## Todo Add Vmware
+
+## Virtualbox
+sudo gpasswd -a $(whoami) vboxusers
 
 ## Install Meteorjs
 curl https://install.meteor.com/ | sh

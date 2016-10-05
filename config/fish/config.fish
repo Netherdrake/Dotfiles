@@ -60,4 +60,3 @@ end
 alias subl "subl3"
 alias vim "nvim"
 
-test -s /home/jan/.nvm-fish/nvm.fish; and source /home/jan/.nvm-fish/nvm.fish
