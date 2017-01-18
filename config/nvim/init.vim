@@ -26,7 +26,7 @@ Bundle "vim-scripts/tComment"
 Bundle "tpope/vim-surround"
 Bundle "mileszs/ack.vim"
 Bundle "rking/ag.vim"
-Bundle "edsono/vim-matchit"
+" Bundle "edsono/vim-matchit"
 Bundle "tpope/vim-fugitive"
 Bundle "henrik/vim-indexed-search"
 Bundle "tpope/vim-abolish"
@@ -52,10 +52,12 @@ Bundle "marijnh/tern_for_vim"
 Bundle "othree/javascript-libraries-syntax.vim"
 
 Bundle "fatih/vim-go"
-" Bundle "klen/python-mode"
+Bundle "klen/python-mode"
 Bundle "plasticboy/vim-markdown"
 
 Bundle "vim-scripts/c.vim"
+Bundle "tpope/vim-fireplace"
+Bundle "hylang/vim-hy"
 
 " databases
 Bundle "vim-scripts/SQLUtilities"
@@ -235,6 +237,7 @@ let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
 let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
 
 " YouCompleteMe
+let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 let g:ycm_filetype_blacklist = {}
 let g:ycm_key_list_select_completion = []
 let g:ycm_key_list_previous_completion = []
@@ -289,6 +292,8 @@ augroup END
 function! LangRunner()
   if(&ft=="python")
     nnoremap <leader>r :!python %<cr>
+  elseif(&ft=="clojure")
+    nnoremap <leader>r :!lein run<cr>
   elseif(&ft=="ruby")
     nnoremap <leader>r :!ruby %<cr>
   elseif(&ft=="javascript")
