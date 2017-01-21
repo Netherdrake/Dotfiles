@@ -292,6 +292,8 @@ augroup END
 function! LangRunner()
   if(&ft=="python")
     nnoremap <leader>r :!python %<cr>
+  elseif(&ft=="hy")
+    nnoremap <leader>r :!hy %<cr>
   elseif(&ft=="clojure")
     nnoremap <leader>r :!lein run<cr>
   elseif(&ft=="ruby")
