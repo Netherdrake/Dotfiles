@@ -20,7 +20,9 @@ cp ../config/nvim/init.vim  ~/.config/nvim/init.vim
 cd ~/.vim
 mkdir tmp
 cd tmp/
-mkdir swap backup undo
+mkdir swap
+mkdir undo
+mkdir backup
 cd
 
 # install vundle

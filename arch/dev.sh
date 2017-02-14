@@ -5,16 +5,15 @@ sudo pacman -Syu
 sudo pacman -Sy --needed mongodb redis filezilla
 sudo pacman -Sy --needed docker docker-compose docker-machine
 sudo pacman -Sy --needed virtualbox virtualbox-host-dkms virtualbox-sdk
-sudo pacman -Sy --needed nodejs npm go
-sudo pacman -Sy --needed pycharm-pro-eap
-yaourt -Sy --needed robomongo atom-editor redis-desktop-manager sublime-text-dev abricotine
-gitkraken virtualbox-ext-oracle
+sudo pacman -Sy --needed nodejs npm go atom
+yaourt -Sy --needed robomongo redis-desktop-manager sublime-text-dev
+yaourt -Sy --needed abricotine gitkraken virtualbox-ext-oracle
 
 ## Enable Services
 sudo systemctl enable mongodb.service
 sudo systemctl start mongodb.service
-# sudo systemctl enable redis.service
-# sudo systemctl start redis.service
+sudo systemctl enable redis.service
+sudo systemctl start redis.service
 
 ## Allow Dukto
 sudo ufw allow 4644
