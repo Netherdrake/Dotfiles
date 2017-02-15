@@ -2,7 +2,7 @@
 
 ## Install Packages
 sudo pacman -Syu
-sudo pacman -Sy --needed fish neovim python-neovim python2-neovim tmux ack the_silver_searcher git wget curl sed ctags
+sudo pacman -Sy --needed tree fish neovim python-neovim python2-neovim tmux ack the_silver_searcher git wget curl sed ctags
 
 # Enable Fish by Default
 grep -q -F 'fish' ~/.bashrc || echo 'exec fish' >> ~/.bashrc

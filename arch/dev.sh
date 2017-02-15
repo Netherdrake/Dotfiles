@@ -24,5 +24,8 @@ sudo ufw allow 4644
 ## Virtualbox
 sudo gpasswd -a $(whoami) vboxusers
 
+# add current user to docker
+sudo usermod -aG docker $(whoami)
+
 ## Install Meteorjs
 curl https://install.meteor.com/ | sh
