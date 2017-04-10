@@ -222,6 +222,9 @@ vnoremap <leader>S :%S /
 let g:clever_f_show_prompt = 1
 let g:clever_f_across_no_line = 1
 
+" syntastic
+let g:syntastic_python_checkers = []
+
 " airline
 if !exists("g:airline_symbols")
   let g:airline_symbols = {}
@@ -288,6 +291,45 @@ augroup FileType go
   au FileType go nmap <leader>t <Plug>(go-test)
 augroup END
 
+" Python Settings
+let g:pymode_rope = 1
+let ropevim_enable_shortcuts = 1
+let g:pymode_rope_lookup_project = 1
+let g:pymode_rope_goto_def_newwin = "e"
+let g:pymode_rope_completion = 1
+let g:pymode_rope_complete_on_dot = 1
+
+" debugging
+let g:pymode_breakpoint = 1
+
+" syntax highlighting
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+let g:pymode_syntax_space_errors = g:pymode_syntax_all
+let g:pymode_indent = 1
+
+" navigation
+let g:pymode_folding = 0        " Turn off code folding
+let g:pymode_virtualenv = 1     " Auto fix vim python paths if virtualenv enabled
+let g:pymode_motion = 1         " Enable python objects and motion
+let g:pymode_trim_whitespaces = 1 "Trim unused white spaces on save
+let g:pymode_quickfix_minheight = 3
+let g:pymode_quickfix_maxheight = 5
+
+" linting
+let g:pymode_lint = 1
+let g:pymode_lint_cwindow = 0
+let g:pymode_lint_message = 1
+let g:pymode_lint_on_write = 1
+let g:pymode_lint_unmodified = 0
+let g:pymode_lint_on_fly = 1
+let g:pymode_lint_checkers = ['pyflakes', 'pep8'] " 'mccabe']
+let g:pymode_lint_signs = 1
+
+"let g:pymode_lint_ignore = "E501,W"
+let g:pymode_lint_sort = ['E','C']
+
 " General file runners for various languages
 function! LangRunner()
   if(&ft=="python")
@@ -312,11 +354,25 @@ au BufEnter * call LangRunner()
 " enable angular syntax
 let g:used_javascript_libs = 'jquery,angularjs'
 
+" " json syntax handling in conjunction with vim-json plugin
+" augroup json_autocmd
+"   autocmd!
+"   autocmd FileType json set autoindent
+"   autocmd FileType json set formatoptions=tcq2l
+"   autocmd FileType json set textwidth=78 shiftwidth=2
+"   autocmd FileType json set softtabstop=2 tabstop=8
+"   autocmd FileType json set expandtab
+"   autocmd FileType json set foldmethod=syntax
+" augroup END
+
 """"""""""""""""""""""""""""""""
 "
 " COOL HACKS
 "
 """"""""""""""""""""""""""""""""
+" save all buffers and exit
+nnoremap <Leader>q :xa<CR>
+
 " Make sure Vim returns to the same line when you reopen a file.
 augroup line_return
     au!
