@@ -240,7 +240,7 @@ let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
 let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
 
 " YouCompleteMe
-let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
+" let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 let g:ycm_filetype_blacklist = {}
 let g:ycm_key_list_select_completion = []
 let g:ycm_key_list_previous_completion = []

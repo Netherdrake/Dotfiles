@@ -36,6 +36,10 @@ function dlaudio
     youtube-dl -f bestaudio --extract-audio --audio-format mp3 $argv
 end
 
+function pyserve
+    python -m http.server $argv --bind 127.0.0.1
+end
+
 function gvm
     bash -c '. ~/.gvm/bin/gvm-init.sh; gvm "$@"' gvm $argv
 end
