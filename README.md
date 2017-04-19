@@ -31,5 +31,5 @@ macOS Sierra (Ok)
 ```
 
 ## Notes
-`tmux.conf` goes into `~/.tmux.conf`
+`tmux.conf` goes into `~/.tmux.conf`  
 `nvim/` and `fish/` go into `~/.config/`
