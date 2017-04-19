@@ -26,7 +26,6 @@ Bundle "vim-scripts/tComment"
 Bundle "tpope/vim-surround"
 Bundle "mileszs/ack.vim"
 Bundle "rking/ag.vim"
-" Bundle "edsono/vim-matchit"
 Bundle "tpope/vim-fugitive"
 Bundle "henrik/vim-indexed-search"
 Bundle "tpope/vim-abolish"
@@ -352,7 +351,7 @@ endfunction
 au BufEnter * call LangRunner()
 
 " enable angular syntax
-let g:used_javascript_libs = 'jquery,angularjs'
+let g:used_javascript_libs = 'underscore,react,flux,requirejs,d3,jquery'
 
 " " json syntax handling in conjunction with vim-json plugin
 " augroup json_autocmd
