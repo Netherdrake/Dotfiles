@@ -1,7 +1,7 @@
 ## OS Support
-Arch Linux (Best)
-Ubuntu (Ok)
-macOS Sierra (Ok)
+Arch Linux (Best)  
+Ubuntu (Ok)  
+macOS Sierra (Ok)  
 
 ## File Structure
 ```
@@ -32,3 +32,4 @@ macOS Sierra (Ok)
 
 ## Notes
 `tmux.conf` goes into `~/.tmux.conf`
+`nvim/` and `fish/` go into `~/.config/`
