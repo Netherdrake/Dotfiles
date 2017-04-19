@@ -3,6 +3,12 @@ Arch Linux (Best)
 Ubuntu (Ok)  
 macOS Sierra (Ok)  
 
+## Language Support
+Go (Great)  
+Python (Good)  
+Clojure (Meh)  
+JS, Markdown, HTML (Whatever)  
+
 ## File Structure
 ```
 42
