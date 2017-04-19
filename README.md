@@ -1,5 +1,17 @@
+## OS Support
+Arch Linux (Best)
+Ubuntu (Ok)
+macOS Sierra (Ok)
+
+## File Structure
 ```
 42
+├── arch
+│   ├── dev.sh
+│   ├── install.sh
+│   ├── personal.sh
+│   ├── privacy.sh
+│   └── python.sh
 ├── config
 │   ├── fish
 │   │   └── config.fish
@@ -8,18 +20,15 @@
 │   └── tmux
 │       ├── default.sh
 │       └── tmux.conf
-├── arch
-│   ├── dev.sh
-│   ├── install.sh
-│   ├── personal.sh
-│   ├── privacy.sh
-│   └── tmp
 ├── osx
-│   └── config.fish
-├── ubuntu
-│   ├── install.sh
-│   ├── ubuntu.sh
-│   └── vim_install.sh
-└── windows
-    └── AutoHotkey.ahk
+│   ├── config.fish
+│   └── tmux.conf
+├── README.md
+└── ubuntu
+    ├── install.sh
+    ├── ubuntu.sh
+    └── vim_install.sh
 ```
+
+## Notes
+`tmux.conf` goes into `~/.tmux.conf`
