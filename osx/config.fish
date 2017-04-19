@@ -7,17 +7,12 @@ function fish_prompt
   echo -n ' % '
 end
 
-function lockme
-  /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend
-end
-
 function update
   brew update --all ;and brew upgrade --all
 end
 
 function updateall
   brew update --all ;and brew upgrade --all
-  brew reinstall --HEAD neovim
   vim +BundleUpdate
 end
 
@@ -35,6 +30,10 @@ end
 
 function dlaudio
     youtube-dl -f bestaudio --extract-audio --audio-format mp3 $argv
+end
+
+function pyserve
+    python -m http.server $argv --bind 127.0.0.1
 end
 
 alias vim="nvim"
