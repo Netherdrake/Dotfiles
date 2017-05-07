@@ -2,34 +2,38 @@ set fish_greeting ""
 bind \ct kill-word
 
 function fish_prompt
-  set_color $fish_color_cwd
-  echo -n (prompt_pwd)
-  set_color normal
-  echo -n ' % '
+    set_color $fish_color_cwd
+    echo -n (prompt_pwd)
+    set_color normal
+    echo -n ' % '
 end
 
 function inst
-  sudo apt-get update
-  sudo apt-get install $argv
+    sudo apt-get update
+    sudo apt-get install $argv
 end
 
 function update
-  sudo apt-get update
+    sudo apt-get update
 end
 
 function upgrade
-  sudo apt-get update
-  sudo apt-get upgrade
+    sudo apt-get update
+    sudo apt-get upgrade
 end
 
 function updateall
-  sudo apt-get update
-  sudo apt-get upgrade
-  vim +BundleUpdate
+    sudo apt-get update
+    sudo apt-get upgrade
+    vim +BundleUpdate
+    vim +GoUpdateBinaries
 end
 
 function vimu
-  vim +BundleUpdate
+    vim +BundleUpdate
+    vim +GoUpdateBinaries
+    cd ~/.vim/bundle/YouCompleteMe
+    ./install.sh --gocode-completer --clang-completer
 end
 
 function dlaudio
@@ -38,6 +42,10 @@ end
 
 function pyserve
     python -m http.server $argv --bind 127.0.0.1
+end
+
+function pj
+    python -m json.tool
 end
 
 function gvm
