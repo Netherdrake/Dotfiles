@@ -36,4 +36,8 @@ function pyserve
     python -m http.server $argv --bind 127.0.0.1
 end
 
+function pj
+    python -m json.tool
+end
+
 alias vim="nvim"
