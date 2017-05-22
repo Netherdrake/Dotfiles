@@ -33,7 +33,7 @@ function vimu
     vim +BundleUpdate
     vim +GoUpdateBinaries
     cd ~/.vim/bundle/YouCompleteMe
-    ./install.sh --gocode-completer --clang-completer
+    ./install.py --gocode-completer --clang-completer
 end
 
 function dlaudio
@@ -42,6 +42,10 @@ end
 
 function pyserve
     python -m http.server $argv --bind 127.0.0.1
+end
+
+function pyserver
+    python -m http.server 1234 --bind 127.0.0.1
 end
 
 function pj
