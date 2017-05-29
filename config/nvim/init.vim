@@ -298,6 +298,18 @@ let g:pymode_rope_goto_def_newwin = "e"
 let g:pymode_rope_completion = 1
 let g:pymode_rope_complete_on_dot = 1
 
+
+" Pymode Options
+let g:pymode_python = 'python3'
+let g:pymode_options_max_line_length = 100
+let g:pymode_options_colorcolumn = 0
+let g:pymode_folding = 0        " Turn off code folding
+let g:pymode_virtualenv = 1     " Auto fix vim python paths if virtualenv enabled
+let g:pymode_motion = 1         " Enable python objects and motion
+let g:pymode_trim_whitespaces = 1 "Trim unused white spaces on save
+let g:pymode_quickfix_minheight = 3
+let g:pymode_quickfix_maxheight = 5
+
 " debugging
 let g:pymode_breakpoint = 1
 
@@ -307,14 +319,6 @@ let g:pymode_syntax_all = 1
 let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 let g:pymode_syntax_space_errors = g:pymode_syntax_all
 let g:pymode_indent = 1
-
-" navigation
-let g:pymode_folding = 0        " Turn off code folding
-let g:pymode_virtualenv = 1     " Auto fix vim python paths if virtualenv enabled
-let g:pymode_motion = 1         " Enable python objects and motion
-let g:pymode_trim_whitespaces = 1 "Trim unused white spaces on save
-let g:pymode_quickfix_minheight = 3
-let g:pymode_quickfix_maxheight = 5
 
 " linting
 let g:pymode_lint = 1
@@ -351,7 +355,7 @@ endfunction
 au BufEnter * call LangRunner()
 
 " enable angular syntax
-let g:used_javascript_libs = 'underscore,react,flux,requirejs,d3,jquery'
+let g:used_javascript_libs = 'underscore,react,flux,requirejs,d3,jquery,vue'
 
 " " json syntax handling in conjunction with vim-json plugin
 " augroup json_autocmd
@@ -468,3 +472,8 @@ let g:matchparen_insert_timeout=1
 
 " fix bufexplorer bug with hidden
 let g:bufExplorerFindActive=0
+
+" alternative approach for lines that are too long
+set colorcolumn=
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
