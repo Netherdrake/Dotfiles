@@ -10,11 +10,17 @@ cp .nvimrc  ~/.config/nvim/init.vim
 
 
 # Inside of ~/.vim make /tmp, inside of which mkdir swap backup undo
+mkdir -p ~/.vim
 cd ~/.vim
 mkdir tmp
 cd tmp/
-mkdir swap backup undo
+mkdir swap
+mkdir undo
+mkdir backup
 cd
+
+# install neovim package
+pip install neovim
 
 # install vundle
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
@@ -22,20 +28,13 @@ vim +BundleInstall
 
 # install YCM
 cd ~/.vim/bundle/YouCompleteMe
-./install.sh --gocode-completer --clang-completer
+./install.py --gocode-completer --clang-completer
 cd
 
-# WARN: from here on its manual
-echo "Please continue manually (see vim_install.sh)"
-exit
-
-# install node version manager
-curl https://raw.githubusercontent.com/Alex7Kom/nvm-fish/master/install.fish | fish
-
-# restart shell required
-source ~/.bashrc
-nvm install v0.11.14
+# install npm (if you need newer node.js, install nvm instead)
+sudo apt install nodejs npm -y
 
 # install js autocompletion
-cd .vim/bundle/tern_for_vim/ && npm install
-npm install -g jshint
+cd ~/.vim/bundle/tern_for_vim/
+npm install
+sudo npm install -g jshint
