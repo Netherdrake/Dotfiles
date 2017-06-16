@@ -32,5 +32,5 @@ nvim +GoInstallBinaries
 
 # install YCM
 cd ~/.vim/bundle/YouCompleteMe
-./install.py --gocode-completer --clang-completer
+./install.py --system-libclang --clang-completer --gocode-completer
 
