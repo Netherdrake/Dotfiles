@@ -38,3 +38,10 @@ sudo apt install nodejs npm -y
 cd ~/.vim/bundle/tern_for_vim/
 npm install
 sudo npm install -g jshint
+
+#remove confilct with autocomplete in c.vim bundle
+cd ~/.vim/bundle/c.vim/ftplugin/
+sed -i -e '/if !exists("g:C_Ctrl_j")/,+4d' c.vim
+git add c.vim 
+git commit -m 'Disable local C_Ctrl_j for autocomplete compatibiliy.'
+cd
