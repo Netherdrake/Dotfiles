@@ -467,6 +467,9 @@ endif
 " make C-a, C-x work properly
 set nrformats=
 
+" make C-j work consistent in C programms
+let g:C_Ctrl_j='off'
+
 " potential lag fix
 let g:matchparen_insert_timeout=1
 
