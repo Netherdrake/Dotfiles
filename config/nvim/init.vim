@@ -57,6 +57,7 @@ Bundle "plasticboy/vim-markdown"
 Bundle "vim-scripts/c.vim"
 Bundle "tpope/vim-fireplace"
 Bundle "hylang/vim-hy"
+Bundle "tomlion/vim-solidity"
 
 " databases
 Bundle "vim-scripts/SQLUtilities"
@@ -159,7 +160,8 @@ nnoremap <leader>5 :NERDTreeToggle<CR>
 nnoremap gp `[v`]
 
 "make enter break and do newlines
-nnoremap <CR> O<Esc>j
+nnoremap <CR> i<CR><Esc>==
+" nnoremap <CR> O<Esc>j
 nnoremap <leader>j i<CR><Esc>==
 
 "make space in normal mode add space
@@ -478,5 +480,5 @@ let g:bufExplorerFindActive=0
 
 " alternative approach for lines that are too long
 set colorcolumn=
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+highlight OverLength ctermbg=gray ctermfg=white guibg=#999999
 match OverLength /\%81v.\+/
