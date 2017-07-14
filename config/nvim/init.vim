@@ -104,6 +104,7 @@ set textwidth=100
 set wildmenu
 set noshowmode
 set cmdheight=1
+set nofoldenable
 " set autoread
 
 " backup/persistance settings
