@@ -26,14 +26,21 @@ function updateall
     sudo apt-get update
     sudo apt-get upgrade
     vim +BundleUpdate
-    vim +GoUpdateBinaries
 end
 
 function vimu
     vim +BundleUpdate
+end
+
+function vimuu
+    vim +BundleUpdate
     vim +GoUpdateBinaries
     cd ~/.vim/bundle/YouCompleteMe
-    ./install.py --gocode-completer --clang-completer --system-libclang
+    ./install.py \
+        --gocode-completer \
+        --clang-completer  \
+        --system-libclang  \
+        --tern-completer
 end
 
 function dlaudio
