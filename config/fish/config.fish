@@ -33,7 +33,7 @@ function vimu
     vim +BundleUpdate
     vim +GoUpdateBinaries
     cd ~/.vim/bundle/YouCompleteMe
-    ./install.py --gocode-completer --clang-completer
+    ./install.py --gocode-completer --clang-completer --system-libclang
 end
 
 function dlaudio

@@ -39,3 +39,14 @@ JS, Markdown, HTML (Whatever)
 ## Notes
 `tmux.conf` goes into `~/.tmux.conf`  
 `nvim/` and `fish/` go into `~/.config/`
+
+### Tilix
+To export the tilix config, run:
+```
+dconf dump /com/gexperts/Tilix/ > tilix.dconf
+```
+
+To import said config, run:
+```
+dconf load /com/gexperts/Tilix/ < tilix.dconf
+```
