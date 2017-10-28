@@ -7,40 +7,44 @@ macOS Sierra (Ok)
 Go (Great)  
 Python (Good)  
 Clojure (Meh)  
-JS, Markdown, HTML (Whatever)  
+JS, Markdown, HTML (OK)  
 
 ## File Structure
 ```
 42
-├── arch
-│   ├── dev.sh
-│   ├── install.sh
-│   ├── personal.sh
-│   ├── privacy.sh
-│   └── python.sh
 ├── config
 │   ├── fish
 │   │   └── config.fish
 │   ├── nvim
 │   │   └── init.vim
+│   ├── tilix
+│   │   └── tilix.dconf
 │   └── tmux
 │       ├── default.sh
 │       └── tmux.conf
-├── osx
-│   ├── config.fish
-│   └── tmux.conf
-├── README.md
-└── ubuntu
-    ├── install.sh
-    ├── ubuntu.sh
-    └── vim_install.sh
+├── os
+│   ├── arch
+│   │   ├── dev.sh
+│   │   ├── install.sh
+│   │   ├── personal.sh
+│   │   ├── privacy.sh
+│   │   └── python.sh
+│   ├── osx
+│   │   ├── config.fish
+│   │   └── tmux.conf
+│   └── ubuntu
+│       ├── install.sh
+│       ├── post_install.sh
+│       ├── ubuntu.sh
+│       └── vim_install.sh
+└── README.md
 ```
 
 ## Notes
 `tmux.conf` goes into `~/.tmux.conf`  
 `nvim/` and `fish/` go into `~/.config/`
 
-### Tilix
+### Tilix (Linux Only)
 To export the tilix config, run:
 ```
 dconf dump /com/gexperts/Tilix/ > tilix.dconf
