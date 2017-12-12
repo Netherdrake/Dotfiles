@@ -9,22 +9,22 @@ function fish_prompt
 end
 
 function inst
-    sudo apt-get update
-    sudo apt-get install $argv
+    sudo apt update
+    sudo apt install $argv
 end
 
 function update
-    sudo apt-get update
+    sudo apt update
 end
 
 function upgrade
-    sudo apt-get update
-    sudo apt-get upgrade
+    sudo apt update
+    sudo apt upgrade
 end
 
 function updateall
-    sudo apt-get update
-    sudo apt-get upgrade
+    sudo apt update
+    sudo apt upgrade
     vim +BundleUpdate
 end
 
@@ -33,14 +33,14 @@ function vimu
 end
 
 function vimuu
+    pip install -U neovim
     vim +BundleUpdate
     vim +GoUpdateBinaries
     cd ~/.vim/bundle/YouCompleteMe
-    ./install.py \
-        --gocode-completer \
-        --clang-completer  \
-        --system-libclang  \
-        --tern-completer
+    ./install.py  \
+        --clang-completer \
+        --go-completer \
+        --js-completer
 end
 
 function dlaudio

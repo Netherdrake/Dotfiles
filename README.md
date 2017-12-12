@@ -54,3 +54,12 @@ To import said config, run:
 ```
 dconf load /com/gexperts/Tilix/ < tilix.dconf
 ```
+
+## Re-compiling YCM (YouCompleteMe)
+```
+cd ~/.vim/bundle/YouCompleteMe
+./install.py  \
+    --clang-completer \
+    --go-completer \
+    --js-completer
+```
