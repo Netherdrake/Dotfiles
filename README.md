@@ -1,20 +1,24 @@
-## OS Support
-Arch Linux (Best)  
-Ubuntu (Ok)  
-macOS Sierra (Ok)  
+## OS Workflows
+Arch Linux *(GNOME + Tilix/Tmux + NeoVim)*  
+Ubuntu *(i3wm + NeoVim)*  
+macOS Sierra *(Tmux + NeoVim)*  
 
 ## Language Support
-Go (Great)  
-Python (Good)  
-Clojure (Meh)  
-JS, Markdown, HTML (OK)  
+Go *(Great)*  
+Python *(Good)*  
+JS, Markdown, HTML *(Ok)*  
 
 ## File Structure
 ```
 42
 ├── config
+│   ├── devdocs.json
 │   ├── fish
 │   │   └── config.fish
+│   ├── i3
+│   │   ├── config
+│   │   ├── README.md
+│   │   └── xmodmap.cfg
 │   ├── nvim
 │   │   └── init.vim
 │   ├── tilix
@@ -41,8 +45,13 @@ JS, Markdown, HTML (OK)
 ```
 
 ## Notes
+
+### i3 (Linux Only)
+I documented my i3wm setup [here](https://github.com/Netherdrake/Dotfiles/tree/master/config/i3)
+
+### Tmux + Vim Configs
 `tmux.conf` goes into `~/.tmux.conf`  
-`nvim/` and `fish/` go into `~/.config/`
+`nvim/` and `fish/` go into `~/.config/(nvim|fish)`
 
 ### Tilix (Linux Only)
 To export the tilix config, run:
