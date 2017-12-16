@@ -339,17 +339,13 @@ let g:pymode_lint_sort = ['E','C']
 " General file runners for various languages
 function! LangRunner()
   if(&ft=="python")
-    nnoremap <leader>r :!python %<cr>
+    nnoremap <leader>r :!python3 %<cr>
   elseif(&ft=="hy")
     nnoremap <leader>r :!hy %<cr>
   elseif(&ft=="clojure")
     nnoremap <leader>r :!lein run<cr>
-  elseif(&ft=="ruby")
-    nnoremap <leader>r :!ruby %<cr>
   elseif(&ft=="javascript")
     nnoremap <leader>r :!node %<cr>
-  elseif(&ft=="php")
-    nnoremap <leader>r :!php %<cr>
   elseif(&ft=="c")
     nnoremap <leader>r :!make run<cr>
   endif
