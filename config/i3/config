@@ -2,6 +2,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+set $dotfiles_i3_path ~/Github/Dotfiles/config/i3
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -145,7 +146,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         # status_command i3status -c ~/i3status.conf
-        status_command i3status -c ~/Github/Dotfiles/config/i3/i3status.conf
+        status_command i3status -c $dotfiles_i3_path/i3status.conf
         tray_output primary
 }
 
@@ -163,3 +164,6 @@ bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+# Run the startup scripts
+# exec --no-startup-id $dotfiles_i3_path/startup.sh
