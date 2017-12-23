@@ -26,6 +26,7 @@ Bundle "vim-scripts/tComment"
 Bundle "tpope/vim-surround"
 Bundle "mileszs/ack.vim"
 Bundle "rking/ag.vim"
+Bundle "Chun-Yang/vim-action-ag"
 Bundle "tpope/vim-fugitive"
 Bundle "henrik/vim-indexed-search"
 Bundle "tpope/vim-abolish"
@@ -254,6 +255,8 @@ if executable("ag")
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
+let g:vim_action_ag_escape_chars = '#%.^$*+?()[{\\|'
+
 " reload ctags
 nnoremap <leader>C :!ctags -R --fields=+l --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 
@@ -263,7 +266,6 @@ let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 nnoremap <leader>G mG:Git! 
 nnoremap <leader>g :Git 
-nnoremap <leader>A :!ag 
 nnoremap <leader>a :Ag! 
 
 """"""""""""""""""""""""""""""""
