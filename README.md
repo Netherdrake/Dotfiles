@@ -64,6 +64,15 @@ To import said config, run:
 dconf load /com/gexperts/Tilix/ < tilix.dconf
 ```
 
+### Tmux && macOS
+Make sure to enable "Applications in terminal may access clipboard"
+in iTerm 2 Preferences.
+
+Also, install this:
+```
+brew install reattach-to-user-namespace --with-wrap-pbcopy-and-pbpaste
+```
+
 ## Re-compiling YCM (YouCompleteMe)
 ```
 cd ~/.vim/bundle/YouCompleteMe
