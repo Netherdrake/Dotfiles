@@ -73,6 +73,12 @@ Also, install this:
 brew install reattach-to-user-namespace --with-wrap-pbcopy-and-pbpaste
 ```
 
+### Tmux && Linux
+Make sure you have `xsel` or `xclip` installed.
+
+Then, install this plugin:  
+https://github.com/tmux-plugins/tmux-yank
+
 ## Re-compiling YCM (YouCompleteMe)
 ```
 cd ~/.vim/bundle/YouCompleteMe
