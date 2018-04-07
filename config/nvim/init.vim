@@ -243,7 +243,7 @@ let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
 let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
 
 " YouCompleteMe
-" let g:ycm_path_to_python_interpreter = '/home/user/anaconda3/bin/python'
+let g:ycm_path_to_python_interpreter = '/home/user/.pyenv/shims/python'
 let g:ycm_filetype_blacklist = {}
 let g:ycm_key_list_select_completion = []
 let g:ycm_key_list_previous_completion = []
@@ -326,7 +326,7 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 let g:pymode_indent = 1
 
 " linting
-let g:pymode_lint = 1
+let g:pymode_lint = 0
 let g:pymode_lint_cwindow = 0
 let g:pymode_lint_message = 1
 let g:pymode_lint_on_write = 1
