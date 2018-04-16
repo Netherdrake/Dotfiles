@@ -52,7 +52,7 @@ Bundle "marijnh/tern_for_vim"
 Bundle "othree/javascript-libraries-syntax.vim"
 
 Bundle "fatih/vim-go"
-Bundle "klen/python-mode"
+Bundle "python-mode/python-mode"
 Bundle "plasticboy/vim-markdown"
 
 Bundle "vim-scripts/c.vim"
