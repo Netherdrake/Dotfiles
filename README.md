@@ -79,6 +79,12 @@ Make sure you have `xsel` or `xclip` installed.
 Then, install this plugin:  
 https://github.com/tmux-plugins/tmux-yank
 
+### Powerline fonts
+Install this:  
+https://github.com/powerline/fonts
+
+Currently using _14pt Roboto Mono for Powerline._
+
 ## Re-compiling YCM (YouCompleteMe)
 ```
 cd ~/.vim/bundle/YouCompleteMe
