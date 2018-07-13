@@ -52,8 +52,9 @@ Bundle "marijnh/tern_for_vim"
 Bundle "othree/javascript-libraries-syntax.vim"
 
 Bundle "fatih/vim-go"
-Bundle "klen/python-mode"
+Bundle "python-mode/python-mode"
 Bundle "plasticboy/vim-markdown"
+Bundle "neovimhaskell/haskell-vim"
 
 Bundle "vim-scripts/c.vim"
 Bundle "tpope/vim-fireplace"
@@ -301,7 +302,7 @@ let ropevim_enable_shortcuts = 1
 let g:pymode_rope_lookup_project = 1
 let g:pymode_rope_goto_def_newwin = "e"
 let g:pymode_rope_completion = 1
-let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope_complete_on_dot = 1
 
 
 " Pymode Options
@@ -326,7 +327,7 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 let g:pymode_indent = 1
 
 " linting
-let g:pymode_lint = 1
+let g:pymode_lint = 0
 let g:pymode_lint_cwindow = 0
 let g:pymode_lint_message = 1
 let g:pymode_lint_on_write = 1
@@ -342,6 +343,8 @@ let g:pymode_lint_sort = ['E','C']
 function! LangRunner()
   if(&ft=="python")
     nnoremap <leader>r :!python3 %<cr>
+  elseif(&ft=="haskell")
+    nnoremap <leader>r :!ghci %<cr>
   elseif(&ft=="hy")
     nnoremap <leader>r :!hy %<cr>
   elseif(&ft=="clojure")
