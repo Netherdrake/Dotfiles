@@ -3,6 +3,9 @@ Arch Linux *(GNOME + Tilix/Tmux + NeoVim)*
 Ubuntu *(i3wm + NeoVim)*  
 macOS Sierra *(Tmux + NeoVim)*  
 
+**[Documentation](https://github.com/Netherdrake/Dotfiles/tree/master/os)** for i3, Gnome and other
+OS related setups.
+
 ## Language Support
 Go *(Great)*  
 Python *(Good)*  
@@ -46,23 +49,10 @@ JS, Markdown, HTML *(Ok)*
 
 ## Notes
 
-### i3 (Linux Only)
-I documented my i3wm setup [here](https://github.com/Netherdrake/Dotfiles/tree/master/config/i3)
-
 ### Tmux + Vim Configs
 `tmux.conf` goes into `~/.tmux.conf`  
 `nvim/` and `fish/` go into `~/.config/(nvim|fish)`
 
-### Tilix (Linux Only)
-To export the tilix config, run:
-```
-dconf dump /com/gexperts/Tilix/ > tilix.dconf
-```
-
-To import said config, run:
-```
-dconf load /com/gexperts/Tilix/ < tilix.dconf
-```
 
 ### Tmux && macOS
 Make sure to enable "Applications in terminal may access clipboard"
