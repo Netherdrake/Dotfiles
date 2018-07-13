@@ -54,6 +54,7 @@ Bundle "othree/javascript-libraries-syntax.vim"
 Bundle "fatih/vim-go"
 Bundle "python-mode/python-mode"
 Bundle "plasticboy/vim-markdown"
+Bundle "neovimhaskell/haskell-vim"
 
 Bundle "vim-scripts/c.vim"
 Bundle "tpope/vim-fireplace"
@@ -342,6 +343,8 @@ let g:pymode_lint_sort = ['E','C']
 function! LangRunner()
   if(&ft=="python")
     nnoremap <leader>r :!python3 %<cr>
+  elseif(&ft=="haskell")
+    nnoremap <leader>r :!ghci %<cr>
   elseif(&ft=="hy")
     nnoremap <leader>r :!hy %<cr>
   elseif(&ft=="clojure")
