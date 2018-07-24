@@ -72,4 +72,17 @@ https://extensions.gnome.org/extension/8/places-status-indicator/
 
 https://extensions.gnome.org/extension/19/user-themes/  
 
+## Keyboard mappings
 
+Remap caps-lock as ESC:
+```
+dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
+```
+
+## Tweaks
+
+Only show current workspace windows in Alt-Tab:
+
+```
+gsettings set org.gnome.shell.app-switcher current-workspace-only true
+```
