@@ -53,6 +53,10 @@ JS, Markdown, HTML *(Ok)*
 `tmux.conf` goes into `~/.tmux.conf`  
 `nvim/` and `fish/` go into `~/.config/(nvim|fish)`
 
+### Install Tmux Plugin Manager
+```
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
 
 ### Tmux && macOS
 Make sure to enable "Applications in terminal may access clipboard"

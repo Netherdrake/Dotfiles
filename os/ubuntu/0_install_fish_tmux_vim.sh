@@ -30,6 +30,9 @@ cp -rv ../../config/fish/config.fish ~/.config/fish/config.fish
 cp -rv ../../config/nvim/init.vim  ~/.config/nvim/init.vim
 cp -rv ../../config/tmux/tmux.conf ~/.tmux.conf
 
+## Install Tmux Plugin Manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 ## Configuring Vim
 echo "Configuring NeoVim..."
 mkdir -p ~/.vim
