@@ -80,6 +80,7 @@ function sr
     eval $argv > /dev/null 2>&1 &
 end
 
-alias subl "subl3"
 alias vim "nvim"
+alias vi "nvim"
+alias open "xdg-open"
 
