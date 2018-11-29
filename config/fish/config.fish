@@ -33,7 +33,7 @@ function vimu
 end
 
 function vimuu
-    pip install -U neovim
+    pip install -U pynvim
     vim +BundleUpdate
     vim +GoUpdateBinaries
     cd ~/.vim/bundle/YouCompleteMe

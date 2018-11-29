@@ -45,7 +45,7 @@ mkdir -p backup
 cd
 
 # install neovim python support
-pip3 install neovim
+pip3 install pynvim
 
 # install vundle
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
