@@ -43,36 +43,36 @@ Bundle "rhysd/clever-f.vim"
 " togglable panels
 Bundle "scrooloose/nerdtree"
 Bundle "tpope/vim-vinegar"
-Bundle "vim-scripts/taglist.vim"
-Bundle "majutsushi/tagbar"
+" Bundle "vim-scripts/taglist.vim"
+" Bundle "majutsushi/tagbar"
 
 " language vundles
-Bundle "pangloss/vim-javascript"
-Bundle "marijnh/tern_for_vim"
-Bundle "othree/javascript-libraries-syntax.vim"
+" Bundle "pangloss/vim-javascript"
+" Bundle "marijnh/tern_for_vim"
+" Bundle "othree/javascript-libraries-syntax.vim"
 
-Bundle "fatih/vim-go"
+" Bundle "fatih/vim-go"
 Bundle "python-mode/python-mode"
 Bundle "plasticboy/vim-markdown"
-Bundle "neovimhaskell/haskell-vim"
+" Bundle "neovimhaskell/haskell-vim"
 
-Bundle "vim-scripts/c.vim"
-Bundle "tpope/vim-fireplace"
-Bundle "hylang/vim-hy"
-Bundle "tomlion/vim-solidity"
+" Bundle "vim-scripts/c.vim"
+" Bundle "tpope/vim-fireplace"
+" Bundle "hylang/vim-hy"
+" Bundle "tomlion/vim-solidity"
 
-" databases
-Bundle "vim-scripts/SQLUtilities"
-Bundle "NagatoPain/AutoSQLUpperCase.vim"
+" " databases
+" Bundle "vim-scripts/SQLUtilities"
+" Bundle "NagatoPain/AutoSQLUpperCase.vim"
 
 " autocomplete
 Bundle "Valloric/YouCompleteMe"
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
+" Bundle "MarcWeber/vim-addon-mw-utils"
+" Bundle "tomtom/tlib_vim"
 
-" snippets
-Bundle "SirVer/ultisnips"
-Bundle "honza/vim-snippets"
+" " snippets
+" Bundle "SirVer/ultisnips"
+" Bundle "honza/vim-snippets"
 
 " enable all the plugins
 filetype plugin indent on
