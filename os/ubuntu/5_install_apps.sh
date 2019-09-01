@@ -8,6 +8,9 @@ sudo add-apt-repository 'deb https://typora.io/linux ./'
 sudo apt-get update
 
 # install typora
-sudo apt-get install typora
+sudo apt install typora
 
 # Etcher
+
+# Epiphany browser
+sudo apt install epiphany-browser
