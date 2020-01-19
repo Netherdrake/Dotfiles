@@ -303,7 +303,7 @@ augroup END
 " Python Settings
 let g:pymode_rope = 1
 let ropevim_enable_shortcuts = 1
-let g:pymode_rope_lookup_project = 1
+let g:pymode_rope_lookup_project = 0 "dont scan parent dir for .ropeproject
 let g:pymode_rope_goto_def_newwin = "e"
 let g:pymode_rope_completion = 1
 let g:pymode_rope_complete_on_dot = 0
