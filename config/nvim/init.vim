@@ -42,7 +42,6 @@ Bundle "godlygeek/tabular"
 Bundle "airblade/vim-gitgutter"
 Bundle "Lokaltog/vim-easymotion"
 Bundle "rhysd/clever-f.vim"
-" Bundle "jceb/vim-orgmode"
 " Bundle "tomtom/tlib_vim"
 " Bundle "MarcWeber/vim-addon-mw-utils"
 
@@ -53,7 +52,9 @@ Bundle "vim-scripts/taglist.vim"
 Bundle "majutsushi/tagbar"
 
 " language vundles
-" Bundle "python-mode/python-mode"
+Bundle "jpalardy/vim-slime"
+Bundle "hanschen/vim-ipython-cell"
+Bundle "python-mode/python-mode"
 " Bundle "plasticboy/vim-markdown"
 " Bundle "fatih/vim-go"
 " Bundle "neovimhaskell/haskell-vim"
@@ -247,7 +248,8 @@ let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
 let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
 
 " YouCompleteMe
-let g:ycm_path_to_python_interpreter = '/home/user/.pyenv/shims/python'
+"let g:ycm_path_to_python_interpreter = '/home/user/.pyenv/shims/python'
+let g:ycm_path_to_python_interpreter = '/home/user/anaconda3/bin/python'
 let g:ycm_filetype_blacklist = {}
 let g:ycm_key_list_select_completion = []
 let g:ycm_key_list_previous_completion = []
@@ -341,6 +343,27 @@ let g:pymode_lint_signs = 1
 
 "let g:pymode_lint_ignore = "E501,W"
 let g:pymode_lint_sort = ['E','C']
+
+" configure nvim -> ipython integration
+let g:slime_target = "tmux"
+" assume vim is on left and ipython on right
+let g:slime_default_config = {
+            \ 'socket_name': get(split($TMUX, ','), 0),
+            \ 'target_pane': '{top-right}' }
+let g:slime_dont_ask_default = 1
+
+" fix paste issues in ipython
+"let g:slime_python_ipython = 1
+
+" Use '##' to define cells instead of using marks
+let g:ipython_cell_delimit_cells_by = 'tags'
+autocmd FileType python nnoremap <buffer> <leader>R :IPythonCellRunTime<CR>
+autocmd FileType python nnoremap <buffer> <leader>r :IPythonCellExecuteCellJump<CR>
+autocmd FileType python nnoremap <buffer> <leader>c :IPythonCellExecuteCell<CR>
+autocmd FileType python nnoremap <buffer> <C-j> :IPythonCellNextCell<CR>
+autocmd FileType python nnoremap <buffer> <C-k> :IPythonCellPrevCell<CR>
+autocmd FileType python nnoremap <buffer> <leader>x :SlimeSend1 plt.show()<CR>
+autocmd FileType python nnoremap <buffer> <leader>q :IPythonCellRestart<CR>
 
 " General file runners for various languages
 function! LangRunner()

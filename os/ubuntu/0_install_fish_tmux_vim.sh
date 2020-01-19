@@ -6,7 +6,7 @@ sudo apt upgrade -y
 sudo apt install -y git cmake build-essential silversearcher-ag exuberant-ctags
 sudo apt install -y software-properties-common
 sudo apt install -y fish neovim tmux golang
-sudo apt install -y python3-dev python3-pip
+sudo apt install -y python3-dev python3-pip python3-tk
 
 # Configure Golang
 mkdir ~/go
