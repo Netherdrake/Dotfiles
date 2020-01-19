@@ -356,14 +356,14 @@ let g:slime_dont_ask_default = 1
 
 " Use '##' to define cells instead of using marks
 let g:ipython_cell_delimit_cells_by = 'tags'
-autocmd FileType python nnoremap <buffer> <C-r> :IPythonCellRunTime<CR>
+autocmd FileType python nnoremap <buffer> <leader>w :IPythonCellRunTime<CR>
 autocmd FileType python nnoremap <buffer> <leader>r :SlimeSendCurrentLine<CR>
-autocmd FileType python nnoremap <buffer> <leader>d :IPythonCellExecuteCell<CR>
+autocmd FileType python xnoremap <buffer> <leader>r :SlimeSend<CR>
 autocmd FileType python nnoremap <buffer> <leader>c :IPythonCellExecuteCellJump<CR>
 autocmd FileType python nnoremap <buffer> <C-j> :IPythonCellNextCell<CR>
 autocmd FileType python nnoremap <buffer> <C-k> :IPythonCellPrevCell<CR>
-autocmd FileType python nnoremap <buffer> <leader>w :SlimeSend1 plt.show()<CR>
-autocmd FileType python nnoremap <buffer> <leader>q :IPythonCellRestart<CR>
+autocmd FileType python nnoremap <buffer> <leader>d :SlimeSend1 plt.show()<CR>
+autocmd FileType python nnoremap <buffer> <leader>x :IPythonCellRestart<CR>
 
 " General file runners for various languages
 function! LangRunner()
@@ -384,9 +384,6 @@ endfunction
 
 au BufEnter * call LangRunner()
 
-" enable angular syntax
-let g:used_javascript_libs = 'underscore,react,flux,requirejs,d3,jquery,vue'
-
 " " json syntax handling in conjunction with vim-json plugin
 " augroup json_autocmd
 "   autocmd!
@@ -403,9 +400,6 @@ let g:used_javascript_libs = 'underscore,react,flux,requirejs,d3,jquery,vue'
 " COOL HACKS
 "
 """"""""""""""""""""""""""""""""
-" save all buffers and exit
-nnoremap <Leader>q :xa<CR>
-
 " Make sure Vim returns to the same line when you reopen a file.
 augroup line_return
     au!
