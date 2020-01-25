@@ -356,6 +356,8 @@ let g:slime_dont_ask_default = 1
 
 " Use '##' to define cells instead of using marks
 let g:ipython_cell_delimit_cells_by = 'tags'
+" Rstudio/ipython habit
+autocmd FileType python nnoremap <buffer> <CR> :SlimeSendCurrentLine<CR>
 autocmd FileType python nnoremap <buffer> <leader>w :IPythonCellRunTime<CR>
 autocmd FileType python nnoremap <buffer> <leader>r :SlimeSendCurrentLine<CR>
 autocmd FileType python xnoremap <buffer> <leader>r :SlimeSend<CR>
