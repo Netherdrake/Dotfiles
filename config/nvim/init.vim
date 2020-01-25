@@ -357,30 +357,40 @@ let g:slime_dont_ask_default = 1
 " Use '##' to define cells instead of using marks
 let g:ipython_cell_delimit_cells_by = 'tags'
 " Rstudio/ipython habit
-autocmd FileType python nnoremap <buffer> <CR> :SlimeSendCurrentLine<CR>
+autocmd FileType python,r nnoremap <buffer> <CR> :SlimeSendCurrentLine<CR>
+autocmd FileType python,r nnoremap <buffer> <leader>r :SlimeSendCurrentLine<CR>
+autocmd FileType python,r xnoremap <buffer> <leader>r :SlimeSend<CR>
 autocmd FileType python nnoremap <buffer> <leader>w :IPythonCellRunTime<CR>
-autocmd FileType python nnoremap <buffer> <leader>r :SlimeSendCurrentLine<CR>
-autocmd FileType python xnoremap <buffer> <leader>r :SlimeSend<CR>
 autocmd FileType python nnoremap <buffer> <leader>c :IPythonCellExecuteCellJump<CR>
 autocmd FileType python nnoremap <buffer> <C-j> :IPythonCellNextCell<CR>
 autocmd FileType python nnoremap <buffer> <C-k> :IPythonCellPrevCell<CR>
 autocmd FileType python nnoremap <buffer> <leader>d :SlimeSend1 plt.show()<CR>
 autocmd FileType python nnoremap <buffer> <leader>x :IPythonCellRestart<CR>
 
+" R indentation
+augroup r_indent
+  autocmd!
+  autocmd FileType r set autoindent
+  autocmd FileType r set textwidth=80 shiftwidth=2
+  autocmd FileType r set softtabstop=2 tabstop=2
+augroup END
+
 " General file runners for various languages
 function! LangRunner()
   if(&ft=="python")
-    nnoremap <leader>r :!python3 %<cr>
+    nnoremap <leader>R :!python3 %<cr>
+  elseif(&ft=="r")
+    nnoremap <leader>R :!R --no-save < %<cr>
   elseif(&ft=="haskell")
-    nnoremap <leader>r :!ghci %<cr>
+    nnoremap <leader>R :!ghci %<cr>
   elseif(&ft=="hy")
-    nnoremap <leader>r :!hy %<cr>
+    nnoremap <leader>R :!hy %<cr>
   elseif(&ft=="clojure")
-    nnoremap <leader>r :!lein run<cr>
+    nnoremap <leader>R :!lein run<cr>
   elseif(&ft=="javascript")
-    nnoremap <leader>r :!node %<cr>
+    nnoremap <leader>R :!node %<cr>
   elseif(&ft=="c")
-    nnoremap <leader>r :!make run<cr>
+    nnoremap <leader>R :!make run<cr>
   endif
 endfunction
 
