@@ -83,4 +83,4 @@ end
 alias vim "nvim"
 alias vi "nvim"
 alias open "xdg-open"
-
+alias R "R --no-save --no-restore"
