@@ -48,15 +48,11 @@ function dlaudio
 end
 
 function pyserve
-    python -m http.server $argv --bind 127.0.0.1
+    python3 -m http.server $argv --bind 127.0.0.1
 end
 
 function pyserver
-    python -m http.server 1234 --bind 127.0.0.1
-end
-
-function pj
-    python -m json.tool
+    python3 -m http.server 1234 --bind 127.0.0.1
 end
 
 function gvm
