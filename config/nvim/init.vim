@@ -42,8 +42,6 @@ Bundle "godlygeek/tabular"
 Bundle "airblade/vim-gitgutter"
 Bundle "Lokaltog/vim-easymotion"
 Bundle "rhysd/clever-f.vim"
-" Bundle "tomtom/tlib_vim"
-" Bundle "MarcWeber/vim-addon-mw-utils"
 
 " togglable panels
 Bundle "scrooloose/nerdtree"
@@ -51,28 +49,14 @@ Bundle "tpope/vim-vinegar"
 Bundle "vim-scripts/taglist.vim"
 Bundle "majutsushi/tagbar"
 
-" language vundles
+" python
 Bundle "jpalardy/vim-slime"
 Bundle "hanschen/vim-ipython-cell"
 Bundle "python-mode/python-mode"
+
 " Bundle "plasticboy/vim-markdown"
 " Bundle "fatih/vim-go"
-" Bundle "neovimhaskell/haskell-vim"
 " Bundle "vim-scripts/c.vim"
-" Bundle "tomlion/vim-solidity"
-
-" javascript
-" Bundle "pangloss/vim-javascript"
-" Bundle "marijnh/tern_for_vim"
-" Bundle "othree/javascript-libraries-syntax.vim"
-
-" lisps (clojure & hy)
-" Bundle "tpope/vim-fireplace"
-" Bundle "hylang/vim-hy"
-
-" databases
-" Bundle "vim-scripts/SQLUtilities"
-" Bundle "NagatoPain/AutoSQLUpperCase.vim"
 
 " snippets
 Bundle "SirVer/ultisnips"
