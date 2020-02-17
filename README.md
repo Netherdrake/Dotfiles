@@ -1,51 +1,13 @@
-## OS Workflows
-Arch Linux *(GNOME + Tilix/Tmux + NeoVim)*  
-Ubuntu *(i3wm + NeoVim)*  
-macOS Sierra *(Tmux + NeoVim)*  
+## Supported Workflows
+ - GNOME + Tilix/Tmux + Fish + NeoVim  
+ - i3wm + Fish + NeoVim  
 
 **[Documentation](https://github.com/Netherdrake/Dotfiles/tree/master/os)** for i3, Gnome and other
-OS related setups.
+OS related setups. Install scripts are available for Ubuntu OS.
 
-## Language Support
+## Vim Language Support
 Go *(Great)*  
-Python *(Good)*  
-JS, Markdown, HTML *(Ok)*  
-
-## File Structure
-```
-42
-├── config
-│   ├── devdocs.json
-│   ├── fish
-│   │   └── config.fish
-│   ├── i3
-│   │   ├── config
-│   │   ├── README.md
-│   │   └── xmodmap.cfg
-│   ├── nvim
-│   │   └── init.vim
-│   ├── tilix
-│   │   └── tilix.dconf
-│   └── tmux
-│       ├── default.sh
-│       └── tmux.conf
-├── os
-│   ├── arch
-│   │   ├── dev.sh
-│   │   ├── install.sh
-│   │   ├── personal.sh
-│   │   ├── privacy.sh
-│   │   └── python.sh
-│   ├── osx
-│   │   ├── config.fish
-│   │   └── tmux.conf
-│   └── ubuntu
-│       ├── install.sh
-│       ├── post_install.sh
-│       ├── ubuntu.sh
-│       └── vim_install.sh
-└── README.md
-```
+R, Python *(Good)*  
 
 ## Notes
 
@@ -84,6 +46,5 @@ Currently using _14pt Roboto Mono for Powerline._
 cd ~/.vim/bundle/YouCompleteMe
 ./install.py  \
     --clang-completer \
-    --go-completer \
-    --js-completer
+    --go-completer
 ```
