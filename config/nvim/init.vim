@@ -14,10 +14,11 @@ call vundle#rc()
 " core plugins
 Bundle "gmarik/vundle"
 Bundle "flazz/vim-colorschemes"
-Bundle "kien/ctrlp.vim"
+Bundle "ctrlpvim/ctrlp.vim"
 
 " autocomplete
-" Bundle "Valloric/YouCompleteMe"
+Bundle "Valloric/YouCompleteMe"
+Bundle "ervandew/supertab"
 
 " nice to have plugins
 Bundle "sjl/gundo.vim"
@@ -232,7 +233,7 @@ let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
 let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
 
 " YouCompleteMe
-let g:ycm_path_to_python_interpreter = '/home/user/.pyenv/shims/python'
+" let g:ycm_path_to_python_interpreter = '/usr/local/bin/python3'
 let g:ycm_filetype_blacklist = {}
 let g:ycm_key_list_select_completion = []
 let g:ycm_key_list_previous_completion = []
