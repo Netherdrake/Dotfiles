@@ -17,7 +17,7 @@ Bundle "flazz/vim-colorschemes"
 Bundle "ctrlpvim/ctrlp.vim"
 
 " autocomplete
-Bundle "Valloric/YouCompleteMe"
+Bundle "ycm-core/YouCompleteMe"
 Bundle "ervandew/supertab"
 
 " nice to have plugins
