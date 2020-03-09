@@ -55,6 +55,14 @@ Bundle "jpalardy/vim-slime"
 Bundle "hanschen/vim-ipython-cell"
 Bundle "python-mode/python-mode"
 
+" R
+Bundle "jalvesaq/Nvim-R"
+Bundle "rizzatti/dash.vim"
+" Bundle "chrisbra/csv.vim"
+" Bundle "vim-pandoc/vim-rmarkdown"
+" Bundle "gaalcaras/ncm-R"
+" Bundle "w0rp/ale"
+
 " Bundle "plasticboy/vim-markdown"
 " Bundle "fatih/vim-go"
 " Bundle "vim-scripts/c.vim"
@@ -342,9 +350,9 @@ let g:slime_dont_ask_default = 1
 " Use '##' to define cells instead of using marks
 let g:ipython_cell_delimit_cells_by = 'tags'
 " Rstudio/ipython habit
-autocmd FileType python,r nnoremap <buffer> <CR> :SlimeSendCurrentLine<CR>gj
-autocmd FileType python,r nnoremap <buffer> <leader>r :SlimeSendCurrentLine<CR>
-autocmd FileType python,r xnoremap <buffer> <leader>r :SlimeSend<CR>
+autocmd FileType python nnoremap <buffer> <CR> :SlimeSendCurrentLine<CR>gj
+autocmd FileType python nnoremap <buffer> <leader>r :SlimeSendCurrentLine<CR>
+autocmd FileType python xnoremap <buffer> <leader>r :SlimeSend<CR>
 autocmd FileType python nnoremap <buffer> <leader>w :IPythonCellRunTime<CR>
 autocmd FileType python nnoremap <buffer> <leader>c :IPythonCellExecuteCellJump<CR>
 " autocmd FileType python nnoremap <buffer> <C-j> :IPythonCellNextCell<CR>
@@ -360,12 +368,23 @@ augroup r_indent
   autocmd FileType r set softtabstop=2 tabstop=2
 augroup END
 
+" Nvim-R config
+let R_assign = 0
+let R_args = ['--no-save', '--no-restore', '--quiet']
+" https://www.visidata.org/
+" let R_csv_app = 'terminal:vd'
+let R_csv_app = 'tmux new-window vd'
+" let R_after_start = ['options(help_type = "html")']
+" autocmd FileType r nmap <silent> <LocalLeader>rt :call RAction('glimpse')<CR>
+autocmd FileType r nnoremap <buffer> <CR> <Plug>(RDSendLine)
+
+
 " General file runners for various languages
 function! LangRunner()
   if(&ft=="python")
     nnoremap <leader>R :!python3 %<cr>
   elseif(&ft=="r")
-    nnoremap <leader>R :!R --no-save < %<cr>
+    nnoremap <leader>R :!R --no-save --no-restore < %<cr>
   elseif(&ft=="haskell")
     nnoremap <leader>R :!ghci %<cr>
   elseif(&ft=="hy")
