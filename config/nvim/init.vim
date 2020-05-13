@@ -57,7 +57,6 @@ Bundle "python-mode/python-mode"
 
 " R
 Bundle "jalvesaq/Nvim-R"
-Bundle "rizzatti/dash.vim"
 " Bundle "chrisbra/csv.vim"
 " Bundle "vim-pandoc/vim-rmarkdown"
 " Bundle "gaalcaras/ncm-R"
@@ -518,5 +517,5 @@ let g:bufExplorerFindActive=0
 
 " alternative approach for lines that are too long
 set colorcolumn=
-highlight OverLength ctermbg=gray ctermfg=white guibg=#999999
-match OverLength /\%81v.\+/
+" highlight OverLength ctermbg=gray ctermfg=white guibg=#999999
+" match OverLength /\%81v.\+/
