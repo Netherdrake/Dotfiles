@@ -45,6 +45,12 @@ xrandr --output HDMI-0 --auto --above DP-0 --auto
 Or just use `arandr` if you're a normie xD
 
 
+# Regolith i3
+
+```
+sudo apt install i3xrocks-memory
+```
+
 # Gnome
 
 ## Tilix
