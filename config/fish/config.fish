@@ -22,25 +22,11 @@ function upgrade
     sudo apt upgrade
 end
 
-function updateall
-    sudo apt update
-    sudo apt upgrade
-    vim +BundleUpdate
-end
-
 function vimu
-    vim +BundleUpdate
-end
-
-function vimuu
     pip install -U pynvim
     vim +BundleUpdate
-    vim +GoUpdateBinaries
     cd ~/.vim/bundle/YouCompleteMe
-    ./install.py  \
-        --clang-completer \
-        --go-completer \
-        --js-completer
+    python3 install.py --clang-completer
 end
 
 function dlaudio
@@ -55,21 +41,8 @@ function pyserver
     python3 -m http.server 1234 --bind 127.0.0.1
 end
 
-function gvm
-    bash -c '. ~/.gvm/bin/gvm-init.sh; gvm "$@"' gvm $argv
-end
-
 function mdfind
-    echo $argv
-    find ~/ -name $argv
-end
-
-function Mdfind
-    sudo find / -name $argv
-end
-
-function r
-    eval $argv > /dev/null 2>&1 &
+    find ~/ -type f | fzf --bind "enter:execute(xdg-open {})"
 end
 
 function sr
@@ -79,4 +52,9 @@ end
 alias vim "nvim"
 alias vi "nvim"
 alias open "xdg-open"
-alias R "R --no-save --no-restore"
+alias R "R --no-save --no-restore --quiet"
+
+# >>> conda initialize >>>
+# eval /home/user/anaconda3/bin/conda "shell.fish" "hook" $argv | source
+# <<< conda initialize <<<
+
