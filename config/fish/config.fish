@@ -42,7 +42,7 @@ function pyserver
 end
 
 function mdfind
-    find ~/ -type f | fzf --bind "enter:execute(xdg-open {})"
+    find ~/ -type f | fzf --bind "enter:execute(xdg-open {})" -q "$argv"
 end
 
 function sr
