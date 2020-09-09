@@ -27,6 +27,7 @@ function vimu
     vim +BundleUpdate
     cd ~/.vim/bundle/YouCompleteMe
     python3 install.py --clang-completer
+    cd -
 end
 
 function dlaudio

@@ -5,7 +5,8 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install -y git cmake build-essential silversearcher-ag exuberant-ctags
 sudo apt install -y software-properties-common
-sudo apt install -y fish neovim tmux golang
+sudo apt install -y fish neovim tmux fzf
+sudo apt install -y golang
 sudo apt install -y python3-dev python3-pip python3-tk
 
 # Configure Golang
@@ -60,4 +61,22 @@ cd ~/.vim/bundle/YouCompleteMe && python3 install.py && cd
 #cd ~/.vim/bundle/tern_for_vim/
 #npm install
 #sudo npm install -g jshint
+
+# # Install Fish package manager
+# curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+
+# # Install fzf fish support
+# exec fish
+## older one, unmaintained
+# fisher add jethrokuan/fzf
+## newer one, not working
+# sudo apt install -y bat fd-find fzf
+# fisher add patrickf3139/fzf.fish
+
+# Another option is to use fzf extension
+sudo apt remove -y fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+
 echo "All Done."
