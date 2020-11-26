@@ -59,3 +59,5 @@ alias R "R --no-save --no-restore --quiet"
 # eval /home/user/anaconda3/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
 
+# Rust
+source $HOME/.cargo/env

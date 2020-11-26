@@ -21,7 +21,6 @@ Bundle "ycm-core/YouCompleteMe"
 Bundle "ervandew/supertab"
 
 " nice to have plugins
-Bundle "sjl/gundo.vim"
 Bundle "bling/vim-airline"
 Bundle "vim-airline/vim-airline-themes"
 Bundle "jlanzarotta/bufexplorer"
@@ -65,6 +64,9 @@ Bundle "jalvesaq/Nvim-R"
 " Bundle "plasticboy/vim-markdown"
 " Bundle "fatih/vim-go"
 " Bundle "vim-scripts/c.vim"
+"
+Bundle "tomlion/vim-solidity"
+Bundle "rust-lang/rust.vim"
 
 " snippets
 Bundle "SirVer/ultisnips"
