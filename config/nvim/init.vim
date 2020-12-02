@@ -129,7 +129,7 @@ set mouse=a
 
 " show trailing whitespaces
 set list
-set listchars=tab:▸\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
+set listchars=tab:·\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
 augroup ListChars2
     au!
     autocmd filetype go set listchars+=tab:\ \ 
