@@ -67,6 +67,7 @@ Bundle "jalvesaq/Nvim-R"
 "
 Bundle "tomlion/vim-solidity"
 Bundle "rust-lang/rust.vim"
+Bundle "cespare/vim-toml"
 
 " snippets
 Bundle "SirVer/ultisnips"
