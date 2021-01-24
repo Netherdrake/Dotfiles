@@ -50,6 +50,10 @@ function sr
     eval $argv > /dev/null 2>&1 &
 end
 
+function pass
+    gpg --gen-random --armor 1 30
+end
+
 alias vim "nvim"
 alias vi "nvim"
 alias open "xdg-open"
