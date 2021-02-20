@@ -186,6 +186,29 @@ let g:ctrlp_map = "<c-p>"
 nnoremap <leader>t :CtrlPMRU<CR>
 nnoremap <leader>bp :CtrlPBuffer<CR>
 
+let &grepprg = 'ag --nogroup --nocolor'
+let s:ctrlp_fallback = 'ag %s
+  \ --nocolor --nogroup --depth 5
+  \ --hidden --follow --smart-case
+  \ --ignore .git
+  \ --ignore .cargo
+  \ --ignore .ropeproject
+  \ --ignore .ccache
+  \ --ignore .DS_Store
+  \ --ignore .opt1
+  \ --ignore .pylint.d
+  \ --ignore .shell
+  \ --ignore "build/*"
+  \ --ignore "dist/*"
+  \ --ignore "target/*"
+  \ --ignore "**/*.pyc"
+  \ --ignore "**/*.class"
+  \ --ignore "**/*.o"
+  \ -g ""'
+
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --others --exclude-standard', s:ctrlp_fallback]
+
+
 " easy motion rebinded
 nmap <leader>f <Plug>(easymotion-f2)
 nmap <leader>F <Plug>(easymotion-F2)
@@ -250,11 +273,6 @@ let g:ycm_key_list_previous_completion = []
 let g:ycm_key_invoke_completion = "<C-j>"
 let g:ycm_collect_identifiers_from_tags_files = 1
 
-if executable("ag")
-  let g:ackprg = "ag --nogroup --column"
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
 let g:vim_action_ag_escape_chars = '#%.^$*+?()[{\\|'
 
 " reload ctags
@@ -267,6 +285,10 @@ let g:gitgutter_eager = 0
 nnoremap <leader>G mG:Git! 
 nnoremap <leader>g :Git 
 nnoremap <leader>a :Ag! 
+
+if executable("ag")
+  let g:ackprg = "ag --nogroup --column"
+endif
 
 """"""""""""""""""""""""""""""""
 "
