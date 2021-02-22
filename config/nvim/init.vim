@@ -54,6 +54,10 @@ Bundle "jpalardy/vim-slime"
 Bundle "hanschen/vim-ipython-cell"
 Bundle "python-mode/python-mode"
 
+" rust
+Bundle "rust-lang/rust.vim"
+Bundle "cespare/vim-toml"
+
 " R
 Bundle "jalvesaq/Nvim-R"
 " Bundle "chrisbra/csv.vim"
@@ -64,10 +68,8 @@ Bundle "jalvesaq/Nvim-R"
 " Bundle "plasticboy/vim-markdown"
 " Bundle "fatih/vim-go"
 " Bundle "vim-scripts/c.vim"
-"
+
 Bundle "tomlion/vim-solidity"
-Bundle "rust-lang/rust.vim"
-Bundle "cespare/vim-toml"
 
 " snippets
 Bundle "SirVer/ultisnips"
@@ -186,7 +188,6 @@ let g:ctrlp_map = "<c-p>"
 nnoremap <leader>t :CtrlPMRU<CR>
 nnoremap <leader>bp :CtrlPBuffer<CR>
 
-let &grepprg = 'ag --nogroup --nocolor'
 let s:ctrlp_fallback = 'ag %s
   \ --nocolor --nogroup --depth 5
   \ --hidden --follow --smart-case
@@ -282,13 +283,8 @@ nnoremap <leader>C :!ctags -R --fields=+l --exclude=.git --exclude=log --exclude
 let g:gitgutter_enabled = 1
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
-nnoremap <leader>G mG:Git! 
 nnoremap <leader>g :Git 
 nnoremap <leader>a :Ag! 
-
-if executable("ag")
-  let g:ackprg = "ag --nogroup --column"
-endif
 
 """"""""""""""""""""""""""""""""
 "
