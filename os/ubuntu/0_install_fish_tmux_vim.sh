@@ -12,6 +12,7 @@ sudo apt install -y python3-dev python3-pip python3-tk
 # Configure git
 cp ../../config/.gitignore ~/.gitignore
 git config --global pull.ff only
+git config --global init.defaultBranch master
 git config --global core.editor "nvim"
 git config --global core.excludesfile '~/.gitignore'
 git config --global user.name "Netherdrake"
