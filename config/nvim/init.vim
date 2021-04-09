@@ -11,6 +11,13 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+
+" experimental
+Bundle "kevinhwang91/rnvimr"
+Bundle "voldikss/vim-floaterm"
+Bundle "reedes/vim-pencil"
+" Bundle "TaDaa/vimade"
+
 " core plugins
 Bundle "gmarik/vundle"
 Bundle "flazz/vim-colorschemes"
@@ -154,11 +161,12 @@ nnoremap <leader>sd :DeleteSession<CR>
 nnoremap <leader>sc :CloseSession<CR>
 
 " togglables without FN keys
-nnoremap <leader>1 :GundoToggle<CR>
+nnoremap <leader>1 :FloatermNew<CR>
 set pastetoggle=<leader>2
 nnoremap <leader>3 :TlistToggle<CR>
 nnoremap <leader>4 :TagbarToggle<CR>
 nnoremap <leader>5 :NERDTreeToggle<CR>
+nnoremap <leader>6 :RnvimrToggle<CR>
 
 " visual reselect of just pasted
 nnoremap gp `[v`]
@@ -540,3 +548,5 @@ let g:bufExplorerFindActive=0
 set colorcolumn=
 " highlight OverLength ctermbg=gray ctermfg=white guibg=#999999
 " match OverLength /\%81v.\+/
+
+let g:syntastic_rust_checkers = ['dont-block-vim-in-substrate']
