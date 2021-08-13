@@ -43,7 +43,7 @@ Currently using _14pt Roboto Mono for Powerline._
 
 ## Re-compiling YCM (YouCompleteMe)
 ```
-cd ~/.vim/bundle/YouCompleteMe
+cd ~/.vim/plugged/YouCompleteMe
 ./install.py  \
     --clang-completer \
     --go-completer

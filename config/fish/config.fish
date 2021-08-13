@@ -24,8 +24,8 @@ end
 
 function vimu
     pip install -U pynvim
-    vim +BundleUpdate
-    cd ~/.vim/bundle/YouCompleteMe
+    vim +PlugUpdate
+    cd ~/.vim/plugged/YouCompleteMe
     python3 install.py --clang-completer
     cd -
 end

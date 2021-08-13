@@ -6,84 +6,81 @@
 " not a vi
 set encoding=utf-8
 
-" start vundler
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" start vim-plug
+call plug#begin('~/.vim/plugged')
 
 
 " experimental
-Bundle "kevinhwang91/rnvimr"
-Bundle "voldikss/vim-floaterm"
-Bundle "reedes/vim-pencil"
-" Bundle "TaDaa/vimade"
+Plug 'kevinhwang91/rnvimr'
+Plug 'voldikss/vim-floaterm'
+Plug 'reedes/vim-pencil'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug "TaDaa/vimade'
 
 " core plugins
-Bundle "gmarik/vundle"
-Bundle "flazz/vim-colorschemes"
-Bundle "ctrlpvim/ctrlp.vim"
+Plug 'flazz/vim-colorschemes'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " autocomplete
-Bundle "ycm-core/YouCompleteMe"
-Bundle "ervandew/supertab"
+Plug 'ycm-core/YouCompleteMe'
+Plug 'ervandew/supertab'
 
 " nice to have plugins
-Bundle "bling/vim-airline"
-Bundle "vim-airline/vim-airline-themes"
-Bundle "jlanzarotta/bufexplorer"
-Bundle "scrooloose/syntastic.git"
-Bundle "vim-scripts/tComment"
-Bundle "tpope/vim-surround"
-Bundle "mileszs/ack.vim"
-Bundle "rking/ag.vim"
-Bundle "Chun-Yang/vim-action-ag"
-Bundle "tpope/vim-fugitive"
-Bundle "henrik/vim-indexed-search"
-Bundle "tpope/vim-abolish"
-Bundle "tpope/vim-repeat"
-Bundle "jiangmiao/auto-pairs"
-Bundle "xolox/vim-session"
-Bundle "xolox/vim-misc"
-Bundle "editorconfig/editorconfig-vim"
-Bundle "godlygeek/tabular"
-Bundle "airblade/vim-gitgutter"
-Bundle "Lokaltog/vim-easymotion"
-Bundle "rhysd/clever-f.vim"
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'vim-syntastic/syntastic'
+Plug 'vim-scripts/tComment'
+Plug 'tpope/vim-surround'
+Plug 'mileszs/ack.vim'
+Plug 'rking/ag.vim'
+Plug 'Chun-Yang/vim-action-ag'
+Plug 'tpope/vim-fugitive'
+Plug 'henrik/vim-indexed-search'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-repeat'
+Plug 'jiangmiao/auto-pairs'
+Plug 'xolox/vim-session'
+Plug 'xolox/vim-misc'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'godlygeek/tabular'
+Plug 'airblade/vim-gitgutter'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'rhysd/clever-f.vim'
 
 " togglable panels
-Bundle "scrooloose/nerdtree"
-Bundle "tpope/vim-vinegar"
-Bundle "vim-scripts/taglist.vim"
-Bundle "majutsushi/tagbar"
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'tpope/vim-vinegar'
+Plug 'vim-scripts/taglist.vim'
+Plug 'majutsushi/tagbar'
 
 " python
-Bundle "jpalardy/vim-slime"
-Bundle "hanschen/vim-ipython-cell"
-Bundle "python-mode/python-mode"
+Plug 'jpalardy/vim-slime', { 'for': 'python' }
+Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
+Plug 'python-mode/python-mode', { 'for': 'python' }
 
 " rust
-Bundle "rust-lang/rust.vim"
-Bundle "cespare/vim-toml"
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'cespare/vim-toml', { 'for': 'rust' }
 
 " R
-Bundle "jalvesaq/Nvim-R"
-" Bundle "chrisbra/csv.vim"
-" Bundle "vim-pandoc/vim-rmarkdown"
-" Bundle "gaalcaras/ncm-R"
-" Bundle "w0rp/ale"
+Plug 'jalvesaq/Nvim-R', { 'for': 'R' }
+" Plug 'chrisbra/csv.vim'
+" Plug 'vim-pandoc/vim-rmarkdown'
+" Plug 'gaalcaras/ncm-R'
+" Plug 'w0rp/ale'
 
-" Bundle "plasticboy/vim-markdown"
-" Bundle "fatih/vim-go"
-" Bundle "vim-scripts/c.vim"
+" Plug 'plasticboy/vim-markdown'
+" Plug 'fatih/vim-go'
+" Plug 'vim-scripts/c.vim'
 
-Bundle "tomlion/vim-solidity"
+Plug 'tomlion/vim-solidity', { 'for': 'solidity' }
 
 " snippets
-Bundle "SirVer/ultisnips"
-Bundle "honza/vim-snippets"
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-" enable all the plugins
-filetype plugin indent on
+call plug#end()
+
 
 """"""""""""""""""""""""""""""""
 "
@@ -118,9 +115,9 @@ set nofoldenable
 " set autoread
 
 " backup/persistance settings
-set undodir=~/.vim/tmp/undo//
-set backupdir=~/.vim/tmp/backup//
-set directory=~/.vim/tmp/swap//
+set undodir=~/.vim/tmp/undo/
+set backupdir=~/.vim/tmp/backup/
+set directory=~/.vim/tmp/swap/
 set backupskip=/tmp/*,/private/tmp/*"
 set backup
 set writebackup

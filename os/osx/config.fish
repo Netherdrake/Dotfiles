@@ -4,7 +4,7 @@ end
 
 function updateall
   brew update --all ;and brew upgrade --all
-  vim +BundleUpdate
+  vim +PlugUpdate
 end
 
 function upgrade
