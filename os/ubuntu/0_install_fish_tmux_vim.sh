@@ -5,7 +5,7 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install -y git cmake build-essential silversearcher-ag exuberant-ctags
 sudo apt install -y software-properties-common
-sudo apt install -y fish neovim tmux fzf
+sudo apt install -y fish neovim tmux fzf ripgrep
 sudo apt install -y golang
 sudo apt install -y python3-dev python3-pip python3-tk
 

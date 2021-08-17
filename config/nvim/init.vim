@@ -11,10 +11,15 @@ call plug#begin('~/.vim/plugged')
 
 
 " experimental
-Plug 'kevinhwang91/rnvimr'
 Plug 'voldikss/vim-floaterm'
 Plug 'reedes/vim-pencil'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 " Plug "TaDaa/vimade'
 
 " core plugins
@@ -163,7 +168,7 @@ set pastetoggle=<leader>2
 nnoremap <leader>3 :TlistToggle<CR>
 nnoremap <leader>4 :TagbarToggle<CR>
 nnoremap <leader>5 :NERDTreeToggle<CR>
-nnoremap <leader>6 :RnvimrToggle<CR>
+nnoremap <leader>6 <cmd>Telescope live_grep<cr>
 
 " visual reselect of just pasted
 nnoremap gp `[v`]
