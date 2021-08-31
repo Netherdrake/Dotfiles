@@ -56,6 +56,7 @@ end
 
 alias vim "nvim"
 alias vi "nvim"
+alias rr "ranger"
 alias open "xdg-open"
 alias R "R --no-save --no-restore --quiet"
 
