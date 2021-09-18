@@ -66,7 +66,7 @@ Plug 'python-mode/python-mode', { 'for': 'python' }
 
 " rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'cespare/vim-toml', { 'for': 'rust' }
+Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 " R
 Plug 'jalvesaq/Nvim-R', { 'for': 'R' }
