@@ -98,6 +98,9 @@ augroup line_return
         \ endif
 augroup END
 
+" clear searches
+nnoremap <leader>hh :call clearmatches()<CR>:noh<CR>
+
 """"""""""""""""""""""""""""""""
 "
 " BUG WORKAROUNDS
