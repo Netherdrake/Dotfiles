@@ -66,3 +66,5 @@ alias R "R --no-save --no-restore --quiet"
 
 # Rust
 source $HOME/.cargo/env
+# cargo install evcxr_repl
+alias rust "evcxr"
