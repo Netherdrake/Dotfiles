@@ -9,19 +9,6 @@ set encoding=utf-8
 " start vim-plug
 call plug#begin('~/.vim/plugged')
 
-
-" experimental
-Plug 'voldikss/vim-floaterm'
-Plug 'reedes/vim-pencil'
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
-" telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-
-" Plug "TaDaa/vimade'
-
 " core plugins
 Plug 'flazz/vim-colorschemes'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -53,6 +40,14 @@ Plug 'airblade/vim-gitgutter'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'rhysd/clever-f.vim'
 
+" telescope
+" Plug 'nvim-lua/popup.nvim'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
+
+" active buffer highlighting
+" Plug 'TaDaa/vimade'
+
 " togglable panels
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-vinegar'
@@ -78,8 +73,7 @@ Plug 'jalvesaq/Nvim-R', { 'for': 'R' }
 " Plug 'plasticboy/vim-markdown'
 " Plug 'fatih/vim-go'
 " Plug 'vim-scripts/c.vim'
-
-Plug 'tomlion/vim-solidity', { 'for': 'solidity' }
+" Plug 'tomlion/vim-solidity', { 'for': 'solidity' }
 
 " snippets
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -108,6 +102,7 @@ set hls
 set relativenumber
 set ls=2
 set cursorline
+set cursorlineopt=line
 set nowrap
 set backspace=indent,eol,start
 set shell=/bin/bash
@@ -425,6 +420,8 @@ function! LangRunner()
     nnoremap <leader>R :!node %<cr>
   elseif(&ft=="c")
     nnoremap <leader>R :!make run<cr>
+  elseif(&ft=="rust")
+    nnoremap <leader>R :!cargo run<cr>
   endif
 endfunction
 
