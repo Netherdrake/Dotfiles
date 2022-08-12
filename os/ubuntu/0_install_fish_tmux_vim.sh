@@ -3,10 +3,9 @@
 ## Install Core Packages
 sudo apt update
 sudo apt upgrade -y
-sudo apt install -y git cmake build-essential silversearcher-ag exuberant-ctags
+sudo apt install -y curl git cmake build-essential silversearcher-ag exuberant-ctags
 sudo apt install -y software-properties-common
 sudo apt install -y fish neovim tmux fzf ripgrep
-sudo apt install -y golang
 sudo apt install -y python3-dev python3-pip python3-tk
 sudo apt install -y ranger
 
@@ -17,10 +16,6 @@ git config --global init.defaultBranch master
 git config --global core.editor "nvim"
 git config --global core.excludesfile '~/.gitignore'
 git config --global user.name "Netherdrake"
-
-# Configure Golang
-mkdir ~/go
-grep -q -F 'GOPATH' ~/.bashrc || echo 'export GOPATH="/home/$(whoami)/go"' >> ~/.bashrc
 
 # Enable Fish by Default
 grep -q -F 'fish' ~/.bashrc || echo 'exec fish' >> ~/.bashrc
@@ -44,7 +39,7 @@ cp -rv ../../config/tmux/tmux.conf ~/.tmux.conf
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 ## Configuring Vim
-echo "Configuring NeoVim..."
+echo "Configuring neovim..."
 mkdir -p ~/.vim
 cd ~/.vim
 mkdir -p tmp
