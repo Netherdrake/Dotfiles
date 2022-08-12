@@ -31,7 +31,7 @@ function vimu
 end
 
 function dlaudio
-    youtube-dl -f bestaudio --extract-audio --audio-format mp3 $argv
+    yt-dlp -f bestaudio --extract-audio --audio-format mp3 $argv
 end
 
 function pyserve
@@ -46,7 +46,7 @@ function mdfind
     find ~/ -type f | fzf --bind "enter:execute(xdg-open {})" -q "$argv"
 end
 
-function sr
+function daemon
     eval $argv > /dev/null 2>&1 &
 end
 
@@ -54,15 +54,19 @@ function pass
     gpg --gen-random --armor 1 30
 end
 
+alias cdy "pwd | xclip -i"
+alias cdp "cd (xclip -o)"
+
 alias vim "nvim"
 alias vi "nvim"
 alias rr "ranger"
 alias open "xdg-open"
 alias R "R --no-save --no-restore --quiet"
+alias rust "evcxr"
 
 # >>> conda initialize >>>
 # eval /home/user/anaconda3/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
 
 # Rust
-source $HOME/.cargo/env
+export PATH="$HOME/.cargo/bin:$PATH"
