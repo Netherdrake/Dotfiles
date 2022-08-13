@@ -404,6 +404,10 @@ let R_csv_app = 'tmux new-window vd'
 autocmd FileType r nnoremap <buffer> <CR> <Plug>(RDSendLine)
 
 
+" Rust config
+"let g:syntastic_rust_checkers = ['dont-block-vim-in-substrate']
+let g:rustfmt_autosave = 1
+
 " General file runners for various languages
 function! LangRunner()
   if(&ft=="python")
@@ -548,4 +552,3 @@ set colorcolumn=
 " highlight OverLength ctermbg=gray ctermfg=white guibg=#999999
 " match OverLength /\%81v.\+/
 
-let g:syntastic_rust_checkers = ['dont-block-vim-in-substrate']
