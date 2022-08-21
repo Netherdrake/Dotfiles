@@ -105,7 +105,7 @@ set cursorline
 set cursorlineopt=line
 set nowrap
 set backspace=indent,eol,start
-set shell=/bin/bash
+set shell=/usr/bin/fish
 set completeopt -=preview
 set textwidth=100
 set wildmenu
@@ -256,6 +256,7 @@ let g:clever_f_across_no_line = 1
 
 " syntastic
 let g:syntastic_python_checkers = []
+let g:syntastic_enable_highlighting = 0
 
 " airline
 if !exists("g:airline_symbols")
