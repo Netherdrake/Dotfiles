@@ -9,6 +9,10 @@ sudo apt install -y fish neovim tmux fzf ripgrep
 sudo apt install -y python3-dev python3-pip python3-tk
 sudo apt install -y ranger
 
+sudo apt install -y bat
+mkdir -p ~/.local/bin
+ln -s /usr/bin/batcat ~/.local/bin/bat
+
 # Configure git
 cp ../../config/.gitignore ~/.gitignore
 git config --global pull.ff only
