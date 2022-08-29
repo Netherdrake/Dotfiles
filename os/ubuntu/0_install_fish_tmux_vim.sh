@@ -62,7 +62,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 vim +PlugInstall
 
 # install YCM
-cd ~/.vim/plugged/YouCompleteMe && python3 install.py && cd
+cd ~/.vim/plugged/YouCompleteMe && python3 install.py --rust-completer  && cd
 #python3 install.py --gocode-completer --clang-completer
 
 # install js autocompletion (if you need newer node.js, install nvm instead)
