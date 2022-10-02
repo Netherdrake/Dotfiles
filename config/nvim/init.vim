@@ -111,6 +111,7 @@ set textwidth=100
 set wildmenu
 set noshowmode
 set cmdheight=1
+set ch=0
 set nofoldenable
 " set autoread
 
