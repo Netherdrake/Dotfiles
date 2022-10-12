@@ -32,8 +32,6 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
 Plug 'jiangmiao/auto-pairs'
-Plug 'xolox/vim-session'
-Plug 'xolox/vim-misc'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'airblade/vim-gitgutter'
@@ -152,16 +150,6 @@ let g:gruvbox_contrast_light = "medium"
 let g:airline_theme = 'gruvbox'
 " needs to be called after setting contrast
 colorscheme gruvbox
-
-" session management
-let g:session_directory = "~/.vim/session"
-let g:session_autoload = "no"
-let g:session_autosave = "no"
-let g:session_command_aliases = 1
-nnoremap <leader>so :OpenSession 
-nnoremap <leader>ss :SaveSession 
-nnoremap <leader>sd :DeleteSession<CR>
-nnoremap <leader>sc :CloseSession<CR>
 
 " togglables without FN keys
 nnoremap <leader>1 :FloatermNew<CR>
