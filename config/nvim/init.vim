@@ -210,8 +210,8 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --others -
 
 
 " easy motion rebinded
-nmap <leader>f <Plug>(easymotion-f2)
-nmap <leader>F <Plug>(easymotion-F2)
+nmap <leader>f <Plug>(easymotion-s)
+nmap <leader>F <Plug>(easymotion-s2)
 
 " open vimrc
 nnoremap <leader>v :e  ~/.config/nvim/init.vim<CR>
