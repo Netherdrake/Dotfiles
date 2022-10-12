@@ -30,6 +30,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'henrik/vim-indexed-search'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-dispatch'
 Plug 'jiangmiao/auto-pairs'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-misc'
@@ -44,21 +45,21 @@ Plug 'rhysd/clever-f.vim'
 " Plug 'nvim-lua/plenary.nvim'
 " Plug 'nvim-telescope/telescope.nvim'
 
-" active buffer highlighting
+" active panel highlighting
 " Plug 'TaDaa/vimade'
 
 " togglable panels
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-vinegar'
 Plug 'vim-scripts/taglist.vim'
-Plug 'majutsushi/tagbar'
+Plug 'preservim/tagbar'
 
-" python
+" Python
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
 Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 Plug 'python-mode/python-mode', { 'for': 'python' }
 
-" rust
+" Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 
@@ -69,13 +70,12 @@ Plug 'jalvesaq/Nvim-R', { 'for': 'R' }
 " Plug 'gaalcaras/ncm-R'
 " Plug 'w0rp/ale'
 
-" Plug 'plasticboy/vim-markdown'
-" Plug 'fatih/vim-go'
-" Plug 'vim-scripts/c.vim'
-" Plug 'tomlion/vim-solidity', { 'for': 'solidity' }
-
 " snippets
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+" language server protocol
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'ray-x/lsp_signature.nvim'
 
 call plug#end()
 
@@ -287,8 +287,10 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 
 let g:vim_action_ag_escape_chars = '#%.^$*+?()[{\\|'
 
-" reload ctags
-nnoremap <leader>C :!ctags -R --fields=+l --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
+" configure universal ctags
+let g:tagbar_ctags_bin = '/snap/bin/universal-ctags'
+" univesal ctags installed via ubuntu snap don't have read access to /tmp
+let g:tagbar_use_cache = 0
 
 " git and ack stuff
 let g:gitgutter_enabled = 1
@@ -302,27 +304,13 @@ nnoremap <leader>a :Ag!
 " PROGRAMMING LANGUAGES
 "
 """"""""""""""""""""""""""""""""
-" vim-go settings
-let g:go_fmt_command = "goimports"
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
 
-" vim-go bindings
-augroup FileType go
-  au!
-  au FileType go nmap gd <Plug>(go-def)
-  au FileType go nmap <Leader>dd <Plug>(go-def-vertical)
-
-  au FileType go nmap <Leader>dv <Plug>(go-doc-vertical)
-  au FileType go nmap <Leader>db <Plug>(go-doc-browser)
-
-  au FileType go nmap <Leader>i <Plug>(go-info)
-
-  au FileType go nmap <leader>r <Plug>(go-run)
-  au FileType go nmap <leader>b <Plug>(go-build)
-  au FileType go nmap <leader>t <Plug>(go-test)
-augroup END
+" Treesitter LSP
+lua <<EOF
+    require'nvim-treesitter.configs'.setup {
+      ensure_installed = { "c", "lua", "rust", "python" },
+  }
+EOF
 
 " Python Settings
 let g:pymode_rope = 1
@@ -420,14 +408,6 @@ function! LangRunner()
     nnoremap <leader>R :!python3 %<cr>
   elseif(&ft=="r")
     nnoremap <leader>R :!R --no-save --no-restore < %<cr>
-  elseif(&ft=="haskell")
-    nnoremap <leader>R :!ghci %<cr>
-  elseif(&ft=="hy")
-    nnoremap <leader>R :!hy %<cr>
-  elseif(&ft=="clojure")
-    nnoremap <leader>R :!lein run<cr>
-  elseif(&ft=="javascript")
-    nnoremap <leader>R :!node %<cr>
   elseif(&ft=="c")
     nnoremap <leader>R :!make run<cr>
   elseif(&ft=="rust")

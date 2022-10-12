@@ -3,7 +3,7 @@
 ## Install Core Packages
 sudo apt update
 sudo apt upgrade -y
-sudo apt install -y curl git cmake build-essential silversearcher-ag exuberant-ctags
+sudo apt install -y curl git cmake build-essential silversearcher-ag
 sudo apt install -y libssl-dev pkg-config
 sudo apt install -y software-properties-common
 sudo apt install -y fish neovim tmux fzf ripgrep
@@ -13,6 +13,8 @@ sudo apt install -y ranger
 sudo apt install -y bat
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
+
+sudo snap install universal-ctags
 
 # Configure git
 cp ../../config/.gitignore ~/.gitignore
