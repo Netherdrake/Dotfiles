@@ -12,31 +12,35 @@ call plug#begin('~/.vim/plugged')
 " core plugins
 Plug 'morhetz/gruvbox'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'vim-syntastic/syntastic'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-dispatch'
+Plug 'airblade/vim-gitgutter'
+Plug 'editorconfig/editorconfig-vim'
+
+" search
+Plug 'henrik/vim-indexed-search'
+Plug 'mileszs/ack.vim'
+Plug 'rking/ag.vim'
+Plug 'Chun-Yang/vim-action-ag'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'rhysd/clever-f.vim'
+
+" typing automations
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/tComment'
 
 " autocomplete
 Plug 'ycm-core/YouCompleteMe'
 Plug 'ervandew/supertab'
 
-" nice to have plugins
-Plug 'vim-airline/vim-airline'
-Plug 'jlanzarotta/bufexplorer'
-Plug 'vim-syntastic/syntastic'
-Plug 'vim-scripts/tComment'
-Plug 'tpope/vim-surround'
-Plug 'mileszs/ack.vim'
-Plug 'rking/ag.vim'
-Plug 'Chun-Yang/vim-action-ag'
-Plug 'tpope/vim-fugitive'
-Plug 'henrik/vim-indexed-search'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-dispatch'
-Plug 'jiangmiao/auto-pairs'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'godlygeek/tabular'
-Plug 'airblade/vim-gitgutter'
-Plug 'Lokaltog/vim-easymotion'
-Plug 'rhysd/clever-f.vim'
+" snippets
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " telescope
 " Plug 'nvim-lua/popup.nvim'
@@ -48,9 +52,12 @@ Plug 'rhysd/clever-f.vim'
 
 " togglable panels
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'tpope/vim-vinegar'
 Plug 'vim-scripts/taglist.vim'
 Plug 'preservim/tagbar'
+
+" language server protocol
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'ray-x/lsp_signature.nvim'
 
 " Python
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
@@ -67,13 +74,6 @@ Plug 'jalvesaq/Nvim-R', { 'for': 'R' }
 " Plug 'vim-pandoc/vim-rmarkdown'
 " Plug 'gaalcaras/ncm-R'
 " Plug 'w0rp/ale'
-
-" snippets
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
-" language server protocol
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'ray-x/lsp_signature.nvim'
 
 call plug#end()
 
@@ -152,12 +152,12 @@ let g:airline_theme = 'gruvbox'
 colorscheme gruvbox
 
 " togglables without FN keys
-nnoremap <leader>1 :FloatermNew<CR>
+" nnoremap <leader>1 :FloatermNew<CR>
 set pastetoggle=<leader>2
 nnoremap <leader>3 :TlistToggle<CR>
 nnoremap <leader>4 :TagbarToggle<CR>
 nnoremap <leader>5 :NERDTreeToggle<CR>
-nnoremap <leader>6 <cmd>Telescope live_grep<cr>
+" nnoremap <leader>6 <cmd>Telescope live_grep<cr>
 
 " visual reselect of just pasted
 nnoremap gp `[v`]
