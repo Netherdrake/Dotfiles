@@ -23,7 +23,7 @@ Plug 'henrik/vim-indexed-search'
 Plug 'mileszs/ack.vim'
 Plug 'rking/ag.vim'
 Plug 'Chun-Yang/vim-action-ag'
-Plug 'Lokaltog/vim-easymotion'
+Plug 'phaazon/hop.nvim'
 Plug 'rhysd/clever-f.vim'
 
 " typing automations
@@ -180,8 +180,8 @@ inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
 
 " easy motion rebinded
-nmap <leader>f <Plug>(easymotion-s)
-nmap <leader>F <Plug>(easymotion-s2)
+lua require'hop'.setup()
+nmap <leader>f :HopPattern<CR>
 
 " open vimrc
 nnoremap <leader>v :e  ~/.config/nvim/init.vim<CR>
