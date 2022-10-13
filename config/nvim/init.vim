@@ -159,6 +159,7 @@ nnoremap <leader>3 :TlistToggle<CR>
 nnoremap <leader>4 :TagbarToggle<CR>
 nnoremap <leader>5 :NERDTreeToggle<CR>
 nnoremap <leader>6 <cmd>Telescope live_grep<cr>
+nnoremap <expr> <leader>0 ':set background='.(&background=='dark' ? "light" : "dark")."<CR>"
 
 " visual reselect of just pasted
 nnoremap gp `[v`]
@@ -185,7 +186,7 @@ nmap <leader>f :HopPattern<CR>
 
 " open vimrc
 nnoremap <leader>v :e  ~/.config/nvim/init.vim<CR>
-nnoremap <leader>V :tabnew  ~/.config/nvim/init.vim<CR>
+nnoremap <leader>V :so  ~/.config/nvim/init.vim<CR>
 
 " reload all open buffers
 nnoremap <leader>Ra :tabdo exec "windo e!"
