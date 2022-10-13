@@ -6,10 +6,14 @@
 " start vim-plug
 call plug#begin('~/.vim/plugged')
 
-" core plugins
+" eye candy
 Plug 'morhetz/gruvbox'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'folke/lsp-colors.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'vim-airline/vim-airline'
+
+" core plugins
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-abolish'
@@ -46,8 +50,9 @@ Plug 'nvim-telescope/telescope.nvim'
 " togglable panels
 Plug 'voldikss/vim-floaterm'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'vim-scripts/taglist.vim'
+Plug 'yegappan/taglist'
 Plug 'preservim/tagbar'
+Plug 'folke/trouble.nvim'
 
 " active panel highlighting
 Plug 'TaDaa/vimade'
@@ -159,6 +164,8 @@ nnoremap <leader>3 :TlistToggle<CR>
 nnoremap <leader>4 :TagbarToggle<CR>
 nnoremap <leader>5 :NERDTreeToggle<CR>
 nnoremap <leader>6 <cmd>Telescope live_grep<cr>
+lua require'trouble'.setup()
+nnoremap <leader>7 <cmd>TroubleToggle<cr>
 nnoremap <expr> <leader>0 ':set background='.(&background=='dark' ? "light" : "dark")."<CR>"
 
 " visual reselect of just pasted
@@ -277,7 +284,7 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 let g:vim_action_ag_escape_chars = '#%.^$*+?()[{\\|'
 
 " configure universal ctags
-let g:tagbar_ctags_bin = '/snap/bin/universal-ctags'
+" let g:tagbar_ctags_bin = '/snap/bin/universal-ctags'
 " univesal ctags installed via ubuntu snap don't have read access to /tmp
 let g:tagbar_use_cache = 0
 
