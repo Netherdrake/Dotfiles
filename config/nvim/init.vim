@@ -50,7 +50,7 @@ Plug 'vim-scripts/taglist.vim'
 Plug 'preservim/tagbar'
 
 " active panel highlighting
-" Plug 'TaDaa/vimade'
+Plug 'TaDaa/vimade'
 
 " language server protocol
 Plug 'neovim/nvim-lspconfig'
