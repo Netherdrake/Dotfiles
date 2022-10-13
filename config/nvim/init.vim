@@ -3,9 +3,6 @@
 " PACKAGE MANAGEMENT
 "
 """"""""""""""""""""""""""""""""
-" not a vi
-set encoding=utf-8
-
 " start vim-plug
 call plug#begin('~/.vim/plugged')
 
@@ -14,7 +11,6 @@ Plug 'morhetz/gruvbox'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'jlanzarotta/bufexplorer'
-Plug 'vim-syntastic/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
@@ -47,17 +43,18 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Plug 'nvim-lua/plenary.nvim'
 " Plug 'nvim-telescope/telescope.nvim'
 
-" active panel highlighting
-" Plug 'TaDaa/vimade'
-
 " togglable panels
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'vim-scripts/taglist.vim'
 Plug 'preservim/tagbar'
 
+" active panel highlighting
+" Plug 'TaDaa/vimade'
+
 " language server protocol
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'ray-x/lsp_signature.nvim'
+Plug 'dense-analysis/ale' "syntastic successor
 
 " Python
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
@@ -73,7 +70,6 @@ Plug 'jalvesaq/Nvim-R', { 'for': 'R' }
 " Plug 'chrisbra/csv.vim'
 " Plug 'vim-pandoc/vim-rmarkdown'
 " Plug 'gaalcaras/ncm-R'
-" Plug 'w0rp/ale'
 
 call plug#end()
 
@@ -83,6 +79,7 @@ call plug#end()
 " SETTINGS & KEYBINDINGS
 "
 """"""""""""""""""""""""""""""""
+set encoding=utf-8
 set expandtab
 set smarttab
 set shiftwidth=4
@@ -178,37 +175,6 @@ nnoremap <C-k> <C-u>
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
 
-" intellij style autocomplete shortcut
-inoremap <C-@> <C-x><C-o>
-inoremap <C-Space> <C-x><C-o>
-
-" ctrlP config
-let g:ctrlp_map = "<c-p>"
-nnoremap <leader>t :CtrlPMRU<CR>
-nnoremap <leader>bp :CtrlPBuffer<CR>
-
-let s:ctrlp_fallback = 'ag %s
-  \ --nocolor --nogroup --depth 5
-  \ --hidden --follow --smart-case
-  \ --ignore .git
-  \ --ignore .cargo
-  \ --ignore .ropeproject
-  \ --ignore .ccache
-  \ --ignore .DS_Store
-  \ --ignore .opt1
-  \ --ignore .pylint.d
-  \ --ignore .shell
-  \ --ignore "build/*"
-  \ --ignore "dist/*"
-  \ --ignore "target/*"
-  \ --ignore "**/*.pyc"
-  \ --ignore "**/*.class"
-  \ --ignore "**/*.o"
-  \ -g ""'
-
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --others --exclude-standard', s:ctrlp_fallback]
-
-
 " easy motion rebinded
 nmap <leader>f <Plug>(easymotion-s)
 nmap <leader>F <Plug>(easymotion-s2)
@@ -248,9 +214,32 @@ vnoremap <leader>S :%S /
 let g:clever_f_show_prompt = 1
 let g:clever_f_across_no_line = 1
 
-" syntastic
-let g:syntastic_python_checkers = []
-let g:syntastic_enable_highlighting = 0
+" ctrlP config
+let g:ctrlp_map = "<c-p>"
+nnoremap <leader>t :CtrlPMRU<CR>
+nnoremap <leader>bp :CtrlPBuffer<CR>
+
+let s:ctrlp_fallback = 'ag %s
+  \ --nocolor --nogroup --depth 5
+  \ --hidden --follow --smart-case
+  \ --ignore .git
+  \ --ignore .cargo
+  \ --ignore .ropeproject
+  \ --ignore .ccache
+  \ --ignore .DS_Store
+  \ --ignore .opt1
+  \ --ignore .pylint.d
+  \ --ignore .shell
+  \ --ignore "build/*"
+  \ --ignore "dist/*"
+  \ --ignore "target/*"
+  \ --ignore "**/*.pyc"
+  \ --ignore "**/*.class"
+  \ --ignore "**/*.o"
+  \ -g ""'
+
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --others --exclude-standard', s:ctrlp_fallback]
+
 
 " airline
 if !exists("g:airline_symbols")
@@ -259,7 +248,6 @@ endif
 let g:airline_powerline_fonts=1
 let g:airline#extensions#branch#empty_message  =  "no .git"
 let g:airline#extensions#whitespace#enabled    =  0
-let g:airline#extensions#syntastic#enabled     =  1
 let g:airline#extensions#tabline#enabled       =  1
 let g:airline#extensions#tabline#tab_nr_type   =  1 " tab number
 let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
@@ -295,14 +283,25 @@ nnoremap <leader>a :Ag!
 
 " Treesitter LSP
 lua <<EOF
-    require'nvim-treesitter.configs'.setup {
-      ensure_installed = { "c", "lua", "rust", "python" },
+  require'nvim-treesitter.configs'.setup {
+    ensure_installed = { "c", "vim", "lua", "toml", "rust", "python" },
+    auto_install = true,
+    highlight = {
+      enable = true,
+      additional_vim_regex_highlighting=false,
+    },
+    ident = { enable = true },
+    rainbow = {
+      enable = true,
+      extended_mode = true,
+      max_file_lines = nil,
+    }
   }
 EOF
 
-" Python Settings
-let g:pymode_rope = 1
+" Rope Settings
 let ropevim_enable_shortcuts = 1
+let g:pymode_rope = 1
 let g:pymode_rope_lookup_project = 0 "dont scan parent dir for .ropeproject
 let g:pymode_rope_goto_def_newwin = "e"
 let g:pymode_rope_completion = 1
@@ -387,7 +386,6 @@ autocmd FileType r nnoremap <buffer> <CR> <Plug>(RDSendLine)
 
 
 " Rust config
-"let g:syntastic_rust_checkers = ['dont-block-vim-in-substrate']
 let g:rustfmt_autosave = 1
 
 " General file runners for various languages
@@ -472,8 +470,6 @@ hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
 hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
 hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
 hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
-
-highlight search ctermfg=white ctermbg=3423513
 
 " better retab
 fu! Retab()
