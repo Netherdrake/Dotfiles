@@ -39,9 +39,8 @@ Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " telescope
-" Plug 'nvim-lua/popup.nvim'
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " togglable panels
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -154,7 +153,7 @@ set pastetoggle=<leader>2
 nnoremap <leader>3 :TlistToggle<CR>
 nnoremap <leader>4 :TagbarToggle<CR>
 nnoremap <leader>5 :NERDTreeToggle<CR>
-" nnoremap <leader>6 <cmd>Telescope live_grep<cr>
+nnoremap <leader>6 <cmd>Telescope live_grep<cr>
 
 " visual reselect of just pasted
 nnoremap gp `[v`]
