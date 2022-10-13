@@ -32,6 +32,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 
 " autocomplete
+" consider trying "hrsh7th/nvim-cmp"
 Plug 'ycm-core/YouCompleteMe'
 Plug 'ervandew/supertab'
 
@@ -43,6 +44,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 " togglable panels
+Plug 'voldikss/vim-floaterm'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'vim-scripts/taglist.vim'
 Plug 'preservim/tagbar'
@@ -147,12 +149,12 @@ syntax on
 let g:gruvbox_contrast_dark = "hard"
 let g:gruvbox_contrast_light = "medium"
 let g:airline_theme = 'gruvbox'
-" needs to be called after setting contrast
+" colorscheme needs to be called after setting contrast
 colorscheme gruvbox
 
-" togglables without FN keys
-" nnoremap <leader>1 :FloatermNew<CR>
-set pastetoggle=<leader>2
+" shortcuts for togglables and popups
+nnoremap <leader>1 :FloatermNew fish<CR>
+nnoremap <leader>2 :FloatermNew ranger<CR>
 nnoremap <leader>3 :TlistToggle<CR>
 nnoremap <leader>4 :TagbarToggle<CR>
 nnoremap <leader>5 :NERDTreeToggle<CR>
@@ -242,6 +244,14 @@ let s:ctrlp_fallback = 'ag %s
 
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --others --exclude-standard', s:ctrlp_fallback]
 
+
+" floatterm
+let g:floaterm_shell = "fish"
+let g:floaterm_width  = 0.8
+let g:floaterm_height = 0.8
+let g:floaterm_keymap_new      = '<F1>'
+let g:floaterm_keymap_next     = '<F2>'
+let g:floaterm_keymap_toggle   = '<F3>'
 
 " airline
 if !exists("g:airline_symbols")
