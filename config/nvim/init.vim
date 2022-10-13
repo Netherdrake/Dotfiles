@@ -51,9 +51,10 @@ Plug 'preservim/tagbar'
 " Plug 'TaDaa/vimade'
 
 " language server protocol
+Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'ray-x/lsp_signature.nvim'
-Plug 'dense-analysis/ale' "syntastic successor
+" Plug 'ray-x/lsp_signature.nvim'
+Plug 'dense-analysis/ale' "syntastic successor, autocomplete
 
 " Python
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
@@ -63,6 +64,8 @@ Plug 'python-mode/python-mode', { 'for': 'python' }
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
+" Plug 'simrat39/rust-tools.nvim' "clashes with nvim-lspconfig
+" Plug 'mfussenegger/nvim-dap' "experimental debugger
 
 " R
 Plug 'jalvesaq/Nvim-R', { 'for': 'R' }
@@ -280,6 +283,42 @@ nnoremap <leader>a :Ag!
 "
 """"""""""""""""""""""""""""""""
 
+
+" Nvim LSP
+lua <<EOF
+    -- Use an on_attach function to only map the following keys
+    -- after the language server attaches to the current buffer
+    local on_attach = function(client, bufnr)
+      -- Mappings.
+      -- See `:help vim.lsp.*` for documentation on any of the below functions
+      local bufopts = { noremap=true, silent=true, buffer=bufnr }
+      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+      vim.keymap.set('n', 'gtd', vim.lsp.buf.type_definition, bufopts)
+      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+      vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+      vim.keymap.set('n', 'gh', vim.lsp.buf.hover, bufopts)
+      vim.keymap.set('n', 'ghh', vim.lsp.buf.signature_help, bufopts)
+      vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+      vim.keymap.set('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+      vim.keymap.set('n', '<Leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, bufopts)
+      vim.keymap.set('n', '<Leader>re', vim.lsp.buf.rename, bufopts)
+    end
+
+    local lsp_flags = {
+      -- This is the default in Nvim 0.7+
+      debounce_text_changes = 150,
+    }
+    require('lspconfig')['pyright'].setup{
+        on_attach = on_attach,
+        flags = lsp_flags,
+    }
+    require('lspconfig')['rust_analyzer'].setup{
+        on_attach = on_attach,
+        flags = lsp_flags,
+    }
+EOF
+
 " Treesitter LSP
 lua <<EOF
   require'nvim-treesitter.configs'.setup {
@@ -386,6 +425,21 @@ autocmd FileType r nnoremap <buffer> <CR> <Plug>(RDSendLine)
 
 " Rust config
 let g:rustfmt_autosave = 1
+
+" lua <<EOF
+"     local rt = require("rust-tools")
+"     rt.setup({
+"       server = {
+"         on_attach = function(_, bufnr)
+"           -- Hover actions
+"           vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+"           -- Code action groups
+"           vim.keymap.set("n", "<Leader>he", rt.inlay_hints.enable, { buffer = bufnr })
+"           vim.keymap.set("n", "<Leader>hd", rt.inlay_hints.disable, { buffer = bufnr })
+"         end,
+"       },
+"     })
+" EOF
 
 " General file runners for various languages
 function! LangRunner()
