@@ -22,6 +22,13 @@ function upgrade
     sudo apt upgrade
 end
 
+function upgrade-all
+    sudo apt update
+    sudo apt upgrade
+    sudo snap refresh
+    sudo fwupdmgr update
+end
+
 function vimu
     pip install -U pynvim
     vim +PlugUpdate
@@ -70,3 +77,4 @@ alias rust "evcxr"
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
+export CARGO="$HOME/.cargo/bin/cargo"
