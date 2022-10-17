@@ -165,7 +165,7 @@ nnoremap <leader>4 :TagbarToggle<CR>
 nnoremap <leader>5 :NERDTreeToggle<CR>
 nnoremap <leader>6 <cmd>Telescope live_grep<cr>
 lua require'trouble'.setup()
-nnoremap <leader>7 <cmd>TroubleToggle<cr>
+nnoremap <leader>9 <cmd>TroubleToggle<cr>
 nnoremap <expr> <leader>0 ':set background='.(&background=='dark' ? "light" : "dark")."<CR>"
 
 " visual reselect of just pasted
