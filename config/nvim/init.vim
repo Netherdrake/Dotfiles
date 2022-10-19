@@ -257,9 +257,8 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --others -
 let g:floaterm_shell = "fish"
 let g:floaterm_width  = 0.8
 let g:floaterm_height = 0.8
-let g:floaterm_keymap_new      = '<F1>'
+let g:floaterm_keymap_toggle   = '<F1>'
 let g:floaterm_keymap_next     = '<F2>'
-let g:floaterm_keymap_toggle   = '<F3>'
 
 " airline
 if !exists("g:airline_symbols")
