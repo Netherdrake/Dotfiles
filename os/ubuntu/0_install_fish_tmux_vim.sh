@@ -65,14 +65,8 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 vim +PlugInstall
 
 # install YCM
-cd ~/.vim/plugged/YouCompleteMe && python3 install.py --rust-completer  && cd
-#python3 install.py --gocode-completer --clang-completer
-
-# install js autocompletion (if you need newer node.js, install nvm instead)
-#sudo apt install nodejs npm -y
-#cd ~/.vim/bundle/tern_for_vim/
-#npm install
-#sudo npm install -g jshint
+cd ~/.vim/plugged/YouCompleteMe && python3 install.py --rust-completer && cd
+#python3 install.py --clang-completer
 
 # # Install Fish package manager
 # curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish

@@ -1,12 +1,14 @@
 ## Supported Workflows
- - GNOME + Tilix/Tmux + Fish + NeoVim  
- - i3wm + Fish + NeoVim  
+ - Ubuntu local: i3 + fish + neovim  
+ - Ubuntu remote: tmux + fish + neovim  
+ - Ubuntu remote minimal: Regular vim only, no plugins
 
-**[Documentation](https://github.com/Netherdrake/Dotfiles/tree/master/os)** for i3, Gnome and other
-OS related setups. Install scripts are available for Ubuntu OS.
+
+**[Documentation](https://github.com/Netherdrake/Dotfiles/tree/master/os)** for OS related setups.
+Install scripts are available for Ubuntu only.
 
 ## Vim Language Support
-Go *(Great)*  
+Rust *(Great)*  
 R, Python *(Good)*  
 
 ## Notes
@@ -18,15 +20,6 @@ R, Python *(Good)*
 ### Install Tmux Plugin Manager
 ```
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-```
-
-### Tmux && macOS
-Make sure to enable "Applications in terminal may access clipboard"
-in iTerm 2 Preferences.
-
-Also, install this:
-```
-brew install reattach-to-user-namespace --with-wrap-pbcopy-and-pbpaste
 ```
 
 ### Tmux && Linux
@@ -46,5 +39,5 @@ Currently using _14pt Roboto Mono for Powerline._
 cd ~/.vim/plugged/YouCompleteMe
 ./install.py  \
     --clang-completer \
-    --go-completer
+    --rust-completer
 ```

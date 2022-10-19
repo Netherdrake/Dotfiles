@@ -53,31 +53,6 @@ sudo apt install i3xrocks-memory
 
 # Gnome
 
-## Tilix
-To export the tilix config, run:
-```
-dconf dump /com/gexperts/Tilix/ > tilix.dconf
-```
-
-To import said config, run:
-```
-dconf load /com/gexperts/Tilix/ < tilix.dconf
-```
-
-## Extensions
-
-https://extensions.gnome.org/extension/307/dash-to-dock/  
-https://extensions.gnome.org/extension/545/hide-top-bar/  
-https://extensions.gnome.org/extension/1031/topicons/  
-https://extensions.gnome.org/extension/118/no-topleft-hot-corner/  
-https://extensions.gnome.org/extension/1267/no-title-bar/ (for laptops only)  
-
-https://extensions.gnome.org/extension/6/applications-menu/  
-https://extensions.gnome.org/extension/7/removable-drive-menu/  
-https://extensions.gnome.org/extension/8/places-status-indicator/  
-
-https://extensions.gnome.org/extension/19/user-themes/  
-
 ## Keyboard mappings
 
 Remap caps-lock as ESC:
