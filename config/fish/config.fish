@@ -31,7 +31,7 @@ end
 
 function vimu
     pip install -U pynvim
-    vim +PlugUpdate
+    vim +PlugUpdate +TSUpdate
     cd ~/.vim/plugged/YouCompleteMe
     python3 install.py --clang-completer --rust-completer
     cd -
