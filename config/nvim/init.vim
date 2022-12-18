@@ -154,6 +154,8 @@ syntax on
 let g:gruvbox_contrast_dark = "hard"
 let g:gruvbox_contrast_light = "medium"
 let g:airline_theme = 'gruvbox'
+let g:gruvbox_underline = 0
+let g:gruvbox_undercurl = 0
 " colorscheme needs to be called after setting contrast
 colorscheme gruvbox
 
@@ -359,6 +361,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     -- disable ugly underlines
     underline = false,
+    virtual_text = false,
+    -- Enable virtual text, override spacing to 4
+    -- virtual_text = {spacing = 4},
+    -- Use a function to dynamically turn signs off
+    -- and on, using buffer local variables
+    signs = true,
+    update_in_insert = false
   }
 )
 EOF
@@ -616,3 +625,4 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
+
