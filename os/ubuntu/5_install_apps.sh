@@ -2,5 +2,5 @@
 
 # Etcher
 
-# Epiphany browser
-sudo apt install epiphany-browser
+# screenshot tool
+sudo apt install scrot

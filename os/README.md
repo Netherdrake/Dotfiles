@@ -60,6 +60,13 @@ Remap caps-lock as ESC:
 dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
 ```
 
+Set screenshot tool:
+```
+gsettings set org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding "Print"
+gsettings set org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "scrot -e 'mv $f /home/user/Pictures'"
+gsettings set org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name "Take a Screenshot (scrot)"
+```
+
 ## Tweaks
 
 Only show current workspace windows in Alt-Tab:
