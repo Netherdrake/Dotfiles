@@ -170,6 +170,10 @@ lua require'trouble'.setup()
 nnoremap <leader>9 <cmd>TroubleToggle<cr>
 nnoremap <expr> <leader>0 ':set background='.(&background=='dark' ? "light" : "dark")."<CR>"
 
+" use ESC to switch terminal to normal mode (might break some things)
+" consider using Ctrl-W + N
+tnoremap <Esc> <C-\><C-n>
+
 " visual reselect of just pasted
 nnoremap gp `[v`]
 
@@ -416,15 +420,9 @@ let g:pymode_lint_signs = 1
 let g:pymode_lint_sort = ['E','C']
 
 " configure nvim -> ipython integration
-let g:slime_target = "tmux"
-" assume vim is on left and ipython on right
-let g:slime_default_config = {
-            \ 'socket_name': get(split($TMUX, ','), 0),
-            \ 'target_pane': '{top-right}' }
-let g:slime_dont_ask_default = 1
-
-" fix paste issues in ipython
-"let g:slime_python_ipython = 1
+let g:slime_target = "neovim"
+let g:slime_python_ipython = 1
+" let g:slime_dont_ask_default = 1
 
 " Use '##' to define cells instead of using marks
 let g:ipython_cell_delimit_cells_by = 'tags'
@@ -460,6 +458,8 @@ autocmd FileType r nnoremap <buffer> <CR> <Plug>(RDSendLine)
 
 " Rust config
 let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
 
 " lua <<EOF
 "     local rt = require("rust-tools")
