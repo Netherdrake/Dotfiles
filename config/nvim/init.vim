@@ -347,10 +347,6 @@ lua <<EOF
   require'nvim-treesitter.configs'.setup {
     ensure_installed = { "c", "vim", "lua", "toml", "rust", "python" },
     auto_install = true,
-    highlight = {
-      enable = true,
-      additional_vim_regex_highlighting=false,
-    },
     ident = { enable = true },
     rainbow = {
       enable = true,
@@ -476,20 +472,19 @@ let g:rustfmt_fail_silently = 0
 "     })
 " EOF
 
-" General file runners for various languages
-function! LangRunner()
-  if(&ft=="python")
-    nnoremap <leader>R :!python3 %<cr>
-  elseif(&ft=="r")
-    nnoremap <leader>R :!R --no-save --no-restore < %<cr>
-  elseif(&ft=="c")
-    nnoremap <leader>R :!make run<cr>
-  elseif(&ft=="rust")
-    nnoremap <leader>R :!cargo run<cr>
-  endif
-endfunction
-
-au BufEnter * call LangRunner()
+" " General file runners for various languages
+" function! LangRunner()
+"   if(&ft=="python")
+"     nnoremap <leader>R :!python3 %<cr>
+"   elseif(&ft=="r")
+"     nnoremap <leader>R :!R --no-save --no-restore < %<cr>
+"   elseif(&ft=="c")
+"     nnoremap <leader>R :!make run<cr>
+"   elseif(&ft=="rust")
+"     nnoremap <leader>R :!cargo run<cr>
+"   endif
+" endfunction
+" au BufEnter * call LangRunner()
 
 " " json syntax handling in conjunction with vim-json plugin
 " augroup json_autocmd
