@@ -12,3 +12,10 @@ sudo apt remove brltty
 # add LLVM binutils
 cargo install cargo-binutils
 rustup component add llvm-tools-preview
+
+
+# digilent waveforms dependencies
+# sudo apt install libqt5script5 libqt5scripttools5 libqt5multimedia5-plugins qml-module-qtmultimedia
+
+# sudo dpkg -i digilent.adept.runtime_2.27.9-amd64.deb
+# sudo dpkg -i digilent.waveforms_3.19.5_amd64.deb
