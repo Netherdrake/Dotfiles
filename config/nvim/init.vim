@@ -25,8 +25,6 @@ Plug 'editorconfig/editorconfig-vim'
 " search
 Plug 'henrik/vim-indexed-search'
 Plug 'mileszs/ack.vim'
-Plug 'rking/ag.vim'
-Plug 'Chun-Yang/vim-action-ag'
 Plug 'phaazon/hop.nvim'
 Plug 'rhysd/clever-f.vim'
 
@@ -79,6 +77,7 @@ Plug 'jalvesaq/Nvim-R', { 'for': 'R' }
 " Plug 'chrisbra/csv.vim'
 " Plug 'vim-pandoc/vim-rmarkdown'
 " Plug 'gaalcaras/ncm-R'
+"
 
 call plug#end()
 
@@ -232,32 +231,13 @@ vnoremap <leader>S :%S /
 let g:clever_f_show_prompt = 1
 let g:clever_f_across_no_line = 1
 
+
 " ctrlP config
 let g:ctrlp_map = "<c-p>"
 nnoremap <leader>t :CtrlPMRU<CR>
 nnoremap <leader>bp :CtrlPBuffer<CR>
 
-let s:ctrlp_fallback = 'ag %s
-  \ --nocolor --nogroup --depth 5
-  \ --hidden --follow --smart-case
-  \ --ignore .git
-  \ --ignore .cargo
-  \ --ignore .ropeproject
-  \ --ignore .ccache
-  \ --ignore .DS_Store
-  \ --ignore .opt1
-  \ --ignore .pylint.d
-  \ --ignore .shell
-  \ --ignore "build/*"
-  \ --ignore "dist/*"
-  \ --ignore "target/*"
-  \ --ignore "**/*.pyc"
-  \ --ignore "**/*.class"
-  \ --ignore "**/*.o"
-  \ -g ""'
-
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --others --exclude-standard', s:ctrlp_fallback]
-
+let g:ctrlp_user_command = 'rg --files --smart-case --max-depth 5 %s'
 
 " floatterm
 let g:floaterm_shell = "fish"
@@ -298,7 +278,12 @@ let g:gitgutter_enabled = 1
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 nnoremap <leader>g :Git 
-nnoremap <leader>a :Ag! 
+nnoremap <leader>a :Ack! 
+
+if executable("rg")
+    let g:ackprg='rg --vimgrep --smart-case --hidden'
+endif
+
 
 """"""""""""""""""""""""""""""""
 "
