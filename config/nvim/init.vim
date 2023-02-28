@@ -281,7 +281,7 @@ nnoremap <leader>g :Git
 nnoremap <leader>a :Ack! 
 
 if executable("rg")
-    let g:ackprg='rg --vimgrep --smart-case --hidden'
+    let g:ackprg='rg --vimgrep --smart-case'
 endif
 
 
