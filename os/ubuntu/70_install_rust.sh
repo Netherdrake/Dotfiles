@@ -13,6 +13,7 @@ rustup component add clippy
 
 cargo install cargo-watch
 cargo install evcxr
+cargo install evcxr_repl
 
 rustup install nightly
 rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
