@@ -57,7 +57,7 @@ function daemon
     eval $argv > /dev/null 2>&1 &
 end
 
-function pass
+function rand
     gpg --gen-random --armor 1 30
 end
 
