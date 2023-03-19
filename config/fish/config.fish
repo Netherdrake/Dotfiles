@@ -67,13 +67,11 @@ alias cdp "cd (xclip -o)"
 alias vim "nvim"
 alias vi "nvim"
 alias rr "ranger"
+alias nnn "nnn -e"
 alias open "xdg-open"
 alias R "R --no-save --no-restore --quiet"
 alias rust "evcxr"
 
-# >>> conda initialize >>>
-# eval /home/user/anaconda3/bin/conda "shell.fish" "hook" $argv | source
-# <<< conda initialize <<<
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"

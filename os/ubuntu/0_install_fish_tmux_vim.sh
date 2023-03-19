@@ -8,7 +8,7 @@ sudo apt install -y libssl-dev pkg-config
 sudo apt install -y software-properties-common
 sudo apt install -y fish neovim tmux fzf ripgrep
 sudo apt install -y python3-dev python3-pip python3-tk
-sudo apt install -y ranger
+sudo apt install -y ranger nnn
 
 # could also get latest verison with
 # cargo install ripgrep
@@ -18,7 +18,10 @@ sudo apt install -y bat
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
 
-sudo snap install universal-ctags
+
+## Install staps
+sudo snap install -y universal-ctags
+
 
 # Configure git
 cp ../../config/.gitignore ~/.gitignore
@@ -26,7 +29,8 @@ git config --global pull.ff only
 git config --global init.defaultBranch master
 git config --global core.editor "nvim"
 git config --global core.excludesfile '~/.gitignore'
-git config --global user.name "Netherdrake"
+# git config --global user.name "Netherdrake"
+
 
 # Enable Fish by Default
 grep -q -F 'fish' ~/.bashrc || echo 'exec fish' >> ~/.bashrc
@@ -38,6 +42,7 @@ sudo update-alternatives --config vim
 sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
 sudo update-alternatives --config editor
 
+
 # Install dotfiles
 echo "Installing dotfiles..."
 mkdir -p ~/.config/fish
@@ -46,8 +51,10 @@ cp -rv ../../config/fish/config.fish ~/.config/fish/config.fish
 cp -rv ../../config/nvim/init.vim  ~/.config/nvim/init.vim
 cp -rv ../../config/tmux/tmux.conf ~/.tmux.conf
 
+
 ## Install Tmux Plugin Manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 
 ## Configuring Vim
 echo "Configuring neovim..."
@@ -59,6 +66,7 @@ mkdir -p swap
 mkdir -p undo
 mkdir -p backup
 cd
+
 
 # install neovim python support
 pip3 install pynvim
