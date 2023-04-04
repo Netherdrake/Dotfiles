@@ -153,7 +153,7 @@ syntax on
 " enable light theme
 " set background=light
 let g:gruvbox_contrast_dark = "hard"
-let g:gruvbox_contrast_light = "medium"
+let g:gruvbox_contrast_light = "hard"
 let g:airline_theme = 'gruvbox'
 let g:gruvbox_underline = 0
 let g:gruvbox_undercurl = 0
@@ -261,12 +261,19 @@ let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
 let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
 
 " YouCompleteMe
-" let g:ycm_path_to_python_interpreter = '/usr/local/bin/python3'
 let g:ycm_filetype_blacklist = {}
 let g:ycm_key_list_select_completion = []
 let g:ycm_key_list_previous_completion = []
 let g:ycm_key_invoke_completion = "<C-j>"
 let g:ycm_collect_identifiers_from_tags_files = 1
+
+
+" python
+" let g:ycm_path_to_python_interpreter = '/usr/bin/python3.11'
+
+" clang
+let g:ycm_clangd_uses_ycmd_caching = 0
+" let g:ycm_clangd_binary_path = exepath("clangd")
 
 let g:vim_action_ag_escape_chars = '#%.^$*+?()[{\\|'
 
@@ -320,6 +327,10 @@ lua <<EOF
       debounce_text_changes = 150,
     }
     require('lspconfig')['pyright'].setup{
+        on_attach = on_attach,
+        flags = lsp_flags,
+    }
+    require('lspconfig')['clangd'].setup{
         on_attach = on_attach,
         flags = lsp_flags,
     }
