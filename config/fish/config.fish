@@ -66,12 +66,14 @@ alias cdp "cd (xclip -o)"
 
 alias vim "nvim"
 alias vi "nvim"
-alias rr "ranger"
+alias rrr "ranger"
 alias nnn "nnn -e"
 alias open "xdg-open"
 alias R "R --no-save --no-restore --quiet"
 alias rust "evcxr"
 
+# Make nvim default
+export EDITOR=/usr/bin/nvim
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
