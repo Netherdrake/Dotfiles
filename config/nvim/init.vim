@@ -188,6 +188,7 @@ nnoremap <leader>V :so  ~/.config/nvim/init.vim<CR>
 " shortcuts for togglables and popups
 nnoremap <leader>1 :FloatermToggle<CR>
 tnoremap <leader>1 <C-\><C-n>:FloatermToggle<CR>
+nnoremap <leader>2 :FloatermNew --disposable broot<CR>
 lua require'trouble'.setup()
 nnoremap <leader>3 <cmd>TroubleToggle<cr>
 nnoremap <leader>4 :TagbarToggle<CR>
@@ -200,37 +201,13 @@ nnoremap <expr> <leader>0 ':set background='.(&background=='dark' ? "light" : "d
 "
 """"""""""""""""""""""""""""""""
 
-" easy motion rebinded
+" easy-motion bindings
 lua require'hop'.setup()
 nmap <leader>f :HopPattern<CR>
 
 " clever-f prompt
 let g:clever_f_show_prompt = 1
 let g:clever_f_across_no_line = 1
-
-" telescope
-nnoremap <C-p> :Telescope find_files<CR>
-nnoremap <leader>t :Telescope oldfiles<CR>
-nnoremap <leader>a :Telescope live_grep<CR>
-
-lua <<EOF
-local actions = require("telescope.actions")
-require("telescope").setup{
-defaults = {
-    mappings = {
-        n = {
-            ["<C-k>"] = actions.move_selection_previous,
-            ["<C-j>"] = actions.move_selection_next
-            },
-        i = {
-            ["<C-k>"] = actions.move_selection_previous,
-            ["<C-j>"] = actions.move_selection_next
-            },
-        },
-    }
-}
-EOF
-
 
 " floatterm
 let g:floaterm_shell = "fish"
@@ -258,7 +235,6 @@ let g:ycm_key_list_previous_completion = []
 let g:ycm_key_invoke_completion = "<C-j>"
 let g:ycm_collect_identifiers_from_tags_files = 1
 
-
 " python
 " let g:ycm_path_to_python_interpreter = '/usr/bin/python3.11'
 
@@ -266,7 +242,6 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_clangd_uses_ycmd_caching = 0
 let g:ycm_clangd_binary_path = exepath("clangd")
 
-let g:vim_action_ag_escape_chars = '#%.^$*+?()[{\\|'
 
 " configure universal ctags
 " let g:tagbar_ctags_bin = '/snap/bin/universal-ctags'
@@ -278,6 +253,29 @@ let g:gitgutter_enabled = 1
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 nnoremap <leader>g :Git 
+
+" telescope
+nnoremap <C-p> :Telescope find_files<CR>
+nnoremap <leader>t :Telescope oldfiles<CR>
+nnoremap <leader>a :Telescope live_grep<CR>
+
+lua <<EOF
+local actions = require("telescope.actions")
+require("telescope").setup{
+defaults = {
+    mappings = {
+        n = {
+            ["<C-k>"] = actions.move_selection_previous,
+            ["<C-j>"] = actions.move_selection_next
+            },
+        i = {
+            ["<C-k>"] = actions.move_selection_previous,
+            ["<C-j>"] = actions.move_selection_next
+            },
+        },
+    }
+}
+EOF
 
 
 " Nvim LSP
@@ -450,6 +448,7 @@ let g:rustfmt_fail_silently = 0
 " EOF
 
 
+" markdown & text files
 let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
 let g:pencil#autoformat = 1
 let g:pencil#textwidth = 74
