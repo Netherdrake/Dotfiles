@@ -259,6 +259,7 @@ nnoremap <leader>g :Git
 nnoremap <C-p> :Telescope find_files<CR>
 nnoremap <leader>t :Telescope oldfiles<CR>
 nnoremap <leader>a :Telescope live_grep<CR>
+nnoremap <leader>ws :Telescope git_status<CR>
 
 lua <<EOF
 local actions = require("telescope.actions")
@@ -297,13 +298,14 @@ lua <<EOF
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
       vim.keymap.set('n', 'gtd', vim.lsp.buf.type_definition, bufopts)
       vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-      -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
       vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, bufopts)
-      vim.keymap.set('n', 'gh', vim.lsp.buf.hover, bufopts)
-      vim.keymap.set('n', 'gH', vim.lsp.buf.signature_help, bufopts)
+      vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+      vim.keymap.set('n', 'gh', vim.lsp.buf.signature_help, bufopts)
       vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
       vim.keymap.set('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
       vim.keymap.set('n', '<Leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, bufopts)
+      vim.keymap.set('n', '<Leader>cd', vim.diagnostic.open_float, bufopts)
+      vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, bufopts)
       vim.keymap.set('n', '<Leader>re', vim.lsp.buf.rename, bufopts)
     end
 
