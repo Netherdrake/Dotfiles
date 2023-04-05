@@ -13,7 +13,6 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'vim-airline/vim-airline'
 
 " core plugins
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -23,7 +22,6 @@ Plug 'editorconfig/editorconfig-vim'
 
 " search
 Plug 'henrik/vim-indexed-search'
-Plug 'mileszs/ack.vim'
 Plug 'phaazon/hop.nvim'
 Plug 'rhysd/clever-f.vim'
 
@@ -47,7 +45,6 @@ Plug 'nvim-telescope/telescope.nvim'
 " togglable panels
 Plug 'voldikss/vim-floaterm'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'yegappan/taglist'
 Plug 'preservim/tagbar'
 Plug 'folke/trouble.nvim'
 
@@ -123,7 +120,6 @@ set scrolloff=8
 set undodir=~/.vim/tmp/undo/
 set backupdir=~/.vim/tmp/backup/
 set directory=~/.vim/tmp/swap/
-set backupskip=/tmp/*,/private/tmp/*"
 set backup
 set writebackup
 set noswapfile
@@ -141,17 +137,16 @@ map <Space> <leader>
 set mouse=a
 
 " use ESC to switch terminal to normal mode (might break some things)
-" consider using Ctrl-W + N
-tnoremap <Esc> <C-\><C-n>
+" tnoremap <Esc> <C-\><C-n>
 
 " visual reselect of just pasted
 nnoremap gp `[v`]
 
-"make enter break and do newlines
+" make enter break and do newlines
 nnoremap <CR> i<CR><Esc>==
 
-" make space in normal mode add space
-" nnoremap <Space> i<Space><Esc>l
+" quick way to shift text forward
+nnoremap <C-Space> i<Space><Esc>l
 
 " Paste without overwriting the yank register
 xnoremap <leader>p \"_dP
@@ -191,14 +186,12 @@ nnoremap <leader>V :so  ~/.config/nvim/init.vim<CR>
 
 
 " shortcuts for togglables and popups
-nnoremap <leader>1 :FloatermNew fish<CR>
-nnoremap <leader>2 :FloatermNew ranger<CR>
-nnoremap <leader>3 :TlistToggle<CR>
+nnoremap <leader>1 :FloatermToggle<CR>
+tnoremap <leader>1 <C-\><C-n>:FloatermToggle<CR>
+lua require'trouble'.setup()
+nnoremap <leader>3 <cmd>TroubleToggle<cr>
 nnoremap <leader>4 :TagbarToggle<CR>
 nnoremap <leader>5 :NERDTreeToggle<CR>
-nnoremap <leader>6 <cmd>Telescope live_grep<cr>
-lua require'trouble'.setup()
-nnoremap <leader>9 <cmd>TroubleToggle<cr>
 nnoremap <expr> <leader>0 ':set background='.(&background=='dark' ? "light" : "dark")."<CR>"
 
 """"""""""""""""""""""""""""""""
@@ -215,13 +208,29 @@ nmap <leader>f :HopPattern<CR>
 let g:clever_f_show_prompt = 1
 let g:clever_f_across_no_line = 1
 
+" telescope
+nnoremap <C-p> :Telescope find_files<CR>
+nnoremap <leader>t :Telescope oldfiles<CR>
+nnoremap <leader>a :Telescope live_grep<CR>
 
-" ctrlP config
-let g:ctrlp_map = "<c-p>"
-nnoremap <leader>t :CtrlPMRU<CR>
-nnoremap <leader>bp :CtrlPBuffer<CR>
+lua <<EOF
+local actions = require("telescope.actions")
+require("telescope").setup{
+defaults = {
+    mappings = {
+        n = {
+            ["<C-k>"] = actions.move_selection_previous,
+            ["<C-j>"] = actions.move_selection_next
+            },
+        i = {
+            ["<C-k>"] = actions.move_selection_previous,
+            ["<C-j>"] = actions.move_selection_next
+            },
+        },
+    }
+}
+EOF
 
-let g:ctrlp_user_command = 'rg --files --smart-case --max-depth 5 %s'
 
 " floatterm
 let g:floaterm_shell = "fish"
@@ -264,16 +273,11 @@ let g:vim_action_ag_escape_chars = '#%.^$*+?()[{\\|'
 " univesal ctags installed via ubuntu snap don't have read access to /tmp
 let g:tagbar_use_cache = 0
 
-" git and ack stuff
+" git
 let g:gitgutter_enabled = 1
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 nnoremap <leader>g :Git 
-nnoremap <leader>a :Ack! 
-
-if executable("rg")
-    let g:ackprg='rg --vimgrep --smart-case'
-endif
 
 
 " Nvim LSP
