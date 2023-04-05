@@ -3,6 +3,7 @@
 " SETTINGS & KEYBINDINGS
 "
 """"""""""""""""""""""""""""""""
+set encoding=utf-8
 set expandtab
 set smarttab
 set shiftwidth=4
@@ -25,22 +26,26 @@ set wildmenu
 set noshowmode
 set cmdheight=1
 set nofoldenable
+set ruler
 " set autoread
 
 " backup/persistance settings
-set undodir=~/.vim/tmp/undo/
-set backupdir=~/.vim/tmp/backup/
-set directory=~/.vim/tmp/swap/
-set backupskip=/tmp/*,/private/tmp/*"
+set undodir=/tmp
+set backupdir=/tmp
+set directory=/tmp
 set backup
 set writebackup
 set noswapfile
 
 " set <leader>
 let mapleader=","
+map <Space> <leader>
 
 " enable mouse
 set mouse=a
+
+" built-in file explorer
+nnoremap <leader>5 :Ex<CR>
 
 " visual reselect of just pasted
 nnoremap gp `[v`]
@@ -54,12 +59,16 @@ nnoremap <leader>j i<CR><Esc>==
 nnoremap <Space> i<Space><Esc>l
 
 " better scrolling
-nnoremap <C-j> <C-d>
-nnoremap <C-k> <C-u>
+nnoremap <C-j> <C-d>zz
+nnoremap <C-k> <C-u>zz
 
 " consistent menu navigation
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
+
+" Move highlighted text
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " reload all open buffers
 nnoremap <leader>Ra :tabdo exec "windo e!"
@@ -74,19 +83,13 @@ nnoremap N Nzzzv
 
 " Use sane regexes
 nnoremap <leader>/ /\v
-vnoremap <leader>/ /\v
-
-" Use :Subvert search
-nnoremap <leader>// :S /
-vnoremap <leader>// :S /
 
 " Use regular replace
 nnoremap <leader>s :%s /
-vnoremap <leader>s :%s /
 
-" Use :Subvert replace
-nnoremap <leader>S :%S /
-vnoremap <leader>S :%S /
+" open vimrc
+nnoremap <leader>v :e  ~/.vimrc<CR>
+nnoremap <leader>V :tabnew  ~/.vimrc<CR>
 
 
 " Make sure Vim returns to the same line when you reopen a file.
@@ -106,8 +109,6 @@ nnoremap <leader>hh :call clearmatches()<CR>:noh<CR>
 " BUG WORKAROUNDS
 "
 """"""""""""""""""""""""""""""""
-" not a vi
-set encoding=utf-8
 
 " macos vs linux clipboard
 if has("mac")
@@ -148,6 +149,3 @@ let g:bufExplorerFindActive=0
 " alternative approach for lines that are too long
 set colorcolumn=
 
-" open vimrc
-nnoremap <leader>v :e  ~/.vimrc<CR>
-nnoremap <leader>V :tabnew  ~/.vimrc<CR>

@@ -16,7 +16,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
 Plug 'airblade/vim-gitgutter'
@@ -90,11 +89,13 @@ call plug#end()
 "
 """"""""""""""""""""""""""""""""
 set encoding=utf-8
+set shell=/usr/bin/fish
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set expandtab
 set smarttab
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
 set autoindent
 set ruler
 set hidden
@@ -102,21 +103,20 @@ set ignorecase
 set smartcase
 set showmatch
 set incsearch
-set hls
+set hlsearch
 set relativenumber
 set ls=2
 set cursorline
 set cursorlineopt=line
 set nowrap
 set backspace=indent,eol,start
-set shell=/usr/bin/fish
 set completeopt -=preview
 set textwidth=100
 set wildmenu
 set noshowmode
 set cmdheight=1
-" set ch=0
 set nofoldenable
+set scrolloff=8
 " set autoread
 
 " backup/persistance settings
@@ -135,41 +135,10 @@ set undolevels=100
 
 " set <leader>
 let mapleader=","
+map <Space> <leader>
 
 " enable mouse
 set mouse=a
-
-" show trailing whitespaces
-set list
-set listchars=tab:·\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
-augroup ListChars2
-    au!
-    autocmd filetype go set listchars+=tab:\ \ 
-    autocmd ColorScheme * hi! link SpecialKey Normal
-augroup END
-
-" syntax highlighting
-syntax on
-" enable light theme
-" set background=light
-let g:gruvbox_contrast_dark = "hard"
-let g:gruvbox_contrast_light = "hard"
-let g:airline_theme = 'gruvbox'
-let g:gruvbox_underline = 0
-let g:gruvbox_undercurl = 0
-" colorscheme needs to be called after setting contrast
-colorscheme gruvbox
-
-" shortcuts for togglables and popups
-nnoremap <leader>1 :FloatermNew fish<CR>
-nnoremap <leader>2 :FloatermNew ranger<CR>
-nnoremap <leader>3 :TlistToggle<CR>
-nnoremap <leader>4 :TagbarToggle<CR>
-nnoremap <leader>5 :NERDTreeToggle<CR>
-nnoremap <leader>6 <cmd>Telescope live_grep<cr>
-lua require'trouble'.setup()
-nnoremap <leader>9 <cmd>TroubleToggle<cr>
-nnoremap <expr> <leader>0 ':set background='.(&background=='dark' ? "light" : "dark")."<CR>"
 
 " use ESC to switch terminal to normal mode (might break some things)
 " consider using Ctrl-W + N
@@ -180,27 +149,20 @@ nnoremap gp `[v`]
 
 "make enter break and do newlines
 nnoremap <CR> i<CR><Esc>==
-" nnoremap <CR> O<Esc>j
-nnoremap <leader>j i<CR><Esc>==
 
-"make space in normal mode add space
-nnoremap <Space> i<Space><Esc>l
+" make space in normal mode add space
+" nnoremap <Space> i<Space><Esc>l
+
+" Paste without overwriting the yank register
+xnoremap <leader>p \"_dP
 
 " better scrolling
-nnoremap <C-j> <C-d>
-nnoremap <C-k> <C-u>
+nnoremap <C-j> <C-d>zz
+nnoremap <C-k> <C-u>zz
 
 " consistent menu navigation
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
-
-" easy motion rebinded
-lua require'hop'.setup()
-nmap <leader>f :HopPattern<CR>
-
-" open vimrc
-nnoremap <leader>v :e  ~/.config/nvim/init.vim<CR>
-nnoremap <leader>V :so  ~/.config/nvim/init.vim<CR>
 
 " reload all open buffers
 nnoremap <leader>Ra :tabdo exec "windo e!"
@@ -213,21 +175,41 @@ nnoremap <leader>. <C-i>
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
+" Move highlighted text
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
 " Use sane regexes
 nnoremap <leader>/ /\v
-vnoremap <leader>/ /\v
-
-" Use :Subvert search
-nnoremap <leader>// :S /
-vnoremap <leader>// :S /
 
 " Use regular replace
 nnoremap <leader>s :%s /
-vnoremap <leader>s :%s /
 
-" Use :Subvert replace
-nnoremap <leader>S :%S /
-vnoremap <leader>S :%S /
+" open vimrc
+nnoremap <leader>v :e  ~/.config/nvim/init.vim<CR>
+nnoremap <leader>V :so  ~/.config/nvim/init.vim<CR>
+
+
+" shortcuts for togglables and popups
+nnoremap <leader>1 :FloatermNew fish<CR>
+nnoremap <leader>2 :FloatermNew ranger<CR>
+nnoremap <leader>3 :TlistToggle<CR>
+nnoremap <leader>4 :TagbarToggle<CR>
+nnoremap <leader>5 :NERDTreeToggle<CR>
+nnoremap <leader>6 <cmd>Telescope live_grep<cr>
+lua require'trouble'.setup()
+nnoremap <leader>9 <cmd>TroubleToggle<cr>
+nnoremap <expr> <leader>0 ':set background='.(&background=='dark' ? "light" : "dark")."<CR>"
+
+""""""""""""""""""""""""""""""""
+"
+" Plugin Config
+"
+""""""""""""""""""""""""""""""""
+
+" easy motion rebinded
+lua require'hop'.setup()
+nmap <leader>f :HopPattern<CR>
 
 " clever-f prompt
 let g:clever_f_show_prompt = 1
@@ -273,7 +255,7 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 
 " clang
 let g:ycm_clangd_uses_ycmd_caching = 0
-" let g:ycm_clangd_binary_path = exepath("clangd")
+let g:ycm_clangd_binary_path = exepath("clangd")
 
 let g:vim_action_ag_escape_chars = '#%.^$*+?()[{\\|'
 
@@ -292,13 +274,6 @@ nnoremap <leader>a :Ack!
 if executable("rg")
     let g:ackprg='rg --vimgrep --smart-case'
 endif
-
-
-""""""""""""""""""""""""""""""""
-"
-" PROGRAMMING LANGUAGES
-"
-""""""""""""""""""""""""""""""""
 
 
 " Nvim LSP
@@ -470,31 +445,6 @@ let g:rustfmt_fail_silently = 0
 "     })
 " EOF
 
-" " General file runners for various languages
-" function! LangRunner()
-"   if(&ft=="python")
-"     nnoremap <leader>R :!python3 %<cr>
-"   elseif(&ft=="r")
-"     nnoremap <leader>R :!R --no-save --no-restore < %<cr>
-"   elseif(&ft=="c")
-"     nnoremap <leader>R :!make run<cr>
-"   elseif(&ft=="rust")
-"     nnoremap <leader>R :!cargo run<cr>
-"   endif
-" endfunction
-" au BufEnter * call LangRunner()
-
-" " json syntax handling in conjunction with vim-json plugin
-" augroup json_autocmd
-"   autocmd!
-"   autocmd FileType json set autoindent
-"   autocmd FileType json set formatoptions=tcq2l
-"   autocmd FileType json set textwidth=78 shiftwidth=2
-"   autocmd FileType json set softtabstop=2 tabstop=8
-"   autocmd FileType json set expandtab
-"   autocmd FileType json set foldmethod=syntax
-" augroup END
-"
 
 let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
 let g:pencil#autoformat = 1
@@ -506,6 +456,25 @@ augroup pencil
   autocmd FileType markdown,mkd call pencil#init()
   autocmd FileType text         call pencil#init()
 augroup END
+
+
+""""""""""""""""""""""""""""""""
+"
+" COLOURS and THEME
+"
+""""""""""""""""""""""""""""""""
+
+" syntax highlighting
+syntax on
+" enable light theme
+" set background=light
+let g:gruvbox_contrast_dark = "hard"
+let g:gruvbox_contrast_light = "hard"
+let g:airline_theme = 'gruvbox'
+let g:gruvbox_underline = 0
+let g:gruvbox_undercurl = 0
+" colorscheme needs to be called after setting contrast
+colorscheme gruvbox
 
 
 
@@ -571,6 +540,15 @@ fu! Retab()
   :retab
   :%s/\s\+$//
 endfunction
+
+" show trailing whitespaces
+set list
+set listchars=tab:·\ ,trail:¬,nbsp:.,extends:❯,precedes:❮
+augroup ListChars2
+    au!
+    autocmd filetype go set listchars+=tab:\ \ 
+    autocmd ColorScheme * hi! link SpecialKey Normal
+augroup END
 
 """"""""""""""""""""""""""""""""
 "
