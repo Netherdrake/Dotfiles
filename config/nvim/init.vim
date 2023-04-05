@@ -58,14 +58,13 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'dense-analysis/ale' "syntastic successor, autocomplete
 
 " Python
+Plug 'python-mode/python-mode', { 'for': 'python' }
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
 Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
-Plug 'python-mode/python-mode', { 'for': 'python' }
 
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
-" Plug 'simrat39/rust-tools.nvim' "clashes with nvim-lspconfig
 " Plug 'mfussenegger/nvim-dap' "experimental debugger
 
 " R
@@ -195,6 +194,10 @@ nnoremap <leader>4 :TagbarToggle<CR>
 nnoremap <leader>5 :NERDTreeToggle<CR>
 nnoremap <expr> <leader>0 ':set background='.(&background=='dark' ? "light" : "dark")."<CR>"
 
+nnoremap <F1> :Telescope help_tags<CR>
+nnoremap <F2> :Telescope man_pages<CR>
+nnoremap <F4> :Telescope commands<CR>
+
 """"""""""""""""""""""""""""""""
 "
 " Plugin Config
@@ -213,15 +216,13 @@ let g:clever_f_across_no_line = 1
 let g:floaterm_shell = "fish"
 let g:floaterm_width  = 0.8
 let g:floaterm_height = 0.8
-let g:floaterm_keymap_toggle   = '<F1>'
-let g:floaterm_keymap_next     = '<F2>'
 
 " airline
 if !exists("g:airline_symbols")
   let g:airline_symbols = {}
 endif
 let g:airline_powerline_fonts=1
-let g:airline#extensions#branch#empty_message  =  "no .git"
+let g:airline#extensions#branch#empty_message  =  "---"
 let g:airline#extensions#whitespace#enabled    =  0
 let g:airline#extensions#tabline#enabled       =  1
 let g:airline#extensions#tabline#tab_nr_type   =  1 " tab number
@@ -273,7 +274,13 @@ defaults = {
             ["<C-j>"] = actions.move_selection_next
             },
         },
-    }
+    },
+	pickers = {
+		find_files = {
+			-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+		},
+	},
 }
 EOF
 
@@ -290,7 +297,8 @@ lua <<EOF
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
       vim.keymap.set('n', 'gtd', vim.lsp.buf.type_definition, bufopts)
       vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-      vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+      -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+      vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, bufopts)
       vim.keymap.set('n', 'gh', vim.lsp.buf.hover, bufopts)
       vim.keymap.set('n', 'gH', vim.lsp.buf.signature_help, bufopts)
       vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
@@ -394,17 +402,19 @@ let g:pymode_lint_sort = ['E','C']
 let g:slime_target = "neovim"
 let g:slime_python_ipython = 1
 " let g:slime_dont_ask_default = 1
+let g:slime_no_mappings = 1
 
 " Use '##' to define cells instead of using marks
 let g:ipython_cell_delimit_cells_by = 'tags'
+let g:ipython_cell_tag = '##'
+
 " Rstudio/ipython habit
-autocmd FileType python nnoremap <buffer> <CR> :SlimeSendCurrentLine<CR>gj
 autocmd FileType python nnoremap <buffer> <leader>r :SlimeSendCurrentLine<CR>
+autocmd FileType python vnoremap <buffer> <leader>r :SlimeRegionSend<CR>
 autocmd FileType python xnoremap <buffer> <leader>r :SlimeSend<CR>
+autocmd FileType python nnoremap <buffer> <leader>R :IPythonCellRun<CR>
 autocmd FileType python nnoremap <buffer> <leader>w :IPythonCellRunTime<CR>
 autocmd FileType python nnoremap <buffer> <leader>c :IPythonCellExecuteCellJump<CR>
-" autocmd FileType python nnoremap <buffer> <C-j> :IPythonCellNextCell<CR>
-" autocmd FileType python nnoremap <buffer> <C-k> :IPythonCellPrevCell<CR>
 autocmd FileType python nnoremap <buffer> <leader>d :SlimeSend1 plt.show()<CR>
 autocmd FileType python nnoremap <buffer> <leader>x :IPythonCellRestart<CR>
 
@@ -431,21 +441,6 @@ autocmd FileType r nnoremap <buffer> <CR> <Plug>(RDSendLine)
 let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
-
-" lua <<EOF
-"     local rt = require("rust-tools")
-"     rt.setup({
-"       server = {
-"         on_attach = function(_, bufnr)
-"           -- Hover actions
-"           vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-"           -- Code action groups
-"           vim.keymap.set("n", "<Leader>he", rt.inlay_hints.enable, { buffer = bufnr })
-"           vim.keymap.set("n", "<Leader>hd", rt.inlay_hints.disable, { buffer = bufnr })
-"         end,
-"       },
-"     })
-" EOF
 
 
 " markdown & text files
