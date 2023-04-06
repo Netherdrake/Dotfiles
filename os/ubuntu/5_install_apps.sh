@@ -3,4 +3,4 @@
 # Etcher
 
 # screenshot tool
-sudo apt install scrot
+sudo apt install scrot flameshot

@@ -1,0 +1,85 @@
+[legacy]
+default-show-menubar=false
+headerbar=@mb false
+
+[legacy/profiles:]
+default='6f2fc592-3d9e-4270-818e-a96fa960e3b2'
+list=['b2949e2a-d9a8-4d37-8bd8-821cebf180fd', '633a8dd0-5f9e-465c-8b64-30c89241a105', '6f2fc592-3d9e-4270-818e-a96fa960e3b2']
+
+[legacy/profiles:/:633a8dd0-5f9e-465c-8b64-30c89241a105]
+audible-bell=false
+background-color='rgb(255,255,221)'
+background-transparency-percent=0
+bold-color='#6272a4'
+bold-color-same-as-fg=false
+bold-is-bright=false
+cursor-background-color='#44475a'
+cursor-blink-mode='off'
+cursor-colors-set=true
+cursor-foreground-color='#E64747'
+cursor-shape='block'
+font='Monospace 13'
+foreground-color='rgb(0,0,0)'
+highlight-background-color='rgb(134,136,150)'
+highlight-colors-set=true
+highlight-foreground-color='#282a36'
+palette=['rgb(0,0,0)', 'rgb(170,0,0)', 'rgb(0,170,0)', 'rgb(170,85,0)', 'rgb(0,0,170)', 'rgb(170,0,170)', 'rgb(0,170,170)', 'rgb(170,170,170)', 'rgb(85,85,85)', 'rgb(255,85,85)', 'rgb(85,255,85)', 'rgb(255,255,85)', 'rgb(85,85,255)', 'rgb(255,85,255)', 'rgb(85,255,255)', 'rgb(255,255,255)']
+preserve-working-directory='always'
+scrollbar-policy='never'
+use-system-font=false
+use-theme-colors=false
+use-theme-transparency=false
+use-transparent-background=true
+visible-name='Regolith Light'
+
+[legacy/profiles:/:6f2fc592-3d9e-4270-818e-a96fa960e3b2]
+audible-bell=false
+background-color='#282a36'
+background-transparency-percent=0
+bold-color='#6272a4'
+bold-color-same-as-fg=false
+bold-is-bright=false
+cursor-background-color='#44475a'
+cursor-blink-mode='off'
+cursor-colors-set=true
+cursor-foreground-color='#E64747'
+font='Monospace 13'
+foreground-color='#f8f8f2'
+highlight-background-color='rgb(84,86,105)'
+highlight-colors-set=true
+highlight-foreground-color='#282a36'
+palette=['#282a36', '#E64747', '#42e66C', '#ffb86c', '#6272a4', '#ff79c6', '#75D7EC', '#f8f8f2', '#44475a', '#ff5555', '#50fa7b', '#f1fa8c', '#6272a4', '#bd93f9', '#8be9fd', '#f8f8f2']
+preserve-working-directory='always'
+scrollbar-policy='never'
+use-system-font=false
+use-theme-colors=false
+use-theme-transparency=false
+use-transparent-background=false
+visible-name='Regolith Dark'
+
+[legacy/profiles:/:b2949e2a-d9a8-4d37-8bd8-821cebf180fd]
+audible-bell=false
+background-color='#282a36'
+background-transparency-percent=5
+bold-color='#6272a4'
+bold-color-same-as-fg=false
+bold-is-bright=false
+cursor-background-color='#44475a'
+cursor-blink-mode='off'
+cursor-colors-set=true
+cursor-foreground-color='#E64747'
+font='RobotoMono Nerd Font 12'
+foreground-color='#f8f8f2'
+highlight-background-color='#44475a'
+highlight-colors-set=true
+highlight-foreground-color='#282a36'
+nord-gnome-terminal-version='0.1.0'
+palette=['#282a36', '#E64747', '#42e66C', '#ffb86c', '#6272a4', '#ff79c6', '#75D7EC', '#f8f8f2', '#44475a', '#ff5555', '#50fa7b', '#f1fa8c', '#6272a4', '#bd93f9', '#8be9fd', '#f8f8f2']
+preserve-working-directory='always'
+scrollbar-policy='never'
+use-system-font=false
+use-theme-background=false
+use-theme-colors=false
+use-theme-transparency=false
+use-transparent-background=true
+visible-name='Regolith'

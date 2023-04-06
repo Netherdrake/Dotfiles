@@ -4,18 +4,16 @@
  - Ubuntu remote minimal: Regular vim only, no plugins
 
 
-**[Documentation](https://github.com/Netherdrake/Dotfiles/tree/master/os)** for OS related setups.
-Install scripts are available for Ubuntu only.
-
-## Vim Language Support
-Rust *(Great)*  
-R, Python *(Good)*  
+## README
+ - [regolith2](config/regolith2/README.md)
+ - [i3](config/i3/README.md)
 
 ## Notes
 
-### Tmux + Vim Configs
-`tmux.conf` goes into `~/.tmux.conf`  
-`nvim/` and `fish/` go into `~/.config/(nvim|fish)`
+### Minimal vim on server
+```
+wget https://raw.githubusercontent.com/Netherdrake/Dotfiles/master/config/.vimrc -O .vimrc
+```
 
 ### Install Tmux Plugin Manager
 ```
@@ -32,7 +30,21 @@ https://github.com/tmux-plugins/tmux-yank
 Install this:  
 https://github.com/powerline/fonts
 
-Currently using _14pt Roboto Mono for Powerline._
+Some nice ones:
+ - `Roboto Mono for Powerline`
+ - `Source Code Pro Powerline Regular`
+ - `d2coding and droid sans`
+
+```
+sudo apt install powerline
+fc-cache -vf
+```
+
+For l337 icon suppport, install [Font-Awesome](https://github.com/FortAwesome/Font-Awesome/releases).
+```
+mkdir ~/.fonts
+cp ~/Downloads/fo/fonts/*.tff ~/.fonts
+```
 
 ## Re-compiling YCM (YouCompleteMe)
 ```

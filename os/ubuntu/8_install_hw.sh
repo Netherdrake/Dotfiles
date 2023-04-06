@@ -19,3 +19,6 @@ rustup component add llvm-tools-preview
 
 # sudo dpkg -i digilent.adept.runtime_2.27.9-amd64.deb
 # sudo dpkg -i digilent.waveforms_3.19.5_amd64.deb
+
+# PulseView logic analyzer UI
+# sudo apt install sigrok
