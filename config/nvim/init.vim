@@ -113,7 +113,7 @@ set noshowmode
 set cmdheight=1
 set nofoldenable
 set scrolloff=8
-" set autoread
+set autoread
 
 " backup/persistance settings
 set undodir=~/.vim/tmp/undo/
@@ -192,7 +192,7 @@ lua require'trouble'.setup()
 nnoremap <leader>3 <cmd>TroubleToggle<cr>
 nnoremap <leader>4 :TagbarToggle<CR>
 nnoremap <leader>5 :NERDTreeToggle<CR>
-nnoremap <expr> <leader>0 ':set background='.(&background=='dark' ? "light" : "dark")."<CR>"
+nnoremap <expr> <leader>0 ':set background='.(&background=='dark' ? "light" : "dark")."<CR>".':AirlineRefresh <CR>'
 
 nnoremap <F1> :Telescope help_tags<CR>
 nnoremap <F2> :Telescope man_pages<CR>
@@ -257,9 +257,11 @@ nnoremap <leader>g :Git
 
 " telescope
 nnoremap <C-p> :Telescope find_files<CR>
-nnoremap <leader>t :Telescope oldfiles<CR>
 nnoremap <leader>a :Telescope live_grep<CR>
-nnoremap <leader>ws :Telescope git_status<CR>
+nnoremap <leader>tr :Telescope oldfiles<CR>
+nnoremap <leader>ts :Telescope git_status<CR>
+nnoremap <leader>tf :Telescope git_files<CR>
+nnoremap <leader>tc :Telescope git_commits<CR>
 
 lua <<EOF
 local actions = require("telescope.actions")
@@ -404,7 +406,7 @@ let g:pymode_lint_sort = ['E','C']
 let g:slime_target = "neovim"
 let g:slime_python_ipython = 1
 " let g:slime_dont_ask_default = 1
-let g:slime_no_mappings = 1
+" let g:slime_no_mappings = 1
 
 " Use '##' to define cells instead of using marks
 let g:ipython_cell_delimit_cells_by = 'tags'
