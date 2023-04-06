@@ -1,8 +1,34 @@
 # Regolith 2
 
 ## Additional Packages
+Theme:
 ```
-sudo apt install i3xrocks-memory
+sudo apt install regolith-look-dracula
+```
+
+Additional widgets:
+```
+sudo apt install i3xrocks-focused-window-name i3xrocks-rofication i3xrocks-info i3xrocks-memory
+```
+
+On laptop also:
+```
+sudo apt install i3xrocks-battery
+```
+
+## .Xresources
+Set the black background. Update the date and clock configuration.
+
+Config: `~/.config/regolith2/Xresources`
+```
+regolith.wallpaper.file: 
+regolith.wallpaper.color.primary: black
+regolith.look.path: /usr/share/regolith-look/dracula
+
+i3xrocks.date.format2: "%a %b %d | %I:%M %p"
+
+i3-wm.window.border.size: 4
+i3-wm.floatingwindow.border.size: 4
 ```
 
 ## Optional: Install compositor
@@ -23,6 +49,10 @@ inactive-dim = 0.00;
 # Do not let dimness adjust based on window opacity.
 inactive-dim-fixed = true;
 ```
+
+## Reference
+General configuration:     https://regolith-desktop.com/docs/using-regolith/configuration/
+Xresources configuration:  https://regolith-desktop.com/docs/reference/xresources/
 
 # Gnome
 
