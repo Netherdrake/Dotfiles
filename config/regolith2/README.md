@@ -29,6 +29,15 @@ i3xrocks.date.format2: "%a %b %d | %I:%M %p"
 
 i3-wm.window.border.size: 4
 i3-wm.floatingwindow.border.size: 4
+
+i3-wm.client.focused.color.border: "#9B6BDF"
+i3-wm.client.focused.color.background: "#9B6BDF"
+i3-wm.client.focused.color.child_border: "#9B6BDF"
+i3-wm.client.focused.color.indicator: "#c49ff9"
+
+i3-wm.client.focused_inactive.color.border: "#bd93f9"
+i3-wm.client.focused_inactive.color.indicator: "#44475a"
+i3-wm.client.focused_inactive.color.child_border: "#44475a"
 ```
 
 ## Optional: Install compositor
