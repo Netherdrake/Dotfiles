@@ -38,6 +38,8 @@ i3-wm.client.focused.color.indicator: "#c49ff9"
 i3-wm.client.focused_inactive.color.border: "#bd93f9"
 i3-wm.client.focused_inactive.color.indicator: "#44475a"
 i3-wm.client.focused_inactive.color.child_border: "#44475a"
+
+i3-wm.client.unfocused.color.border: "#282a36"
 ```
 
 ## Optional: Install compositor

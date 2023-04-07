@@ -112,7 +112,7 @@ set wildmenu
 set noshowmode
 set cmdheight=1
 set nofoldenable
-set scrolloff=8
+set scrolloff=3
 set autoread
 
 " backup/persistance settings
