@@ -194,8 +194,8 @@ nnoremap <leader>4 :TagbarToggle<CR>
 nnoremap <leader>5 :NERDTreeToggle<CR>
 nnoremap <expr> <leader>0 ':set background='.(&background=='dark' ? "light" : "dark")."<CR>".':AirlineRefresh <CR>'
 
-nnoremap <F1> :Telescope help_tags<CR>
 nnoremap <F2> :Telescope man_pages<CR>
+nnoremap <F3> :Telescope help_tags<CR>
 nnoremap <F4> :Telescope commands<CR>
 
 """"""""""""""""""""""""""""""""
@@ -216,6 +216,7 @@ let g:clever_f_across_no_line = 1
 let g:floaterm_shell = "fish"
 let g:floaterm_width  = 0.8
 let g:floaterm_height = 0.8
+let g:floaterm_keymap_toggle = '<F1>'
 
 " airline
 if !exists("g:airline_symbols")
