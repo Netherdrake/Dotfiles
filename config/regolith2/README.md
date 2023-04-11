@@ -16,7 +16,7 @@ On laptop also:
 sudo apt install i3xrocks-battery
 ```
 
-## .Xresources
+## Xresources
 Set the black background. Update the date and clock configuration.
 
 Config: `~/.config/regolith2/Xresources`

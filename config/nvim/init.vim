@@ -36,7 +36,7 @@ Plug 'ycm-core/YouCompleteMe'
 Plug 'ervandew/supertab'
 
 " snippets
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " telescope
 Plug 'nvim-lua/plenary.nvim'
@@ -307,9 +307,9 @@ lua <<EOF
       vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
       vim.keymap.set('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
       vim.keymap.set('n', '<Leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, bufopts)
-      vim.keymap.set('n', '<Leader>cd', vim.diagnostic.open_float, bufopts)
-      vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, bufopts)
-      vim.keymap.set('n', '<Leader>re', vim.lsp.buf.rename, bufopts)
+      vim.keymap.set('n', '<Leader>ld', vim.diagnostic.open_float, bufopts)
+      vim.keymap.set('n', '<Leader>la', vim.lsp.buf.code_action, bufopts)
+      vim.keymap.set('n', '<Leader>lr', vim.lsp.buf.rename, bufopts)
     end
 
     local lsp_flags = {
@@ -413,15 +413,26 @@ let g:slime_python_ipython = 1
 let g:ipython_cell_delimit_cells_by = 'tags'
 let g:ipython_cell_tag = '##'
 
+" Start iPython shell
+fu! Ipython()
+  :vs | term ipython
+  :wincmd r
+  :wincmd h
+  :SlimeConfig
+endfunction
+
 " Rstudio/ipython habit
 autocmd FileType python nnoremap <buffer> <leader>r :SlimeSendCurrentLine<CR>
 autocmd FileType python vnoremap <buffer> <leader>r :SlimeRegionSend<CR>
 autocmd FileType python xnoremap <buffer> <leader>r :SlimeSend<CR>
-autocmd FileType python nnoremap <buffer> <leader>R :IPythonCellRun<CR>
-autocmd FileType python nnoremap <buffer> <leader>w :IPythonCellRunTime<CR>
-autocmd FileType python nnoremap <buffer> <leader>c :IPythonCellExecuteCellJump<CR>
-autocmd FileType python nnoremap <buffer> <leader>d :SlimeSend1 plt.show()<CR>
-autocmd FileType python nnoremap <buffer> <leader>x :IPythonCellRestart<CR>
+autocmd FileType python nnoremap <buffer> <leader>cr :IPythonCellExecuteCell<CR>
+autocmd FileType python nnoremap <buffer> <leader>cn :IPythonCellExecuteCellJump<CR>
+autocmd FileType python nnoremap <buffer> <leader>cc :IPythonCellClose<CR>:IPythonCellClear<CR>
+autocmd FileType python nnoremap <buffer> <leader>ct :IPythonCellRunTime<CR>
+autocmd FileType python nnoremap <buffer> <leader>cd :SlimeSend1 plt.show()<CR>
+autocmd FileType python nnoremap <buffer> <leader>cq :IPythonCellRestart<CR>
+autocmd FileType python nnoremap <buffer> <leader>cj :IPythonCellNextCell<CR>
+autocmd FileType python nnoremap <buffer> <leader>ck :IPythonCellPrevCell<CR>
 
 " R indentation
 augroup r_indent
