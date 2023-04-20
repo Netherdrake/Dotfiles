@@ -7,3 +7,7 @@ python3.11 -m pip install --upgrade pip
 
 # microsoft's language server for Python
 pip3 install -U pyright
+
+# gdbgui
+python3 -m pip install --user pipx
+pipx install gdbgui

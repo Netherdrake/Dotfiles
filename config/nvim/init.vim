@@ -192,7 +192,9 @@ lua require'trouble'.setup()
 nnoremap <leader>3 <cmd>TroubleToggle<cr>
 nnoremap <leader>4 :TagbarToggle<CR>
 nnoremap <leader>5 :NERDTreeToggle<CR>
-nnoremap <expr> <leader>0 ':set background='.(&background=='dark' ? "light" : "dark")."<CR>".':AirlineRefresh <CR>'
+nnoremap <expr> <leader>0 ':call ToggleDarkMode()'."<CR>"."<CR>"
+" nnoremap <expr> <leader>0 ':set background='.(&background=='dark' ? "light" : "dark")."<CR>".':AirlineRefresh <CR>'
+
 
 nnoremap <F2> :Telescope man_pages<CR>
 nnoremap <F3> :Telescope help_tags<CR>
@@ -428,11 +430,11 @@ autocmd FileType python xnoremap <buffer> <leader>r :SlimeSend<CR>
 autocmd FileType python nnoremap <buffer> <leader>cr :IPythonCellExecuteCell<CR>
 autocmd FileType python nnoremap <buffer> <leader>cn :IPythonCellExecuteCellJump<CR>
 autocmd FileType python nnoremap <buffer> <leader>cc :IPythonCellClose<CR>:IPythonCellClear<CR>
-autocmd FileType python nnoremap <buffer> <leader>ct :IPythonCellRunTime<CR>
 autocmd FileType python nnoremap <buffer> <leader>cd :SlimeSend1 plt.show()<CR>
+autocmd FileType python nnoremap <buffer> <leader>ct :IPythonCellRunTime<CR>
 autocmd FileType python nnoremap <buffer> <leader>cq :IPythonCellRestart<CR>
-autocmd FileType python nnoremap <buffer> <leader>cj :IPythonCellNextCell<CR>
-autocmd FileType python nnoremap <buffer> <leader>ck :IPythonCellPrevCell<CR>
+autocmd FileType python nnoremap <buffer> <C-d> :IPythonCellNextCell<CR>
+autocmd FileType python nnoremap <buffer> <C-u> :IPythonCellPrevCell<CR>
 
 " R indentation
 augroup r_indent
@@ -490,6 +492,18 @@ let g:gruvbox_undercurl = 0
 " colorscheme needs to be called after setting contrast
 colorscheme gruvbox
 
+
+fu ToggleDarkMode()
+    if &background == "dark"
+        let &background="light"
+        :AirlineRefresh
+        :!xdotool key -clearmodifiers Shift+F10 r 3
+    else
+        let &background="dark"
+        :AirlineRefresh
+        :!xdotool key -clearmodifiers Shift+F10 r 2
+    endif
+endfunction
 
 
 """"""""""""""""""""""""""""""""
