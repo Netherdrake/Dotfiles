@@ -75,6 +75,9 @@ alias rust "evcxr"
 # Make nvim default
 export EDITOR=/usr/bin/nvim
 
+# Setup NNN plugins
+export NNN_PLUG='c:fzcd;o:fzopen;l:launch;h:-!hx "$nnn"*;k:-!fuser -kiv "$nnn"*;b:-!bat "$nnn"*;v:!vim "$nnn";d:!cp -rv "$nnn" "$nnn".copy;'
+
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 export CARGO="$HOME/.cargo/bin/cargo"

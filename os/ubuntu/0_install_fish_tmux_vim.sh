@@ -19,8 +19,9 @@ mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
 
 
-## Install staps
+## Install snaps
 sudo snap install -y universal-ctags
+sudo snap install -y dragon # drag-n-drop for nnn
 
 
 # Configure git
@@ -96,5 +97,7 @@ sudo apt remove -y fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
+# configure NNN plugins
+curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs | sh
 
 echo "All Done."
