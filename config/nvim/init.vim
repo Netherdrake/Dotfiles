@@ -322,11 +322,15 @@ lua <<EOF
         on_attach = on_attach,
         flags = lsp_flags,
     }
+    require('lspconfig')['rust_analyzer'].setup{
+        on_attach = on_attach,
+        flags = lsp_flags,
+    }
     require('lspconfig')['clangd'].setup{
         on_attach = on_attach,
         flags = lsp_flags,
     }
-    require('lspconfig')['rust_analyzer'].setup{
+    require('lspconfig')['cmake'].setup{
         on_attach = on_attach,
         flags = lsp_flags,
     }
@@ -335,7 +339,7 @@ EOF
 " Treesitter LSP
 lua <<EOF
   require'nvim-treesitter.configs'.setup {
-    ensure_installed = { "c", "vim", "lua", "toml", "rust", "python" },
+    ensure_installed = {"vim", "lua", "toml", "rust", "python", "c", "cpp", "cuda", "cmake" },
     auto_install = true,
     ident = { enable = true },
     rainbow = {
