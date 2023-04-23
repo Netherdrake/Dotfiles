@@ -196,7 +196,7 @@ nnoremap <expr> <leader>0 ':call ToggleDarkMode()'."<CR>"."<CR>"
 " nnoremap <expr> <leader>0 ':set background='.(&background=='dark' ? "light" : "dark")."<CR>".':AirlineRefresh <CR>'
 
 
-nnoremap <F2> :Telescope man_pages<CR>
+nnoremap <F2> :Telescope man_pages sections=1,2,3<CR>
 nnoremap <F3> :Telescope help_tags<CR>
 nnoremap <F4> :Telescope commands<CR>
 
