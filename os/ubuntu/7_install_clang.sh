@@ -1,4 +1,5 @@
-sudo apt install -y clangd lldb cmake cmake-curses-gui
+# general dependencies
+sudo apt install -y gcc clangd ninja-build cmake cmake-curses-gui lldb
 
 # issue https://github.com/llvm/llvm-project/issues/55575
 sudo apt install python3-lldb-14

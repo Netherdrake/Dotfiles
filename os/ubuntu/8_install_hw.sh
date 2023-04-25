@@ -3,6 +3,10 @@
 # general deps
 sudo apt-get install -y gcc clang ninja-build cmake libudev-dev libusb-1.0-0 libssl-dev pkg-config libtinfo5
 
+# arm toolchain
+sudo apt install -y gcc-arm-none-eabi
+sudo apt install -y gdb-multiarch openocd qemu-system-arm
+
 # HackRF radio
 sudo apt install hackrf libhackrf-dev
 
@@ -13,6 +17,8 @@ sudo apt remove brltty
 cargo install cargo-binutils
 rustup component add llvm-tools-preview
 
+# st-flash etc
+sudo apt install stlink-tools
 
 # digilent waveforms dependencies
 # sudo apt install libqt5script5 libqt5scripttools5 libqt5multimedia5-plugins qml-module-qtmultimedia
