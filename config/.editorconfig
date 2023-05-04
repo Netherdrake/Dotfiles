@@ -2,32 +2,39 @@ root = true
 
 [*]
 charset=utf-8
-indent_style=space
-indent_size=4
-tab_width=4
 end_of_line=lf
-trim_trailing_whitespace=true
-insert_final_newline=false
-
-[*.{c,cpp,cppm,m,h,hpp,hhh,hh,cu,cuda}]
-indent_style = space
-indent_size = 4
-tab_width=4
 
 [*.py]
 indent_style = space
 indent_size = 4
+tab_width = 4
+trim_trailing_whitespace=true
+insert_final_newline=true
 
-[*.{hy,js,html}]
+[*.{c,cpp,cppm,m,h,hpp,hhh,hh,cu,cuda}]
 indent_style = space
-indent_size = 2
+indent_size = 4
+tab_width = 4
+trim_trailing_whitespace=true
+insert_final_newline=false
 
 [*.{toml,rs}]
-indent_style=space
-indent_size=4
+indent_style = space
+indent_size = 4
+tab_width = 4
+trim_trailing_whitespace=true
+insert_final_newline=false
 
 [*.{vimrc,vim}]
+indent_style = space
+indent_size = 4
+tab_width = 4
 trim_trailing_whitespace=false
+insert_final_newline=false
 
 [Makefile]
 indent_style = tab
+indent_size = 4
+tab_width = 4
+trim_trailing_whitespace=true
+insert_final_newline=false

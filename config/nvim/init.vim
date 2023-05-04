@@ -65,7 +65,6 @@ Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
-" Plug 'mfussenegger/nvim-dap' "experimental debugger
 
 " C++
 Plug 'derekwyatt/vim-fswitch'
@@ -472,16 +471,19 @@ let g:rustfmt_fail_silently = 0
 
 
 " C++ config
-function! s:CppMan()
+function! s:CppMan(target)
     let old_isk = &iskeyword
     setl iskeyword+=:
     let str = expand("<cword>")
     let &l:iskeyword = old_isk
-    " execute 'new | r ! cppman ' . str
-    call jobstart('xdg-open "https://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=' . str . '"')
+    if a:target ==# 'term'
+        execute 'vs | term cppman ' . str
+    else
+        call jobstart('xdg-open "https://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=' . str . '"')
+    endif
 endfunction
-command! CppMan :call s:CppMan()
-au FileType cpp nnoremap <buffer>K :CppMan<CR>
+au FileType cpp nnoremap <buffer>K :call <SID>CppMan("term")<CR>
+au FileType cpp nnoremap <buffer>O :call <SID>CppMan("browser")<CR>
 
 
 " switch between source/header files
