@@ -67,6 +67,9 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 " Plug 'mfussenegger/nvim-dap' "experimental debugger
 
+" C++
+Plug 'derekwyatt/vim-fswitch'
+
 " R
 Plug 'jalvesaq/Nvim-R', { 'for': 'R' }
 " Plug 'chrisbra/csv.vim'
@@ -187,11 +190,12 @@ nnoremap <leader>V :so  ~/.config/nvim/init.vim<CR>
 " shortcuts for togglables and popups
 nnoremap <leader>1 :FloatermToggle<CR>
 tnoremap <leader>1 <C-\><C-n>:FloatermToggle<CR>
-nnoremap <leader>2 :FloatermNew --disposable broot<CR>
+nnoremap <leader>2 :FloatermNew --disposable nnn<CR>
 lua require'trouble'.setup()
 nnoremap <leader>3 <cmd>TroubleToggle<cr>
 nnoremap <leader>4 :TagbarToggle<CR>
 nnoremap <leader>5 :NERDTreeToggle<CR>
+nnoremap <leader>6 :Telescope git_status<CR>
 nnoremap <expr> <leader>0 ':call ToggleDarkMode()'."<CR>"."<CR>"
 " nnoremap <expr> <leader>0 ':set background='.(&background=='dark' ? "light" : "dark")."<CR>".':AirlineRefresh <CR>'
 
@@ -281,12 +285,12 @@ defaults = {
             },
         },
     },
-	pickers = {
-		find_files = {
-			-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-		},
-	},
+    pickers = {
+        find_files = {
+            -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+            find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+        },
+    },
 }
 EOF
 
@@ -304,7 +308,7 @@ lua <<EOF
       vim.keymap.set('n', 'gtd', vim.lsp.buf.type_definition, bufopts)
       vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
       vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, bufopts)
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+      vim.keymap.set('n', 'H', vim.lsp.buf.hover, bufopts)
       vim.keymap.set('n', 'gh', vim.lsp.buf.signature_help, bufopts)
       vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
       vim.keymap.set('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
@@ -426,6 +430,8 @@ fu! Ipython()
   :wincmd h
   :SlimeConfig
 endfunction
+command! Ipython :call Ipython()
+command! IPython :call Ipython()
 
 " Rstudio/ipython habit
 autocmd FileType python nnoremap <buffer> <leader>r :SlimeSendCurrentLine<CR>
@@ -463,6 +469,26 @@ autocmd FileType r nnoremap <buffer> <CR> <Plug>(RDSendLine)
 let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
+
+
+" C++ config
+function! s:CppMan()
+    let old_isk = &iskeyword
+    setl iskeyword+=:
+    let str = expand("<cword>")
+    let &l:iskeyword = old_isk
+    " execute 'new | r ! cppman ' . str
+    call jobstart('xdg-open "https://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=' . str . '"')
+endfunction
+command! CppMan :call s:CppMan()
+au FileType cpp nnoremap <buffer>K :CppMan<CR>
+
+
+" switch between source/header files
+au BufEnter *.h let b:fswitchdst = 'c,cpp,m,cc' | let b:fswitchlocs = 'reg:|include.*|src/**|'
+au BufEnter *.c let b:fswitchdst = "h"
+au BufEnter *.cc let b:fswitchdst = "h,hpp"
+nnoremap <silent> gs :FSHere<CR>
 
 
 " markdown & text files
