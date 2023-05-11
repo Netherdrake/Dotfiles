@@ -13,3 +13,6 @@ sudo apt install ccls
 
 # compilation database for Makefile projects
 sudo apt install bear
+
+# instrumentation
+sudo apt install valgrind kcachegrind

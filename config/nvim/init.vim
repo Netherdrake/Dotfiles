@@ -432,13 +432,29 @@ endfunction
 command! Ipython :call Ipython()
 command! IPython :call Ipython()
 
+" a hack workaround for terminal not scrolling
+function! FixTerminalScroll(bufname)
+    let bufmap = map(range(1, winnr('$')), '[bufname(winbufnr(v:val)), v:val]')
+    let thewindow = filter(bufmap, 'v:val[0] =~# a:bufname')[0][1]
+    execute thewindow 'wincmd w'
+    execute thewindow 'normal i'
+    call feedkeys("_", "i")
+    execute 'sleep 50m'
+    call feedkeys("\<BS>", "i")
+    execute 'sleep 50m'
+    call feedkeys("\<C-\>\<C-n>", "i")
+    " execute thewindow 'normal j'
+    " execute 'wincmd p'
+endfunction
+
 " Rstudio/ipython habit
 autocmd FileType python nnoremap <buffer> <leader>r :SlimeSendCurrentLine<CR>
 autocmd FileType python vnoremap <buffer> <leader>r :SlimeRegionSend<CR>
 autocmd FileType python xnoremap <buffer> <leader>r :SlimeSend<CR>
-autocmd FileType python nnoremap <buffer> <leader>cr :IPythonCellExecuteCell<CR>
+autocmd FileType python nnoremap <buffer> <leader>cs :call FixTerminalScroll("ipython")<CR>
+autocmd FileType python nnoremap <buffer> <leader>cc :IPythonCellExecuteCell<CR>
 autocmd FileType python nnoremap <buffer> <leader>cn :IPythonCellExecuteCellJump<CR>
-autocmd FileType python nnoremap <buffer> <leader>cc :IPythonCellClose<CR>:IPythonCellClear<CR>
+autocmd FileType python nnoremap <buffer> <leader>cr :IPythonCellClose<CR>:IPythonCellClear<CR>
 autocmd FileType python nnoremap <buffer> <leader>cd :SlimeSend1 plt.show()<CR>
 autocmd FileType python nnoremap <buffer> <leader>ct :IPythonCellRunTime<CR>
 autocmd FileType python nnoremap <buffer> <leader>cq :IPythonCellRestart<CR>
@@ -477,13 +493,13 @@ function! s:CppMan(target)
     let str = expand("<cword>")
     let &l:iskeyword = old_isk
     if a:target ==# 'term'
-        execute 'vs | term cppman ' . str
+        execute 'split | term cppman ' . str
     else
         call jobstart('xdg-open "https://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=' . str . '"')
     endif
 endfunction
 au FileType cpp nnoremap <buffer>K :call <SID>CppMan("term")<CR>
-au FileType cpp nnoremap <buffer>O :call <SID>CppMan("browser")<CR>
+au FileType cpp nnoremap <leader>o :call <SID>CppMan("browser")<CR>
 
 
 " switch between source/header files
