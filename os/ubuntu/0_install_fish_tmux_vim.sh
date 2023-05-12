@@ -6,9 +6,15 @@ sudo apt upgrade -y
 sudo apt install -y curl git cmake build-essential
 sudo apt install -y libssl-dev pkg-config
 sudo apt install -y software-properties-common
-sudo apt install -y fish neovim tmux fzf ripgrep
+sudo apt install -y fish tmux fzf ripgrep
 sudo apt install -y python3-dev python3-pip python3-tk
 sudo apt install -y ranger nnn
+
+# neovim snap
+sudo snap install neovim --classic
+
+# install neovim python support
+pip3 install pynvim
 
 # could also get latest verison with
 # cargo install ripgrep
@@ -37,11 +43,11 @@ git config --global user.name "user.email"
 # Enable Fish by Default
 grep -q -F 'fish' ~/.bashrc || echo 'exec fish' >> ~/.bashrc
 
-sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+sudo update-alternatives --install /usr/bin/vi vi /snap/bin/nvim 60
 sudo update-alternatives --config vi
-sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+sudo update-alternatives --install /usr/bin/vim vim /snap/bin/nvim 60
 sudo update-alternatives --config vim
-sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+sudo update-alternatives --install /usr/bin/editor editor /snap/bin/nvim 60
 sudo update-alternatives --config editor
 
 
@@ -69,9 +75,6 @@ mkdir -p undo
 mkdir -p backup
 cd
 
-
-# install neovim python support
-pip3 install pynvim
 
 # install vim-plug
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \

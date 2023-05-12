@@ -75,6 +75,9 @@ alias rust "evcxr"
 # Make nvim default
 export EDITOR=/usr/bin/nvim
 
+# Pyright, bat
+export PATH="$HOME/.local/bin:$PATH"
+
 # Setup NNN plugins
 export NNN_PLUG='c:fzcd;o:fzopen;l:launch;n:!nautilus --browser "$nnn"*;h:-!hx "$nnn"*;v:!vim "$nnn"*;d:!cp -rv "$nnn" "$nnn".copy;'
 
