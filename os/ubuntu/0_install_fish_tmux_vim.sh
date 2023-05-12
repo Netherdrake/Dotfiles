@@ -30,7 +30,8 @@ git config --global pull.ff only
 git config --global init.defaultBranch master
 git config --global core.editor "nvim"
 git config --global core.excludesfile '~/.gitignore'
-# git config --global user.name "Netherdrake"
+git config --global user.name "user"
+git config --global user.name "user.email"
 
 
 # Enable Fish by Default
@@ -78,7 +79,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 vim +PlugInstall
 
 # install YCM
-cd ~/.vim/plugged/YouCompleteMe && python3 install.py --rust-completer && cd
+cd ~/.vim/plugged/YouCompleteMe && python3 install.py -clang-completer --rust-completer  && cd
 #python3 install.py --clang-completer
 
 # # Install Fish package manager
