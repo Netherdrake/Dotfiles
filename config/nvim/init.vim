@@ -78,6 +78,13 @@ Plug 'jalvesaq/Nvim-R', { 'for': 'R' }
 " markdown
 Plug 'preservim/vim-pencil'
 
+" debugging
+Plug 'puremourning/vimspector', { 'for': 'python' }
+" Plug 'epheien/termdbg', { 'for': 'python' }
+
+" enable neovim builtin plugin
+packadd termdebug
+
 call plug#end()
 
 
@@ -342,7 +349,7 @@ EOF
 " Treesitter LSP
 lua <<EOF
   require'nvim-treesitter.configs'.setup {
-    ensure_installed = {"vim", "lua", "toml", "rust", "python", "c", "cpp", "cuda", "cmake" },
+    ensure_installed = {"vim", "lua", "toml", "rust", "python", "c", "cpp", "cuda", "cmake", "markdown" },
     auto_install = true,
     ident = { enable = true },
     rainbow = {

@@ -1,7 +1,7 @@
 # general dependencies
-sudo apt install -y gcc clangd ninja-build cmake cmake-curses-gui lldb
+sudo apt install -y gcc clang clangd clang-format clang-tidy clang-tools ninja-build cmake cmake-curses-gui lldb
 
-# clang
+# clang (ubuntu 20.04)
 # sudo apt install clang-12 clangd-12 clang-12-doc clang-format-12 clang-tidy-12 clang-tools-12
 
 # issue https://github.com/llvm/llvm-project/issues/55575
@@ -19,3 +19,7 @@ sudo apt install bear
 
 # instrumentation
 sudo apt install valgrind kcachegrind
+
+# gdb-dashboard
+wget -P ~ https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit
+pip3 install -U pygments
