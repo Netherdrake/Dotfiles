@@ -144,8 +144,12 @@ map <Space> <leader>
 " enable mouse
 set mouse=a
 
+" disable help screen
+nmap <F1> <nop>
+imap <F1> <nop>
+
 " use ESC to switch terminal to normal mode (might break some things)
-" tnoremap <Esc> <C-\><C-n>
+" tnoremap <leader>, <C-\><C-n>
 
 " visual reselect of just pasted
 nnoremap gp `[v`]
@@ -157,7 +161,7 @@ nnoremap <CR> i<CR><Esc>==
 nnoremap <C-Space> i<Space><Esc>l
 
 " Paste without overwriting the yank register
-xnoremap <leader>p \"_dP
+" xnoremap <leader>p \"_dP
 
 " better scrolling
 nnoremap <C-j> <C-d>zz
@@ -187,6 +191,7 @@ nnoremap <leader>/ /\v
 
 " Use regular replace
 nnoremap <leader>s :%s /
+vnoremap <leader>s :%s /
 
 " open vimrc
 nnoremap <leader>v :e  ~/.config/nvim/init.vim<CR>
@@ -194,6 +199,7 @@ nnoremap <leader>V :so  ~/.config/nvim/init.vim<CR>
 
 
 " shortcuts for togglables and popups
+nnoremap <leader>` :FloatermNew --disposable top -u user<CR>
 nnoremap <leader>1 :FloatermToggle<CR>
 tnoremap <leader>1 <C-\><C-n>:FloatermToggle<CR>
 nnoremap <leader>2 :FloatermNew --disposable nnn<CR>
@@ -202,6 +208,7 @@ nnoremap <leader>3 <cmd>TroubleToggle<cr>
 nnoremap <leader>4 :TagbarToggle<CR>
 nnoremap <leader>5 :NERDTreeToggle<CR>
 nnoremap <leader>6 :Telescope git_status<CR>
+nnoremap <leader>8 :term time make run<CR>
 nnoremap <expr> <leader>0 ':call ToggleDarkMode()'."<CR>"."<CR>"
 " nnoremap <expr> <leader>0 ':set background='.(&background=='dark' ? "light" : "dark")."<CR>".':AirlineRefresh <CR>'
 
@@ -228,7 +235,6 @@ let g:clever_f_across_no_line = 1
 let g:floaterm_shell = "fish"
 let g:floaterm_width  = 0.8
 let g:floaterm_height = 0.8
-let g:floaterm_keymap_toggle = '<F1>'
 
 " airline
 if !exists("g:airline_symbols")
@@ -459,14 +465,20 @@ autocmd FileType python nnoremap <buffer> <leader>r :SlimeSendCurrentLine<CR>
 autocmd FileType python vnoremap <buffer> <leader>r :SlimeRegionSend<CR>
 autocmd FileType python xnoremap <buffer> <leader>r :SlimeSend<CR>
 autocmd FileType python nnoremap <buffer> <leader>cs :call FixTerminalScroll("ipython")<CR>
-autocmd FileType python nnoremap <buffer> <leader>cc :IPythonCellExecuteCell<CR>
-autocmd FileType python nnoremap <buffer> <leader>cn :IPythonCellExecuteCellJump<CR>
 autocmd FileType python nnoremap <buffer> <leader>cr :IPythonCellClose<CR>:IPythonCellClear<CR>
 autocmd FileType python nnoremap <buffer> <leader>cd :SlimeSend1 plt.show()<CR>
 autocmd FileType python nnoremap <buffer> <leader>ct :IPythonCellRunTime<CR>
 autocmd FileType python nnoremap <buffer> <leader>cq :IPythonCellRestart<CR>
 autocmd FileType python nnoremap <buffer> <C-d> :IPythonCellNextCell<CR>
 autocmd FileType python nnoremap <buffer> <C-u> :IPythonCellPrevCell<CR>
+
+if has('clipboard')
+    autocmd FileType python nnoremap <buffer> <leader>cc :IPythonCellExecuteCell<CR>
+    autocmd FileType python nnoremap <buffer> <leader>cn :IPythonCellExecuteCellJump<CR>
+else
+    autocmd FileType python nnoremap <buffer> <leader>cc :IPythonCellExecuteCellVerbose<CR>
+    autocmd FileType python nnoremap <buffer> <leader>cn :IPythonCellExecuteCellVerboseJump<CR>
+endif
 
 " R indentation
 augroup r_indent
@@ -493,6 +505,20 @@ let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
 
 
+" Phind
+function! s:Phind(prefix)
+    let old_isk = &iskeyword
+    setl iskeyword+=:
+    let str = expand("<cword>")
+    let &l:iskeyword = old_isk
+    call jobstart('xdg-open "https://www.phind.com/search?q=' . a:prefix . ' ' . str . '"')
+endfunction
+au FileType c      nnoremap <leader>p :call <SID>Phind("c")<CR>
+au FileType cpp    nnoremap <leader>p :call <SID>Phind("cpp")<CR>
+au FileType python nnoremap <leader>p :call <SID>Phind("python3")<CR>
+au FileType rust   nnoremap <leader>p :call <SID>Phind("rust")<CR>
+
+
 " C++ config
 function! s:CppMan(target)
     let old_isk = &iskeyword
@@ -514,6 +540,22 @@ au BufEnter *.h let b:fswitchdst = 'c,cpp,m,cc' | let b:fswitchlocs = 'reg:|incl
 au BufEnter *.c let b:fswitchdst = "h"
 au BufEnter *.cc let b:fswitchdst = "h,hpp"
 nnoremap <silent> gs :FSHere<CR>
+
+
+" vimspector
+" command! -nargs=+ Vfb call vimspector#AddFunctionBreakpoint(<f-args>)
+"
+nnoremap <F5>   :call vimspector#Launch()<CR>
+nnoremap <S-F5> :call vimspector#Restart()<CR>
+nnoremap <F6>   :call vimspector#Continue()<CR>
+nnoremap <S-F6> :call vimspector#Pause()<CR>
+nnoremap <F7>   :call vimspector#Stop()<CR>
+nnoremap <F8>   :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <S-F8> :call Vimspector#AddFunctionBreakpoint()<CR>
+nnoremap <F9>   :call vimspector#StepOver()<CR>
+nnoremap <F10>  :call vimspector#StepInto()<CR>
+nnoremap <F11>  :call vimspector#StepOut()<CR>
+nnoremap <F12>  :call vimspector#RunToCursor()<CR>
 
 
 " markdown & text files

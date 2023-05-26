@@ -23,3 +23,7 @@ sudo apt install valgrind kcachegrind
 # gdb-dashboard
 wget -P ~ https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit
 pip3 install -U pygments
+
+# vcpkg
+# git clone https://github.com/microsoft/vcpkg
+# ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
