@@ -2,10 +2,10 @@ set fish_greeting ""
 bind \ct kill-word
 
 function fish_prompt
-    set_color $fish_color_cwd
     if set -q NNNLVL
         echo -n '(nnn) '
     end
+    set_color $fish_color_cwd
     echo -n (prompt_pwd)
     set_color normal
     echo -n ' % '
@@ -75,8 +75,11 @@ alias open "xdg-open"
 alias R "R --no-save --no-restore --quiet"
 alias rust "evcxr"
 
+# Snaps ugh :(
+export PATH="/snap/bin:$PATH"
+
 # Make nvim default
-export EDITOR=/usr/bin/nvim
+export EDITOR=/snap/bin/nvim
 
 # Pyright, bat
 export PATH="$HOME/.local/bin:$PATH"

@@ -8,7 +8,7 @@ call plug#begin('~/.vim/plugged')
 
 " eye candy
 Plug 'morhetz/gruvbox'
-Plug 'folke/lsp-colors.nvim'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'vim-airline/vim-airline'
 
@@ -241,6 +241,10 @@ if !exists("g:airline_symbols")
   let g:airline_symbols = {}
 endif
 let g:airline_powerline_fonts=1
+let g:airline_section_y = 0
+let g:airline_symbols.notexists = ''
+let g:airline_symbols.colnr = ':'
+let g:airline_symbols.linenr = ' '
 let g:airline#extensions#branch#empty_message  =  "---"
 let g:airline#extensions#whitespace#enabled    =  0
 let g:airline#extensions#tabline#enabled       =  1
@@ -282,105 +286,6 @@ nnoremap <leader>ts :Telescope git_status<CR>
 nnoremap <leader>tf :Telescope git_files<CR>
 nnoremap <leader>tc :Telescope git_commits<CR>
 
-lua <<EOF
-local actions = require("telescope.actions")
-require("telescope").setup{
-defaults = {
-    mappings = {
-        n = {
-            ["<C-k>"] = actions.move_selection_previous,
-            ["<C-j>"] = actions.move_selection_next
-            },
-        i = {
-            ["<C-k>"] = actions.move_selection_previous,
-            ["<C-j>"] = actions.move_selection_next
-            },
-        },
-    },
-    pickers = {
-        find_files = {
-            -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-            find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-        },
-    },
-}
-EOF
-
-
-" Nvim LSP
-lua <<EOF
-    -- Use an on_attach function to only map the following keys
-    -- after the language server attaches to the current buffer
-    local on_attach = function(client, bufnr)
-      -- Mappings.
-      -- See `:help vim.lsp.*` for documentation on any of the below functions
-      local bufopts = { noremap=true, silent=true, buffer=bufnr }
-      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-      vim.keymap.set('n', 'gtd', vim.lsp.buf.type_definition, bufopts)
-      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-      vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, bufopts)
-      vim.keymap.set('n', 'H', vim.lsp.buf.hover, bufopts)
-      vim.keymap.set('n', 'gh', vim.lsp.buf.signature_help, bufopts)
-      vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-      vim.keymap.set('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-      vim.keymap.set('n', '<Leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, bufopts)
-      vim.keymap.set('n', '<Leader>ld', vim.diagnostic.open_float, bufopts)
-      vim.keymap.set('n', '<Leader>la', vim.lsp.buf.code_action, bufopts)
-      vim.keymap.set('n', '<Leader>lr', vim.lsp.buf.rename, bufopts)
-    end
-
-    local lsp_flags = {
-      -- This is the default in Nvim 0.7+
-      debounce_text_changes = 150,
-    }
-    require('lspconfig')['pyright'].setup{
-        on_attach = on_attach,
-        flags = lsp_flags,
-    }
-    require('lspconfig')['rust_analyzer'].setup{
-        on_attach = on_attach,
-        flags = lsp_flags,
-    }
-    require('lspconfig')['clangd'].setup{
-        on_attach = on_attach,
-        flags = lsp_flags,
-    }
-    require('lspconfig')['cmake'].setup{
-        on_attach = on_attach,
-        flags = lsp_flags,
-    }
-EOF
-
-" Treesitter LSP
-lua <<EOF
-  require'nvim-treesitter.configs'.setup {
-    ensure_installed = {"vim", "lua", "toml", "rust", "python", "c", "cpp", "cuda", "cmake", "markdown" },
-    auto_install = true,
-    ident = { enable = true },
-    rainbow = {
-      enable = true,
-      extended_mode = true,
-      max_file_lines = nil,
-    }
-  }
-EOF
-
-lua << EOF
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    -- disable ugly underlines
-    underline = false,
-    virtual_text = false,
-    -- Enable virtual text, override spacing to 4
-    -- virtual_text = {spacing = 4},
-    -- Use a function to dynamically turn signs off
-    -- and on, using buffer local variables
-    signs = true,
-    update_in_insert = false
-  }
-)
-EOF
 
 " Rope Settings
 let ropevim_enable_shortcuts = 1
@@ -577,18 +482,17 @@ augroup END
 "
 """"""""""""""""""""""""""""""""
 
-" syntax highlighting
 syntax on
-" enable light theme
-" set background=light
 let g:gruvbox_contrast_dark = "hard"
 let g:gruvbox_contrast_light = "hard"
 let g:airline_theme = 'gruvbox'
 let g:gruvbox_underline = 0
 let g:gruvbox_undercurl = 0
-" colorscheme needs to be called after setting contrast
 colorscheme gruvbox
 
+" syntax on
+" colorscheme catppuccin
+" let g:airline_theme = 'catppuccin'
 
 fu ToggleDarkMode()
     if &background == "dark"
@@ -728,3 +632,181 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
+
+""""""""""""""""""""""""""""""""
+"
+" LUA configs
+"
+""""""""""""""""""""""""""""""""
+
+
+lua <<EOF
+
+-- Telescope
+
+    local actions = require("telescope.actions")
+    require("telescope").setup{
+    defaults = {
+        mappings = {
+            n = {
+                ["<C-k>"] = actions.move_selection_previous,
+                ["<C-j>"] = actions.move_selection_next
+                },
+            i = {
+                ["<C-k>"] = actions.move_selection_previous,
+                ["<C-j>"] = actions.move_selection_next
+                },
+            },
+        },
+        pickers = {
+            find_files = {
+                -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+                find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+            },
+        },
+    }
+
+
+-- Nvim LSP
+
+    -- Use an on_attach function to only map the following keys
+    -- after the language server attaches to the current buffer
+    local on_attach = function(client, bufnr)
+      -- Mappings.
+      -- See `:help vim.lsp.*` for documentation on any of the below functions
+      local bufopts = { noremap=true, silent=true, buffer=bufnr }
+      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+      vim.keymap.set('n', 'gtd', vim.lsp.buf.type_definition, bufopts)
+      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+      vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, bufopts)
+      vim.keymap.set('n', 'H', vim.lsp.buf.hover, bufopts)
+      vim.keymap.set('n', 'gh', vim.lsp.buf.signature_help, bufopts)
+      vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+      vim.keymap.set('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+      vim.keymap.set('n', '<Leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, bufopts)
+      vim.keymap.set('n', '<Leader>ld', vim.diagnostic.open_float, bufopts)
+      vim.keymap.set('n', '<Leader>la', vim.lsp.buf.code_action, bufopts)
+      vim.keymap.set('n', '<Leader>lr', vim.lsp.buf.rename, bufopts)
+    end
+
+    local lsp_flags = {
+      -- This is the default in Nvim 0.7+
+      debounce_text_changes = 150,
+    }
+    require('lspconfig')['pyright'].setup{
+        on_attach = on_attach,
+        flags = lsp_flags,
+    }
+    require('lspconfig')['rust_analyzer'].setup{
+        on_attach = on_attach,
+        flags = lsp_flags,
+    }
+    require('lspconfig')['clangd'].setup{
+        on_attach = on_attach,
+        flags = lsp_flags,
+    }
+    require('lspconfig')['cmake'].setup{
+        on_attach = on_attach,
+        flags = lsp_flags,
+    }
+
+
+-- Treesitter LSP
+
+    require'nvim-treesitter.configs'.setup {
+        ensure_installed = {"vim", "lua", "toml", "rust", "python", "c", "cpp", "cuda", "cmake", "markdown" },
+        auto_install = true,
+        ident = { enable = true },
+        -- highlight = {
+        --     enable = true,
+        --     additional_vim_regex_highlighting = false
+        -- },
+        rainbow = {
+            enable = true,
+            extended_mode = true,
+            max_file_lines = nil,
+        }
+    }
+
+-- Diagnostics
+
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+        vim.lsp.diagnostic.on_publish_diagnostics, {
+            -- disable ugly underlines
+            underline = false,
+            virtual_text = false,
+            -- Enable virtual text, override spacing to 4
+            -- virtual_text = {spacing = 4},
+            -- Use a function to dynamically turn signs off
+            -- and on, using buffer local variables
+            signs = true,
+            update_in_insert = false
+        }
+    )
+
+
+-- Theme
+
+    require("catppuccin").setup({
+        flavour = "mocha", -- latte, frappe, macchiato, mocha
+        background = { -- :h background
+            light = "latte",
+            dark = "mocha",
+        },
+        transparent_background = false,
+        show_end_of_buffer = false, -- show the '~' characters after the end of buffers
+        term_colors = false,
+        dim_inactive = {
+            enabled = false,
+            shade = "dark",
+            percentage = 0.80,
+        },
+        color_overrides = {
+            mocha = {
+                base = "#000000",
+                mantle = "#000000",
+                crust = "#000000",
+            },
+        },
+        highlight_overrides = {
+            mocha = function(C)
+            return {
+                TabLineSel = { bg = C.pink },
+                CmpBorder = { fg = C.surface2 },
+                Pmenu = { bg = C.none },
+                TelescopeBorder = { link = "FloatBorder" },
+                }
+        end,
+        },
+        no_italic = true, -- Force no italic
+        no_bold = false, -- Force no bold
+        no_underline = false, -- Force no underline
+        styles = {
+            comments = {},
+            conditionals = {},
+            loops = {},
+            functions = {},
+            keywords = {},
+            strings = {},
+            variables = {},
+            numbers = {},
+            booleans = {},
+            properties = {},
+            types = {},
+            operators = {},
+        },
+        color_overrides = {},
+        custom_highlights = {},
+        integrations = {
+            cmp = true,
+            gitsigns = true,
+            nvimtree = true,
+            telescope = true,
+            notify = false,
+            mini = false,
+            -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+        },
+    })
+
+EOF
