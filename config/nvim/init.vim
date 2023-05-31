@@ -26,7 +26,7 @@ Plug 'phaazon/hop.nvim'
 Plug 'rhysd/clever-f.vim'
 
 " typing automations
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 

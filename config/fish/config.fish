@@ -3,6 +3,9 @@ bind \ct kill-word
 
 function fish_prompt
     set_color $fish_color_cwd
+    if set -q NNNLVL
+        echo -n '(nnn) '
+    end
     echo -n (prompt_pwd)
     set_color normal
     echo -n ' % '

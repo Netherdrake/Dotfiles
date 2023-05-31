@@ -9,12 +9,13 @@ sudo apt install -y software-properties-common
 sudo apt install -y fish tmux fzf ripgrep
 sudo apt install -y python3-dev python3-pip python3-tk
 sudo apt install -y ranger nnn
+sudo apt install -y universal-ctags
 
 # neovim snap
 sudo snap install neovim --classic
 
 # install neovim python support
-pip3 install pynvim
+pip3 install -U pynvim
 
 # could also get latest verison with
 # cargo install ripgrep
@@ -26,7 +27,6 @@ ln -s /usr/bin/batcat ~/.local/bin/bat
 
 
 ## Install snaps
-sudo snap install -y universal-ctags
 sudo snap install -y dragon # drag-n-drop for nnn
 
 
