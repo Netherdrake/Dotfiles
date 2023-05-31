@@ -51,11 +51,14 @@ Plug 'folke/trouble.nvim'
 " active panel highlighting
 Plug 'TaDaa/vimade'
 
-" language server protocol
+" LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/nvim-treesitter'
 " Plug 'ray-x/lsp_signature.nvim'
 Plug 'dense-analysis/ale' "syntastic successor, autocomplete
+
+" show LSP progress
+Plug 'j-hui/fidget.nvim'
 
 " Python
 Plug 'python-mode/python-mode', { 'for': 'python' }
@@ -210,7 +213,7 @@ nnoremap <leader>5 :NERDTreeToggle<CR>
 nnoremap <leader>6 :Telescope git_status<CR>
 nnoremap <leader>8 :term time make run<CR>
 nnoremap <expr> <leader>0 ':call ToggleDarkMode()'."<CR>"."<CR>"
-" nnoremap <expr> <leader>0 ':set background='.(&background=='dark' ? "light" : "dark")."<CR>".':AirlineRefresh <CR>'
+nnoremap <expr> <leader>- ':call ToggleColorScheme()'."<CR>"
 
 
 nnoremap <F2> :Telescope man_pages sections=1,2,3<CR>
@@ -242,6 +245,8 @@ if !exists("g:airline_symbols")
 endif
 let g:airline_powerline_fonts=1
 let g:airline_section_y = 0
+let g:airline_section_error = 0
+let g:airline_section_warning = 0
 let g:airline_symbols.notexists = ''
 let g:airline_symbols.colnr = ':'
 let g:airline_symbols.linenr = ' '
@@ -251,6 +256,11 @@ let g:airline#extensions#tabline#enabled       =  1
 let g:airline#extensions#tabline#tab_nr_type   =  1 " tab number
 let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
 let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
+
+" ALE
+let g:ale_virtualtext_cursor = 'all'
+" let g:ale_set_highlights = 0
+" let g:ale_use_neovim_diagnostics_api = 1
 
 " YouCompleteMe
 let g:ycm_filetype_blacklist = {}
@@ -483,28 +493,19 @@ augroup END
 """"""""""""""""""""""""""""""""
 
 syntax on
+
 let g:gruvbox_contrast_dark = "hard"
 let g:gruvbox_contrast_light = "hard"
-let g:airline_theme = 'gruvbox'
 let g:gruvbox_underline = 0
 let g:gruvbox_undercurl = 0
-colorscheme gruvbox
+let g:gruvbox_invert_selection = 0
+let g:gruvbox_improved_warnings = 0
 
-" syntax on
-" colorscheme catppuccin
-" let g:airline_theme = 'catppuccin'
+" colorscheme gruvbox
+" let g:airline_theme = 'gruvbox'
 
-fu ToggleDarkMode()
-    if &background == "dark"
-        let &background="light"
-        :AirlineRefresh
-        :!xdotool key -clearmodifiers Shift+F10 r 3
-    else
-        let &background="dark"
-        :AirlineRefresh
-        :!xdotool key -clearmodifiers Shift+F10 r 2
-    endif
-endfunction
+colorscheme catppuccin
+let g:airline_theme = 'catppuccin'
 
 
 """"""""""""""""""""""""""""""""
@@ -520,6 +521,33 @@ augroup line_return
         \     execute 'normal! g`"zvzz' |
         \ endif
 augroup END
+
+
+" switch between light and dark mode
+fu ToggleDarkMode()
+    if &background == "dark"
+        let &background="light"
+        :AirlineRefresh
+        :!xdotool key -clearmodifiers Shift+F10 r 3
+    else
+        let &background="dark"
+        :AirlineRefresh
+        :!xdotool key -clearmodifiers Shift+F10 r 2
+    endif
+endfunction
+
+fu ToggleColorScheme()
+    if g:colors_name == "gruvbox"
+        colorscheme catppuccin
+        let g:airline_theme = 'catppuccin'
+        :AirlineRefresh
+    else
+        colorscheme gruvbox
+        let g:airline_theme = 'gruvbox'
+        :AirlineRefresh
+    endif
+endfunction
+
 
 " Visual Mode */# from Scrooloose
 function! s:VSetSearch()
@@ -755,30 +783,30 @@ lua <<EOF
             dark = "mocha",
         },
         transparent_background = false,
-        show_end_of_buffer = false, -- show the '~' characters after the end of buffers
+        show_end_of_buffer = false,
         term_colors = false,
         dim_inactive = {
             enabled = false,
             shade = "dark",
             percentage = 0.80,
         },
-        color_overrides = {
-            mocha = {
-                base = "#000000",
-                mantle = "#000000",
-                crust = "#000000",
-            },
-        },
-        highlight_overrides = {
-            mocha = function(C)
-            return {
-                TabLineSel = { bg = C.pink },
-                CmpBorder = { fg = C.surface2 },
-                Pmenu = { bg = C.none },
-                TelescopeBorder = { link = "FloatBorder" },
-                }
-        end,
-        },
+        -- color_overrides = {
+        --     mocha = {
+        --         base = "#000000",
+        --         mantle = "#000000",
+        --         crust = "#000000",
+        --     },
+        -- },
+         highlight_overrides = {
+             mocha = function(C)
+             return {
+                 TabLineSel = { bg = C.pink },
+                 CmpBorder = { fg = C.surface2 },
+                 Pmenu = { bg = C.none },
+                 TelescopeBorder = { link = "FloatBorder" },
+                 }
+         end,
+         },
         no_italic = true, -- Force no italic
         no_bold = false, -- Force no bold
         no_underline = false, -- Force no underline
@@ -796,16 +824,11 @@ lua <<EOF
             types = {},
             operators = {},
         },
-        color_overrides = {},
-        custom_highlights = {},
         integrations = {
-            cmp = true,
-            gitsigns = true,
-            nvimtree = true,
             telescope = true,
-            notify = false,
-            mini = false,
-            -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+            lsp_trouble = false,
+            treesitter = true,
+            markdown = true,
         },
     })
 
