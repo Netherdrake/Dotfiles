@@ -3,8 +3,8 @@ default-show-menubar=false
 headerbar=@mb false
 
 [legacy/profiles:]
-default='6f2fc592-3d9e-4270-818e-a96fa960e3b2'
-list=['b2949e2a-d9a8-4d37-8bd8-821cebf180fd', '633a8dd0-5f9e-465c-8b64-30c89241a105', '6f2fc592-3d9e-4270-818e-a96fa960e3b2']
+default='7cd905e8-4782-413e-a9fd-4bb2fcf69442'
+list=['b2949e2a-d9a8-4d37-8bd8-821cebf180fd', '633a8dd0-5f9e-465c-8b64-30c89241a105', '6f2fc592-3d9e-4270-818e-a96fa960e3b2', 'de8a9081-8352-4ce4-9519-5de655ad9361', '7cd905e8-4782-413e-a9fd-4bb2fcf69442']
 
 [legacy/profiles:/:633a8dd0-5f9e-465c-8b64-30c89241a105]
 audible-bell=false
@@ -18,7 +18,7 @@ cursor-blink-mode='off'
 cursor-colors-set=true
 cursor-foreground-color='rgb(255,247,247)'
 cursor-shape='block'
-font='Monospace 13'
+font='BitstreamVeraSansMono Nerd Font 13'
 foreground-color='rgb(0,0,0)'
 highlight-background-color='rgb(134,136,150)'
 highlight-colors-set=true
@@ -43,7 +43,7 @@ cursor-background-color='rgb(105,107,157)'
 cursor-blink-mode='off'
 cursor-colors-set=true
 cursor-foreground-color='rgb(255,255,255)'
-font='Monospace 13'
+font='BitstreamVeraSansMono Nerd Font 13'
 foreground-color='#f8f8f2'
 highlight-background-color='rgb(84,86,105)'
 highlight-colors-set=true
@@ -56,6 +56,26 @@ use-theme-colors=false
 use-theme-transparency=false
 use-transparent-background=false
 visible-name='Regolith Dark'
+
+[legacy/profiles:/:7cd905e8-4782-413e-a9fd-4bb2fcf69442]
+audible-bell=false
+background-color='#1e1e2e'
+bold-color-same-as-fg=true
+cursor-background-color='rgb(105,107,157)'
+cursor-colors-set=true
+cursor-foreground-color='rgb(255,255,255)'
+cursor-shape='block'
+font='BitstreamVeraSansMono Nerd Font 13'
+foreground-color='#cdd6f4'
+highlight-background-color='#1e1e2e'
+highlight-colors-set=true
+highlight-foreground-color='#585b70'
+palette=['rgb(69,71,90)', 'rgb(233,63,63)', 'rgb(141,236,133)', 'rgb(249,226,175)', 'rgb(137,180,250)', 'rgb(245,194,231)', 'rgb(148,226,213)', 'rgb(186,194,222)', 'rgb(88,91,112)', 'rgb(243,139,168)', 'rgb(166,227,161)', 'rgb(249,226,175)', 'rgb(137,180,250)', 'rgb(245,194,231)', 'rgb(148,226,213)', 'rgb(166,173,200)']
+scrollbar-policy='never'
+use-system-font=false
+use-theme-colors=false
+use-theme-transparency=false
+visible-name='Catppuccin Mocha'
 
 [legacy/profiles:/:b2949e2a-d9a8-4d37-8bd8-821cebf180fd]
 audible-bell=false
@@ -83,3 +103,20 @@ use-theme-colors=false
 use-theme-transparency=false
 use-transparent-background=true
 visible-name='Regolith'
+
+[legacy/profiles:/:de8a9081-8352-4ce4-9519-5de655ad9361]
+audible-bell=false
+background-color='#eff1f5'
+cursor-background-color='rgb(122,131,190)'
+cursor-colors-set=true
+cursor-foreground-color='rgb(239,241,245)'
+font='BitstreamVeraSansMono Nerd Font 13'
+foreground-color='#4c4f69'
+highlight-background-color='#eff1f5'
+highlight-colors-set=true
+highlight-foreground-color='#acb0be'
+palette=['#5c5f77', '#d20f39', '#40a02b', '#df8e1d', '#1e66f5', '#ea76cb', '#179299', '#acb0be', '#6c6f85', '#d20f39', '#40a02b', '#df8e1d', '#1e66f5', '#ea76cb', '#179299', '#bcc0cc']
+scrollbar-policy='never'
+use-system-font=false
+use-theme-colors=false
+visible-name='Catppuccin Latte'

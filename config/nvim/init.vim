@@ -54,11 +54,8 @@ Plug 'TaDaa/vimade'
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/nvim-treesitter'
-" Plug 'ray-x/lsp_signature.nvim'
+Plug 'ray-x/lsp_signature.nvim'
 Plug 'dense-analysis/ale' "syntastic successor, autocomplete
-
-" show LSP progress
-Plug 'j-hui/fidget.nvim'
 
 " Python
 Plug 'python-mode/python-mode', { 'for': 'python' }
@@ -79,10 +76,10 @@ Plug 'jalvesaq/Nvim-R', { 'for': 'R' }
 " Plug 'gaalcaras/ncm-R'
 
 " markdown
-Plug 'preservim/vim-pencil'
+Plug 'preservim/vim-pencil', { 'for': 'markdown' }
 
 " debugging
-Plug 'puremourning/vimspector', { 'for': 'python' }
+Plug 'puremourning/vimspector', { 'for': ['python', 'cpp', 'c'] }
 " Plug 'epheien/termdbg', { 'for': 'python' }
 
 " enable neovim builtin plugin
@@ -212,8 +209,8 @@ nnoremap <leader>4 :TagbarToggle<CR>
 nnoremap <leader>5 :NERDTreeToggle<CR>
 nnoremap <leader>6 :Telescope git_status<CR>
 nnoremap <leader>8 :term time make run<CR>
-nnoremap <expr> <leader>0 ':call ToggleDarkMode()'."<CR>"."<CR>"
-nnoremap <expr> <leader>- ':call ToggleColorScheme()'."<CR>"
+nnoremap <leader>9 :term time make test<CR>
+nnoremap <expr> <leader>0 ':call ToggleTheme()'."<CR>"."<CR>"
 
 
 nnoremap <F2> :Telescope man_pages sections=1,2,3<CR>
@@ -524,27 +521,27 @@ augroup END
 
 
 " switch between light and dark mode
-fu ToggleDarkMode()
-    if &background == "dark"
+fu! ToggleTheme()
+    if (&background == "dark") && (g:colors_name ==? "catppuccin-mocha")
         let &background="light"
-        :AirlineRefresh
-        :!xdotool key -clearmodifiers Shift+F10 r 3
-    else
-        let &background="dark"
-        :AirlineRefresh
-        :!xdotool key -clearmodifiers Shift+F10 r 2
-    endif
-endfunction
-
-fu ToggleColorScheme()
-    if g:colors_name == "gruvbox"
-        colorscheme catppuccin
-        let g:airline_theme = 'catppuccin'
-        :AirlineRefresh
-    else
         colorscheme gruvbox
         let g:airline_theme = 'gruvbox'
         :AirlineRefresh
+        :!xdotool key -clearmodifiers Shift+F10 r 5
+    elseif &background == "light"
+        let &background="dark"
+        colorscheme gruvbox
+        let g:airline_theme = 'gruvbox'
+        :AirlineRefresh
+        :!xdotool key -clearmodifiers Shift+F10 r 2
+    elseif (&background == "dark") && (g:colors_name ==? "gruvbox")
+        colorscheme catppuccin
+        let &background="dark"
+        let g:airline_theme = 'catppuccin'
+        :!xdotool key -clearmodifiers Shift+F10 r 2
+        :AirlineRefresh
+    else
+        echo "Invalid state"
     endif
 endfunction
 
@@ -740,6 +737,9 @@ lua <<EOF
     }
 
 
+-- LSP signature
+    require "lsp_signature".setup({})
+
 -- Treesitter LSP
 
     require'nvim-treesitter.configs'.setup {
@@ -807,7 +807,7 @@ lua <<EOF
                  }
          end,
          },
-        no_italic = true, -- Force no italic
+        no_italic = false, -- Force no italic
         no_bold = false, -- Force no bold
         no_underline = false, -- Force no underline
         styles = {
