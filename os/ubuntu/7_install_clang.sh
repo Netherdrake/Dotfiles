@@ -23,6 +23,14 @@ sudo apt install valgrind kcachegrind
 # gdb-dashboard
 wget -P ~ https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit
 pip3 install -U pygments
+mkdir -p $HOME/.config/gdb-dashboard
+cp ../../config/gdb-dashboard/init $HOME/.config/gdb-dashboard
+
+# zeal-cli
+# sudo apt install zeal
+# wget https://gitlab.com/ivan-cukic/zeal-lynx-cli/-/raw/master/zeal-cli -O ~/bin/zeal-cli
+# chmod +x ~/bin/zeal-cli
+# pip3 install beautifulsoup4
 
 # vcpkg
 # git clone https://github.com/microsoft/vcpkg

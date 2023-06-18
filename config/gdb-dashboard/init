@@ -1,0 +1,6 @@
+dashboard source -style height 24
+dashboard source -style highlight-line True
+dashboard source -style path True
+dashboard variables -style compact False
+dashboard variables -style align True
+dashboard -layout !threads stack breakpoints !assembly source variables expressions history memory !registers
