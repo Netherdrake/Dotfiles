@@ -4,6 +4,11 @@ sudo apt install -y gcc clang clangd clang-format clang-tidy clang-tools ninja-b
 # clang (ubuntu 20.04)
 # sudo apt install clang-12 clangd-12 clang-12-doc clang-format-12 clang-tidy-12 clang-tools-12
 
+# # clang (ubuntu nightly)
+# wget https://apt.llvm.org/llvm.sh
+# chmod +x llvm.sh
+# sudo ./llvm.sh 17 all
+
 # issue https://github.com/llvm/llvm-project/issues/55575
 sudo apt install python3-lldb-14
 sudo ln -s /usr/lib/llvm-14/lib/python3.10/dist-packages/lldb/* /usr/lib/python3/dist-packages/lldb/
