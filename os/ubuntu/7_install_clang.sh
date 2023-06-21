@@ -1,13 +1,17 @@
 # general dependencies
-sudo apt install -y gcc clang clangd clang-format clang-tidy clang-tools ninja-build cmake cmake-curses-gui lldb
+sudo apt install -y gcc ninja-build cmake cmake-curses-gui
 
-# clang (ubuntu 20.04)
-# sudo apt install clang-12 clangd-12 clang-12-doc clang-format-12 clang-tidy-12 clang-tools-12
+# default ubuntu clang
+sudo apt install -y clang clangd clang-format clang-tidy clang-tools lldb
 
 # # clang (ubuntu nightly)
 # wget https://apt.llvm.org/llvm.sh
 # chmod +x llvm.sh
 # sudo ./llvm.sh 17 all
+# sudo apt install clang-format clang-tidy clang-tools clang clangd \
+#  libc++-dev libc++1 libc++abi-dev libc++abi1 \
+#  libclang-dev libclang1 liblldb-dev libllvm-ocaml-dev libomp-dev libomp5 \
+#  lld lldb llvm-dev llvm-runtime llvm python3-clang
 
 # issue https://github.com/llvm/llvm-project/issues/55575
 sudo apt install python3-lldb-14
