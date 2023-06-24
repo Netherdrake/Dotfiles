@@ -4,6 +4,9 @@ sudo apt install -y gcc ninja-build cmake cmake-curses-gui
 # default ubuntu clang
 sudo apt install -y clang clangd clang-format clang-tidy clang-tools lldb
 
+# stacktraces
+sudo apt install -y libdwarf-dev libunwind-dev binutils-dev
+
 # # clang (ubuntu nightly)
 # wget https://apt.llvm.org/llvm.sh
 # chmod +x llvm.sh

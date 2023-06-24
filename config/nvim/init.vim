@@ -109,7 +109,7 @@ set smartcase
 set showmatch
 set incsearch
 set hlsearch
-set relativenumber
+set number "relativenumber
 set ls=2
 set cursorline
 set cursorlineopt=line
@@ -202,7 +202,7 @@ nnoremap <leader>V :so  ~/.config/nvim/init.vim<CR>
 nnoremap <leader>` :FloatermNew --disposable top -u user<CR>
 nnoremap <leader>1 :FloatermToggle<CR>
 tnoremap <leader>1 <C-\><C-n>:FloatermToggle<CR>
-nnoremap <leader>2 :FloatermNew --disposable nnn<CR>
+nnoremap <leader>2 :FloatermNew --disposable ranger<CR>
 lua require'trouble'.setup()
 nnoremap <leader>3 <cmd>TroubleToggle<cr>
 nnoremap <leader>4 :TagbarToggle<CR>
@@ -479,7 +479,7 @@ let g:pencil#cursorwrap = 1
 augroup pencil
   autocmd!
   autocmd FileType markdown,mkd call pencil#init()
-  autocmd FileType text         call pencil#init()
+  " autocmd FileType text         call pencil#init()
 augroup END
 
 
@@ -543,6 +543,12 @@ fu! ToggleTheme()
     else
         echo "Invalid state"
     endif
+endfunction
+
+fu! DisableTheme()
+    colorscheme default
+    let g:airline_theme='dark'
+    :AirlineRefresh
 endfunction
 
 
@@ -738,7 +744,15 @@ lua <<EOF
 
 
 -- LSP signature
-    require "lsp_signature".setup({})
+    require "lsp_signature".setup({
+        toggle_key = '<C-c>',
+        select_signature_key = '<C-n>',
+        hint_enable = true,
+        floating_window_above_cur_line = false,
+        floating_window_off_x = 200,
+        floating_window_off_y = -100,
+
+    })
 
 -- Treesitter LSP
 
