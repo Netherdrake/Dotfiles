@@ -12,6 +12,11 @@ sudo apt install -y clang clangd clang-format clang-tidy clang-tools lldb
 #  libc++-dev libc++1 libc++abi-dev libc++abi1 \
 #  libclang-dev libclang1 liblldb-dev libllvm-ocaml-dev libomp-dev libomp5 \
 #  lld lldb llvm-dev llvm-runtime llvm python3-clang
+#
+# sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+# sudo apt update
+# sudo apt upgrade -y
+# sudo apt install libstdc++-10-dev
 
 # issue https://github.com/llvm/llvm-project/issues/55575
 sudo apt install python3-lldb-14
