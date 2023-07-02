@@ -26,17 +26,12 @@ Plug 'phaazon/hop.nvim'
 Plug 'rhysd/clever-f.vim'
 
 " typing automations
-" Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 
 " autocomplete
-" consider trying "hrsh7th/nvim-cmp"
 Plug 'ycm-core/YouCompleteMe'
 Plug 'ervandew/supertab'
-
-" snippets
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " telescope
 Plug 'nvim-lua/plenary.nvim'
@@ -55,10 +50,9 @@ Plug 'TaDaa/vimade'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'ray-x/lsp_signature.nvim'
-Plug 'dense-analysis/ale' "syntastic successor, autocomplete
+Plug 'dense-analysis/ale'
 
 " Python
-Plug 'python-mode/python-mode', { 'for': 'python' }
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
 Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 
@@ -69,18 +63,11 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 " C++
 Plug 'derekwyatt/vim-fswitch'
 
-" R
-Plug 'jalvesaq/Nvim-R', { 'for': 'R' }
-" Plug 'chrisbra/csv.vim'
-" Plug 'vim-pandoc/vim-rmarkdown'
-" Plug 'gaalcaras/ncm-R'
-
 " markdown
 Plug 'preservim/vim-pencil', { 'for': 'markdown' }
 
 " debugging
 Plug 'puremourning/vimspector', { 'for': ['python', 'cpp', 'c'] }
-" Plug 'epheien/termdbg', { 'for': 'python' }
 
 " enable neovim builtin plugin
 packadd termdebug
@@ -148,9 +135,6 @@ set mouse=a
 nmap <F1> <nop>
 imap <F1> <nop>
 
-" use ESC to switch terminal to normal mode (might break some things)
-" tnoremap <leader>, <C-\><C-n>
-
 " visual reselect of just pasted
 nnoremap gp `[v`]
 
@@ -159,9 +143,6 @@ nnoremap <CR> i<CR><Esc>==
 
 " quick way to shift text forward
 nnoremap <C-Space> i<Space><Esc>l
-
-" Paste without overwriting the yank register
-" xnoremap <leader>p \"_dP
 
 " better scrolling
 nnoremap <C-j> <C-d>zz
@@ -267,7 +248,7 @@ let g:ycm_key_invoke_completion = "<C-j>"
 let g:ycm_collect_identifiers_from_tags_files = 1
 
 " python
-" let g:ycm_path_to_python_interpreter = '/usr/bin/python3.11'
+" let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
 
 " clang
 let g:ycm_clangd_uses_ycmd_caching = 0
@@ -294,54 +275,16 @@ nnoremap <leader>tf :Telescope git_files<CR>
 nnoremap <leader>tc :Telescope git_commits<CR>
 
 
-" Rope Settings
-let ropevim_enable_shortcuts = 1
-let g:pymode_rope = 1
-let g:pymode_rope_lookup_project = 0 "dont scan parent dir for .ropeproject
-let g:pymode_rope_goto_def_newwin = "e"
-let g:pymode_rope_completion = 1
-let g:pymode_rope_complete_on_dot = 0
-
-
-" Pymode Options
-let g:pymode_python = 'python3'
-let g:pymode_options_max_line_length = 100
-let g:pymode_options_colorcolumn = 0
-let g:pymode_folding = 0        " Turn off code folding
-let g:pymode_virtualenv = 1     " Auto fix vim python paths if virtualenv enabled
-let g:pymode_motion = 1         " Enable python objects and motion
-let g:pymode_trim_whitespaces = 1 "Trim unused white spaces on save
-let g:pymode_quickfix_minheight = 3
-let g:pymode_quickfix_maxheight = 5
-
-" debugging
-let g:pymode_breakpoint = 1
-
-" syntax highlighting
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
-let g:pymode_indent = 1
-
-" linting
-let g:pymode_lint = 0
-let g:pymode_lint_cwindow = 0
-let g:pymode_lint_message = 1
-let g:pymode_lint_on_write = 1
-let g:pymode_lint_unmodified = 0
-let g:pymode_lint_on_fly = 1
-let g:pymode_lint_checkers = ['pyflakes', 'pep8'] " 'mccabe']
-let g:pymode_lint_signs = 1
-
-"let g:pymode_lint_ignore = "E501,W"
-let g:pymode_lint_sort = ['E','C']
-
 " configure nvim -> ipython integration
 let g:slime_target = "neovim"
 let g:slime_python_ipython = 1
-" let g:slime_dont_ask_default = 1
-" let g:slime_no_mappings = 1
+
+" or have nvim -> tmux -> ipython
+let g:slime_target = "tmux"
+let g:slime_default_config = {
+            \ 'socket_name': get(split($TMUX, ','), 0),
+            \ 'target_pane': '{top-right}' }
+let g:slime_dont_ask_default = 1
 
 " Use '##' to define cells instead of using marks
 let g:ipython_cell_delimit_cells_by = 'tags'
@@ -391,24 +334,6 @@ else
     autocmd FileType python nnoremap <buffer> <leader>cc :IPythonCellExecuteCellVerbose<CR>
     autocmd FileType python nnoremap <buffer> <leader>cn :IPythonCellExecuteCellVerboseJump<CR>
 endif
-
-" R indentation
-augroup r_indent
-  autocmd!
-  autocmd FileType r set autoindent
-  autocmd FileType r set textwidth=80 shiftwidth=2
-  autocmd FileType r set softtabstop=2 tabstop=2
-augroup END
-
-" Nvim-R config
-let R_assign = 0
-let R_args = ['--no-save', '--no-restore', '--quiet']
-" https://www.visidata.org/
-" let R_csv_app = 'terminal:vd'
-let R_csv_app = 'tmux new-window vd'
-" let R_after_start = ['options(help_type = "html")']
-" autocmd FileType r nmap <silent> <LocalLeader>rt :call RAction('glimpse')<CR>
-autocmd FileType r nnoremap <buffer> <CR> <Plug>(RDSendLine)
 
 
 " Rust config
@@ -645,7 +570,8 @@ set nrformats=
 let g:C_Ctrl_j='off'
 
 " potential lag fix
-let g:matchparen_insert_timeout=1
+let g:matchparen_timeout = 2
+let g:matchparen_insert_timeout = 2
 
 " fix bufexplorer bug with hidden
 let g:bufExplorerFindActive=0
