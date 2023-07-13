@@ -1,0 +1,604 @@
+{
+   "AppLink" : false,
+   "AppName" : "",
+   "AppPath" : "",
+   "Device" : [
+      {
+         "AudioLightInfo" : {
+            "7ColorFlags" : 1,
+            "AudioMode" : 0,
+            "BkColorB" : 0,
+            "BkColorG" : 0,
+            "BkColorR" : 0,
+            "ColorTypeFlags" : 1,
+            "FgColorB" : 255,
+            "FgColorG" : 255,
+            "FgColorR" : 255
+         },
+         "CustomLightMode" : {
+            "CustomLightModeGroupIndex" : 0
+         },
+         "DPIStages" : null,
+         "DeviceBasicInfo" : {
+            "DevciesChipmodel" : "VS11K09A",
+            "DeviceNUMInfo" : "eevision_A_kb_001_20180108_ak60",
+            "DeviceName" : "keyboard",
+            "DeviceType" : "keyboard",
+            "PID" : 4103,
+            "SensorModel" : 0,
+            "VID" : 3141
+         },
+         "KeyList" : [
+            {
+               "Assignment" : 2097205,
+               "DefaultAssignment" : 2097193
+            },
+            {
+               "Assignment" : 2097210,
+               "DefaultAssignment" : 2097210
+            },
+            {
+               "Assignment" : 2097211,
+               "DefaultAssignment" : 2097211
+            },
+            {
+               "Assignment" : 2097212,
+               "DefaultAssignment" : 2097212
+            },
+            {
+               "Assignment" : 2097213,
+               "DefaultAssignment" : 2097213
+            },
+            {
+               "Assignment" : 2097214,
+               "DefaultAssignment" : 2097214
+            },
+            {
+               "Assignment" : 2097215,
+               "DefaultAssignment" : 2097215
+            },
+            {
+               "Assignment" : 2097216,
+               "DefaultAssignment" : 2097216
+            },
+            {
+               "Assignment" : 2097217,
+               "DefaultAssignment" : 2097217
+            },
+            {
+               "Assignment" : 2097218,
+               "DefaultAssignment" : 2097218
+            },
+            {
+               "Assignment" : 2097219,
+               "DefaultAssignment" : 2097219
+            },
+            {
+               "Assignment" : 2097220,
+               "DefaultAssignment" : 2097220
+            },
+            {
+               "Assignment" : 2097221,
+               "DefaultAssignment" : 2097221
+            },
+            {
+               "Assignment" : 2097222,
+               "DefaultAssignment" : 2097222
+            },
+            {
+               "Assignment" : 2097223,
+               "DefaultAssignment" : 2097223
+            },
+            {
+               "Assignment" : 2097224,
+               "DefaultAssignment" : 2097224
+            },
+            {
+               "Assignment" : 10492672,
+               "DefaultAssignment" : 10492672
+            },
+            {
+               "Assignment" : 10494976,
+               "DefaultAssignment" : 10494976
+            },
+            {
+               "Assignment" : 2097152,
+               "DefaultAssignment" : 2097152
+            },
+            {
+               "Assignment" : 2097152,
+               "DefaultAssignment" : 2097152
+            },
+            {
+               "Assignment" : 2097152,
+               "DefaultAssignment" : 2097152
+            },
+            {
+               "Assignment" : 2097205,
+               "DefaultAssignment" : 2097205
+            },
+            {
+               "Assignment" : 2097182,
+               "DefaultAssignment" : 2097182
+            },
+            {
+               "Assignment" : 2097183,
+               "DefaultAssignment" : 2097183
+            },
+            {
+               "Assignment" : 2097184,
+               "DefaultAssignment" : 2097184
+            },
+            {
+               "Assignment" : 2097185,
+               "DefaultAssignment" : 2097185
+            },
+            {
+               "Assignment" : 2097186,
+               "DefaultAssignment" : 2097186
+            },
+            {
+               "Assignment" : 2097187,
+               "DefaultAssignment" : 2097187
+            },
+            {
+               "Assignment" : 2097188,
+               "DefaultAssignment" : 2097188
+            },
+            {
+               "Assignment" : 2097189,
+               "DefaultAssignment" : 2097189
+            },
+            {
+               "Assignment" : 2097190,
+               "DefaultAssignment" : 2097190
+            },
+            {
+               "Assignment" : 2097191,
+               "DefaultAssignment" : 2097191
+            },
+            {
+               "Assignment" : 2097197,
+               "DefaultAssignment" : 2097197
+            },
+            {
+               "Assignment" : 2097198,
+               "DefaultAssignment" : 2097198
+            },
+            {
+               "Assignment" : 2097194,
+               "DefaultAssignment" : 2097194
+            },
+            {
+               "Assignment" : 2097225,
+               "DefaultAssignment" : 2097225
+            },
+            {
+               "Assignment" : 2097226,
+               "DefaultAssignment" : 2097226
+            },
+            {
+               "Assignment" : 2097227,
+               "DefaultAssignment" : 2097227
+            },
+            {
+               "Assignment" : 2097235,
+               "DefaultAssignment" : 2097235
+            },
+            {
+               "Assignment" : 2097236,
+               "DefaultAssignment" : 2097236
+            },
+            {
+               "Assignment" : 2097237,
+               "DefaultAssignment" : 2097237
+            },
+            {
+               "Assignment" : 2097238,
+               "DefaultAssignment" : 2097238
+            },
+            {
+               "Assignment" : 2097195,
+               "DefaultAssignment" : 2097195
+            },
+            {
+               "Assignment" : 2097172,
+               "DefaultAssignment" : 2097172
+            },
+            {
+               "Assignment" : 2097178,
+               "DefaultAssignment" : 2097178
+            },
+            {
+               "Assignment" : 2097160,
+               "DefaultAssignment" : 2097160
+            },
+            {
+               "Assignment" : 2097173,
+               "DefaultAssignment" : 2097173
+            },
+            {
+               "Assignment" : 2097175,
+               "DefaultAssignment" : 2097175
+            },
+            {
+               "Assignment" : 2097180,
+               "DefaultAssignment" : 2097180
+            },
+            {
+               "Assignment" : 2097176,
+               "DefaultAssignment" : 2097176
+            },
+            {
+               "Assignment" : 2097164,
+               "DefaultAssignment" : 2097164
+            },
+            {
+               "Assignment" : 2097170,
+               "DefaultAssignment" : 2097170
+            },
+            {
+               "Assignment" : 2097171,
+               "DefaultAssignment" : 2097171
+            },
+            {
+               "Assignment" : 2097199,
+               "DefaultAssignment" : 2097199
+            },
+            {
+               "Assignment" : 2097200,
+               "DefaultAssignment" : 2097200
+            },
+            {
+               "Assignment" : 2097201,
+               "DefaultAssignment" : 2097201
+            },
+            {
+               "Assignment" : 2097228,
+               "DefaultAssignment" : 2097228
+            },
+            {
+               "Assignment" : 2097229,
+               "DefaultAssignment" : 2097229
+            },
+            {
+               "Assignment" : 2097230,
+               "DefaultAssignment" : 2097230
+            },
+            {
+               "Assignment" : 2097247,
+               "DefaultAssignment" : 2097247
+            },
+            {
+               "Assignment" : 2097248,
+               "DefaultAssignment" : 2097248
+            },
+            {
+               "Assignment" : 2097249,
+               "DefaultAssignment" : 2097249
+            },
+            {
+               "Assignment" : 2097202,
+               "DefaultAssignment" : 2097202
+            },
+            {
+               "Assignment" : 2097209,
+               "DefaultAssignment" : 2097209
+            },
+            {
+               "Assignment" : 2097156,
+               "DefaultAssignment" : 2097156
+            },
+            {
+               "Assignment" : 2097174,
+               "DefaultAssignment" : 2097174
+            },
+            {
+               "Assignment" : 2097159,
+               "DefaultAssignment" : 2097159
+            },
+            {
+               "Assignment" : 2097161,
+               "DefaultAssignment" : 2097161
+            },
+            {
+               "Assignment" : 2097162,
+               "DefaultAssignment" : 2097162
+            },
+            {
+               "Assignment" : 2097163,
+               "DefaultAssignment" : 2097163
+            },
+            {
+               "Assignment" : 2097165,
+               "DefaultAssignment" : 2097165
+            },
+            {
+               "Assignment" : 2097166,
+               "DefaultAssignment" : 2097166
+            },
+            {
+               "Assignment" : 2097167,
+               "DefaultAssignment" : 2097167
+            },
+            {
+               "Assignment" : 2097203,
+               "DefaultAssignment" : 2097203
+            },
+            {
+               "Assignment" : 2097204,
+               "DefaultAssignment" : 2097204
+            },
+            {
+               "Assignment" : 2097192,
+               "DefaultAssignment" : 2097192
+            },
+            {
+               "Assignment" : 2097244,
+               "DefaultAssignment" : 2097244
+            },
+            {
+               "Assignment" : 2097245,
+               "DefaultAssignment" : 2097245
+            },
+            {
+               "Assignment" : 2097246,
+               "DefaultAssignment" : 2097246
+            },
+            {
+               "Assignment" : 2097152,
+               "DefaultAssignment" : 2097152
+            },
+            {
+               "Assignment" : 2097152,
+               "DefaultAssignment" : 2097152
+            },
+            {
+               "Assignment" : 2097152,
+               "DefaultAssignment" : 2097152
+            },
+            {
+               "Assignment" : 2097152,
+               "DefaultAssignment" : 2097152
+            },
+            {
+               "Assignment" : 2097152,
+               "DefaultAssignment" : 2097152
+            },
+            {
+               "Assignment" : 2097664,
+               "DefaultAssignment" : 2097664
+            },
+            {
+               "Assignment" : 2097181,
+               "DefaultAssignment" : 2097181
+            },
+            {
+               "Assignment" : 2097179,
+               "DefaultAssignment" : 2097179
+            },
+            {
+               "Assignment" : 2097158,
+               "DefaultAssignment" : 2097158
+            },
+            {
+               "Assignment" : 2097177,
+               "DefaultAssignment" : 2097177
+            },
+            {
+               "Assignment" : 2097157,
+               "DefaultAssignment" : 2097157
+            },
+            {
+               "Assignment" : 2097169,
+               "DefaultAssignment" : 2097169
+            },
+            {
+               "Assignment" : 2097168,
+               "DefaultAssignment" : 2097168
+            },
+            {
+               "Assignment" : 2097206,
+               "DefaultAssignment" : 2097206
+            },
+            {
+               "Assignment" : 2097207,
+               "DefaultAssignment" : 2097207
+            },
+            {
+               "Assignment" : 2097208,
+               "DefaultAssignment" : 2097208
+            },
+            {
+               "Assignment" : 2105344,
+               "DefaultAssignment" : 2105344
+            },
+            {
+               "Assignment" : 2097234,
+               "DefaultAssignment" : 2097234
+            },
+            {
+               "Assignment" : 2097241,
+               "DefaultAssignment" : 2097241
+            },
+            {
+               "Assignment" : 2097242,
+               "DefaultAssignment" : 2097242
+            },
+            {
+               "Assignment" : 2097243,
+               "DefaultAssignment" : 2097243
+            },
+            {
+               "Assignment" : 2097152,
+               "DefaultAssignment" : 2097152
+            },
+            {
+               "Assignment" : 2097152,
+               "DefaultAssignment" : 2097152
+            },
+            {
+               "Assignment" : 2097252,
+               "DefaultAssignment" : 2097252
+            },
+            {
+               "Assignment" : 2097152,
+               "DefaultAssignment" : 2097152
+            },
+            {
+               "Assignment" : 2097152,
+               "DefaultAssignment" : 2097152
+            },
+            {
+               "Assignment" : 2097408,
+               "DefaultAssignment" : 2097408
+            },
+            {
+               "Assignment" : 2099200,
+               "DefaultAssignment" : 2099200
+            },
+            {
+               "Assignment" : 2098176,
+               "DefaultAssignment" : 2098176
+            },
+            {
+               "Assignment" : 2097196,
+               "DefaultAssignment" : 2097196
+            },
+            {
+               "Assignment" : 2113536,
+               "DefaultAssignment" : 2113536
+            },
+            {
+               "Assignment" : 10486016,
+               "DefaultAssignment" : 10486016
+            },
+            {
+               "Assignment" : 2097253,
+               "DefaultAssignment" : 2097253
+            },
+            {
+               "Assignment" : 2101248,
+               "DefaultAssignment" : 2101248
+            },
+            {
+               "Assignment" : 2097232,
+               "DefaultAssignment" : 2097232
+            },
+            {
+               "Assignment" : 2097233,
+               "DefaultAssignment" : 2097233
+            },
+            {
+               "Assignment" : 2097231,
+               "DefaultAssignment" : 2097231
+            },
+            {
+               "Assignment" : 2097250,
+               "DefaultAssignment" : 2097250
+            },
+            {
+               "Assignment" : 2097251,
+               "DefaultAssignment" : 2097251
+            },
+            {
+               "Assignment" : 2097240,
+               "DefaultAssignment" : 2097240
+            },
+            {
+               "Assignment" : 2097239,
+               "DefaultAssignment" : 2097239
+            },
+            {
+               "Assignment" : 13672961,
+               "DefaultAssignment" : 13672961
+            },
+            {
+               "Assignment" : 13672962,
+               "DefaultAssignment" : 13672962
+            },
+            {
+               "Assignment" : 13672963,
+               "DefaultAssignment" : 13672963
+            },
+            {
+               "Assignment" : 13672964,
+               "DefaultAssignment" : 13672964
+            },
+            {
+               "Assignment" : 13672965,
+               "DefaultAssignment" : 13672965
+            },
+            {
+               "Assignment" : 2129920,
+               "DefaultAssignment" : 2129920
+            },
+            {
+               "Assignment" : 10503212,
+               "DefaultAssignment" : 10503212
+            },
+            {
+               "Assignment" : 10503173,
+               "DefaultAssignment" : 10503173
+            }
+         ],
+         "LightInfo" : {
+            "Blue" : 255,
+            "CustomGroup" : 0,
+            "Fx" : 255,
+            "Green" : 255,
+            "Light" : 1,
+            "MultiColor" : 1,
+            "OldLedmode" : 1,
+            "Red" : 255,
+            "SelectItem" : 6,
+            "Speed" : 2,
+            "ZZCCLedMode" : 0
+         },
+         "LightList" : null,
+         "MacroInfo" : null,
+         "SystemStages" : {
+            "Key6Flag" : 0,
+            "PollingRate" : 0,
+            "Repeat" : 16,
+            "RepeatDelay" : 0,
+            "WFlag" : 0,
+            "WinFlag" : 0
+         }
+      }
+   ],
+   "SynchroLight" : {
+      "LightInfo" : {
+         "Blue" : 0,
+         "Green" : 0,
+         "Light" : 3,
+         "MultiColor" : false,
+         "Red" : 255,
+         "SelectItem" : 0,
+         "Speed" : 2
+      },
+      "deviceinfo" : [
+         {
+            "SynchroFlags" : false
+         },
+         {
+            "SynchroFlags" : false
+         },
+         {
+            "SynchroFlags" : false
+         },
+         {
+            "SynchroFlags" : false
+         },
+         {
+            "SynchroFlags" : false
+         },
+         {
+            "SynchroFlags" : false
+         }
+      ]
+   },
+   "profileUUID" : "2023_07_13_06_58_03_158",
+   "profilename" : "profile1"
+}
+

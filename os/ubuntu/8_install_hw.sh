@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# add user to dialout
+sudo usermod -a -G dialout user
+
 # general deps
 sudo apt-get install -y gcc clang ninja-build cmake libudev-dev libusb-1.0-0 libssl-dev pkg-config libtinfo5
 
