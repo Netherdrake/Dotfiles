@@ -191,7 +191,7 @@ nnoremap <leader>5 :NERDTreeToggle<CR>
 nnoremap <leader>6 :Telescope git_status<CR>
 nnoremap <leader>8 :term time make run<CR>
 nnoremap <leader>9 :term time make test<CR>
-nnoremap <expr> <leader>0 ':call ToggleTheme()'."<CR>"."<CR>"
+nnoremap <expr> <leader>- ':call ChangeTheme()'."<CR>"."<CR>"
 
 
 nnoremap <F2> :Telescope man_pages sections=1,2,3<CR>
@@ -446,7 +446,7 @@ augroup END
 
 
 " switch between light and dark mode
-fu! ToggleTheme()
+fu! ChangeTheme()
     if (&background == "dark") && (g:colors_name ==? "catppuccin-mocha")
         let &background="light"
         colorscheme gruvbox

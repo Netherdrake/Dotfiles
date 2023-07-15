@@ -37,6 +37,9 @@ sudo apt install bear
 # instrumentation
 sudo apt install valgrind kcachegrind
 
+# replay debugger
+sudo apt install rr
+
 # gdb-dashboard
 wget -P ~ https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit
 pip3 install -U pygments
