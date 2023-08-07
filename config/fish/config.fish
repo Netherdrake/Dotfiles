@@ -90,3 +90,8 @@ export NNN_PLUG='c:fzcd;o:fzopen;l:launch;n:!nautilus --browser "$nnn"*;h:-!hx "
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 export CARGO="$HOME/.cargo/bin/cargo"
+
+# Haskell
+
+export PATH="$PATH:$HOME/.cabal/bin"
+export PATH="$PATH:$HOME/.ghcup/bin"
