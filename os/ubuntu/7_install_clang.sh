@@ -7,6 +7,10 @@ sudo apt install -y clang clangd clang-format clang-tidy clang-tools lldb
 # stacktraces
 sudo apt install -y libdwarf-dev libunwind-dev binutils-dev
 
+# snap cmake clang issue 22.04
+# https://stackoverflow.com/questions/74543715/usr-bin-ld-cannot-find-lstdc-no-such-file-or-directory-on-running-flutte
+sudo apt install libstdc++-12-dev
+
 # # clang (ubuntu nightly)
 # wget https://apt.llvm.org/llvm.sh
 # chmod +x llvm.sh
