@@ -48,7 +48,7 @@ Plug 'TaDaa/vimade'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-treesitter/nvim-treesitter'
+" Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'dense-analysis/ale'
 
@@ -236,7 +236,8 @@ let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
 let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
 
 " ALE
-let g:ale_virtualtext_cursor = 'all'
+let g:ale_virtualtext_cursor = '0' " all
+let g:ale_completion_autoimport = 0
 " let g:ale_set_highlights = 0
 " let g:ale_use_neovim_diagnostics_api = 1
 
@@ -682,21 +683,21 @@ lua <<EOF
 
 -- Treesitter LSP
 
-    require'nvim-treesitter.configs'.setup {
-        ensure_installed = {"vim", "lua", "toml", "rust", "python", "c", "cpp", "cuda", "cmake", "markdown" },
-        auto_install = true,
-        ident = { enable = true },
-        -- highlight = {
-        --     enable = true,
-        --     additional_vim_regex_highlighting = false
-        -- },
-        rainbow = {
-            enable = true,
-            extended_mode = true,
-            max_file_lines = nil,
-        }
-    }
-
+--    require'nvim-treesitter.configs'.setup {
+--        ensure_installed = {"vim", "lua", "toml", "rust", "python", "c", "cpp", "cuda", "cmake", "markdown" },
+--        auto_install = true,
+--        ident = { enable = true },
+--        -- highlight = {
+--        --     enable = true,
+--        --     additional_vim_regex_highlighting = false
+--        -- },
+--        rainbow = {
+--            enable = true,
+--            extended_mode = true,
+--            max_file_lines = nil,
+--        }
+--    }
+--
 -- Diagnostics
 
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(

@@ -23,3 +23,5 @@ rustup component add clippy --toolchain nightly-x86_64-unknown-linux-gnu
 cargo +nightly install cargo-watch
 cargo +nightly install evcxr
 
+# benchmarking
+cargo install hyperfine
