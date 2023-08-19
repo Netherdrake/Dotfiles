@@ -19,6 +19,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'shortcuts/no-neck-pain.nvim'
 
 " search
 Plug 'henrik/vim-indexed-search'
@@ -191,12 +192,16 @@ nnoremap <leader>5 :NERDTreeToggle<CR>
 nnoremap <leader>6 :Telescope git_status<CR>
 nnoremap <leader>8 :term time make run<CR>
 nnoremap <leader>9 :term time make test<CR>
-nnoremap <expr> <leader>- ':call ChangeTheme()'."<CR>"."<CR>"
+" nnoremap <expr> <leader>- ':call ChangeTheme()'."<CR>"."<CR>"
+nnoremap <leader>0 :NoNeckPain<CR> :NoNeckPainResize 150<CR>
+nnoremap <leader>- :NoNeckPainWidthDown<CR>
+nnoremap <leader>= :NoNeckPainWidthUp<CR>
 
 
 nnoremap <F2> :Telescope man_pages sections=1,2,3<CR>
 nnoremap <F3> :Telescope help_tags<CR>
 nnoremap <F4> :Telescope commands<CR>
+
 
 """"""""""""""""""""""""""""""""
 "
@@ -713,6 +718,30 @@ lua <<EOF
             update_in_insert = false
         }
     )
+
+-- No neck pain
+
+require("no-neck-pain").setup({
+    buffers = {
+        colors = {
+            blend = 0.05,
+        },
+        scratchPad = {
+            -- set to `false` to
+            -- disable auto-saving
+            enabled = true,
+            -- set to `nil` to default 
+            -- to current working directory
+            location = "~/Documents/",
+        },
+        bo = {
+            filetype = "md"
+        },
+        wo = {
+            fillchars = "eob: ",
+        },
+    },
+})
 
 
 -- Theme
