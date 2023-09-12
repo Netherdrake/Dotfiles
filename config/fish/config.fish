@@ -92,6 +92,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export CARGO="$HOME/.cargo/bin/cargo"
 
 # Haskell
-
 export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:$HOME/.ghcup/bin"
+

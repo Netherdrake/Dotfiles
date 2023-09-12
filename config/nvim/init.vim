@@ -45,7 +45,7 @@ Plug 'preservim/tagbar'
 Plug 'folke/trouble.nvim'
 
 " active panel highlighting
-Plug 'TaDaa/vimade'
+" Plug 'TaDaa/vimade'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
@@ -61,6 +61,9 @@ Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 
+" Haskell
+Plug 'mrcjkb/haskell-tools.nvim', { 'for': 'haskell' }
+
 " C++
 Plug 'derekwyatt/vim-fswitch'
 
@@ -68,7 +71,7 @@ Plug 'derekwyatt/vim-fswitch'
 Plug 'preservim/vim-pencil', { 'for': 'markdown' }
 
 " debugging
-Plug 'puremourning/vimspector', { 'for': ['python', 'cpp', 'c'] }
+Plug 'puremourning/vimspector', { 'for': ['haskell', 'python', 'cpp', 'c'] }
 
 " enable neovim builtin plugin
 packadd termdebug
@@ -259,6 +262,7 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 " clang
 let g:ycm_clangd_uses_ycmd_caching = 0
 let g:ycm_clangd_binary_path = exepath("clangd")
+let g:ycm_clangd_args=['--header-insertion=never']
 
 
 " configure universal ctags
@@ -356,10 +360,11 @@ function! s:Phind(prefix)
     let &l:iskeyword = old_isk
     call jobstart('xdg-open "https://www.phind.com/search?q=' . a:prefix . ' ' . str . '"')
 endfunction
-au FileType c      nnoremap <leader>p :call <SID>Phind("c")<CR>
-au FileType cpp    nnoremap <leader>p :call <SID>Phind("cpp")<CR>
-au FileType python nnoremap <leader>p :call <SID>Phind("python3")<CR>
-au FileType rust   nnoremap <leader>p :call <SID>Phind("rust")<CR>
+au FileType c        nnoremap <leader>p :call <SID>Phind("c")<CR>
+au FileType cpp      nnoremap <leader>p :call <SID>Phind("cpp")<CR>
+au FileType python   nnoremap <leader>p :call <SID>Phind("python3")<CR>
+au FileType rust     nnoremap <leader>p :call <SID>Phind("rust")<CR>
+au FileType haskell  nnoremap <leader>p :call <SID>Phind("haskell")<CR>
 
 
 " C++ config
@@ -666,6 +671,7 @@ lua <<EOF
         flags = lsp_flags,
     }
     require('lspconfig')['clangd'].setup{
+        cmd = {"clangd", "--header-insertion=never"},
         on_attach = on_attach,
         flags = lsp_flags,
     }
@@ -722,6 +728,7 @@ lua <<EOF
 -- No neck pain
 
 require("no-neck-pain").setup({
+    -- width = 150,
     buffers = {
         colors = {
             blend = 0.05,
