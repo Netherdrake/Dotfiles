@@ -201,9 +201,9 @@ nnoremap <leader>- :NoNeckPainWidthDown<CR>
 nnoremap <leader>= :NoNeckPainWidthUp<CR>
 
 
+nnoremap <F1> :Telescope help_tags<CR>
 nnoremap <F2> :Telescope man_pages sections=1,2,3<CR>
-nnoremap <F3> :Telescope help_tags<CR>
-nnoremap <F4> :Telescope commands<CR>
+" nnoremap <F4> :Telescope commands<CR>
 
 
 """"""""""""""""""""""""""""""""
@@ -393,17 +393,21 @@ nnoremap <silent> gs :FSHere<CR>
 " vimspector
 " command! -nargs=+ Vfb call vimspector#AddFunctionBreakpoint(<f-args>)
 "
+nnoremap <F4>   <Plug>VimspectorBreakpoints
 nnoremap <F5>   :call vimspector#Launch()<CR>
-nnoremap <S-F5> :call vimspector#Restart()<CR>
-nnoremap <F6>   :call vimspector#Continue()<CR>
-nnoremap <S-F6> :call vimspector#Pause()<CR>
-nnoremap <F7>   :call vimspector#Stop()<CR>
-nnoremap <F8>   :call vimspector#ToggleBreakpoint()<CR>
-nnoremap <S-F8> :call Vimspector#AddFunctionBreakpoint()<CR>
-nnoremap <F9>   :call vimspector#StepOver()<CR>
-nnoremap <F10>  :call vimspector#StepInto()<CR>
-nnoremap <F11>  :call vimspector#StepOut()<CR>
-nnoremap <F12>  :call vimspector#RunToCursor()<CR>
+" nnoremap <S-F5> :call vimspector#Stop()<CR>
+" nnoremap <S-F5> :call vimspector#Reset()<CR>
+nnoremap <F6>   :call vimspector#Reset()<CR>
+" nnoremap <S-F6> :call vimspector#Restart()<CR>
+" nnoremap <F7>   :call vimspector#Pause()<CR>
+nnoremap <F7>   :call vimspector#StepOut()<CR>
+nnoremap <F8>   :call vimspector#StepOver()<CR>
+nnoremap <F9>   :call vimspector#StepInto()<CR>
+nnoremap <F10>   :call vimspector#Continue()<CR>
+" nnoremap <S-F8> :call vimspector#RunToCursor()<CR>
+nnoremap <F11>  :call Vimspector#AddFunctionBreakpoint()<CR>
+nnoremap <F12>  :call vimspector#ToggleBreakpoint()<CR>
+
 
 
 " markdown & text files
