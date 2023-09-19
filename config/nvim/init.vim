@@ -157,7 +157,10 @@ inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
 
 " reload all open buffers
-nnoremap <leader>Ra :tabdo exec "windo e!"
+nnoremap <leader>Ra :tabdo exec "windo e!"<CR>
+
+" set current file dir as cwd
+nnoremap <leader>C :cd %:p:h<CR>
 
 "map next-previous jumps
 nnoremap <leader>m <C-o>
@@ -180,7 +183,7 @@ vnoremap <leader>s :%s /
 
 " open vimrc
 nnoremap <leader>v :e  ~/.config/nvim/init.vim<CR>
-nnoremap <leader>V :so  ~/.config/nvim/init.vim<CR>
+nnoremap <leader>V :so ~/.config/nvim/init.vim<CR>
 
 
 " shortcuts for togglables and popups
