@@ -61,7 +61,7 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 " Haskell
-Plug 'mrcjkb/haskell-tools.nvim', { 'for': 'haskell' }
+Plug 'mrcjkb/haskell-tools.nvim', { 'for': ['haskell', 'lhaskell', 'cabal', 'cabalproject'] }
 
 " C++
 Plug 'derekwyatt/vim-fswitch'
@@ -84,7 +84,12 @@ call plug#end()
 "
 """"""""""""""""""""""""""""""""
 set encoding=utf-8
-set shell=/usr/bin/fish
+
+if has("mac")
+    set shell=/opt/homebrew/bin/fish
+else
+    set shell=/usr/bin/fish
+endif
 
 set tabstop=4
 set softtabstop=4
@@ -713,6 +718,33 @@ lua <<EOF
             update_in_insert = false
         }
     )
+
+
+-- Haskell tools
+
+-- local ht = require('haskell-tools')
+-- -- require('haskell-tools').setup({
+--
+--     local bufnr = vim.api.nvim_get_current_buf()
+--     local def_opts = { noremap = true, silent = true, buffer = bufnr, }
+--     -- haskell-language-server relies heavily on codeLenses,
+--     -- so auto-refresh (see advanced configuration) is enabled by default
+--     vim.keymap.set('n', '<leader>hc', vim.lsp.codelens.run, opts)
+--     -- Hoogle search for the type signature of the definition under the cursor
+--     vim.keymap.set('n', '<leader>hs', ht.hoogle.hoogle_signature, opts)
+--     -- Evaluate all code snippets
+--     vim.keymap.set('n', '<leader>ha', ht.lsp.buf_eval_all, opts)
+--     -- Toggle a GHCi repl for the current package
+--     vim.keymap.set('n', '<leader>ht', ht.repl.toggle, opts)
+--     -- Toggle a GHCi repl for the current buffer
+--     vim.keymap.set('n', '<leader>hf', function() ht.repl.toggle(vim.api.nvim_buf_get_name(0)) end, def_opts)
+--     vim.keymap.set('n', '<leader>hq', ht.repl.quit, opts)
+--
+--     -- Detect nvim-dap launch configurations
+--     -- (requires nvim-dap and haskell-debug-adapter)
+--     ht.dap.discover_configurations(bufnr)
+-- -- )}
+
 
 -- No neck pain
 
