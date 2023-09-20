@@ -7,7 +7,6 @@
 call plug#begin('~/.vim/plugged')
 
 " eye candy
-Plug 'morhetz/gruvbox'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'vim-airline/vim-airline'
@@ -161,6 +160,7 @@ nnoremap <leader>Ra :tabdo exec "windo e!"<CR>
 
 " set current file dir as cwd
 nnoremap <leader>C :cd %:p:h<CR>
+nnoremap <C-g> :echo expand('%:p:h')<CR>
 
 "map next-previous jumps
 nnoremap <leader>m <C-o>
@@ -434,16 +434,6 @@ augroup END
 
 syntax on
 
-let g:gruvbox_contrast_dark = "hard"
-let g:gruvbox_contrast_light = "hard"
-let g:gruvbox_underline = 0
-let g:gruvbox_undercurl = 0
-let g:gruvbox_invert_selection = 0
-let g:gruvbox_improved_warnings = 0
-
-" colorscheme gruvbox
-" let g:airline_theme = 'gruvbox'
-
 colorscheme catppuccin
 let g:airline_theme = 'catppuccin'
 
@@ -465,23 +455,15 @@ augroup END
 
 " switch between light and dark mode
 fu! ChangeTheme()
-    if (&background == "dark") && (g:colors_name ==? "catppuccin-mocha")
+    if (&background == "dark")
         let &background="light"
-        colorscheme gruvbox
-        let g:airline_theme = 'gruvbox'
+        colorscheme catppuccin-latte
+        let g:airline_theme = 'catppuccin'
         :AirlineRefresh
-        :!xdotool key -clearmodifiers Shift+F10 r 5
     elseif &background == "light"
         let &background="dark"
-        colorscheme gruvbox
-        let g:airline_theme = 'gruvbox'
-        :AirlineRefresh
-        :!xdotool key -clearmodifiers Shift+F10 r 2
-    elseif (&background == "dark") && (g:colors_name ==? "gruvbox")
         colorscheme catppuccin
-        let &background="dark"
         let g:airline_theme = 'catppuccin'
-        :!xdotool key -clearmodifiers Shift+F10 r 2
         :AirlineRefresh
     else
         echo "Invalid state"
