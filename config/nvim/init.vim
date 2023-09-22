@@ -42,6 +42,7 @@ Plug 'voldikss/vim-floaterm'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'preservim/tagbar'
 Plug 'folke/trouble.nvim'
+Plug 'Vigemus/iron.nvim'
 
 " active panel highlighting
 " Plug 'TaDaa/vimade'
@@ -716,28 +717,79 @@ lua <<EOF
 
 -- Haskell tools
 
--- local ht = require('haskell-tools')
--- -- require('haskell-tools').setup({
---
---     local bufnr = vim.api.nvim_get_current_buf()
---     local def_opts = { noremap = true, silent = true, buffer = bufnr, }
---     -- haskell-language-server relies heavily on codeLenses,
---     -- so auto-refresh (see advanced configuration) is enabled by default
---     vim.keymap.set('n', '<leader>hc', vim.lsp.codelens.run, opts)
---     -- Hoogle search for the type signature of the definition under the cursor
---     vim.keymap.set('n', '<leader>hs', ht.hoogle.hoogle_signature, opts)
---     -- Evaluate all code snippets
---     vim.keymap.set('n', '<leader>ha', ht.lsp.buf_eval_all, opts)
---     -- Toggle a GHCi repl for the current package
---     vim.keymap.set('n', '<leader>ht', ht.repl.toggle, opts)
---     -- Toggle a GHCi repl for the current buffer
---     vim.keymap.set('n', '<leader>hf', function() ht.repl.toggle(vim.api.nvim_buf_get_name(0)) end, def_opts)
---     vim.keymap.set('n', '<leader>hq', ht.repl.quit, opts)
---
---     -- Detect nvim-dap launch configurations
---     -- (requires nvim-dap and haskell-debug-adapter)
---     ht.dap.discover_configurations(bufnr)
--- -- )}
+local ht = require('haskell-tools')
+local def_opts = { noremap = true, silent = true, buffer = bufnr, }
+-- haskell-language-server relies heavily on codeLenses,
+-- so auto-refresh (see advanced configuration) is enabled by default
+vim.keymap.set('n', '<leader>hc', vim.lsp.codelens.run, opts)
+-- Hoogle search for the type signature of the definition under the cursor
+vim.keymap.set('n', '<leader>hs', ht.hoogle.hoogle_signature, opts)
+-- Evaluate all code snippets
+vim.keymap.set('n', '<leader>ha', ht.lsp.buf_eval_all, opts)
+-- Toggle a GHCi repl for the current package
+vim.keymap.set('n', '<leader>ht', ht.repl.toggle, opts)
+-- Toggle a GHCi repl for the current buffer
+vim.keymap.set('n', '<leader>hf', function() ht.repl.toggle(vim.api.nvim_buf_get_name(0)) end, def_opts)
+vim.keymap.set('n', '<leader>hq', ht.repl.quit, opts)
+
+-- Detect nvim-dap launch configurations
+-- (requires nvim-dap and haskell-debug-adapter)
+-- ht.dap.discover_configurations(bufnr)
+
+local iron = require("iron.core")
+iron.setup {
+    config = {
+        -- Whether a repl should be discarded or not
+        scratch_repl = false,
+        -- Automatically closes the repl window on process end
+        close_window_on_exit = true,
+        -- Your repl definitions come here
+        repl_definition = {
+            sh = { command = {"fish"} },
+            python = require("iron.fts.python").ipython,
+            haskell = {
+                command = function(meta)
+                local file = vim.api.nvim_buf_get_name(meta.current_bufnr)
+                -- call `require` in case iron is set up before haskell-tools
+                return require('haskell-tools').repl.mk_repl_cmd(file)
+                end,
+            }
+        },
+        -- How the repl window will be displayed
+        -- See below for more information
+        repl_open_cmd = require('iron.view').split.vertical.botright("50%"),
+        -- If the repl buffer is listed
+        buflisted = true,
+    },
+    -- Iron doesn't set keymaps by default anymore.
+    -- You can set them here or manually add keymaps to the functions in iron.core
+    keymaps = {
+        send_motion = "<leader>ic",
+        visual_send = "<leader>ic",
+        send_file = "<leader>if",
+        send_line = "<leader>il",
+        send_until_cursor = "<leader>iu",
+        send_mark = "<leader>im",
+        mark_motion = "<leader>iic",
+        mark_visual = "<leader>iic",
+        remove_mark = "<leader>iid",
+        cr = "<leader>i<cr>",
+        interrupt = "<leader>i<leader>",
+        exit = "<leader>iq",
+        --clear = "<leader>il",
+    },
+    -- If the highlight is on, you can change how it looks
+    -- For the available options, check nvim_set_hl
+    highlight = { italic = true },
+    -- ignore blank lines when sending visual select lines
+    ignore_blank_lines = true,
+}
+
+-- iron also has a list of commands, see :h iron-commands for all available commands
+vim.keymap.set('n', '<leader>is', '<cmd>IronRepl<cr>')
+vim.keymap.set('n', '<leader>ir', '<cmd>IronRestart<cr>')
+vim.keymap.set('n', '<leader>if', '<cmd>IronFocus<cr>')
+vim.keymap.set('n', '<leader>ih', '<cmd>IronHide<cr>')
 
 
 -- No neck pain
