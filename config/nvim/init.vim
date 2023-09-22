@@ -740,6 +740,10 @@ lua <<EOF
             scratch_repl = false,
             -- Automatically closes the repl window on process end
             close_window_on_exit = true,
+            -- Scope of the repl
+            -- By default it is one for the same `pwd`
+            -- Other options are `tab_based` and `singleton`
+            scope = require("iron.scope").singleton,
             -- Your repl definitions come here
             repl_definition = {
                 sh = { command = {"fish"} },
@@ -754,7 +758,9 @@ lua <<EOF
             },
             -- How the repl window will be displayed
             -- See below for more information
-            repl_open_cmd = require('iron.view').split.vertical.botright("50%"),
+            --repl_open_cmd = require('iron.view').split.vertical.botright("50%"),
+            -- repl_open_cmd = require("iron.view").center("90%"),
+            repl_open_cmd = require("iron.view").split.horizontal.top("30%"),
             -- If the repl buffer is listed
             buflisted = true,
         },
@@ -769,7 +775,7 @@ lua <<EOF
             send_mark = "<leader>im",
             mark_motion = "<leader>iic",
             mark_visual = "<leader>iic",
-            remove_mark = "<leader>iid",
+            remove_mark = "<leader>id",
             cr = "<leader>i<cr>",
             interrupt = "<leader>i<leader>",
             exit = "<leader>iq",
@@ -782,6 +788,7 @@ lua <<EOF
         ignore_blank_lines = true,
     }
     -- iron also has a list of commands, see :h iron-commands for all available commands
+    vim.keymap.set('n', '<leader>7', '<cmd>IronRepl<cr>')
     vim.keymap.set('n', '<leader>is', '<cmd>IronRepl<cr>')
     vim.keymap.set('n', '<leader>ir', '<cmd>IronRestart<cr>')
     vim.keymap.set('n', '<leader>if', '<cmd>IronFocus<cr>')
