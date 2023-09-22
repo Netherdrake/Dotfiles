@@ -50,7 +50,7 @@ Plug 'folke/trouble.nvim'
 Plug 'neovim/nvim-lspconfig'
 " Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'ray-x/lsp_signature.nvim'
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 
 " Python
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
@@ -62,9 +62,6 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 " Haskell
 Plug 'mrcjkb/haskell-tools.nvim', { 'for': ['haskell', 'lhaskell', 'cabal', 'cabalproject'] }
-
-" C++
-Plug 'derekwyatt/vim-fswitch'
 
 " markdown
 Plug 'preservim/vim-pencil', { 'for': 'markdown' }
@@ -392,10 +389,7 @@ au FileType cpp nnoremap <leader>o :call <SID>CppMan("browser")<CR>
 
 
 " switch between source/header files
-au BufEnter *.h let b:fswitchdst = 'c,cpp,m,cc' | let b:fswitchlocs = 'reg:|include.*|src/**|'
-au BufEnter *.c let b:fswitchdst = "h"
-au BufEnter *.cc let b:fswitchdst = "h,hpp"
-nnoremap <silent> gs :FSHere<CR>
+nnoremap <silent> gs :ClangdSwitchSourceHeader<CR>
 
 
 " vimspector
@@ -705,19 +699,19 @@ lua <<EOF
 --
 -- Diagnostics
 
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-        vim.lsp.diagnostic.on_publish_diagnostics, {
-            -- disable ugly underlines
-            underline = false,
-            virtual_text = false,
-            -- Enable virtual text, override spacing to 4
-            -- virtual_text = {spacing = 4},
-            -- Use a function to dynamically turn signs off
-            -- and on, using buffer local variables
-            signs = true,
-            update_in_insert = false
-        }
-    )
+--    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+--        vim.lsp.diagnostic.on_publish_diagnostics, {
+--            -- disable ugly underlines
+--            underline = false,
+--            virtual_text = false,
+--            -- Enable virtual text, override spacing to 4
+--            -- virtual_text = {spacing = 4},
+--            -- Use a function to dynamically turn signs off
+--            -- and on, using buffer local variables
+--            signs = true,
+--            update_in_insert = false
+--        }
+--    )
 
 
 -- Haskell tools
