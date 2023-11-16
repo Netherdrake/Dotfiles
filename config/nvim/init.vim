@@ -141,6 +141,11 @@ set mouse=a
 nmap <F1> <nop>
 imap <F1> <nop>
 
+" avoid save typos
+ca w' w
+ca w] w
+ca w\ w
+
 " visual reselect of just pasted
 nnoremap gp `[v`]
 
@@ -199,6 +204,7 @@ nnoremap <leader>3 <cmd>TroubleToggle<cr>
 nnoremap <leader>4 :TagbarToggle<CR>
 nnoremap <leader>5 :NERDTreeToggle<CR>
 nnoremap <leader>6 :Telescope git_status<CR>
+nnoremap <leader>7 :term time make debug<CR>
 nnoremap <leader>8 :term time make run<CR>
 nnoremap <leader>9 :term time make test<CR>
 " nnoremap <expr> <leader>- ':call ChangeTheme()'."<CR>"."<CR>"
@@ -788,7 +794,7 @@ lua <<EOF
         ignore_blank_lines = true,
     }
     -- iron also has a list of commands, see :h iron-commands for all available commands
-    vim.keymap.set('n', '<leader>7', '<cmd>IronRepl<cr>')
+    --vim.keymap.set('n', '<leader>7', '<cmd>IronRepl<cr>')
     vim.keymap.set('n', '<leader>is', '<cmd>IronRepl<cr>')
     vim.keymap.set('n', '<leader>ir', '<cmd>IronRestart<cr>')
     vim.keymap.set('n', '<leader>if', '<cmd>IronFocus<cr>')

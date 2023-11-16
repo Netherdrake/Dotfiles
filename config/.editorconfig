@@ -11,6 +11,13 @@ tab_width = 4
 trim_trailing_whitespace=true
 insert_final_newline=true
 
+[*.hs]
+indent_style = space
+indent_size = 4
+tab_width = 4
+trim_trailing_whitespace=true
+insert_final_newline=true
+
 [*.{c,cpp,cppm,m,h,hpp,hhh,hh,cu,cuda}]
 indent_style = space
 indent_size = 4
