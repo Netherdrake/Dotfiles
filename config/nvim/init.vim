@@ -11,6 +11,14 @@ Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'vim-airline/vim-airline'
 
+" Plug 'huyvohcmc/atlas.vim'     " nice red braces
+Plug 'Netherdrake/austere.vim' " excellent
+" Plug 'Lokaltog/vim-monotone'   " excellent
+" Plug 'stefanvanburen/rams.vim' " good
+" Plug 'aditya-azad/candle-grey' " good
+Plug 'vim-airline/vim-airline-themes'
+
+
 " core plugins
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-fugitive'
@@ -437,12 +445,22 @@ augroup END
 " COLOURS and THEME
 "
 """"""""""""""""""""""""""""""""
-
 syntax on
+set termguicolors
 
-colorscheme catppuccin
-let g:airline_theme = 'catppuccin'
+fu! EnableTheme()
+    colorscheme catppuccin
+    let g:airline_theme = 'catppuccin'
+    :AirlineRefresh
+endfunction
 
+fu! DisableTheme()
+    colorscheme austere
+    let g:airline_theme = 'minimalist'
+    :AirlineRefresh
+endfunction
+
+call EnableTheme()
 
 """"""""""""""""""""""""""""""""
 "
@@ -457,30 +475,6 @@ augroup line_return
         \     execute 'normal! g`"zvzz' |
         \ endif
 augroup END
-
-
-" switch between light and dark mode
-fu! ChangeTheme()
-    if (&background == "dark")
-        let &background="light"
-        colorscheme catppuccin-latte
-        let g:airline_theme = 'catppuccin'
-        :AirlineRefresh
-    elseif &background == "light"
-        let &background="dark"
-        colorscheme catppuccin
-        let g:airline_theme = 'catppuccin'
-        :AirlineRefresh
-    else
-        echo "Invalid state"
-    endif
-endfunction
-
-fu! DisableTheme()
-    colorscheme default
-    let g:airline_theme='dark'
-    :AirlineRefresh
-endfunction
 
 
 " Visual Mode */# from Scrooloose
@@ -829,60 +823,60 @@ lua <<EOF
 
 -- Theme
 
-    require("catppuccin").setup({
-        flavour = "mocha", -- latte, frappe, macchiato, mocha
-        background = { -- :h background
-            light = "latte",
-            dark = "mocha",
-        },
-        transparent_background = false,
-        show_end_of_buffer = false,
-        term_colors = false,
-        dim_inactive = {
-            enabled = false,
-            shade = "dark",
-            percentage = 0.80,
-        },
-        -- color_overrides = {
-        --     mocha = {
-        --         base = "#000000",
-        --         mantle = "#000000",
-        --         crust = "#000000",
-        --     },
-        -- },
-         highlight_overrides = {
-             mocha = function(C)
-             return {
-                 TabLineSel = { bg = C.pink },
-                 CmpBorder = { fg = C.surface2 },
-                 Pmenu = { bg = C.none },
-                 TelescopeBorder = { link = "FloatBorder" },
-                 }
-         end,
-        },
-        no_italic = false, -- Force no italic
-        no_bold = false, -- Force no bold
-        no_underline = false, -- Force no underline
-        styles = {
-            comments = {},
-            conditionals = {},
-            loops = {},
-            functions = {},
-            keywords = {},
-            strings = {},
-            variables = {},
-            numbers = {},
-            booleans = {},
-            properties = {},
-            types = {},
-            operators = {},
-        },
-        integrations = {
-            telescope = true,
-            lsp_trouble = false,
-            treesitter = true,
-            markdown = true,
-        },
-    })
+     require("catppuccin").setup({
+         flavour = "mocha", -- latte, frappe, macchiato, mocha
+         background = { -- :h background
+             light = "latte",
+             dark = "mocha",
+         },
+         transparent_background = false,
+         show_end_of_buffer = false,
+         term_colors = false,
+         dim_inactive = {
+             enabled = false,
+             shade = "dark",
+             percentage = 0.80,
+         },
+         -- color_overrides = {
+         --     mocha = {
+         --         base = "#000000",
+         --         mantle = "#000000",
+         --         crust = "#000000",
+         --     },
+         -- },
+          highlight_overrides = {
+              mocha = function(C)
+              return {
+                  TabLineSel = { bg = C.pink },
+                  CmpBorder = { fg = C.surface2 },
+                  Pmenu = { bg = C.none },
+                  TelescopeBorder = { link = "FloatBorder" },
+                  }
+          end,
+         },
+         no_italic = false, -- Force no italic
+         no_bold = false, -- Force no bold
+         no_underline = false, -- Force no underline
+         styles = {
+             comments = {},
+             conditionals = {},
+             loops = {},
+             functions = {},
+             keywords = {},
+             strings = {},
+             variables = {},
+             numbers = {},
+             booleans = {},
+             properties = {},
+             types = {},
+             operators = {},
+         },
+         integrations = {
+             telescope = true,
+             lsp_trouble = false,
+             treesitter = true,
+             markdown = true,
+         },
+     })
 
 EOF
