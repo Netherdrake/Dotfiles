@@ -448,10 +448,16 @@ augroup END
 syntax on
 set termguicolors
 
+let g:theme_set = 0
+
 fu! EnableTheme()
     colorscheme catppuccin
     let g:airline_theme = 'catppuccin'
-    :AirlineRefresh
+    if g:theme_set == 1
+        :AirlineRefresh
+    else
+        let g:theme_set = 1
+    endif
 endfunction
 
 fu! DisableTheme()
