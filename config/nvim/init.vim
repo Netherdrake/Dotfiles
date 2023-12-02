@@ -209,8 +209,8 @@ tnoremap <leader>1 <C-\><C-n>:FloatermToggle<CR>
 nnoremap <leader>2 :FloatermNew --disposable ranger<CR>
 lua require'trouble'.setup()
 nnoremap <leader>3 <cmd>TroubleToggle<cr>
-nnoremap <leader>4 :TagbarToggle<CR>
-nnoremap <leader>5 :NERDTreeToggle<CR>
+nnoremap <leader>4 :NERDTreeToggle<CR>
+nnoremap <leader>5 :TagbarToggle<CR>
 nnoremap <leader>6 :Telescope git_status<CR>
 nnoremap <leader>7 :term time make debug<CR>
 nnoremap <leader>8 :term time make run<CR>
@@ -463,10 +463,14 @@ endfunction
 fu! DisableTheme()
     colorscheme austere
     let g:airline_theme = 'minimalist'
-    :AirlineRefresh
+    if g:theme_set == 1
+        :AirlineRefresh
+    else
+        let g:theme_set = 1
+    endif
 endfunction
 
-call EnableTheme()
+call DisableTheme()
 
 """"""""""""""""""""""""""""""""
 "

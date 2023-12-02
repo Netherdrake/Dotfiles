@@ -1,0 +1,7 @@
+font = {
+ size = 13.0,
+ normal = { family = "BitstreamVeraSansMono Nerd Font" },
+ bold = { family = "BitstreamVeraSansMono Nerd Font" },
+ italic = { family = "BitstreamVeraSansMono Nerd Font" },
+ bold_italic = { family = "BitstreamVeraSansMono Nerd Font" },
+}
