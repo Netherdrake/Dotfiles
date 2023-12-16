@@ -47,7 +47,7 @@ Plug 'nvim-telescope/telescope.nvim'
 
 " togglable panels
 Plug 'voldikss/vim-floaterm'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'nvim-tree/nvim-tree.lua'
 Plug 'preservim/tagbar'
 Plug 'folke/trouble.nvim'
 Plug 'Vigemus/iron.nvim'
@@ -138,6 +138,10 @@ set undofile
 set history=100
 set undolevels=100
 
+" disable netrw
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+
 " set <leader>
 let mapleader=","
 map <Space> <leader>
@@ -209,7 +213,7 @@ tnoremap <leader>1 <C-\><C-n>:FloatermToggle<CR>
 nnoremap <leader>2 :FloatermNew --disposable ranger<CR>
 lua require'trouble'.setup()
 nnoremap <leader>3 <cmd>TroubleToggle<cr>
-nnoremap <leader>4 :NERDTreeToggle<CR>
+nnoremap <leader>4 :NvimTreeToggle<CR>
 nnoremap <leader>5 :TagbarToggle<CR>
 nnoremap <leader>6 :Telescope git_status<CR>
 nnoremap <leader>7 :term time make debug<CR>
@@ -289,6 +293,8 @@ let g:ycm_clangd_args=['--header-insertion=never']
 " let g:tagbar_ctags_bin = '/snap/bin/universal-ctags'
 " univesal ctags installed via ubuntu snap don't have read access to /tmp
 let g:tagbar_use_cache = 0
+let g:tagbar_autofocus = 1
+let g:tagbar_sort = 0
 
 " git
 let g:gitgutter_enabled = 1
@@ -608,6 +614,77 @@ endif
 
 
 lua <<EOF
+
+-- Nvim Tree
+
+    local function nvim_tree_on_attach(bufnr)
+      local api = require "nvim-tree.api"
+
+      local function opts(desc)
+        return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = false, silent = true, nowait = true }
+      end
+
+      local function nothing()
+          return
+      end
+
+      vim.keymap.set('n', '<C-[>',   api.tree.change_root_to_parent,      opts('Up'))
+      vim.keymap.set('n', '<C-]>',   api.tree.change_root_to_node,        opts('CD'))
+      vim.keymap.set('n', '<C-r>',   api.tree.reload,                     opts('Refresh'))
+      vim.keymap.set('n', '<C-t>',   api.node.open.tab,                   opts('Open: New Tab'))
+      vim.keymap.set('n', '<C-v>',   api.node.open.vertical,              opts('Open: Vertical Split'))
+      vim.keymap.set('n', '<C-x>',   api.node.open.horizontal,            opts('Open: Horizontal Split'))
+      vim.keymap.set('n', '<BS>',    api.node.navigate.parent_close,      opts('Close Directory'))
+      vim.keymap.set('n', '<Esc>',   nothing,                             opts('nil'))
+      vim.keymap.set('n', '<CR>',    api.node.open.edit,                  opts('Open'))
+      vim.keymap.set('n', '<Tab>',   api.node.open.preview,               opts('Open Preview'))
+      vim.keymap.set('n', '.',       api.node.run.cmd,                    opts('Run Command'))
+      vim.keymap.set('n', 'a',       api.fs.create,                       opts('Create File Or Directory'))
+      vim.keymap.set('n', 'c',       api.fs.copy.node,                    opts('Copy'))
+      vim.keymap.set('n', 'd',       api.fs.trash,                        opts('Trash'))
+      vim.keymap.set('n', 'E',       api.tree.expand_all,                 opts('Expand All'))
+      vim.keymap.set('n', 'F',       api.live_filter.clear,               opts('Clean Filter'))
+      vim.keymap.set('n', 'f',       api.live_filter.start,               opts('Filter'))
+      vim.keymap.set('n', 'H',       api.tree.toggle_hidden_filter,       opts('Toggle Filter: Dotfiles'))
+      vim.keymap.set('n', 'i',       api.node.show_info_popup,            opts('Info'))
+      vim.keymap.set('n', 'I',       api.tree.toggle_gitignore_filter,    opts('Toggle Filter: Git Ignore'))
+      vim.keymap.set('n', 'J',       api.node.navigate.sibling.last,      opts('Last Sibling'))
+      vim.keymap.set('n', 'K',       api.node.navigate.sibling.first,     opts('First Sibling'))
+      vim.keymap.set('n', 'm',       api.marks.toggle,                    opts('Toggle Bookmark'))
+      vim.keymap.set('n', 'e',       api.node.open.edit,                  opts('Open'))
+      vim.keymap.set('n', 'o',       api.node.open.edit,                  opts('Open'))
+      vim.keymap.set('n', 'O',       api.node.run.system,                 opts('Open System'))
+      vim.keymap.set('n', 'p',       api.fs.paste,                        opts('Paste'))
+      vim.keymap.set('n', 'P',       api.node.navigate.parent,            opts('Parent Directory'))
+      vim.keymap.set('n', 'q',       api.tree.close,                      opts('Close'))
+      vim.keymap.set('n', 'S',       api.tree.search_node,                opts('Search'))
+      vim.keymap.set('n', 'r',       api.fs.rename_full,                  opts('Rename: Full Path'))
+      vim.keymap.set('n', 'U',       api.tree.toggle_custom_filter,       opts('Toggle Filter: Hidden'))
+      vim.keymap.set('n', 'W',       api.tree.collapse_all,               opts('Collapse'))
+      vim.keymap.set('n', 'x',       api.fs.cut,                          opts('Cut'))
+      vim.keymap.set('n', 'y',       api.fs.copy.filename,                opts('Copy Name'))
+      vim.keymap.set('n', 'Y',       api.fs.copy.absolute_path,           opts('Copy Absolute Path'))
+      vim.keymap.set('n', '?',       api.tree.toggle_help,                opts('Help'))
+    end
+
+    require("nvim-tree").setup({
+    on_attach = nvim_tree_on_attach,
+      sort = {
+        sorter = "case_sensitive",
+      },
+      view = {
+        width = 40,
+      },
+      renderer = {
+        group_empty = true,
+      },
+      git = {
+        enable = false,
+      },
+      filters = {
+        dotfiles = true,
+      },
+    })
 
 -- Telescope
 
