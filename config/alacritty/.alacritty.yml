@@ -8,3 +8,5 @@ font:
    family: 'BitstreamVeraSansMono Nerd Font'
  bold_italic:
    family: 'BitstreamVeraSansMono Nerd Font'
+key_bindings:
+ - { key: N, mods: Control|Shift, action: SpawnNewInstance }
