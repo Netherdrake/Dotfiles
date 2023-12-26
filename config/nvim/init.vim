@@ -60,10 +60,6 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'ray-x/lsp_signature.nvim'
 " Plug 'dense-analysis/ale'
 
-" Python
-Plug 'jpalardy/vim-slime', { 'for': 'python' }
-Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
-
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
@@ -299,68 +295,6 @@ nnoremap <leader>tr :Telescope oldfiles<CR>
 nnoremap <leader>ts :Telescope git_status<CR>
 nnoremap <leader>tf :Telescope git_files<CR>
 nnoremap <leader>tc :Telescope git_commits<CR>
-
-
-" configure nvim -> ipython integration
-let g:slime_target = "neovim"
-let g:slime_python_ipython = 1
-
-" or have nvim -> tmux -> ipython
-let g:slime_target = "tmux"
-let g:slime_default_config = {
-            \ 'socket_name': get(split($TMUX, ','), 0),
-            \ 'target_pane': '{top-right}' }
-let g:slime_dont_ask_default = 1
-
-" Use '##' to define cells instead of using marks
-let g:ipython_cell_delimit_cells_by = 'tags'
-let g:ipython_cell_tag = '##'
-
-" Start iPython shell
-fu! Ipython()
-  :vs | term ipython
-  :wincmd r
-  :wincmd h
-  :SlimeConfig
-endfunction
-command! Ipython :call Ipython()
-command! IPython :call Ipython()
-
-" a hack workaround for terminal not scrolling
-function! FixTerminalScroll(bufname)
-    let bufmap = map(range(1, winnr('$')), '[bufname(winbufnr(v:val)), v:val]')
-    let thewindow = filter(bufmap, 'v:val[0] =~# a:bufname')[0][1]
-    execute thewindow 'wincmd w'
-    execute thewindow 'normal i'
-    call feedkeys("_", "i")
-    execute 'sleep 50m'
-    call feedkeys("\<BS>", "i")
-    execute 'sleep 50m'
-    call feedkeys("\<C-\>\<C-n>", "i")
-    " execute thewindow 'normal j'
-    " execute 'wincmd p'
-endfunction
-
-" Rstudio/ipython habit
-autocmd FileType python nnoremap <buffer> <leader>r :SlimeSendCurrentLine<CR>
-autocmd FileType python vnoremap <buffer> <leader>r :SlimeRegionSend<CR>
-autocmd FileType python xnoremap <buffer> <leader>r :SlimeSend<CR>
-autocmd FileType python nnoremap <buffer> <leader>cs :call FixTerminalScroll("ipython")<CR>
-autocmd FileType python nnoremap <buffer> <leader>cr :IPythonCellClose<CR>:IPythonCellClear<CR>
-autocmd FileType python nnoremap <buffer> <leader>cd :SlimeSend1 plt.show()<CR>
-autocmd FileType python nnoremap <buffer> <leader>ct :IPythonCellRunTime<CR>
-autocmd FileType python nnoremap <buffer> <leader>cq :IPythonCellRestart<CR>
-autocmd FileType python nnoremap <buffer> <C-d> :IPythonCellNextCell<CR>
-autocmd FileType python nnoremap <buffer> <C-u> :IPythonCellPrevCell<CR>
-
-if has('clipboard')
-    autocmd FileType python nnoremap <buffer> <leader>cc :IPythonCellExecuteCell<CR>
-    autocmd FileType python nnoremap <buffer> <leader>cn :IPythonCellExecuteCellJump<CR>
-else
-    autocmd FileType python nnoremap <buffer> <leader>cc :IPythonCellExecuteCellVerbose<CR>
-    autocmd FileType python nnoremap <buffer> <leader>cn :IPythonCellExecuteCellVerboseJump<CR>
-endif
-
 
 " Rust config
 let g:rustfmt_autosave = 1
