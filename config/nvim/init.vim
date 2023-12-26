@@ -26,7 +26,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'shortcuts/no-neck-pain.nvim'
 
 " search
 Plug 'henrik/vim-indexed-search'
@@ -77,9 +76,6 @@ Plug 'preservim/vim-pencil', { 'for': 'markdown' }
 
 " debugging
 Plug 'puremourning/vimspector', { 'for': ['haskell', 'python', 'cpp', 'c'] }
-
-" enable neovim builtin plugin
-packadd termdebug
 
 call plug#end()
 
@@ -219,10 +215,7 @@ nnoremap <leader>6 :Telescope git_status<CR>
 nnoremap <leader>7 :term time make debug<CR>
 nnoremap <leader>8 :term time make run<CR>
 nnoremap <leader>9 :term time make test<CR>
-" nnoremap <expr> <leader>- ':call ChangeTheme()'."<CR>"."<CR>"
-nnoremap <leader>0 :NoNeckPain<CR> :NoNeckPainResize 150<CR>
-nnoremap <leader>- :NoNeckPainWidthDown<CR>
-nnoremap <leader>= :NoNeckPainWidthUp<CR>
+" nnoremap <expr> <leader>0 ':call ChangeTheme()'."<CR>"."<CR>"
 
 
 nnoremap <F1> :Telescope help_tags<CR>
@@ -845,17 +838,17 @@ lua <<EOF
             },
             -- How the repl window will be displayed
             -- See below for more information
-            --repl_open_cmd = require('iron.view').split.vertical.botright("50%"),
+            repl_open_cmd = require('iron.view').split.vertical.botright("50%"),
             -- repl_open_cmd = require("iron.view").center("90%"),
-            repl_open_cmd = require("iron.view").split.horizontal.top("30%"),
+            -- repl_open_cmd = require("iron.view").split.horizontal.top("30%"),
             -- If the repl buffer is listed
             buflisted = true,
         },
         -- Iron doesn't set keymaps by default anymore.
         -- You can set them here or manually add keymaps to the functions in iron.core
         keymaps = {
-            send_motion = "<leader>ic",
-            visual_send = "<leader>ic",
+            send_motion = "<leader>it",
+            visual_send = "<leader>il",
             send_file = "<leader>if",
             send_line = "<leader>il",
             send_until_cursor = "<leader>iu",
@@ -866,7 +859,7 @@ lua <<EOF
             cr = "<leader>i<cr>",
             interrupt = "<leader>i<leader>",
             exit = "<leader>iq",
-            --clear = "<leader>il",
+            clear = "<leader>ix",
         },
         -- If the highlight is on, you can change how it looks
         -- For the available options, check nvim_set_hl
@@ -878,34 +871,8 @@ lua <<EOF
     --vim.keymap.set('n', '<leader>7', '<cmd>IronRepl<cr>')
     vim.keymap.set('n', '<leader>is', '<cmd>IronRepl<cr>')
     vim.keymap.set('n', '<leader>ir', '<cmd>IronRestart<cr>')
-    vim.keymap.set('n', '<leader>if', '<cmd>IronFocus<cr>')
+    -- vim.keymap.set('n', '<leader>if', '<cmd>IronFocus<cr>')
     vim.keymap.set('n', '<leader>ih', '<cmd>IronHide<cr>')
-
-
--- No neck pain
-
-    require("no-neck-pain").setup({
-        -- width = 150,
-        buffers = {
-            colors = {
-                blend = 0.05,
-            },
-            scratchPad = {
-                -- set to `false` to
-                -- disable auto-saving
-                enabled = true,
-                -- set to `nil` to default
-                -- to current working directory
-                location = "~/Documents/",
-            },
-            bo = {
-                filetype = "md"
-            },
-            wo = {
-                fillchars = "eob: ",
-            },
-        },
-    })
 
 
 -- Theme

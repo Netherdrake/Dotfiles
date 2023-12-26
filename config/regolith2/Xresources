@@ -1,0 +1,31 @@
+regolith.wallpaper.file: 
+regolith.wallpaper.color.primary: black
+
+i3-wm.bar.position:	bottom
+
+i3xrocks.date.format2: "%a %b %d | %I:%M %p"
+
+i3-wm.window.border.size: 4
+i3-wm.floatingwindow.border.size: 4
+
+i3-wm.client.focused.color.border: "#9B6BDF"
+i3-wm.client.focused.color.background: "#9B6BDF"
+i3-wm.client.focused.color.child_border: "#9B6BDF"
+i3-wm.client.focused.color.indicator: "#c49ff9"
+
+i3-wm.client.focused_inactive.color.border: "#bd93f9"
+i3-wm.client.focused_inactive.color.indicator: "#44475a"
+i3-wm.client.focused_inactive.color.child_border: "#44475a"
+
+i3-wm.client.unfocused.color.border: "#282a36"
+
+i3-wm.workspace.01.name: 1
+i3-wm.workspace.02.name: 2
+i3-wm.workspace.03.name: 3
+i3-wm.workspace.04.name: 4
+i3-wm.workspace.05.name: 5
+i3-wm.workspace.06.name: 6
+i3-wm.workspace.07.name: 7
+
+!regolith.look.path: /usr/share/regolith-look/lascaille
+regolith.look.path: /usr/share/regolith-look/dracula
