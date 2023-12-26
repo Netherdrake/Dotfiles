@@ -68,14 +68,11 @@ Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 
-" Haskell
-Plug 'mrcjkb/haskell-tools.nvim', { 'for': ['haskell', 'lhaskell', 'cabal', 'cabalproject'] }
-
 " markdown
 Plug 'preservim/vim-pencil', { 'for': 'markdown' }
 
 " debugging
-Plug 'puremourning/vimspector', { 'for': ['haskell', 'python', 'cpp', 'c'] }
+Plug 'puremourning/vimspector', { 'for': ['python', 'cpp', 'c'] }
 
 call plug#end()
 
@@ -383,7 +380,6 @@ au FileType c        nnoremap <leader>p :call <SID>Phind("c")<CR>
 au FileType cpp      nnoremap <leader>p :call <SID>Phind("cpp")<CR>
 au FileType python   nnoremap <leader>p :call <SID>Phind("python3")<CR>
 au FileType rust     nnoremap <leader>p :call <SID>Phind("rust")<CR>
-au FileType haskell  nnoremap <leader>p :call <SID>Phind("haskell")<CR>
 
 
 " C++ config
@@ -796,21 +792,6 @@ lua <<EOF
 --    )
 
 
--- Haskell tools
-
-    local ht = require('haskell-tools')
-    local def_opts = { noremap = true, silent = true, buffer = bufnr, }
-    -- haskell-language-server relies heavily on codeLenses,
-    -- so auto-refresh (see advanced configuration) is enabled by default
-    vim.keymap.set('n', '<leader>hc', vim.lsp.codelens.run, opts)
-    -- Hoogle search for the type signature of the definition under the cursor
-    vim.keymap.set('n', '<leader>hs', ht.hoogle.hoogle_signature, opts)
-
-    -- Detect nvim-dap launch configurations
-    -- (requires nvim-dap and haskell-debug-adapter)
-    -- ht.dap.discover_configurations(bufnr)
-
-
 -- Iron
 
     local iron = require("iron.core")
@@ -828,13 +809,6 @@ lua <<EOF
             repl_definition = {
                 sh = { command = {"fish"} },
                 python = require("iron.fts.python").ipython,
-                haskell = {
-                    command = function(meta)
-                    local file = vim.api.nvim_buf_get_name(meta.current_bufnr)
-                    -- call `require` in case iron is set up before haskell-tools
-                    return require('haskell-tools').repl.mk_repl_cmd(file)
-                    end,
-                }
             },
             -- How the repl window will be displayed
             -- See below for more information
