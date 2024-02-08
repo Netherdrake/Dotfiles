@@ -528,6 +528,9 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
+" disable annoying markdown errors
+hi link markdownError Normal
+
 
 """"""""""""""""""""""""""""""""
 "
@@ -759,7 +762,7 @@ lua <<EOF
             visual_send = "<leader>il",
             send_file = "<leader>if",
             send_line = "<leader>il",
-            send_until_cursor = "<leader>iu",
+            send_until_cursor = "<leader>ir",
             send_mark = "<leader>im",
             mark_motion = "<leader>iic",
             mark_visual = "<leader>iic",
@@ -767,7 +770,7 @@ lua <<EOF
             cr = "<leader>i<cr>",
             interrupt = "<leader>i<leader>",
             exit = "<leader>iq",
-            clear = "<leader>ix",
+            clear = "<leader>ic",
         },
         -- If the highlight is on, you can change how it looks
         -- For the available options, check nvim_set_hl
@@ -778,8 +781,7 @@ lua <<EOF
     -- iron also has a list of commands, see :h iron-commands for all available commands
     --vim.keymap.set('n', '<leader>7', '<cmd>IronRepl<cr>')
     vim.keymap.set('n', '<leader>is', '<cmd>IronRepl<cr>')
-    vim.keymap.set('n', '<leader>ir', '<cmd>IronRestart<cr>')
-    -- vim.keymap.set('n', '<leader>if', '<cmd>IronFocus<cr>')
+    vim.keymap.set('n', '<leader>ix', '<cmd>IronRestart<cr>')
     vim.keymap.set('n', '<leader>ih', '<cmd>IronHide<cr>')
 
 
