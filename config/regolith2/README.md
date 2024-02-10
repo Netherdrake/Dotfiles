@@ -65,6 +65,11 @@ inactive-dim-fixed = true;
 General configuration:     https://regolith-desktop.com/docs/using-regolith/configuration/
 Xresources configuration:  https://regolith-desktop.com/docs/reference/xresources/
 
+Change terminal to alacritty:
+```
+sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /home/user/.cargo/bin/alacritty 50
+```
+
 # Gnome
 
 ## Keyboard mappings
