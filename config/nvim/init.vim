@@ -18,6 +18,7 @@ Plug 'Netherdrake/austere.vim' " excellent
 " Plug 'aditya-azad/candle-grey' " good
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'nyoom-engineering/oxocarbon.nvim'
 
 " core plugins
 Plug 'jlanzarotta/bufexplorer'
@@ -682,6 +683,15 @@ lua <<EOF
         flags = lsp_flags,
     }
 
+
+-- Disable LSP highlighting
+
+     vim.api.nvim_create_autocmd("LspAttach", {
+         callback = function(args)
+         local client = vim.lsp.get_client_by_id(args.data.client_id)
+         client.server_capabilities.semanticTokensProvider = nil
+         end,
+     })
 
 -- LSP signature
 
