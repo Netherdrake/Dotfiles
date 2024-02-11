@@ -17,8 +17,10 @@ Plug 'Netherdrake/austere.vim' " excellent
 " Plug 'stefanvanburen/rams.vim' " good
 " Plug 'aditya-azad/candle-grey' " good
 Plug 'vim-airline/vim-airline-themes'
-
 Plug 'nyoom-engineering/oxocarbon.nvim'
+Plug 'rebelot/kanagawa.nvim'
+Plug 'bluz71/vim-nightfly-colors', { 'as': 'nightfly' }
+Plug 'cocopon/iceberg.vim'
 
 " core plugins
 Plug 'jlanzarotta/bufexplorer'
@@ -525,12 +527,9 @@ set colorcolumn=
 " For tmux, enable:
 " https://sunaku.github.io/tmux-24bit-color.html#usage
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-if (has("termguicolors"))
-    set termguicolors
-endif
 
 " disable annoying markdown errors
-hi link markdownError Normal
+" hi link markdownError Normal
 
 
 """"""""""""""""""""""""""""""""
@@ -662,8 +661,8 @@ lua <<EOF
     end
 
     local lsp_flags = {
-      -- This is the default in Nvim 0.7+
-      debounce_text_changes = 150,
+      -- How long to wait after idle to send changes to lsp server
+      debounce_text_changes = 1000, -- 1s
     }
     require('lspconfig')['pyright'].setup{
         on_attach = on_attach,
@@ -686,12 +685,12 @@ lua <<EOF
 
 -- Disable LSP highlighting
 
-     vim.api.nvim_create_autocmd("LspAttach", {
-         callback = function(args)
-         local client = vim.lsp.get_client_by_id(args.data.client_id)
-         client.server_capabilities.semanticTokensProvider = nil
-         end,
-     })
+--     vim.api.nvim_create_autocmd("LspAttach", {
+--         callback = function(args)
+--         local client = vim.lsp.get_client_by_id(args.data.client_id)
+--         client.server_capabilities.semanticTokensProvider = nil
+--         end,
+--     })
 
 -- LSP signature
 
