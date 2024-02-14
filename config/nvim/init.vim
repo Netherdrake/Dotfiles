@@ -11,16 +11,8 @@ Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'vim-airline/vim-airline'
 
-" Plug 'huyvohcmc/atlas.vim'     " nice red braces
 Plug 'Netherdrake/austere.vim' " excellent
-" Plug 'Lokaltog/vim-monotone'   " excellent
-" Plug 'stefanvanburen/rams.vim' " good
-" Plug 'aditya-azad/candle-grey' " good
 Plug 'vim-airline/vim-airline-themes'
-Plug 'nyoom-engineering/oxocarbon.nvim'
-Plug 'rebelot/kanagawa.nvim'
-Plug 'bluz71/vim-nightfly-colors', { 'as': 'nightfly' }
-Plug 'cocopon/iceberg.vim'
 
 " core plugins
 Plug 'jlanzarotta/bufexplorer'
@@ -29,6 +21,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'andymass/vim-matchup'
 
 " search
 Plug 'henrik/vim-indexed-search'
@@ -232,6 +225,11 @@ nmap <leader>f :HopPattern<CR>
 " clever-f prompt
 let g:clever_f_show_prompt = 1
 let g:clever_f_across_no_line = 1
+let g:clever_f_mark_char = 0
+let g:clever_f_fix_key_direction = 1
+
+" paren matching
+let g:matchup_matchparen_offscreen = {'method': 'popup'}
 
 " floatterm
 let g:floaterm_shell = "fish"
@@ -511,10 +509,6 @@ set nrformats=
 " make C-j work consistent in C programms
 let g:C_Ctrl_j='off'
 
-" potential lag fix
-let g:matchparen_timeout = 2
-let g:matchparen_insert_timeout = 2
-
 " fix bufexplorer bug with hidden
 let g:bufExplorerFindActive=0
 
@@ -531,13 +525,11 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " disable annoying markdown errors
 " hi link markdownError Normal
 
-
 """"""""""""""""""""""""""""""""
 "
 " LUA configs
 "
 """"""""""""""""""""""""""""""""
-
 
 lua <<EOF
 
