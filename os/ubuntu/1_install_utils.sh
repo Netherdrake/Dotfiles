@@ -9,3 +9,5 @@ pip3 install tldr --break-system-packages
 # Alacritty
 sudo apt-get install libfontconfig1-dev
 cargo install alacritty
+
+cp ../../config/alacritty/.alacritty.toml ~

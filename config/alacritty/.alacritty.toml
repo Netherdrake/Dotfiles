@@ -1,0 +1,19 @@
+[font]
+size = 13.0
+
+[font.bold]
+family = "BitstromWera Nerd Font"
+
+[font.bold_italic]
+family = "BitstromWera Nerd Font"
+
+[font.italic]
+family = "BitstromWera Nerd Font"
+
+[font.normal]
+family = "BitstromWera Nerd Font"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "N"
+mods = "Control|Shift"
