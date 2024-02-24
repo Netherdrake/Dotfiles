@@ -57,7 +57,7 @@ mkdir -p ~/.config/fish
 mkdir -p ~/.config/nvim
 cp -rv ../../config/fish/config.fish ~/.config/fish/config.fish
 cp -rv ../../config/nvim/init.vim  ~/.config/nvim/init.vim
-cp -rv ../../config/tmux/tmux.conf ~/.tmux.conf
+cp -rv ../../config/.tmux.conf ~/.tmux.conf
 
 
 ## Install Tmux Plugin Manager

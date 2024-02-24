@@ -10,4 +10,7 @@ pip3 install tldr --break-system-packages
 sudo apt-get install libfontconfig1-dev
 cargo install alacritty
 
+sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /home/user/.cargo/bin/alacritty 50
+sudo update-alternatives --config x-terminal-emulator
+
 cp ../../config/alacritty/.alacritty.toml ~
