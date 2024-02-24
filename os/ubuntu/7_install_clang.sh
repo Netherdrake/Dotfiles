@@ -9,7 +9,7 @@ sudo apt install -y libdwarf-dev libunwind-dev binutils-dev
 
 # snap cmake clang issue 22.04
 # https://stackoverflow.com/questions/74543715/usr-bin-ld-cannot-find-lstdc-no-such-file-or-directory-on-running-flutte
-sudo apt install libstdc++-12-dev
+#sudo apt install libstdc++-12-dev
 
 # # clang (ubuntu nightly)
 # wget https://apt.llvm.org/llvm.sh
@@ -26,8 +26,8 @@ sudo apt install libstdc++-12-dev
 # sudo apt install libstdc++-10-dev
 
 # issue https://github.com/llvm/llvm-project/issues/55575
-sudo apt install python3-lldb-14
-sudo ln -s /usr/lib/llvm-14/lib/python3.10/dist-packages/lldb/* /usr/lib/python3/dist-packages/lldb/
+#sudo apt install python3-lldb-14
+#sudo ln -s /usr/lib/llvm-14/lib/python3.10/dist-packages/lldb/* /usr/lib/python3/dist-packages/lldb/
 
 # cmake neovim LSP
 python3 -m pip install cmake-language-server
@@ -45,10 +45,10 @@ sudo apt install valgrind kcachegrind
 sudo apt install rr
 
 # gdb-dashboard
-wget -P ~ https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit
-pip3 install -U pygments
-mkdir -p $HOME/.config/gdb-dashboard
-cp ../../config/gdb-dashboard/init $HOME/.config/gdb-dashboard
+#wget -P ~ https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit
+#pip3 install -U pygments
+#mkdir -p $HOME/.config/gdb-dashboard
+#cp ../../config/gdb-dashboard/init $HOME/.config/gdb-dashboard
 
 # zeal-cli
 # sudo apt install zeal
@@ -57,5 +57,5 @@ cp ../../config/gdb-dashboard/init $HOME/.config/gdb-dashboard
 # pip3 install beautifulsoup4
 
 # vcpkg
-# git clone https://github.com/microsoft/vcpkg
-# ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
+git clone https://github.com/microsoft/vcpkg
+./vcpkg/bootstrap-vcpkg.sh -disableMetrics

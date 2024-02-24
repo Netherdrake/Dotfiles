@@ -12,10 +12,10 @@ sudo apt install -y ranger nnn
 sudo apt install -y universal-ctags
 
 # neovim snap
-sudo snap install neovim --classic
+sudo snap install nvim --classic
 
 # install neovim python support
-pip3 install -U pynvim
+pip3 install -U pynvim --break-system-packages
 
 # could also get latest verison with
 # cargo install ripgrep
@@ -27,7 +27,7 @@ ln -s /usr/bin/batcat ~/.local/bin/bat
 
 
 ## Install snaps
-sudo snap install -y dragon # drag-n-drop for nnn
+#sudo snap install -y dragon # drag-n-drop for nnn
 
 
 # Configure git
@@ -82,7 +82,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 vim +PlugInstall
 
 # install YCM
-cd ~/.vim/plugged/YouCompleteMe && python3 install.py -clang-completer --rust-completer  && cd
+cd ~/.vim/plugged/YouCompleteMe && python3 install.py --clang-completer --rust-completer  && cd
 #python3 install.py --clang-completer
 
 # # Install Fish package manager
