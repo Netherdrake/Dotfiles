@@ -45,8 +45,8 @@ exec_always {
 
 ### Idle configuration
 exec swayidle -w \
-         timeout 300 'swaylock -f -c afdee1' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 900 'swaylock -f -c afdee1' \
+         timeout 999 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'playerctl pause && swaylock -f -c afdee1'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -68,7 +68,7 @@ exec swayidle -w \
 # Read `man 5 sway-input` for more information about this section.
 
 # Hide cursor after 5 seconds
-seat * hide_cursor  5000
+seat * hide_cursor 5000
 
 # Remap caps lock to escape
 input type:keyboard {
@@ -86,7 +86,7 @@ input type:keyboard {
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec rofi -show run
+    bindsym $mod+space exec krunner
 
     # Lock the screen
     bindsym $mod+Shift+z exec swaylock -c afdee1
@@ -173,10 +173,12 @@ input type:keyboard {
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
-    bindsym $mod+c exec swaymsg resize set 70ppt 95ppt
+
+    # Make the floating window of fixed size relative to screen size
+    bindsym $mod+d exec swaymsg resize set 70ppt 95ppt
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    bindsym $mod+tab focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
@@ -196,16 +198,11 @@ input type:keyboard {
 # Resizing containers:
 #
 mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
     bindsym $left resize shrink width 10px
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
     bindsym $right resize grow width 10px
 
-    # Ditto, with arrow keys
     bindsym Left resize shrink width 10px
     bindsym Down resize grow height 10px
     bindsym Up resize shrink height 10px
@@ -221,6 +218,8 @@ bindsym $mod+Shift+Return exec firefox --new-window
 bindsym $mod+Shift+Backspace exec nautilus --new-window
 #for_window [class="Nautilus"] floating enable
 #for_window [app_id="firefox"] floating enable, resize set 800 600
+
+bindsym Print exec grimshot copy area
 
 bindsym --locked XF86AudioPlay exec playerctl play-pause
 bindsym --locked XF86AudioNext exec playerctl next

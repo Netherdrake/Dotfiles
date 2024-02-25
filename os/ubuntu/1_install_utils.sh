@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# gpg stuff
+sudo apt -y install \
+    wget gnupg2 gnupg-agent dirmngr \
+    cryptsetup scdaemon pcscd secure-delete \
+    yubikey-personalization
+
 # Common utilities
 sudo apt install -y tree curl wget htop ufw gufw cryptsetup encfs jq pass
 pip3 install yt-dlp --break-system-packages
