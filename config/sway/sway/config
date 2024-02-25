@@ -25,7 +25,8 @@ include /etc/sway/config-vars.d/*
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg #000000 solid_color
 #
 # Example configuration:
 #
@@ -33,11 +34,20 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
+### Startup
+exec_always {
+  pkill kanshi
+  kanshi &
+}
+
+# Polkit?
+#exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
 ### Idle configuration
 exec swayidle -w \
          timeout 300 'swaylock -f -c afdee1' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c afdee1'
+         before-sleep 'playerctl pause && swaylock -f -c afdee1'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -92,7 +102,7 @@ input type:keyboard {
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
@@ -163,6 +173,7 @@ input type:keyboard {
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
+    bindsym $mod+c exec swaymsg resize set 70ppt 95ppt
 
     # Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle
@@ -206,8 +217,14 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+bindsym $mod+Shift+Return exec firefox --new-window
 bindsym $mod+Shift+Backspace exec nautilus --new-window
 #for_window [class="Nautilus"] floating enable
+#for_window [app_id="firefox"] floating enable, resize set 800 600
+
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioPrev exec playerctl previous
 
 bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -216,6 +233,7 @@ bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ to
 
 bindsym --locked XF86MonBrightnessDown exec sudo brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec sudo brightnessctl set 5%+
+
 
 #
 # Status Bar:
