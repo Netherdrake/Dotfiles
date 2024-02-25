@@ -23,11 +23,16 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 include /etc/sway/config-vars.d/*
 
 ### Output configuration
-#
+
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+
+# Just black please
 output * bg #000000 solid_color
-#
+
+# Make borders slightly larger (default: 2)
+default_border normal 3
+
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -198,15 +203,15 @@ input type:keyboard {
 # Resizing containers:
 #
 mode "resize" {
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym $left resize shrink width 20px
+    bindsym $down resize grow height 20px
+    bindsym $up resize shrink height 20px
+    bindsym $right resize grow width 20px
 
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym Left resize shrink width 20px
+    bindsym Down resize grow height 20px
+    bindsym Up resize shrink height 20px
+    bindsym Right resize grow width 20px
 
     # Return to default mode
     bindsym Return mode "default"
