@@ -81,6 +81,9 @@ export PATH="/snap/bin:$PATH"
 # Make nvim default
 export EDITOR=/snap/bin/nvim
 
+# My apps
+export PATH="$HOME/bin:$PATH"
+
 # Pyright, bat
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -95,3 +98,5 @@ export CARGO="$HOME/.cargo/bin/cargo"
 export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:$HOME/.ghcup/bin"
 
+# Doom Emacs
+export PATH="$PATH:$HOME/.config/emacs/bin"
