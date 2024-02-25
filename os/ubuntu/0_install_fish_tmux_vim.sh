@@ -43,8 +43,8 @@ git config --global user.name "user.email"
 # Enable Fish by Default
 grep -q -F 'fish' ~/.bashrc || echo 'exec fish' >> ~/.bashrc
 
-sudo update-alternatives --install /usr/bin/vi vi /snap/bin/nvim 60
-sudo update-alternatives --config vi
+#sudo update-alternatives --install /usr/bin/vi vi /snap/bin/nvim 60
+#sudo update-alternatives --config vi
 sudo update-alternatives --install /usr/bin/vim vim /snap/bin/nvim 60
 sudo update-alternatives --config vim
 sudo update-alternatives --install /usr/bin/editor editor /snap/bin/nvim 60
