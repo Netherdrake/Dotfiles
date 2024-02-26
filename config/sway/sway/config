@@ -75,9 +75,11 @@ exec swayidle -w \
 # Hide cursor after 5 seconds
 seat * hide_cursor 5000
 
-# Remap caps lock to escape
+# Configure our default keyboard
 input type:keyboard {
   xkb_options "caps:escape"
+  repeat_delay 300
+  repeat_rate 30
 }
 
 ### Key bindings
@@ -187,6 +189,9 @@ input type:keyboard {
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
+
+    # Move focus to last used child
+    bindsym $mod+Shift+a focus child
 #
 # Scratchpad:
 #
