@@ -15,6 +15,7 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term /home/user/.cargo/bin/alacritty
+set $cliphist /home/user/bin/cliphist
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -43,6 +44,8 @@ default_border normal 3
 exec_always {
   pkill kanshi
   kanshi &
+
+  wl-paste --watch $cliphist store &
 }
 
 # Polkit?
@@ -52,7 +55,8 @@ exec_always {
 exec swayidle -w \
          timeout 900 'swaylock -f -c afdee1' \
          timeout 999 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'playerctl pause && swaylock -f -c afdee1'
+         before-sleep 'playerctl pause' \
+         before-sleep 'swaylock -f -c afdee1'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -81,6 +85,8 @@ input type:keyboard {
   repeat_delay 300
   repeat_rate 30
 }
+bindgesture swipe:right workspace prev
+bindgesture swipe:left workspace next
 
 ### Key bindings
 #
@@ -97,6 +103,10 @@ input type:keyboard {
 
     # Lock the screen
     bindsym $mod+Shift+z exec swaylock -c afdee1
+
+    # Show items in the clipboard manager
+    bindsym $mod+y exec $cliphist list | rofi -dmenu | $cliphist decode | wl-copy
+    bindsym $mod+Shift+y exec $cliphist wipe
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -177,6 +187,7 @@ input type:keyboard {
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
+    bindsym $mod+Shift+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle

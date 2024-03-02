@@ -4,5 +4,5 @@ profile {
 }
 
 profile {
-    output eDP-1 enable
+    output eDP-1 enable scale 2 mode 2880x1800@60Hz
 }
