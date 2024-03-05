@@ -7,30 +7,8 @@ sudo apt install -y clang clangd clang-format clang-tidy clang-tools lldb
 # stacktraces
 sudo apt install -y libdwarf-dev libunwind-dev binutils-dev
 
-# snap cmake clang issue 22.04
-# https://stackoverflow.com/questions/74543715/usr-bin-ld-cannot-find-lstdc-no-such-file-or-directory-on-running-flutte
-#sudo apt install libstdc++-12-dev
-
-# # clang (ubuntu nightly)
-# wget https://apt.llvm.org/llvm.sh
-# chmod +x llvm.sh
-# sudo ./llvm.sh 17 all
-# sudo apt install clang-format clang-tidy clang-tools clang clangd \
-#  libc++-dev libc++1 libc++abi-dev libc++abi1 \
-#  libclang-dev libclang1 liblldb-dev libllvm-ocaml-dev libomp-dev libomp5 \
-#  lld lldb llvm-dev llvm-runtime llvm python3-clang
-#
-# sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-# sudo apt update
-# sudo apt upgrade -y
-# sudo apt install libstdc++-10-dev
-
-# issue https://github.com/llvm/llvm-project/issues/55575
-#sudo apt install python3-lldb-14
-#sudo ln -s /usr/lib/llvm-14/lib/python3.10/dist-packages/lldb/* /usr/lib/python3/dist-packages/lldb/
-
 # cmake neovim LSP
-python3 -m pip install cmake-language-server
+python3 -m pip install cmake-language-server --break-system-packages
 
 # alternative to clangd vim lsp
 sudo apt install ccls
@@ -38,11 +16,14 @@ sudo apt install ccls
 # compilation database for Makefile projects
 sudo apt install bear
 
-# instrumentation
+# old instrumentation
 sudo apt install valgrind kcachegrind
 
 # replay debugger
 sudo apt install rr
+
+# compiler cache
+sudo apt install ccache
 
 # gdb-dashboard
 #wget -P ~ https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit
@@ -50,12 +31,23 @@ sudo apt install rr
 #mkdir -p $HOME/.config/gdb-dashboard
 #cp ../../config/gdb-dashboard/init $HOME/.config/gdb-dashboard
 
-# zeal-cli
-# sudo apt install zeal
-# wget https://gitlab.com/ivan-cukic/zeal-lynx-cli/-/raw/master/zeal-cli -O ~/bin/zeal-cli
-# chmod +x ~/bin/zeal-cli
-# pip3 install beautifulsoup4
+# glfw3/imgui dependencies
+sudo apt install -y libwayland-dev libxkbcommon-dev wayland-protocols extra-cmake-modules
+sudo apt install -y mesa-utils libglu1-mesa-dev freeglut3-dev mesa-common-dev
+sudo apt install -y libglew-dev libglfw3-dev libglm-dev
+sudo apt install -y libao-dev libmpg123-dev
 
 # vcpkg
 git clone https://github.com/microsoft/vcpkg
 ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
+
+# common dependencies
+cd ~/vcpkg
+
+./vcpkg install dbg-macro
+./vcpkg install fplus
+./vcpkg install plog
+./vcpkg install sqlite3
+./vcpkg install fmt
+./vcpkg install matchit
+./vcpkg install tl-expected
