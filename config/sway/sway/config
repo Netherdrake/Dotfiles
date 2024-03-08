@@ -85,8 +85,23 @@ input type:keyboard {
   repeat_delay 300
   repeat_rate 30
 }
+
+# Swipe to change workspace
 bindgesture swipe:right workspace prev
 bindgesture swipe:left workspace next
+
+# Configure touchpad
+input type:touchpad {
+  accel_profile adaptive
+  click_method clickfinger
+  drag enabled
+  dwt enabled
+  events disabled_on_external_mouse
+  middle_emulation enabled
+  pointer_accel 0.1
+  scroll_method two_finger
+  tap enabled
+}
 
 ### Key bindings
 #
