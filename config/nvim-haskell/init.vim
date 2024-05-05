@@ -38,7 +38,7 @@ Plug 'nvim-telescope/telescope.nvim'
 
 " togglable panels
 Plug 'voldikss/vim-floaterm'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'nvim-tree/nvim-tree.lua'
 Plug 'preservim/tagbar'
 Plug 'folke/trouble.nvim'
 Plug 'Vigemus/iron.nvim'
@@ -106,6 +106,10 @@ set undofile
 set history=100
 set undolevels=100
 
+" disable netrw
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+
 " set <leader>
 let mapleader=","
 map <Space> <leader>
@@ -116,6 +120,11 @@ set mouse=a
 " disable help screen
 nmap <F1> <nop>
 imap <F1> <nop>
+
+" avoid save typos
+ca w' w
+ca w] w
+ca w\ w
 
 " visual reselect of just pasted
 nnoremap gp `[v`]
@@ -164,7 +173,6 @@ vnoremap <leader>s :%s /
 nnoremap <leader>v :e  ~/.config/nvim/init.vim<CR>
 nnoremap <leader>V :so ~/.config/nvim/init.vim<CR>
 
-
 " shortcuts for togglables and popups
 nnoremap <leader>` :FloatermNew --disposable top -u user<CR>
 nnoremap <leader>1 :FloatermToggle<CR>
@@ -172,21 +180,18 @@ tnoremap <leader>1 <C-\><C-n>:FloatermToggle<CR>
 nnoremap <leader>2 :FloatermNew --disposable ranger<CR>
 lua require'trouble'.setup()
 nnoremap <leader>3 <cmd>TroubleToggle<cr>
-nnoremap <leader>4 :TagbarToggle<CR>
-nnoremap <leader>5 :NERDTreeToggle<CR>
+nnoremap <leader>4 :NvimTreeToggle<CR>
+nnoremap <leader>5 :TagbarToggle<CR>
 nnoremap <leader>6 :Telescope git_status<CR>
+nnoremap <leader>7 :term time make debug<CR>
 nnoremap <leader>8 :term time make run<CR>
 nnoremap <leader>9 :term time make test<CR>
-" nnoremap <expr> <leader>- ':call ChangeTheme()'."<CR>"."<CR>"
-nnoremap <leader>0 :NoNeckPain<CR> :NoNeckPainResize 150<CR>
-nnoremap <leader>- :NoNeckPainWidthDown<CR>
-nnoremap <leader>= :NoNeckPainWidthUp<CR>
+" nnoremap <expr> <leader>0 ':call ChangeTheme()'."<CR>"."<CR>"
 
 
 nnoremap <F1> :Telescope help_tags<CR>
 nnoremap <F2> :Telescope man_pages sections=1,2,3<CR>
 " nnoremap <F4> :Telescope commands<CR>
-
 
 """"""""""""""""""""""""""""""""
 "
@@ -475,6 +480,77 @@ endif
 
 lua <<EOF
 
+-- Nvim Tree
+
+    local function nvim_tree_on_attach(bufnr)
+      local api = require "nvim-tree.api"
+
+      local function opts(desc)
+        return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = false, silent = true, nowait = true }
+      end
+
+      local function nothing()
+          return
+      end
+
+      vim.keymap.set('n', '<C-[>',   api.tree.change_root_to_parent,      opts('Up'))
+      vim.keymap.set('n', '<C-]>',   api.tree.change_root_to_node,        opts('CD'))
+      vim.keymap.set('n', '<C-r>',   api.tree.reload,                     opts('Refresh'))
+      vim.keymap.set('n', '<C-t>',   api.node.open.tab,                   opts('Open: New Tab'))
+      vim.keymap.set('n', '<C-v>',   api.node.open.vertical,              opts('Open: Vertical Split'))
+      vim.keymap.set('n', '<C-x>',   api.node.open.horizontal,            opts('Open: Horizontal Split'))
+      vim.keymap.set('n', '<BS>',    api.node.navigate.parent_close,      opts('Close Directory'))
+      vim.keymap.set('n', '<Esc>',   nothing,                             opts('nil'))
+      vim.keymap.set('n', '<CR>',    api.node.open.edit,                  opts('Open'))
+      vim.keymap.set('n', '<Tab>',   api.node.open.preview,               opts('Open Preview'))
+      vim.keymap.set('n', '.',       api.node.run.cmd,                    opts('Run Command'))
+      vim.keymap.set('n', 'a',       api.fs.create,                       opts('Create File Or Directory'))
+      vim.keymap.set('n', 'c',       api.fs.copy.node,                    opts('Copy'))
+      vim.keymap.set('n', 'd',       api.fs.trash,                        opts('Trash'))
+      vim.keymap.set('n', 'E',       api.tree.expand_all,                 opts('Expand All'))
+      vim.keymap.set('n', 'F',       api.live_filter.clear,               opts('Clean Filter'))
+      vim.keymap.set('n', 'f',       api.live_filter.start,               opts('Filter'))
+      vim.keymap.set('n', 'H',       api.tree.toggle_hidden_filter,       opts('Toggle Filter: Dotfiles'))
+      vim.keymap.set('n', 'i',       api.node.show_info_popup,            opts('Info'))
+      vim.keymap.set('n', 'I',       api.tree.toggle_gitignore_filter,    opts('Toggle Filter: Git Ignore'))
+      vim.keymap.set('n', 'J',       api.node.navigate.sibling.last,      opts('Last Sibling'))
+      vim.keymap.set('n', 'K',       api.node.navigate.sibling.first,     opts('First Sibling'))
+      vim.keymap.set('n', 'm',       api.marks.toggle,                    opts('Toggle Bookmark'))
+      vim.keymap.set('n', 'e',       api.node.open.edit,                  opts('Open'))
+      vim.keymap.set('n', 'o',       api.node.open.edit,                  opts('Open'))
+      vim.keymap.set('n', 'O',       api.node.run.system,                 opts('Open System'))
+      vim.keymap.set('n', 'p',       api.fs.paste,                        opts('Paste'))
+      vim.keymap.set('n', 'P',       api.node.navigate.parent,            opts('Parent Directory'))
+      vim.keymap.set('n', 'q',       api.tree.close,                      opts('Close'))
+      vim.keymap.set('n', 'S',       api.tree.search_node,                opts('Search'))
+      vim.keymap.set('n', 'r',       api.fs.rename_full,                  opts('Rename: Full Path'))
+      vim.keymap.set('n', 'U',       api.tree.toggle_custom_filter,       opts('Toggle Filter: Hidden'))
+      vim.keymap.set('n', 'W',       api.tree.collapse_all,               opts('Collapse'))
+      vim.keymap.set('n', 'x',       api.fs.cut,                          opts('Cut'))
+      vim.keymap.set('n', 'y',       api.fs.copy.filename,                opts('Copy Name'))
+      vim.keymap.set('n', 'Y',       api.fs.copy.absolute_path,           opts('Copy Absolute Path'))
+      vim.keymap.set('n', '?',       api.tree.toggle_help,                opts('Help'))
+    end
+
+    require("nvim-tree").setup({
+    on_attach = nvim_tree_on_attach,
+      sort = {
+        sorter = "case_sensitive",
+      },
+      view = {
+        width = 40,
+      },
+      renderer = {
+        group_empty = true,
+      },
+      git = {
+        enable = false,
+      },
+      filters = {
+        dotfiles = true,
+      },
+    })
+
 -- Telescope
 
     local actions = require("telescope.actions")
@@ -552,11 +628,11 @@ lua <<EOF
         -- Iron doesn't set keymaps by default anymore.
         -- You can set them here or manually add keymaps to the functions in iron.core
         keymaps = {
-            send_motion = "<leader>ic",
-            visual_send = "<leader>ic",
+            send_motion = "<leader>it",
+            visual_send = "<leader>il",
             send_file = "<leader>if",
             send_line = "<leader>il",
-            send_until_cursor = "<leader>iu",
+            send_until_cursor = "<leader>ir",
             send_mark = "<leader>im",
             mark_motion = "<leader>iic",
             mark_visual = "<leader>iic",
@@ -564,7 +640,7 @@ lua <<EOF
             cr = "<leader>i<cr>",
             interrupt = "<leader>i<leader>",
             exit = "<leader>iq",
-            --clear = "<leader>il",
+            clear = "<leader>ic",
         },
         -- If the highlight is on, you can change how it looks
         -- For the available options, check nvim_set_hl
@@ -573,10 +649,8 @@ lua <<EOF
         ignore_blank_lines = true,
     }
     -- iron also has a list of commands, see :h iron-commands for all available commands
-    vim.keymap.set('n', '<leader>7', '<cmd>IronRepl<cr>')
     vim.keymap.set('n', '<leader>is', '<cmd>IronRepl<cr>')
-    vim.keymap.set('n', '<leader>ir', '<cmd>IronRestart<cr>')
-    vim.keymap.set('n', '<leader>if', '<cmd>IronFocus<cr>')
+    vim.keymap.set('n', '<leader>ix', '<cmd>IronRestart<cr>')
     vim.keymap.set('n', '<leader>ih', '<cmd>IronHide<cr>')
 
 

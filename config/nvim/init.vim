@@ -780,7 +780,6 @@ lua <<EOF
         ignore_blank_lines = true,
     }
     -- iron also has a list of commands, see :h iron-commands for all available commands
-    --vim.keymap.set('n', '<leader>7', '<cmd>IronRepl<cr>')
     vim.keymap.set('n', '<leader>is', '<cmd>IronRepl<cr>')
     vim.keymap.set('n', '<leader>ix', '<cmd>IronRestart<cr>')
     vim.keymap.set('n', '<leader>ih', '<cmd>IronHide<cr>')
