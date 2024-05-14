@@ -69,6 +69,10 @@ Plug 'puremourning/vimspector', { 'for': ['python', 'cpp', 'c'] }
 call plug#end()
 
 
+" OCaml
+let g:opamshare = substitute(system('opam var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
 """"""""""""""""""""""""""""""""
 "
 " SETTINGS & KEYBINDINGS
@@ -151,6 +155,10 @@ nnoremap <CR> i<CR><Esc>==
 
 " quick way to shift text forward
 nnoremap <C-Space> i<Space><Esc>l
+
+" faster motions
+nnoremap <C-h> B
+nnoremap <C-l> W
 
 " better scrolling
 nnoremap <C-j> <C-d>zz
@@ -670,6 +678,10 @@ lua <<EOF
         flags = lsp_flags,
     }
     require('lspconfig')['cmake'].setup{
+        on_attach = on_attach,
+        flags = lsp_flags,
+    }
+    require('lspconfig')['ocamllsp'].setup{
         on_attach = on_attach,
         flags = lsp_flags,
     }
