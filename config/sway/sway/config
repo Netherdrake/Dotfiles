@@ -15,7 +15,7 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term /home/user/.cargo/bin/alacritty
-set $cliphist /home/user/bin/cliphist
+set $cliphist /usr/bin/cliphist
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
