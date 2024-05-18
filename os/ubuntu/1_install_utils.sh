@@ -7,9 +7,7 @@ sudo apt -y install \
     yubikey-personalization
 
 # Common utilities
-sudo apt install -y tree curl wget htop ufw gufw cryptsetup encfs jq pass
-pip3 install yt-dlp --break-system-packages
-pip3 install tldr --break-system-packages
+sudo apt install -y tree curl wget htop ufw gufw cryptsetup encfs jq pass tldr yt-dlp
 
 
 # Alacritty

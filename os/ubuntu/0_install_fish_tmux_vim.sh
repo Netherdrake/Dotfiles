@@ -10,12 +10,10 @@ sudo apt install -y fish tmux fzf ripgrep
 sudo apt install -y python3-dev python3-pip python3-tk
 sudo apt install -y ranger nnn
 sudo apt install -y universal-ctags
+sudo apt install -y python3-pynvim
 
 # neovim snap
 sudo snap install nvim --classic
-
-# install neovim python support
-pip3 install -U pynvim --break-system-packages
 
 # could also get latest verison with
 # cargo install ripgrep
