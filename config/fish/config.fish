@@ -33,8 +33,7 @@ function upgrade-all
 end
 
 function vimu
-    pip install -U pynvim
-    vim +PlugUpdate +TSUpdate
+    vim +PlugUpdate
     cd ~/.vim/plugged/YouCompleteMe
     python3 install.py --clang-completer --rust-completer
     cd -
