@@ -4,6 +4,12 @@ sudo apt install -y gcc ninja-build cmake cmake-curses-gui
 # default ubuntu clang
 sudo apt install -y clang clangd clang-format clang-tidy clang-tools lldb
 
+# clang stdlib
+sudo apt-get install build-essential libc++-dev libc++abi-dev
+
+# ubuntu 24.04 missing stdlib fix?
+sudo apt install libstdc++-14-dev
+
 # stacktraces
 sudo apt install -y libdwarf-dev libunwind-dev binutils-dev
 
