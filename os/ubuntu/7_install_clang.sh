@@ -31,6 +31,9 @@ sudo apt install rr
 # compiler cache
 sudo apt install ccache
 
+# faster linker
+sudo apt install lld
+
 # gdb-dashboard
 #wget -P ~ https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit
 #pip3 install -U pygments
