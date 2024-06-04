@@ -348,21 +348,20 @@ nnoremap <silent> gs :ClangdSwitchSourceHeader<CR>
 " vimspector
 " command! -nargs=+ Vfb call vimspector#AddFunctionBreakpoint(<f-args>)
 "
-nnoremap <F4>   <Plug>VimspectorBreakpoints
-nnoremap <F5>   :call vimspector#Launch()<CR>
-" nnoremap <S-F5> :call vimspector#Stop()<CR>
-" nnoremap <S-F5> :call vimspector#Reset()<CR>
-nnoremap <F6>   :call vimspector#Reset()<CR>
-" nnoremap <S-F6> :call vimspector#Restart()<CR>
-" nnoremap <F7>   :call vimspector#Pause()<CR>
-nnoremap <F7>   :call vimspector#StepOut()<CR>
-nnoremap <F8>   :call vimspector#StepOver()<CR>
-nnoremap <F9>   :call vimspector#StepInto()<CR>
-nnoremap <F10>   :call vimspector#Continue()<CR>
-" nnoremap <S-F8> :call vimspector#RunToCursor()<CR>
-nnoremap <F11>  :call Vimspector#AddFunctionBreakpoint()<CR>
-nnoremap <F12>  :call vimspector#ToggleBreakpoint()<CR>
-
+nnoremap <leader>dd  :call vimspector#Launch()<CR>
+nnoremap <leader>dz  :call vimspector#Stop()<CR>
+nnoremap <leader>dr  :call vimspector#Reset()<CR>
+nnoremap <leader>dR  :call vimspector#Restart()<CR>
+nnoremap <leader>dp  :call vimspector#Pause()<CR>
+nnoremap <leader>df  :call vimspector#StepOut()<CR>
+nnoremap <leader>dn  :call vimspector#StepOver()<CR>
+nnoremap <leader>ds  :call vimspector#StepInto()<CR>
+nnoremap <leader>dc  :call vimspector#Continue()<CR>
+nnoremap <leader>dt  :call vimspector#RunToCursor()<CR>
+nnoremap <leader>db  :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <leader>dB  :call Vimspector#AddFunctionBreakpoint()<CR>
+nnoremap <leader>di  <Plug>VimspectorBalloonEval
+nnoremap <leader>dib <Plug>VimspectorBreakpoints
 
 
 " markdown & text files
