@@ -205,7 +205,7 @@ nnoremap <leader>1 :FloatermToggle<CR>
 tnoremap <leader>1 <C-\><C-n>:FloatermToggle<CR>
 nnoremap <leader>2 :FloatermNew --disposable ranger<CR>
 lua require'trouble'.setup()
-nnoremap <leader>3 <cmd>TroubleToggle<cr>
+nnoremap <leader>3 :Trouble diagnostics toggle focus=false filter.buf=0<CR>
 nnoremap <leader>4 :NvimTreeToggle<CR>
 nnoremap <leader>5 :TagbarToggle<CR>
 nnoremap <leader>6 :Telescope git_status<CR>
