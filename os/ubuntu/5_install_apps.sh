@@ -10,3 +10,6 @@ sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flat
 
 flatpak install flathub md.obsidian.Obsidian
 flatpak install flathub org.signal.Signal
+
+flatpak override --user --socket=wayland md.obsidian.Obsidian
+flatpak override --user --socket=wayland org.signal.Signal
