@@ -45,18 +45,28 @@ exec_always {
   pkill kanshi
   kanshi &
 
+  pkill nm-applet
+  nm-applet --indicator &
+
   wl-paste --watch $cliphist store &
+
+  # firefox hack on 4k screen
+  gsettings set org.gnome.desktop.interface text-scaling-factor "1.2"
 }
+
+for_window [shell="xwayland"] title_format "[X] %title"
 
 # Polkit?
 #exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 ### Idle configuration
+# timeout 999 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
 exec swayidle -w \
-         timeout 900 'swaylock -f -c afdee1' \
-         timeout 999 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 900 'swaylock -f -c 616060' \
+         timeout 999 'if [ "$(./home/user/.config/sway/check_external_power.sh)" != "ac" ]; then swaymsg "output * power off"; fi' \
+         resume 'if [ "$(./home/user/.config/sway/check_external_power.sh)" != "ac" ]; then swaymsg "output * power on"; fi' \
          before-sleep 'playerctl pause' \
-         before-sleep 'swaylock -f -c afdee1'
+         before-sleep 'swaylock -f -c 616060'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
