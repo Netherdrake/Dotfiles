@@ -29,6 +29,7 @@ function upgrade-all
     sudo apt update
     sudo apt upgrade
     sudo snap refresh
+    flatpak update -y
     sudo fwupdmgr update
 end
 

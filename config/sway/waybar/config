@@ -95,7 +95,7 @@
 
     "memory": {
         "interval": 5,
-        "format": "  {}%", // Icon: memory
+        "format": "  {used:0.1f} GB", // Icon: memory
         "states": {
             "warning": 70,
             "critical": 90
