@@ -11,6 +11,7 @@ sudo apt install -y python3-dev python3-pip python3-tk
 sudo apt install -y ranger nnn
 sudo apt install -y universal-ctags
 sudo apt install -y python3-pynvim
+sudo apt install -y fd-find
 
 # neovim snap
 sudo snap install nvim --classic

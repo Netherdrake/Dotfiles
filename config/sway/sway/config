@@ -129,8 +129,11 @@ input type:touchpad {
     # Start your launcher
     bindsym $mod+o exec $menu
 
+    # Start file search
+    bindsym $mod+p exec ~/Blog/config/rofi-file-selector/rofi-file-selector.sh
+
     # Lock the screen
-    bindsym $mod+Shift+z exec swaylock -c afdee1
+    bindsym $mod+Shift+z exec swaylock -c 616060
 
     # Show items in the clipboard manager
     bindsym $mod+y exec $cliphist list | rofi -dmenu | $cliphist decode | wl-copy
@@ -156,22 +159,12 @@ input type:touchpad {
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
 
     # Move the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
-    # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
 #
 # Workspaces:
 #
@@ -261,11 +254,10 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+bindsym $mod+b exec firefox --new-window
+bindsym $mod+n exec nautilus --new-window
 bindsym $mod+Shift+Return exec firefox --new-window
 bindsym $mod+Shift+Backspace exec nautilus --new-window
-bindsym $mod+b exec qutebrowser --new-window
-#for_window [class="Nautilus"] floating enable
-#for_window [app_id="firefox"] floating enable, resize set 800 600
 
 bindsym Print exec grimshot copy area
 
@@ -281,28 +273,8 @@ bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ to
 bindsym --locked XF86MonBrightnessDown exec sudo brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec sudo brightnessctl set 5%+
 
-
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-#bar {
-#    position top
-#
-#    # When the status_command prints a new line to stdout, swaybar updates.
-#    # The default just shows the current date and time.
-#    status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-#
-#    colors {
-#        statusline #ffffff
-#        background #323232
-#        inactive_workspace #32323200 #32323200 #5c5c5c
-#    }
-#}
-
 bar {
     swaybar_command waybar
 }
-
 
 include /etc/sway/config.d/*
