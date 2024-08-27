@@ -10,9 +10,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'vim-airline/vim-airline'
-
-Plug 'Netherdrake/austere.vim' " excellent
 Plug 'vim-airline/vim-airline-themes'
+Plug 'Netherdrake/austere.vim'
 
 " core plugins
 Plug 'jlanzarotta/bufexplorer'
@@ -59,6 +58,7 @@ Plug 'ray-x/lsp_signature.nvim'
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'mrcjkb/rustaceanvim', { 'for': 'rust' }
 
 " markdown
 Plug 'preservim/vim-pencil', { 'for': 'markdown' }
@@ -672,10 +672,6 @@ lua <<EOF
         on_attach = on_attach,
         flags = lsp_flags,
     }
-    require('lspconfig')['rust_analyzer'].setup{
-        on_attach = on_attach,
-        flags = lsp_flags,
-    }
     require('lspconfig')['clangd'].setup{
         cmd = {"clangd", "--header-insertion=never"},
         on_attach = on_attach,
@@ -745,7 +741,16 @@ lua <<EOF
 --        }
 --    )
 
-
+-- Rust lsp
+vim.g.rustaceanvim = {
+    -- Plugin configuration
+    tools = {},
+    -- LSP configuration
+    server = {
+        on_attach = on_attach
+    },
+    dap = {}
+}
 -- Iron
 
     local iron = require("iron.core")
