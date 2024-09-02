@@ -339,7 +339,12 @@ function! s:CppMan(target)
 endfunction
 au FileType cpp nnoremap <buffer>K :call <SID>CppMan("term")<CR>
 au FileType cpp nnoremap <leader>o :call <SID>CppMan("browser")<CR>
+au FileType rust nnoremap <leader>o :RustLsp openDocs<CR>
+au FileType rust nnoremap <leader>e :RustLsp explainError current<CR>
 
+" enable type hints
+nnoremap <leader>he :lua vim.lsp.inlay_hint.enable(true)<CR>
+nnoremap <leader>hd :lua vim.lsp.inlay_hint.enable(false)<CR>
 
 " switch between source/header files
 nnoremap <silent> gs :ClangdSwitchSourceHeader<CR>
