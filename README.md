@@ -54,7 +54,10 @@ sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emula
 
 sudo update-alternatives --config x-terminal-emulator
 
-cp config/alacritty/.alacritty.yml ~/
+mkdir -p ~/.config/alacritty/themes
+git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
+
+cp config/alacritty/.alacritty.toml ~/
 ```
 
 ## Re-compiling YCM (YouCompleteMe)

@@ -1,17 +1,21 @@
+import = ["~/.config/alacritty/themes/themes/ayu_dark.toml"]
 [font]
 size = 13.0
 
+# renamed at some point?
+# family = "BitstromWera Nerd Font"
+
 [font.bold]
-family = "BitstromWera Nerd Font"
+family = "BitstreamVeraSansMono Nerd Font"
 
 [font.bold_italic]
-family = "BitstromWera Nerd Font"
+family = "BitstreamVeraSansMono Nerd Font"
 
 [font.italic]
-family = "BitstromWera Nerd Font"
+family = "BitstreamVeraSansMono Nerd Font"
 
 [font.normal]
-family = "BitstromWera Nerd Font"
+family = "BitstreamVeraSansMono Nerd Font"
 
 [[keyboard.bindings]]
 action = "SpawnNewInstance"

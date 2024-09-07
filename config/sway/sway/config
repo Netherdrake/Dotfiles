@@ -14,7 +14,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term /home/user/.cargo/bin/alacritty
+set $term /usr/bin/alacritty
 set $cliphist /usr/bin/cliphist
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -29,10 +29,17 @@ include /etc/sway/config-vars.d/*
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 # Just black please
-output * bg #000000 solid_color
+output * bg #808080 solid_color
 
 # Make borders slightly larger (default: 2)
 default_border normal 3
+
+# Enable smart gaps to maximize space of single window layouts
+gaps inner 10
+smart_gaps on
+
+# Disable wrapping for tabbed/stacked layouts 
+focus_wrapping no
 
 # Example configuration:
 #

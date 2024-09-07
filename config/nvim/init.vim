@@ -12,6 +12,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Netherdrake/austere.vim'
+Plug 'yorickpeterse/vim-paper'
 
 " core plugins
 Plug 'jlanzarotta/bufexplorer'
@@ -65,6 +66,7 @@ Plug 'preservim/vim-pencil', { 'for': 'markdown' }
 
 " debugging
 Plug 'puremourning/vimspector', { 'for': ['python', 'cpp', 'c'] }
+
 
 call plug#end()
 
@@ -393,8 +395,11 @@ set termguicolors
 let g:theme_set = 0
 
 fu! EnableTheme()
-    colorscheme catppuccin
-    let g:airline_theme = 'catppuccin'
+    " colorscheme catppuccin
+    " let g:airline_theme = 'catppuccin'
+    set background=light
+    colorscheme paper
+    let g:airline_theme = 'paper'
     if g:theme_set == 1
         :AirlineRefresh
     else
@@ -403,6 +408,7 @@ fu! EnableTheme()
 endfunction
 
 fu! DisableTheme()
+    set background=dark
     colorscheme austere
     let g:airline_theme = 'minimalist'
     if g:theme_set == 1
@@ -412,7 +418,7 @@ fu! DisableTheme()
     endif
 endfunction
 
-call DisableTheme()
+call EnableTheme()
 
 """"""""""""""""""""""""""""""""
 "
