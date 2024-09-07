@@ -9,8 +9,8 @@ call plug#begin('~/.vim/plugged')
 " eye candy
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+Plug 'erik-j-d/lightline-paper'
 Plug 'Netherdrake/austere.vim'
 Plug 'yorickpeterse/vim-paper'
 
@@ -246,24 +246,6 @@ let g:floaterm_shell = "fish"
 let g:floaterm_width  = 0.8
 let g:floaterm_height = 0.8
 
-" airline
-if !exists("g:airline_symbols")
-  let g:airline_symbols = {}
-endif
-let g:airline_powerline_fonts=1
-let g:airline_section_y = 0
-let g:airline_section_error = 0
-let g:airline_section_warning = 0
-let g:airline_symbols.notexists = ''
-let g:airline_symbols.colnr = ':'
-let g:airline_symbols.linenr = ' '
-let g:airline#extensions#branch#empty_message  =  "---"
-let g:airline#extensions#whitespace#enabled    =  0
-let g:airline#extensions#tabline#enabled       =  1
-let g:airline#extensions#tabline#tab_nr_type   =  1 " tab number
-let g:airline#extensions#tabline#fnamecollapse =  1 " /a/m/model.rb
-let g:airline#extensions#hunks#non_zero_only   =  1 " git gutter
-
 " ALE
 let g:ale_virtualtext_cursor = '0' " all
 let g:ale_completion_autoimport = 0
@@ -394,28 +376,30 @@ set termguicolors
 
 let g:theme_set = 0
 
+function! ChangeLightlineColorscheme(new_colorscheme)
+  if g:theme_set == 1
+      let g:lightline.colorscheme = a:new_colorscheme
+      call lightline#init()
+      call lightline#colorscheme()
+      call lightline#update()
+  else
+      let g:lightline = {
+                  \ 'colorscheme': a:new_colorscheme,
+                  \ }
+      let g:theme_set = 1
+  endif
+endfunction
+
 fu! EnableTheme()
-    " colorscheme catppuccin
-    " let g:airline_theme = 'catppuccin'
     set background=light
     colorscheme paper
-    let g:airline_theme = 'paper'
-    if g:theme_set == 1
-        :AirlineRefresh
-    else
-        let g:theme_set = 1
-    endif
+    call ChangeLightlineColorscheme('paper')
 endfunction
 
 fu! DisableTheme()
     set background=dark
     colorscheme austere
-    let g:airline_theme = 'minimalist'
-    if g:theme_set == 1
-        :AirlineRefresh
-    else
-        let g:theme_set = 1
-    endif
+    call ChangeLightlineColorscheme('ayu_dark')
 endfunction
 
 call EnableTheme()
