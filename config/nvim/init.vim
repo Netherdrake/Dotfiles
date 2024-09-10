@@ -214,7 +214,7 @@ nnoremap <leader>6 :Telescope git_status<CR>
 nnoremap <leader>7 :term time make debug<CR>
 nnoremap <leader>8 :term time make run<CR>
 nnoremap <leader>9 :term time make test<CR>
-" nnoremap <expr> <leader>0 ':call ChangeTheme()'."<CR>"."<CR>"
+nnoremap <expr> <leader>0 ':call ToggleTheme()'."<CR>"."<CR>"
 
 
 nnoremap <F1> :Telescope help_tags<CR>
@@ -393,13 +393,23 @@ endfunction
 fu! EnableTheme()
     set background=light
     colorscheme paper
+    highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+    highlight MatchParen guifg=#cc9900 ctermfg=203 guibg=NONE ctermbg=NONE gui=Bold cterm=Bold
     call ChangeLightlineColorscheme('paper')
 endfunction
 
 fu! DisableTheme()
     set background=dark
     colorscheme austere
-    call ChangeLightlineColorscheme('ayu_dark')
+    call ChangeLightlineColorscheme('powerline')
+endfunction
+
+fu! ToggleTheme()
+    if (&background == "dark")
+        call EnableTheme()
+    else
+        call DisableTheme()
+    endif
 endfunction
 
 call EnableTheme()
