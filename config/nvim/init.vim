@@ -412,7 +412,7 @@ fu! ToggleTheme()
     endif
 endfunction
 
-call EnableTheme()
+call DisableTheme()
 
 """"""""""""""""""""""""""""""""
 "
@@ -776,7 +776,12 @@ vim.g.rustaceanvim = {
             },
             -- How the repl window will be displayed
             -- See below for more information
-            repl_open_cmd = require('iron.view').split.vertical.botright("50%"),
+            repl_open_cmd = require('iron.view').split.vertical.botright("50%", {
+              winfixwidth = false,
+              winfixheight = true,
+              -- any window-local configuration can be used here
+              number = false
+            }),
             -- repl_open_cmd = require("iron.view").center("90%"),
             -- repl_open_cmd = require("iron.view").split.horizontal.top("30%"),
             -- If the repl buffer is listed
