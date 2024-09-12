@@ -13,6 +13,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'erik-j-d/lightline-paper'
 Plug 'Netherdrake/austere.vim'
 Plug 'yorickpeterse/vim-paper'
+Plug 'morhetz/gruvbox'
 
 " core plugins
 Plug 'jlanzarotta/bufexplorer'
@@ -396,6 +397,15 @@ fu! EnableTheme()
     highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
     highlight MatchParen guifg=#cc9900 ctermfg=203 guibg=NONE ctermbg=NONE gui=Bold cterm=Bold
     call ChangeLightlineColorscheme('paper')
+endfunction
+
+let g:gruvbox_contrast_light = 'soft'
+let g:gruvbox_invert_selection = 0
+
+fu! Gruvbox()
+    set background=light
+    colorscheme gruvbox
+    call ChangeLightlineColorscheme('gruvbox')
 endfunction
 
 fu! DisableTheme()
