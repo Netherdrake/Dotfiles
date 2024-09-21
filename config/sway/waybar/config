@@ -28,13 +28,14 @@
         "network",
         "memory",
         "cpu",
-        "battery",
+        "idle_inhibitor",
+        "custom/power",
         "backlight",
         "pulseaudio",
+        "battery",
         "tray",
         "clock#date",
         "clock#time",
-        "idle_inhibitor",
     ],
 
 
@@ -49,9 +50,9 @@
             "critical": 15
         },
         // Connected to AC
-        "format": "  {icon}  {capacity}% ", // Icon: bolt
+        "format": "  {icon}  {capacity}%", // Icon: bolt
         // Not connected to AC
-        "format-discharging": "{icon}  {capacity}% ",
+        "format-discharging": "{icon}  {capacity}%",
         "format-icons": [
             "", // Icon: battery-full
             "", // Icon: battery-three-quarters
@@ -60,6 +61,12 @@
             ""  // Icon: battery-empty
         ],
         "tooltip": true
+    },
+
+    "custom/power": {
+        "return-type": "text",
+        "interval": 3,
+        "exec": "python3 $HOME/.config/waybar/power.py 2> /dev/null"
     },
 
     "clock#time": {
@@ -76,7 +83,7 @@
 
     "cpu": {
         "interval": 5,
-        "format": "  {usage}% ({load})", // Icon: microchip
+        "format": "  {usage}% ({load}) ", // Icon: microchip
         "states": {
           "warning": 70,
           "critical": 90
@@ -95,7 +102,7 @@
 
     "memory": {
         "interval": 5,
-        "format": "  {used:0.1f} GB", // Icon: memory
+        "format": "  {used:0.1f} GB", // Icon: memory
         "states": {
             "warning": 70,
             "critical": 90
@@ -137,7 +144,7 @@
     },
 
     "backlight": {
-        "format": "{icon} {percent}% ",
+        "format": "{icon}  {percent}% ",
         "format-icons": [""]
     },
 
