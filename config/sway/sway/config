@@ -38,8 +38,11 @@ default_border normal 3
 gaps inner 10
 smart_gaps on
 
-# Disable wrapping for tabbed/stacked layouts 
+# Disable wrapping for tabbed/stacked layouts
 focus_wrapping no
+
+# Center the mouse into container with new focus
+# mouse_warping container
 
 # Example configuration:
 #
@@ -175,6 +178,9 @@ input type:touchpad {
 #
 # Workspaces:
 #
+    # Set tabbed as default layout
+    workspace_layout tabbed
+
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
