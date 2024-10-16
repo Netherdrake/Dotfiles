@@ -15,7 +15,7 @@ Plug 'Netherdrake/austere.vim'
 Plug 'yorickpeterse/vim-paper'
 Plug 'morhetz/gruvbox'
 Plug 'metalelf0/base16-black-metal-scheme'
-Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
 " core plugins
 Plug 'jlanzarotta/bufexplorer'
@@ -247,8 +247,8 @@ let g:matchup_matchparen_offscreen = {'method': 'popup'}
 
 " floatterm
 let g:floaterm_shell = "fish"
-let g:floaterm_width  = 0.8
-let g:floaterm_height = 0.8
+let g:floaterm_width  = 0.9
+let g:floaterm_height = 0.95
 
 " ALE
 let g:ale_virtualtext_cursor = '0' " all
