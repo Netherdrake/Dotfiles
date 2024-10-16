@@ -14,6 +14,8 @@ Plug 'erik-j-d/lightline-paper'
 Plug 'Netherdrake/austere.vim'
 Plug 'yorickpeterse/vim-paper'
 Plug 'morhetz/gruvbox'
+Plug 'metalelf0/base16-black-metal-scheme'
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
 " core plugins
 Plug 'jlanzarotta/bufexplorer'
@@ -56,6 +58,7 @@ Plug 'neovim/nvim-lspconfig'
 " Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'ray-x/lsp_signature.nvim'
 " Plug 'dense-analysis/ale'
+Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
@@ -408,10 +411,16 @@ fu! Gruvbox()
     call ChangeLightlineColorscheme('gruvbox')
 endfunction
 
+fu! Catppuccin()
+    set background=dark
+    colorscheme catppuccin
+    call ChangeLightlineColorscheme('catppuccin')
+endfunction
+
 fu! DisableTheme()
     set background=dark
     colorscheme austere
-    call ChangeLightlineColorscheme('powerline')
+    call ChangeLightlineColorscheme('powerlineish')
 endfunction
 
 fu! ToggleTheme()
@@ -722,6 +731,13 @@ lua <<EOF
         floating_window_off_y = -100,
 
     })
+
+-- LSP lines
+--    require("lsp_lines").setup()
+--    -- Disable virtual_text since it's redundant due to lsp_lines.
+--    vim.diagnostic.config({
+--      virtual_text = false,
+--    })
 
 -- Treesitter LSP
 
