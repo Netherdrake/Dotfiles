@@ -18,3 +18,6 @@ cargo install evcxr_repl
 
 # benchmarking
 cargo install hyperfine
+
+# file manager
+cargo install --locked yazi-fm yazi-cli

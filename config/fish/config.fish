@@ -64,6 +64,16 @@ function rand
     gpg --gen-random --armor 1 30
 end
 
+# yazi
+function y
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    yazi $argv --cwd-file="$tmp"
+    if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        builtin cd -- "$cwd"
+    end
+    rm -f -- "$tmp"
+end
+
 alias cdy "pwd | xclip -i"
 alias cdp "cd (xclip -o)"
 
@@ -93,6 +103,9 @@ export NNN_PLUG='c:fzcd;o:fzopen;l:launch;n:!nautilus --browser "$nnn"*;h:-!hx "
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 export CARGO="$HOME/.cargo/bin/cargo"
+
+# Zig
+export PATH="$HOME/zig:$PATH"
 
 # Haskell
 export PATH="$PATH:$HOME/.cabal/bin"

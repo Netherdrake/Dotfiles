@@ -14,8 +14,6 @@ Plug 'erik-j-d/lightline-paper'
 Plug 'Netherdrake/austere.vim'
 Plug 'yorickpeterse/vim-paper'
 Plug 'morhetz/gruvbox'
-Plug 'metalelf0/base16-black-metal-scheme'
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
 " core plugins
 Plug 'jlanzarotta/bufexplorer'
