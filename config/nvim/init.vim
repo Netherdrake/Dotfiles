@@ -31,11 +31,12 @@ Plug 'rhysd/clever-f.vim'
 
 " typing automations
 Plug 'tpope/vim-surround'
-Plug 'vim-scripts/tComment'
+Plug 'numToStr/Comment.nvim'
+Plug 'Wansmer/treesj'
 
 " autocomplete
 Plug 'ycm-core/YouCompleteMe'
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 
 " telescope
 Plug 'nvim-lua/plenary.nvim'
@@ -47,13 +48,14 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'preservim/tagbar'
 Plug 'folke/trouble.nvim'
 Plug 'Vigemus/iron.nvim'
+Plug 'folke/which-key.nvim'
 
 " active panel highlighting
 " Plug 'TaDaa/vimade'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
-" Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'ray-x/lsp_signature.nvim'
 " Plug 'dense-analysis/ale'
 Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
@@ -418,7 +420,7 @@ endfunction
 fu! DisableTheme()
     set background=dark
     colorscheme austere
-    call ChangeLightlineColorscheme('powerlineish')
+    call ChangeLightlineColorscheme('austere')
 endfunction
 
 fu! ToggleTheme()
@@ -482,13 +484,22 @@ nnoremap <silent> <leader>h4 :call HiInterestingWord(4)<cr>
 nnoremap <silent> <leader>h5 :call HiInterestingWord(5)<cr>
 nnoremap <silent> <leader>h6 :call HiInterestingWord(6)<cr>
 
-hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
-hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
-hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
-hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
-hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
-hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
+fu! InitHighlights()
+    hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
+    hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
+    hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
+    hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
+    hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
+    hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
+endfunction
+call InitHighlights()
 
+augroup on_colorscheme_change
+    au!
+    autocmd ColorScheme * call InitHighlights()
+augroup END
+
+" blip animation for yanked text
 augroup highlight_yank
     autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=300})
@@ -780,6 +791,7 @@ vim.g.rustaceanvim = {
     },
     dap = {}
 }
+
 -- Iron
 
     local iron = require("iron.core")
@@ -897,5 +909,15 @@ vim.g.rustaceanvim = {
              markdown = true,
          },
      })
+
+
+-- tcomment alternative
+require('Comment').setup()
+
+-- split/join
+require('treesj').setup()
+
+-- hints
+require("which-key").setup({delay=500})
 
 EOF
