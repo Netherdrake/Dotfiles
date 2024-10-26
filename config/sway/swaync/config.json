@@ -15,7 +15,7 @@
   "notification-icon-size": 64,
   "notification-body-image-height": 100,
   "notification-body-image-width": 200,
-  "timeout": 10,
+  "timeout": 7,
   "timeout-low": 5,
   "timeout-critical": 0,
   "fit-to-screen": true,

@@ -7,13 +7,15 @@
 call plug#begin('~/.vim/plugged')
 
 " eye candy
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-Plug 'kyazdani42/nvim-web-devicons'
+Plug 'rktjmp/lush.nvim'
 Plug 'itchyny/lightline.vim'
 Plug 'erik-j-d/lightline-paper'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'Netherdrake/austere.vim'
 Plug 'yorickpeterse/vim-paper'
 Plug 'morhetz/gruvbox'
+Plug 'zenbones-theme/zenbones.nvim'
 
 " core plugins
 Plug 'jlanzarotta/bufexplorer'
@@ -58,7 +60,6 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'ray-x/lsp_signature.nvim'
 " Plug 'dense-analysis/ale'
-Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
@@ -209,7 +210,7 @@ nnoremap <leader>V :so ~/.config/nvim/init.vim<CR>
 nnoremap <leader>` :FloatermNew --disposable top -u user<CR>
 nnoremap <leader>1 :FloatermToggle<CR>
 tnoremap <leader>1 <C-\><C-n>:FloatermToggle<CR>
-nnoremap <leader>2 :FloatermNew --disposable ranger<CR>
+nnoremap <leader>2 :FloatermNew --disposable yazi<CR>
 lua require'trouble'.setup()
 nnoremap <leader>3 :Trouble diagnostics toggle focus=false filter.buf=0<CR>
 nnoremap <leader>4 :NvimTreeToggle<CR>
@@ -394,7 +395,7 @@ function! ChangeLightlineColorscheme(new_colorscheme)
   endif
 endfunction
 
-fu! EnableTheme()
+fu! PaperLight()
     set background=light
     colorscheme paper
     highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
@@ -405,8 +406,14 @@ endfunction
 let g:gruvbox_contrast_light = 'soft'
 let g:gruvbox_invert_selection = 0
 
-fu! Gruvbox()
+fu! GruvboxLight()
     set background=light
+    colorscheme gruvbox
+    call ChangeLightlineColorscheme('gruvbox')
+endfunction
+
+fu! Gruvbox()
+    set background=dark
     colorscheme gruvbox
     call ChangeLightlineColorscheme('gruvbox')
 endfunction
@@ -417,7 +424,31 @@ fu! Catppuccin()
     call ChangeLightlineColorscheme('catppuccin')
 endfunction
 
-fu! DisableTheme()
+fu! KanagawaBones()
+    set background=dark
+    " let g:kanagawabones = #{ darkness: 'stark', darken_comments: 30 }
+    colorscheme kanagawabones
+    call ChangeLightlineColorscheme('kanagawabones')
+    colorscheme kanagawabones
+endfunction
+
+fu! TokyoBones()
+    set background=dark
+    let g:tokyobones = #{ darkness: 'stark', darken_comments: 30 }
+    colorscheme tokyobones
+    call ChangeLightlineColorscheme('tokyobones')
+    colorscheme tokyobones
+endfunction
+
+fu! ZenbonesLight()
+    set background=light
+    " let g:zenbones = #{ lightness: 'dim' }
+    colorscheme zenbones
+    call ChangeLightlineColorscheme('zenbones')
+    colorscheme zenbones
+endfunction
+
+fu! DefaultTheme()
     set background=dark
     colorscheme austere
     call ChangeLightlineColorscheme('austere')
@@ -425,13 +456,13 @@ endfunction
 
 fu! ToggleTheme()
     if (&background == "dark")
-        call EnableTheme()
+        call PaperLight()
     else
-        call DisableTheme()
+        call DefaultTheme()
     endif
 endfunction
 
-call DisableTheme()
+call DefaultTheme()
 
 """"""""""""""""""""""""""""""""
 "
@@ -718,7 +749,10 @@ lua <<EOF
         on_attach = on_attach,
         flags = lsp_flags,
     }
-
+    require('lspconfig')['ols'].setup{
+        on_attach = on_attach,
+        flags = lsp_flags,
+    }
 
 -- Disable LSP highlighting
 
@@ -740,13 +774,6 @@ lua <<EOF
         floating_window_off_y = -100,
 
     })
-
--- LSP lines
---    require("lsp_lines").setup()
---    -- Disable virtual_text since it's redundant due to lsp_lines.
---    vim.diagnostic.config({
---      virtual_text = false,
---    })
 
 -- Treesitter LSP
 

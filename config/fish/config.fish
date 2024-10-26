@@ -107,6 +107,10 @@ export CARGO="$HOME/.cargo/bin/cargo"
 # Zig
 export PATH="$HOME/zig:$PATH"
 
+# Odin
+export PATH="$HOME/odin:$PATH"
+export PATH="$HOME/ols:$PATH"
+
 # Haskell
 export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:$HOME/.ghcup/bin"
