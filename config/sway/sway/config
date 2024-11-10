@@ -142,9 +142,6 @@ input type:touchpad {
     # Kill focused window
     bindsym $mod+Shift+q kill
 
-    # Start general launcher
-    bindsym $mod+space exec krunner
-
     # Start app launcher
     bindsym $mod+o exec $menu
 
@@ -233,6 +230,7 @@ input type:touchpad {
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
+    bindsym $mod+space floating toggle
 
     # Make the floating window of fixed size relative to screen size
     bindsym $mod+d exec swaymsg resize set 70ppt 95ppt
@@ -288,6 +286,15 @@ bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ to
 
 bindsym --locked XF86MonBrightnessDown exec sudo brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec sudo brightnessctl set 5%+
+
+
+# Rules
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [app_id="yad|nm-connection-editor|pavucontrol"] floating enable
+for_window [app_id="xfce-polkit|kvantummanager|qt5ct"] floating enable
+for_window [class="Yad|feh|Viewnior|Gpicview|Gimp|MPlayer"] floating enable
+for_window [class="VirtualBox Manager|qemu|Qemu-system-x86_64"] floating enable
 
 bar {
     swaybar_command waybar

@@ -1,12 +1,7 @@
 ## Supported Workflows
- - Ubuntu local: i3 + fish + neovim  
+ - Ubuntu local: Sway + fish + neovim  
  - Ubuntu remote: tmux + fish + neovim  
  - Ubuntu remote minimal: Regular vim only, no plugins
-
-
-## README
- - [regolith2](config/regolith2/README.md)
- - [i3](config/i3/README.md)
 
 ## Notes
 
@@ -25,26 +20,6 @@ Make sure you have `xsel` or `xclip` installed.
 
 Then, install this plugin:  
 https://github.com/tmux-plugins/tmux-yank
-
-### Powerline fonts
-Install this:  
-https://github.com/powerline/fonts
-
-Some nice ones:
- - `Roboto Mono for Powerline`
- - `Source Code Pro Powerline Regular`
- - `d2coding and droid sans`
-
-```
-sudo apt install powerline
-fc-cache -vf
-```
-
-For l337 icon suppport, install [Font-Awesome](https://github.com/FortAwesome/Font-Awesome/releases).
-```
-mkdir ~/.fonts
-cp ~/Downloads/fo/fonts/*.tff ~/.fonts
-```
 
 ## Alacritty
 ```

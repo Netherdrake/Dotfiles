@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-set fonts DroidSansMono BitstreamVeraSansMono # Add more fonts here
+set fonts DroidSansMono BitstreamVeraSansMono ZedMono JetBrainsMono
 set fonts_dir $HOME/.local/share/fonts
 set version '3.2.1'
 

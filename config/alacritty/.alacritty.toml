@@ -1,9 +1,15 @@
 import = ["~/.config/alacritty/themes/themes/ayu_dark.toml"]
 [font]
-size = 12.0
+size = 14
+# renamed at some point?
+# family = "BitstromWera Nerd Font"
+# family = "Iosevka Comfy"
 
 [font.normal]
-family = "BitstromWeraNerdFont"
+family = "BitstreamVeraSansMono Nerd Font"
+
+# [font.normal]
+# family = "JetBrainsMono Nerd Font"
 
 [[keyboard.bindings]]
 action = "SpawnNewInstance"
