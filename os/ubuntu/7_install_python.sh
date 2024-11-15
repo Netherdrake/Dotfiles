@@ -1,6 +1,7 @@
 sudo apt-get install python3-pynvim
 sudo apt-get install python3-pylsp
 sudo apt-get install python3-ipython
+pip3 install --break-system-packages pipenv
 
 
 # uv

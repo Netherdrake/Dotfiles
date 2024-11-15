@@ -1,14 +1,14 @@
 # general dependencies
-sudo apt install -y gcc ninja-build cmake cmake-curses-gui
+sudo apt install -y build-essential gcc ninja-build cmake cmake-curses-gui
 
 # default ubuntu clang
-sudo apt install -y clang clangd clang-format clang-tidy clang-tools lldb
+sudo apt install -y llvm clang clangd clang-format clang-tidy clang-tools lldb
 
 # clang stdlib
-sudo apt-get install build-essential libc++-dev libc++abi-dev
+sudo apt-get install libc++-dev libc++abi-dev
 
 # ubuntu 24.04 missing stdlib fix?
-sudo apt install libstdc++-14-dev
+# sudo apt install libstdc++-14-dev
 
 # stacktraces
 sudo apt install -y libdwarf-dev libunwind-dev binutils-dev
@@ -47,6 +47,7 @@ sudo apt install -y libglew-dev libglfw3-dev libglm-dev
 sudo apt install -y libao-dev libmpg123-dev
 
 # vcpkg
+cd
 git clone https://github.com/microsoft/vcpkg
 ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
 

@@ -77,6 +77,7 @@ end
 alias cdy "pwd | xclip -i"
 alias cdp "cd (xclip -o)"
 
+alias v "nvim"
 alias vim "nvim"
 alias vi "nvim"
 alias rrr "ranger"
@@ -110,13 +111,3 @@ export PATH="$HOME/zig:$PATH"
 # Odin
 export PATH="$HOME/odin:$PATH"
 export PATH="$HOME/ols:$PATH"
-
-# Haskell
-export PATH="$PATH:$HOME/.cabal/bin"
-export PATH="$PATH:$HOME/.ghcup/bin"
-
-# Doom Emacs
-export PATH="$PATH:$HOME/.config/emacs/bin"
-
-# opam configuration
-source /home/user/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
