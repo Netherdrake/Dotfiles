@@ -109,5 +109,5 @@ export CARGO="$HOME/.cargo/bin/cargo"
 export PATH="$HOME/zig:$PATH"
 
 # Odin
-export PATH="$HOME/odin:$PATH"
-export PATH="$HOME/ols:$PATH"
+export PATH="$HOME/Github/Odin:$PATH"
+export PATH="$HOME/Github/ols:$PATH"
