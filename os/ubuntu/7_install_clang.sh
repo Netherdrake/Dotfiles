@@ -55,7 +55,7 @@ git clone https://github.com/microsoft/vcpkg
 cd ~/vcpkg
 
 ./vcpkg install dbg-macro
-./vcpkg install fplus
+./vcpkg install FunctionalPlus
 ./vcpkg install plog
 ./vcpkg install sqlite3
 ./vcpkg install fmt
