@@ -4,6 +4,9 @@ sudo apt install -y build-essential gcc ninja-build cmake cmake-curses-gui
 # default ubuntu clang
 sudo apt install -y llvm clang clangd clang-format clang-tidy clang-tools lldb
 
+# for lldbui
+sudo apt install lldb llvm-dev liblldb-dev
+
 # clang stdlib
 sudo apt-get install libc++-dev libc++abi-dev
 
