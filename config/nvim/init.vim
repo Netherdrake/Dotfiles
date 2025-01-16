@@ -9,13 +9,13 @@ call plug#begin('~/.vim/plugged')
 " eye candy
 Plug 'rktjmp/lush.nvim'
 Plug 'itchyny/lightline.vim'
-Plug 'erik-j-d/lightline-paper'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'Netherdrake/austere.vim'
-Plug 'yorickpeterse/vim-paper'
 Plug 'morhetz/gruvbox'
 Plug 'zenbones-theme/zenbones.nvim'
+Plug 'projekt0n/github-nvim-theme'
+Plug 'yorik1984/newpaper.nvim'
 
 " core plugins
 Plug 'jlanzarotta/bufexplorer'
@@ -211,16 +211,26 @@ lua require'trouble'.setup()
 nnoremap <leader>3 :Trouble diagnostics toggle focus=false filter.buf=0<CR>
 nnoremap <leader>4 :NvimTreeToggle<CR>
 nnoremap <leader>5 :TagbarToggle<CR>
-nnoremap <leader>6 :Telescope git_status<CR>
+nnoremap <leader>6 :Telescope lsp_workspace_symbols<CR>
 nnoremap <leader>7 :term time make debug<CR>
 nnoremap <leader>8 :term time make run<CR>
 nnoremap <leader>9 :term time make test<CR>
 nnoremap <expr> <leader>0 ':call ToggleTheme()'."<CR>"."<CR>"
 
-
+" telescope
 nnoremap <F1> :Telescope help_tags<CR>
 nnoremap <F2> :Telescope man_pages sections=1,2,3<CR>
 " nnoremap <F4> :Telescope commands<CR>
+
+nnoremap <C-p> :Telescope find_files<CR>
+nnoremap <leader>a :Telescope live_grep<CR>
+nnoremap <leader>tt :Telescope lsp_document_symbols<CR>
+nnoremap <leader>tf :Telescope oldfiles<CR>
+nnoremap <leader>tb :Telescope buffers<CR>
+nnoremap <leader>tgs :Telescope git_status<CR>
+nnoremap <leader>tgf :Telescope git_files<CR>
+nnoremap <leader>tgc :Telescope git_commits<CR>
+
 
 
 """"""""""""""""""""""""""""""""
@@ -281,14 +291,6 @@ let g:gitgutter_enabled = 1
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 nnoremap <leader>g :Git 
-
-" telescope
-nnoremap <C-p> :Telescope find_files<CR>
-nnoremap <leader>a :Telescope live_grep<CR>
-nnoremap <leader>tr :Telescope oldfiles<CR>
-nnoremap <leader>ts :Telescope git_status<CR>
-nnoremap <leader>tf :Telescope git_files<CR>
-nnoremap <leader>tc :Telescope git_commits<CR>
 
 " Rust config
 let g:rustfmt_autosave = 1
@@ -391,14 +393,6 @@ function! ChangeLightlineColorscheme(new_colorscheme)
   endif
 endfunction
 
-fu! PaperLight()
-    set background=light
-    colorscheme paper
-    highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-    highlight MatchParen guifg=#cc9900 ctermfg=203 guibg=NONE ctermbg=NONE gui=Bold cterm=Bold
-    call ChangeLightlineColorscheme('paper')
-endfunction
-
 let g:gruvbox_contrast_light = 'soft'
 let g:gruvbox_invert_selection = 0
 
@@ -444,6 +438,27 @@ fu! ZenbonesLight()
     colorscheme zenbones
 endfunction
 
+fu! GHDark()
+    set background=dark
+    colorscheme github_dark_default
+    call ChangeLightlineColorscheme('austere')
+    colorscheme github_dark_default
+endfunction
+
+fu! GHLight()
+    set background=light
+    colorscheme github_light
+    call ChangeLightlineColorscheme('one')
+    colorscheme github_light
+endfunction
+
+fu! NewpaperLight()
+    set background=light
+    colorscheme newpaper
+    call ChangeLightlineColorscheme('zenbones')
+    colorscheme newpaper
+endfunction
+
 fu! DefaultTheme()
     set background=dark
     colorscheme austere
@@ -452,7 +467,7 @@ endfunction
 
 fu! ToggleTheme()
     if (&background == "dark")
-        call PaperLight()
+        call GHLight()
     else
         call DefaultTheme()
     endif
