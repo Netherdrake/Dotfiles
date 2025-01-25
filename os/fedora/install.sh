@@ -94,6 +94,7 @@ curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs | s
 
 cd ~/.vim/plugged/YouCompleteMe && python3 install.py --clang-completer --rust-completer  && cd
 
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface text-scaling-factor "1"
 
 sudo dnf install power-profile-daemon

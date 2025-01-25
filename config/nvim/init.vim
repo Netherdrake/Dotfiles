@@ -27,7 +27,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'andymass/vim-matchup'
 
 " search
-Plug 'henrik/vim-indexed-search'
+" Plug 'henrik/vim-indexed-search'
 Plug 'phaazon/hop.nvim'
 Plug 'rhysd/clever-f.vim'
 
@@ -455,7 +455,7 @@ endfunction
 fu! NewpaperLight()
     set background=light
     colorscheme newpaper
-    call ChangeLightlineColorscheme('zenbones')
+    call ChangeLightlineColorscheme('one')
     colorscheme newpaper
 endfunction
 
