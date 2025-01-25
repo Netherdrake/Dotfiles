@@ -12,7 +12,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'Netherdrake/austere.vim'
-Plug 'morhetz/gruvbox'
+Plug 'ellisonleao/gruvbox.nvim'
+Plug 'Netherdrake/lightline-gruvbox-contrast-tweaked.vim'
 Plug 'zenbones-theme/zenbones.nvim'
 Plug 'projekt0n/github-nvim-theme'
 Plug 'yorik1984/newpaper.nvim'
@@ -393,19 +394,16 @@ function! ChangeLightlineColorscheme(new_colorscheme)
   endif
 endfunction
 
-let g:gruvbox_contrast_light = 'soft'
-let g:gruvbox_invert_selection = 0
-
 fu! GruvboxLight()
     set background=light
     colorscheme gruvbox
-    call ChangeLightlineColorscheme('gruvbox')
+    call ChangeLightlineColorscheme('GruvboxContrastTweakedLight')
 endfunction
 
 fu! Gruvbox()
     set background=dark
     colorscheme gruvbox
-    call ChangeLightlineColorscheme('gruvbox')
+    call ChangeLightlineColorscheme('GruvboxContrastTweaked')
 endfunction
 
 fu! Catppuccin()
@@ -943,6 +941,31 @@ vim.g.rustaceanvim = {
              markdown = true,
          },
      })
+
+    require("gruvbox").setup({
+      terminal_colors = true, -- add neovim terminal colors
+      undercurl = false,
+      underline = false,
+      bold = true,
+      italic = {
+        strings = false,
+        emphasis = true,
+        comments = true,
+        operators = false,
+        folds = true,
+      },
+      strikethrough = true,
+      invert_selection = false,
+      invert_signs = false,
+      invert_tabline = false,
+      invert_intend_guides = false,
+      inverse = true, -- invert background for search, diffs, statuslines and errors
+      contrast = "", -- can be "hard", "soft" or empty string
+      palette_overrides = {},
+      overrides = {},
+      dim_inactive = false,
+      transparent_mode = false,
+    })
 
 
 -- tcomment alternative
