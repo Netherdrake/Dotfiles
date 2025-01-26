@@ -28,7 +28,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'andymass/vim-matchup'
 
 " search
-" Plug 'henrik/vim-indexed-search'
 Plug 'phaazon/hop.nvim'
 Plug 'rhysd/clever-f.vim'
 
@@ -39,7 +38,6 @@ Plug 'Wansmer/treesj'
 
 " autocomplete
 Plug 'ycm-core/YouCompleteMe'
-" Plug 'ervandew/supertab'
 
 " telescope
 Plug 'nvim-lua/plenary.nvim'
@@ -53,14 +51,10 @@ Plug 'folke/trouble.nvim'
 Plug 'Vigemus/iron.nvim'
 Plug 'folke/which-key.nvim'
 
-" active panel highlighting
-" Plug 'TaDaa/vimade'
-
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'ray-x/lsp_signature.nvim'
-" Plug 'dense-analysis/ale'
 
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
@@ -465,7 +459,7 @@ endfunction
 
 fu! ToggleTheme()
     if (&background == "dark")
-        call GHLight()
+        call ZenbonesLight()
     else
         call DefaultTheme()
     endif
