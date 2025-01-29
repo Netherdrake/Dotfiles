@@ -66,6 +66,7 @@ Plug 'preservim/vim-pencil', { 'for': 'markdown' }
 
 " debugging
 Plug 'puremourning/vimspector', { 'for': ['python', 'cpp', 'c'] }
+Plug 'sakhnik/nvim-gdb'
 
 
 call plug#end()
@@ -349,6 +350,21 @@ nnoremap <leader>db  :call vimspector#ToggleBreakpoint()<CR>
 nnoremap <leader>dB  :call Vimspector#AddFunctionBreakpoint()<CR>
 nnoremap <leader>di  <Plug>VimspectorBalloonEval
 nnoremap <leader>dib <Plug>VimspectorBreakpoints
+
+" nvim-gdb
+function! NvimGdbNoTKeymaps()
+  tnoremap <silent> <buffer> <esc> <c-\><c-n>
+endfunction
+
+let g:nvimgdb_config_override = {
+  \ 'key_next': 'n',
+  \ 'key_step': 's',
+  \ 'key_finish': 'f',
+  \ 'key_continue': 'c',
+  \ 'key_until': 'u',
+  \ 'key_breakpoint': 'b',
+  \ 'set_tkeymaps': "NvimGdbNoTKeymaps",
+  \ }
 
 
 " markdown & text files
