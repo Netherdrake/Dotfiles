@@ -274,6 +274,15 @@ let g:ycm_clangd_uses_ycmd_caching = 0
 let g:ycm_clangd_binary_path = exepath("clangd")
 let g:ycm_clangd_args=['--header-insertion=never']
 
+" odin
+let g:ycm_language_server = [
+  \   { 'name': 'odin',
+  \     'filetypes': [ 'odin' ],
+  \     'cmdline': [ '/home/user/Github/ols/ols', '--stdio' ],
+  \     'project_root_files': [ 'main.odin', 'ols.json' ]
+  \   },
+  \ ]
+
 
 " configure universal ctags
 " let g:tagbar_ctags_bin = '/snap/bin/universal-ctags'
@@ -481,7 +490,11 @@ fu! ToggleTheme()
     endif
 endfunction
 
-call DefaultTheme()
+if hostname() == "fw13"
+    call GHLight()
+else
+    call DefaultTheme()
+endif
 
 """"""""""""""""""""""""""""""""
 "
