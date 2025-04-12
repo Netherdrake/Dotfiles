@@ -17,6 +17,11 @@ Plug 'Netherdrake/lightline-gruvbox-contrast-tweaked.vim'
 Plug 'zenbones-theme/zenbones.nvim'
 Plug 'projekt0n/github-nvim-theme'
 Plug 'yorik1984/newpaper.nvim'
+Plug 'Mofiqul/vscode.nvim'
+Plug 'cmoscofian/nibble-vim'
+Plug 'sainnhe/edge'
+Plug 'jackplus-xyz/binary.nvim'  " mono
+Plug 'owickstrom/vim-colors-paramount' " minimal
 
 " core plugins
 Plug 'jlanzarotta/bufexplorer'
@@ -479,7 +484,28 @@ fu! NewpaperLight()
     colorscheme newpaper
 endfunction
 
-fu! DefaultTheme()
+fu! Nibble()
+    set background=light
+    colorscheme nibblelight
+    call ChangeLightlineColorscheme('edge')
+    colorscheme nibblelight
+endfunction
+
+fu! Edge()
+    set background=light
+    colorscheme edge
+    call ChangeLightlineColorscheme('edge')
+    colorscheme edge
+endfunction
+
+fu! Binary()
+    set background=light
+    colorscheme binary
+    call ChangeLightlineColorscheme('edge')
+    colorscheme binary
+endfunction
+
+fu! Austere()
     set background=dark
     colorscheme austere
     call ChangeLightlineColorscheme('austere')
@@ -489,14 +515,14 @@ fu! ToggleTheme()
     if (&background == "dark")
         call ZenbonesLight()
     else
-        call DefaultTheme()
+        call Austere()
     endif
 endfunction
 
 if hostname() == "fw13"
     call GHLight()
 else
-    call DefaultTheme()
+    call Edge()
 endif
 
 """"""""""""""""""""""""""""""""
