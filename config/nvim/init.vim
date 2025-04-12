@@ -113,6 +113,9 @@ set nofoldenable
 set scrolloff=3
 set autoread
 
+" dont break long lines
+:set formatoptions-=t
+
 " backup/persistance settings
 set undodir=~/.vim/tmp/undo/
 set backupdir=~/.vim/tmp/backup/
