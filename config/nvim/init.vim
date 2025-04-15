@@ -12,13 +12,12 @@ Plug 'itchyny/lightline.vim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'Netherdrake/austere.vim'
+Plug 'Netherdrake/nibble'
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'Netherdrake/lightline-gruvbox-contrast-tweaked.vim'
 Plug 'zenbones-theme/zenbones.nvim'
 Plug 'projekt0n/github-nvim-theme'
 Plug 'yorik1984/newpaper.nvim'
-Plug 'Mofiqul/vscode.nvim'
-Plug 'cmoscofian/nibble-vim'
 Plug 'sainnhe/edge'
 Plug 'jackplus-xyz/binary.nvim'  " mono
 Plug 'owickstrom/vim-colors-paramount' " minimal
@@ -160,6 +159,9 @@ nnoremap gp `[v`]
 " make enter break and do newlines
 nnoremap <CR> i<CR><Esc>==
 
+" fix quickfix CR mapping
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+
 " quick way to shift text forward
 nnoremap <C-Space> i<Space><Esc>l
 
@@ -216,10 +218,14 @@ nnoremap <leader>3 :Trouble diagnostics toggle focus=false filter.buf=0<CR>
 nnoremap <leader>4 :NvimTreeToggle<CR>
 nnoremap <leader>5 :TagbarToggle<CR>
 nnoremap <leader>6 :Telescope lsp_workspace_symbols<CR>
-nnoremap <leader>7 :term time make debug<CR>
-nnoremap <leader>8 :term time make run<CR>
-nnoremap <leader>9 :term time make test<CR>
-nnoremap <expr> <leader>0 ':call ToggleTheme()'."<CR>"."<CR>"
+
+nnoremap <leader>7 :call VerticalTerminalCommand('time make debug')<CR>
+nnoremap <leader>8 :call VerticalTerminalCommand('time make run')<CR>
+nnoremap <leader>9 :call VerticalTerminalCommand('time make test')<CR>
+" nnoremap <leader>7 :term time make debug<CR>
+" nnoremap <leader>8 :term time make run<CR>
+" nnoremap <leader>9 :term time make test<CR>
+nnoremap <expr> <leader>0 ':call TNibble()'."<CR>"."<CR>"
 
 " telescope
 nnoremap <F1> :Telescope help_tags<CR>
@@ -421,25 +427,25 @@ function! ChangeLightlineColorscheme(new_colorscheme)
   endif
 endfunction
 
-fu! GruvboxLight()
+fu! TGruvboxLight()
     set background=light
     colorscheme gruvbox
     call ChangeLightlineColorscheme('GruvboxContrastTweakedLight')
 endfunction
 
-fu! Gruvbox()
+fu! TGruvbox()
     set background=dark
     colorscheme gruvbox
     call ChangeLightlineColorscheme('GruvboxContrastTweaked')
 endfunction
 
-fu! Catppuccin()
+fu! TCatppuccin()
     set background=dark
     colorscheme catppuccin
     call ChangeLightlineColorscheme('catppuccin')
 endfunction
 
-fu! KanagawaBones()
+fu! TKanagawaBones()
     set background=dark
     " let g:kanagawabones = #{ darkness: 'stark', darken_comments: 30 }
     colorscheme kanagawabones
@@ -447,7 +453,7 @@ fu! KanagawaBones()
     colorscheme kanagawabones
 endfunction
 
-fu! TokyoBones()
+fu! TTokyoBones()
     set background=dark
     let g:tokyobones = #{ darkness: 'stark', darken_comments: 30 }
     colorscheme tokyobones
@@ -455,7 +461,7 @@ fu! TokyoBones()
     colorscheme tokyobones
 endfunction
 
-fu! ZenbonesLight()
+fu! TZenbonesLight()
     set background=light
     " let g:zenbones = #{ lightness: 'dim' }
     colorscheme zenbones
@@ -463,66 +469,64 @@ fu! ZenbonesLight()
     colorscheme zenbones
 endfunction
 
-fu! GHDark()
+fu! TGHDark()
     set background=dark
     colorscheme github_dark_default
     call ChangeLightlineColorscheme('austere')
     colorscheme github_dark_default
 endfunction
 
-fu! GHLight()
+fu! TGHLight()
     set background=light
     colorscheme github_light
     call ChangeLightlineColorscheme('one')
     colorscheme github_light
 endfunction
 
-fu! NewpaperLight()
+fu! TNewpaperLight()
     set background=light
     colorscheme newpaper
     call ChangeLightlineColorscheme('one')
     colorscheme newpaper
 endfunction
 
-fu! Nibble()
+fu! TNibble()
     set background=light
     colorscheme nibblelight
     call ChangeLightlineColorscheme('edge')
     colorscheme nibblelight
 endfunction
 
-fu! Edge()
+fu! TEdge()
     set background=light
     colorscheme edge
     call ChangeLightlineColorscheme('edge')
     colorscheme edge
 endfunction
 
-fu! Binary()
+fu! TBinary()
     set background=light
     colorscheme binary
     call ChangeLightlineColorscheme('edge')
     colorscheme binary
 endfunction
 
-fu! Austere()
+fu! TAustere()
     set background=dark
     colorscheme austere
     call ChangeLightlineColorscheme('austere')
 endfunction
 
-fu! ToggleTheme()
-    if (&background == "dark")
-        call ZenbonesLight()
-    else
-        call Austere()
-    endif
+fu! TParamount()
+    set background=light
+    colorscheme paramount
+    call ChangeLightlineColorscheme('edge')
 endfunction
 
 if hostname() == "fw13"
-    call GHLight()
+    call TGHLight()
 else
-    call Edge()
+    call TEdge()
 endif
 
 """"""""""""""""""""""""""""""""
@@ -611,6 +615,52 @@ augroup ListChars2
     autocmd filetype go set listchars+=tab:\ \ 
     autocmd ColorScheme * hi! link SpecialKey Normal
 augroup END
+
+""""""""""""""""""""""""""""""""
+"
+" Make helper
+"
+""""""""""""""""""""""""""""""""
+
+" Function to check if we have a vertical split
+function! HasVerticalSplit()
+    return winnr('$') > 1 && &columns > 1
+endfunction
+
+" Main function to handle vertical split and terminal command
+function! VerticalTerminalCommand(command)
+    " Check if we already have a vertical split
+    if HasVerticalSplit()
+        " Get the last window number
+        let l:last_window = winnr('$')
+
+        " Switch to the rightmost window
+        execute l:last_window . 'wincmd w'
+
+        " Close the current buffer if it exists
+        " close
+
+        " Open a new terminal buffer with time make debug
+        execute 'term ' . a:command
+
+        " Move cursor back to previous window
+        wincmd p
+
+    else
+        " Create a new vertical split
+        vertical botright new
+
+        " Enter terminal mode
+        terminal
+
+        " Execute the command
+        execute 'term ' . a:command
+
+        " Move cursor back to previous window
+        wincmd p
+    endif
+endfunction
+
 
 """"""""""""""""""""""""""""""""
 "
@@ -834,21 +884,30 @@ lua <<EOF
 
 -- Treesitter LSP
 
---    require'nvim-treesitter.configs'.setup {
---        ensure_installed = {"vim", "lua", "toml", "rust", "python", "c", "cpp", "cuda", "cmake", "markdown" },
---        auto_install = true,
---        ident = { enable = true },
---        -- highlight = {
---        --     enable = true,
---        --     additional_vim_regex_highlighting = false
---        -- },
---        rainbow = {
---            enable = true,
---            extended_mode = true,
---            max_file_lines = nil,
---        }
---    }
---
+  require'nvim-treesitter.configs'.setup {
+      ensure_installed = {"vim", "lua", "toml", "rust", "python", "c", "cpp", "cuda", "cmake", "odin" },
+      auto_install = true,
+      --ident = { enable = true },
+      highlight = {
+          enable = false,
+          additional_vim_regex_highlighting = false
+      },
+      --rainbow = {
+      --    enable = true,
+      --    extended_mode = true,
+      --    max_file_lines = nil,
+      --},
+      incremental_selection = {
+          enable = true,
+          keymaps = {
+              init_selection = "gnn", -- set to `false` to disable one of the mappings
+              node_incremental = "gni",
+              scope_incremental = "gns",
+              node_decremental = "gnd",
+          },
+      },
+  }
+
 -- Diagnostics
 
 --    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
