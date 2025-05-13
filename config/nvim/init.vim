@@ -225,7 +225,7 @@ nnoremap <leader>9 :call VerticalTerminalCommand('time make test')<CR>
 " nnoremap <leader>7 :term time make debug<CR>
 " nnoremap <leader>8 :term time make run<CR>
 " nnoremap <leader>9 :term time make test<CR>
-nnoremap <expr> <leader>0 ':call TNibble()'."<CR>"."<CR>"
+nnoremap <expr> <leader>0 ':call TGHLight()'."<CR>".":TSEnable highlight<CR>"
 
 " telescope
 nnoremap <F1> :Telescope help_tags<CR>
@@ -479,7 +479,7 @@ endfunction
 fu! TGHLight()
     set background=light
     colorscheme github_light
-    call ChangeLightlineColorscheme('one')
+    call ChangeLightlineColorscheme('edge')
     colorscheme github_light
 endfunction
 
@@ -524,7 +524,7 @@ fu! TParamount()
 endfunction
 
 if hostname() == "fw13"
-    call TGHLight()
+    call TNibble()
 else
     call TEdge()
 endif
