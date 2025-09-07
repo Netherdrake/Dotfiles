@@ -17,10 +17,9 @@ Plug 'ellisonleao/gruvbox.nvim'
 Plug 'zenbones-theme/zenbones.nvim'
 Plug 'projekt0n/github-nvim-theme'
 Plug 'yorik1984/newpaper.nvim'
-Plug 'sainnhe/edge'
-Plug 'jackplus-xyz/binary.nvim'  " mono
 Plug 'owickstrom/vim-colors-paramount' " minimal
 Plug 'nuvic/flexoki-nvim'
+Plug 'idr4n/github-monochrome.nvim'
 
 
 " core plugins
@@ -226,7 +225,8 @@ nnoremap <leader>9 :call VerticalTerminalCommand('time make test')<CR>
 " nnoremap <leader>7 :term time make debug<CR>
 " nnoremap <leader>8 :term time make run<CR>
 " nnoremap <leader>9 :term time make test<CR>
-nnoremap <expr> <leader>0 ':call TGHLight()'."<CR>".":TSEnable highlight<CR>"
+nnoremap <expr> <leader>0 ':TSToggle highlight<CR>'
+" nnoremap <expr> <leader>0 ':call TGHLight()'."<CR>".":TSToggle highlight<CR>"
 
 " telescope
 nnoremap <F1> :Telescope help_tags<CR>
@@ -455,6 +455,11 @@ fu! TGHLight()
     colorscheme github_light
 endfunction
 
+fu! TMonoGithubLight()
+    set background=light
+    colorscheme github-monochrome-light
+endfunction
+
 fu! TNewpaperLight()
     set background=light
     colorscheme newpaper
@@ -465,19 +470,14 @@ fu! TNibble()
     colorscheme nibblelight
 endfunction
 
-fu! TEdge()
-    set background=light
-    colorscheme edge
-endfunction
-
-fu! TBinary()
-    set background=light
-    colorscheme binary
-endfunction
-
 fu! TAustere()
     set background=dark
     colorscheme austere
+endfunction
+
+fu! TLackluster()
+    set background=dark
+    colorscheme lackluster-hack
 endfunction
 
 fu! TParamount()
@@ -1038,7 +1038,7 @@ vim.g.rustaceanvim = {
       invert_tabline = false,
       invert_intend_guides = false,
       inverse = true, -- invert background for search, diffs, statuslines and errors
-      contrast = "", -- can be "hard", "soft" or empty string
+      contrast = "hard", -- can be "hard", "soft" or empty string
       palette_overrides = {},
       overrides = {},
       dim_inactive = false,
@@ -1061,6 +1061,16 @@ require('lualine').setup {
       section_separators = '',
       component_separators = '|'
   },
+  sections = {
+    lualine_c = {
+      {
+        'filename',
+        -- path = 1,
+        color = { bg = 'CursorLine' },  -- Use existing highlight groups
+        padding = { left = 1, right = 1 },
+      }
+    }
+  }
 }
 
 EOF
