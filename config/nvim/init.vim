@@ -7,20 +7,21 @@
 call plug#begin('~/.vim/plugged')
 
 " eye candy
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'rktjmp/lush.nvim'
-Plug 'itchyny/lightline.vim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'Netherdrake/austere.vim'
 Plug 'Netherdrake/nibble'
 Plug 'ellisonleao/gruvbox.nvim'
-Plug 'Netherdrake/lightline-gruvbox-contrast-tweaked.vim'
 Plug 'zenbones-theme/zenbones.nvim'
 Plug 'projekt0n/github-nvim-theme'
 Plug 'yorik1984/newpaper.nvim'
 Plug 'sainnhe/edge'
 Plug 'jackplus-xyz/binary.nvim'  " mono
 Plug 'owickstrom/vim-colors-paramount' " minimal
+Plug 'nuvic/flexoki-nvim'
+
 
 " core plugins
 Plug 'jlanzarotta/bufexplorer'
@@ -411,45 +412,24 @@ augroup END
 syntax on
 set termguicolors
 
-let g:theme_set = 0
-
-function! ChangeLightlineColorscheme(new_colorscheme)
-  if g:theme_set == 1
-      let g:lightline.colorscheme = a:new_colorscheme
-      call lightline#init()
-      call lightline#colorscheme()
-      call lightline#update()
-  else
-      let g:lightline = {
-                  \ 'colorscheme': a:new_colorscheme,
-                  \ }
-      let g:theme_set = 1
-  endif
-endfunction
-
 fu! TGruvboxLight()
     set background=light
     colorscheme gruvbox
-    call ChangeLightlineColorscheme('GruvboxContrastTweakedLight')
 endfunction
 
 fu! TGruvbox()
     set background=dark
     colorscheme gruvbox
-    call ChangeLightlineColorscheme('GruvboxContrastTweaked')
 endfunction
 
 fu! TCatppuccin()
     set background=dark
     colorscheme catppuccin
-    call ChangeLightlineColorscheme('catppuccin')
 endfunction
 
 fu! TKanagawaBones()
     set background=dark
     " let g:kanagawabones = #{ darkness: 'stark', darken_comments: 30 }
-    colorscheme kanagawabones
-    call ChangeLightlineColorscheme('kanagawabones')
     colorscheme kanagawabones
 endfunction
 
@@ -457,76 +437,63 @@ fu! TTokyoBones()
     set background=dark
     let g:tokyobones = #{ darkness: 'stark', darken_comments: 30 }
     colorscheme tokyobones
-    call ChangeLightlineColorscheme('tokyobones')
-    colorscheme tokyobones
 endfunction
 
 fu! TZenbonesLight()
     set background=light
     " let g:zenbones = #{ lightness: 'dim' }
     colorscheme zenbones
-    call ChangeLightlineColorscheme('zenbones')
-    colorscheme zenbones
 endfunction
 
 fu! TGHDark()
     set background=dark
-    colorscheme github_dark_default
-    call ChangeLightlineColorscheme('austere')
     colorscheme github_dark_default
 endfunction
 
 fu! TGHLight()
     set background=light
     colorscheme github_light
-    call ChangeLightlineColorscheme('edge')
-    colorscheme github_light
 endfunction
 
 fu! TNewpaperLight()
     set background=light
-    colorscheme newpaper
-    call ChangeLightlineColorscheme('one')
     colorscheme newpaper
 endfunction
 
 fu! TNibble()
     set background=light
     colorscheme nibblelight
-    call ChangeLightlineColorscheme('edge')
-    colorscheme nibblelight
 endfunction
 
 fu! TEdge()
     set background=light
-    colorscheme edge
-    call ChangeLightlineColorscheme('edge')
     colorscheme edge
 endfunction
 
 fu! TBinary()
     set background=light
     colorscheme binary
-    call ChangeLightlineColorscheme('edge')
-    colorscheme binary
 endfunction
 
 fu! TAustere()
     set background=dark
     colorscheme austere
-    call ChangeLightlineColorscheme('austere')
 endfunction
 
 fu! TParamount()
     set background=light
     colorscheme paramount
-    call ChangeLightlineColorscheme('edge')
+endfunction
+
+fu! TFlexoki()
+    set background=light
+    colorscheme flexoki
 endfunction
 
 if hostname() == "fw13"
     call TNibble()
 else
-    call TEdge()
+    call TNibble()
 endif
 
 """"""""""""""""""""""""""""""""
@@ -1087,5 +1054,13 @@ require('treesj').setup()
 
 -- hints
 require("which-key").setup({delay=500})
+
+require('lualine').setup {
+  options = {
+      globalstatus = false,
+      section_separators = '',
+      component_separators = '|'
+  },
+}
 
 EOF
