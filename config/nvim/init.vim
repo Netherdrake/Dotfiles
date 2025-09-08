@@ -51,7 +51,6 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'voldikss/vim-floaterm'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'preservim/tagbar'
-Plug 'folke/trouble.nvim'
 Plug 'Vigemus/iron.nvim'
 Plug 'folke/which-key.nvim'
 
@@ -213,8 +212,7 @@ nnoremap <leader>` :FloatermNew --disposable top -u user<CR>
 nnoremap <leader>1 :FloatermToggle<CR>
 tnoremap <leader>1 <C-\><C-n>:FloatermToggle<CR>
 nnoremap <leader>2 :FloatermNew --disposable yazi<CR>
-lua require'trouble'.setup()
-nnoremap <leader>3 :Trouble diagnostics toggle focus=false filter.buf=0<CR>
+nnoremap <leader>3 :Telescope diagnostics<CR>
 nnoremap <leader>4 :NvimTreeToggle<CR>
 nnoremap <leader>5 :TagbarToggle<CR>
 nnoremap <leader>6 :Telescope lsp_workspace_symbols<CR>
@@ -473,11 +471,6 @@ endfunction
 fu! TAustere()
     set background=dark
     colorscheme austere
-endfunction
-
-fu! TLackluster()
-    set background=dark
-    colorscheme lackluster-hack
 endfunction
 
 fu! TParamount()
