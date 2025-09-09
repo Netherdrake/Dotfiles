@@ -1,0 +1,403 @@
+# Read `man 5 sway` for a complete reference.
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $term /usr/bin/alacritty
+set $cliphist /usr/bin/cliphist
+# Your preferred application launcher
+# Note: pass the final command to swaymsg so that the resulting window can be opened
+# on the original workspace that the command was run on.
+set $menu dmenu_path | fuzzel | xargs swaymsg exec --
+
+# Just black please
+# output * bg #808080 solid_color
+output * bg /home/user/Blog/wallpaper2.jpg fill
+
+# Make borders slightly larger (default: 2)
+default_border normal 3
+
+# Enable smart gaps to maximize space of single window layouts
+gaps inner 10
+smart_gaps on
+smart_borders on
+
+# Disable wrapping for tabbed/stacked layouts
+focus_wrapping no
+
+# Center the mouse into container with new focus
+# mouse_warping container
+
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+### Idle configuration
+# timeout 999 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+exec swayidle -w \
+         timeout 900 'swaylock -f -c 616060' \
+         timeout 999 'if [ "$(./home/user/.config/sway/check_external_power.sh)" != "ac" ]; then swaymsg "output * power off"; fi' \
+         resume 'if [ "$(./home/user/.config/sway/check_external_power.sh)" != "ac" ]; then swaymsg "output * power on"; fi' \
+         before-sleep 'playerctl pause' \
+         before-sleep 'swaylock -f -c 616060'
+
+# # Requires: swayidle
+# # Requires: swaylock
+# # Requires: /usr/bin/pkill, /usr/bin/pgrep
+#
+# exec LT="$lock_timeout" ST="$screen_timeout" LT=${LT:-300} ST=${ST:-60} && \
+#     swayidle -w \
+#         timeout $LT 'swaylock -f' \
+#         timeout $((LT + ST)) 'swaymsg "output * power off"' \
+#                       resume 'swaymsg "output * power on"'  \
+#         timeout $ST 'pgrep -xu "$USER" swaylock >/dev/null && swaymsg "output * power off"' \
+#              resume 'pgrep -xu "$USER" swaylock >/dev/null && swaymsg "output * power on"'  \
+#         before-sleep 'swaylock -f' \
+#         lock 'swaylock -f' \
+#         unlock 'pkill -xu "$USER" -SIGUSR1 swaylock'
+
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+### Input configuration
+#
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
+# Hide cursor after 5 seconds
+seat * hide_cursor 5000
+
+# Configure our default keyboard
+input type:keyboard {
+  xkb_options "caps:escape"
+  repeat_delay 300
+  repeat_rate 30
+}
+
+# Swipe to change workspace
+bindgesture swipe:right workspace prev
+bindgesture swipe:left workspace next
+
+# Configure touchpad
+input type:touchpad {
+  accel_profile adaptive
+  click_method clickfinger
+  drag enabled
+  dwt enabled
+  events disabled_on_external_mouse
+  middle_emulation enabled
+  pointer_accel 0.12
+  scroll_method two_finger
+  tap disabled
+}
+
+### Key bindings
+#
+# Basics:
+#
+    # Apps
+    bindsym $mod+Return exec $term
+    bindsym $mod+b exec firefox --new-window
+    bindsym $mod+n exec thunar
+
+    # Screenshots
+    bindsym Print exec grimshot copy area
+    bindsym Ctrl+Print exec grimshot save area
+
+    # Kill focused window
+    bindsym $mod+Shift+q kill
+
+    # Start app launcher
+    bindsym $mod+o exec $menu
+
+    # Start file search
+    bindsym $mod+p exec ~/Blog/config/rofi-file-selector/rofi-file-selector.sh
+
+    # Lock the screen
+    bindsym $mod+Shift+z exec swaylock -c 616060
+
+    # Show items in the clipboard manager
+    bindsym $mod+y exec $cliphist list | rofi -dmenu | $cliphist decode | wl-copy
+    bindsym $mod+Shift+y exec $cliphist wipe
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym $mod+Shift+c reload
+
+    # Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+
+    # Move to workspace
+    bindsym $mod+Left workspace prev
+    bindsym $mod+Right workspace next
+#
+# Workspaces:
+#
+    # Set tabbed as default layout
+    workspace_layout tabbed
+
+    # Switch to workspace
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9
+#
+# Layout stuff:
+#
+    # Splits follow the same pattern as tmux and vim
+    bindsym $mod+v splith
+    bindsym $mod+s splitv
+
+    # Switch the current container between different layout styles
+    bindsym $mod+w layout stacking
+    bindsym $mod+t layout tabbed
+    bindsym $mod+e layout toggle splith splitv tabbed
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+    bindsym $mod+Shift+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+    bindsym $mod+space floating toggle
+
+    # Make the floating window of fixed size relative to screen size
+    bindsym $mod+d exec swaymsg resize set 70ppt 95ppt
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+tab focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
+
+    # Move focus to last used child
+    bindsym $mod+Shift+a focus child
+#
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+#
+# Resizing containers:
+#
+mode "resize" {
+    bindsym $left resize shrink width 20px
+    bindsym $down resize grow height 20px
+    bindsym $up resize shrink height 20px
+    bindsym $right resize grow width 20px
+
+    bindsym Left resize shrink width 20px
+    bindsym Down resize grow height 20px
+    bindsym Up resize shrink height 20px
+    bindsym Right resize grow width 20px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# bindsym --locked XF86AudioPlay exec playerctl play-pause
+# bindsym --locked XF86AudioNext exec playerctl next
+# bindsym --locked XF86AudioPrev exec playerctl previous
+#
+# bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+# bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+# bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+# bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+#
+# bindsym --locked XF86MonBrightnessDown exec sudo brightnessctl set 5%-
+# bindsym --locked XF86MonBrightnessUp exec sudo brightnessctl set 5%+
+
+
+# Rules
+for_window [shell="xwayland"] title_format "[X] %title"
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [app_id="yad|nm-connection-editor|pavucontrol"] floating enable
+for_window [app_id="xfce-polkit|kvantummanager|qt5ct"] floating enable
+for_window [class="Yad|feh|Viewnior|Gpicview|Gimp|MPlayer"] floating enable
+for_window [class="VirtualBox Manager|qemu|Qemu-system-x86_64"] floating enable
+
+for_window [class="Chromium-browser"] mark Browser
+for_window [class="Brave-browser"] mark Browser
+for_window [class="firefox"]  mark Browser
+for_window [app_id="Chromium-browser"] mark Browser
+for_window [app_id="brave-browser"] mark Browser
+for_window [app_id="firefox"] mark Browser
+
+# inhibit scrensaver for fullscreen browser windows
+for_window [con_mark="Browser"] {
+    inhibit_idle fullscreen
+}
+
+# firefox wayland screensharing indicator
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"] {
+    floating enable
+}
+
+for_window [app_id="pavucontrol"] {
+    floating enable
+    move position center
+}
+
+for_window [app_id="pavucontrol-qt"] {
+    floating enable
+    move position center
+}
+
+for_window [app_id="lxqt-policykit-agent"] {
+    floating enable
+    move position center
+}
+
+# Requires:     brightnessctl >= 0.5.1-11
+# Recommends:   libnotify
+
+set $brightness_notification_cmd  command -v notify-send >/dev/null && \
+        VALUE=$(brightnessctl --percentage get) && \
+        notify-send -e -h string:x-canonical-private-synchronous:brightness \
+            -h "int:value:$VALUE" -t 800 "Brightness: ${VALUE}%"
+
+bindsym XF86MonBrightnessDown exec \
+        'STEP="$brightness_step" && brightnessctl -q set ${STEP:-1}%- && $brightness_notification_cmd'
+bindsym XF86MonBrightnessUp exec \
+        'STEP="$brightness_step" && brightnessctl -q set +${STEP:-1}% && $brightness_notification_cmd'
+
+# Requires:     pulseaudio-utils
+# Recommends:   libnotify
+
+set $volume_helper_cmd /usr/libexec/sway/volume-helper
+
+# Allow volume controls even if the screen is locked
+bindsym --locked {
+    XF86AudioRaiseVolume exec \
+        $volume_helper_cmd --limit "$volume_limit" --increase "$volume_step"
+    XF86AudioLowerVolume exec \
+        $volume_helper_cmd --limit "$volume_limit" --decrease "$volume_step"
+    XF86AudioMute    exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $volume_helper_cmd
+    XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+}
+
+# Requires:     playerctl
+
+# Allow Play and Stop bindings even if the screen is locked
+bindsym --locked {
+    XF86AudioPlay       exec playerctl play-pause
+    XF86AudioStop       exec playerctl stop
+    XF86AudioForward    exec playerctl position +10
+    XF86AudioNext       exec playerctl next
+    XF86AudioPause      exec playerctl pause
+    XF86AudioPrev       exec playerctl previous
+    XF86AudioRewind     exec playerctl position -10
+}
+
+# A special mode for passing any keybindings to the focused application
+mode "passthrough" {
+    bindsym $mod+Pause mode default
+}
+bindsym $mod+Pause mode "passthrough"
+
+# Start graphical authentication agent for PolicyKit.
+#
+# Certain applications may require this to request elevated privileges:
+#   GParted, virt-manager, anything that uses pkexec
+#
+# Requires: lxqt-policykit
+exec /usr/libexec/lxqt-policykit-agent
+
+# Polkit?
+#exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Wait until a StatusNotifierItem tray implementation is available and
+# process XDG autostart entries.
+#
+# This horror has to exist because
+#
+#  - SNI spec mandates that if `IsStatusNotifierHostRegistered` is not set,
+#    the client should fall back to the Freedesktop System Tray specification
+#    (XEmbed).
+#  - There are actual implementations that take this seriously and implement
+#    a fallback *even if* StatusNotifierWatcher is already DBus-activated.
+#  - https://github.com/systemd/systemd/issues/3750
+#
+exec /usr/libexec/sway-systemd/wait-sni-ready && \
+    systemctl --user start sway-xdg-autostart.target
+
+# Create or update XDG user dir configuration
+#
+# See also:
+#  - /etc/xdg/autostart/xdg-user-dirs.desktop
+#  - https://github.com/systemd/systemd/issues/18791
+#
+# Recommends: xdg-user-dirs
+exec /usr/bin/xdg-user-dirs-update
+
+bar {
+    swaybar_command waybar
+}
+
+### Startup
+exec_always {
+  pkill kanshi
+  kanshi &
+
+  pkill nm-applet
+  nm-applet --indicator &
+
+  wl-paste --watch $cliphist store &
+
+  # firefox hack on 4k screen
+  gsettings set org.gnome.desktop.interface text-scaling-factor "1"
+}
+
+# os related fixes
+include "/etc/sway/config.d/*"
