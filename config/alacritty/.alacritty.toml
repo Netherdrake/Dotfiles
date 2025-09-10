@@ -1,15 +1,10 @@
-import = ["~/.config/alacritty/themes/themes/ayu_dark.toml"]
+general.import = ["~/.config/alacritty/themes/themes/enfocado_light.toml"]
+
 [font]
-size = 14
-# renamed at some point?
-# family = "BitstromWera Nerd Font"
-# family = "Iosevka Comfy"
+size = 12.0
 
 [font.normal]
-family = "BitstreamVeraSansMono Nerd Font"
-
-# [font.normal]
-# family = "JetBrainsMono Nerd Font"
+family = "JetBrainsMono Nerd Font"
 
 [[keyboard.bindings]]
 action = "SpawnNewInstance"
