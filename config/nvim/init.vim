@@ -21,6 +21,8 @@ Plug 'owickstrom/vim-colors-paramount' " minimal
 Plug 'nuvic/flexoki-nvim'
 Plug 'idr4n/github-monochrome.nvim'
 
+Plug 'nvimdev/indentmini.nvim', { 'for': 'python' }
+
 
 " core plugins
 Plug 'jlanzarotta/bufexplorer'
@@ -1039,6 +1041,24 @@ vim.g.rustaceanvim = {
     })
 
 
+    require('lualine').setup {
+      options = {
+          globalstatus = false,
+          section_separators = '',
+          component_separators = '|'
+      },
+      sections = {
+        lualine_c = {
+          {
+            'filename',
+            -- path = 1,
+            color = { bg = 'CursorLine' },  -- Use existing highlight groups
+            padding = { left = 1, right = 1 },
+          }
+        }
+      }
+    }
+
 -- tcomment alternative
 require('Comment').setup()
 
@@ -1048,22 +1068,14 @@ require('treesj').setup()
 -- hints
 require("which-key").setup({delay=500})
 
-require('lualine').setup {
-  options = {
-      globalstatus = false,
-      section_separators = '',
-      component_separators = '|'
-  },
-  sections = {
-    lualine_c = {
-      {
-        'filename',
-        -- path = 1,
-        color = { bg = 'CursorLine' },  -- Use existing highlight groups
-        padding = { left = 1, right = 1 },
-      }
-    }
+-- lineguides
+vim.filetype.add({
+  extension = {
+    py = function()
+        require("indentmini").setup({minlevel=1, char='·', only_current=true})
+    end
   }
-}
+})
+
 
 EOF
