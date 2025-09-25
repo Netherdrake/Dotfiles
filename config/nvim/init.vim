@@ -21,7 +21,7 @@ Plug 'owickstrom/vim-colors-paramount' " minimal
 Plug 'nuvic/flexoki-nvim'
 Plug 'idr4n/github-monochrome.nvim'
 
-Plug 'nvimdev/indentmini.nvim', { 'for': 'python' }
+" Plug 'nvimdev/indentmini.nvim'
 
 
 " core plugins
@@ -801,27 +801,16 @@ lua <<EOF
       vim.keymap.set('n', '<Leader>lr', vim.lsp.buf.rename, bufopts)
     end
 
-    local lsp_flags = {
-      -- How long to wait after idle to send changes to lsp server
-      debounce_text_changes = 1000, -- 1s
-    }
-    require('lspconfig')['pylsp'].setup{
-        on_attach = on_attach,
-        flags = lsp_flags,
-    }
-    require('lspconfig')['clangd'].setup{
-        cmd = {"clangd", "--header-insertion=never"},
-        on_attach = on_attach,
-        flags = lsp_flags,
-    }
-    require('lspconfig')['cmake'].setup{
-        on_attach = on_attach,
-        flags = lsp_flags,
-    }
-    require('lspconfig')['ols'].setup{
-        on_attach = on_attach,
-        flags = lsp_flags,
-    }
+-- LSP config
+    vim.lsp.config('pylsp', {on_attach=on_attach})
+    vim.lsp.config('ols', {on_attach=on_attach})
+    vim.lsp.config('cmake', {on_attach=on_attach})
+    vim.lsp.config('clangd', {on_attach=on_attach, cmd = {"clangd", "--header-insertion=never"}})
+
+    vim.lsp.enable('pylsp')
+    vim.lsp.enable('ols')
+    vim.lsp.enable('cmake')
+    vim.lsp.enable('clangd')
 
 -- Disable LSP highlighting
 
@@ -1069,13 +1058,7 @@ require('treesj').setup()
 require("which-key").setup({delay=500})
 
 -- lineguides
-vim.filetype.add({
-  extension = {
-    py = function()
-        require("indentmini").setup({minlevel=1, char='·', only_current=true})
-    end
-  }
-})
+-- require("indentmini").setup({minlevel=1, char='·', only_current=true})
 
 
 EOF
