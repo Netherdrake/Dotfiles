@@ -29,8 +29,8 @@ include /etc/sway/config-vars.d/*
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 # Just black please
-output * bg #808080 solid_color
-# output * bg /home/user/Blog/wallpaper2.jpg fill
+# output * bg #808080 solid_color
+output * bg /home/user/Blog/wallpaper2.jpg fill
 
 # Make borders slightly larger (default: 2)
 default_border normal 3
@@ -54,6 +54,7 @@ focus_wrapping no
 
 ### Startup
 exec_always {
+
   pkill kanshi
   kanshi &
 
@@ -63,7 +64,14 @@ exec_always {
   wl-paste --watch $cliphist store &
 
   # firefox hack on 4k screen
-  gsettings set org.gnome.desktop.interface text-scaling-factor "1.2"
+  gsettings set org.gnome.desktop.interface text-scaling-factor "1.0"
+
+  systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP
+  systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+  # dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+  dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
+
+  # waybar &
 }
 
 for_window [shell="xwayland"] title_format "[X] %title"
@@ -297,7 +305,18 @@ for_window [class="Yad|feh|Viewnior|Gpicview|Gimp|MPlayer"] floating enable
 for_window [class="VirtualBox Manager|qemu|Qemu-system-x86_64"] floating enable
 
 bar {
-    swaybar_command waybar
+    # swaybar_command waybar
+    position bottom
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    status_command while echo "$(upower -i $(upower -e | grep BAT) | grep --color=never -E "percentage" | cut -d':' -f2 | tr -d ' ') \| $(date +'%Y-%m-%d %X')" ; do sleep 1; done
+
+    # colors {
+    #     statusline #ffffff
+    #     background #323232
+    #     inactive_workspace #32323200 #32323200 #5c5c5c
+    # }
 }
 
-include /etc/sway/config.d/*
+# include /etc/sway/config.d/*
