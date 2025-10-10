@@ -7,24 +7,19 @@
 call plug#begin('~/.vim/plugged')
 
 " eye candy
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'rktjmp/lush.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-Plug 'Netherdrake/austere.vim'
 Plug 'Netherdrake/nibble'
-Plug 'ellisonleao/gruvbox.nvim'
+Plug 'rktjmp/lush.nvim'
 Plug 'zenbones-theme/zenbones.nvim'
-Plug 'projekt0n/github-nvim-theme'
-Plug 'yorik1984/newpaper.nvim'
 Plug 'owickstrom/vim-colors-paramount' " minimal
-Plug 'nuvic/flexoki-nvim'
+Plug 'projekt0n/github-nvim-theme'
 Plug 'idr4n/github-monochrome.nvim'
-
-" Plug 'nvimdev/indentmini.nvim'
+Plug 'nuvic/flexoki-nvim'
+Plug 'EdenEast/nightfox.nvim' " dayfox
 
 
 " core plugins
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -32,6 +27,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'andymass/vim-matchup'
+" Plug 'nvimdev/indentmini.nvim'
 
 " search
 Plug 'phaazon/hop.nvim'
@@ -412,19 +408,9 @@ augroup END
 syntax on
 set termguicolors
 
-fu! TGruvboxLight()
+fu! TDayFox()
     set background=light
-    colorscheme gruvbox
-endfunction
-
-fu! TGruvbox()
-    set background=dark
-    colorscheme gruvbox
-endfunction
-
-fu! TCatppuccin()
-    set background=dark
-    colorscheme catppuccin
+    colorscheme dayfox
 endfunction
 
 fu! TKanagawaBones()
@@ -439,40 +425,30 @@ fu! TTokyoBones()
     colorscheme tokyobones
 endfunction
 
-fu! TZenbonesLight()
+fu! TZenbones()
     set background=light
     " let g:zenbones = #{ lightness: 'dim' }
     colorscheme zenbones
 endfunction
 
-fu! TGHDark()
-    set background=dark
-    colorscheme github_dark_default
+fu! TWritten()
+    set background=light
+    colorscheme zenwritten
 endfunction
 
-fu! TGHLight()
+fu! TGithub()
     set background=light
     colorscheme github_light
 endfunction
 
-fu! TMonoGithubLight()
+fu! TMonoGithub()
     set background=light
     colorscheme github-monochrome-light
-endfunction
-
-fu! TNewpaperLight()
-    set background=light
-    colorscheme newpaper
 endfunction
 
 fu! TNibble()
     set background=light
     colorscheme nibblelight
-endfunction
-
-fu! TAustere()
-    set background=dark
-    colorscheme austere
 endfunction
 
 fu! TParamount()
@@ -946,90 +922,7 @@ vim.g.rustaceanvim = {
     vim.keymap.set('n', '<leader>ih', '<cmd>IronHide<cr>')
 
 
--- Theme
-
-     require("catppuccin").setup({
-         flavour = "mocha", -- latte, frappe, macchiato, mocha
-         background = { -- :h background
-             light = "latte",
-             dark = "mocha",
-         },
-         transparent_background = false,
-         show_end_of_buffer = false,
-         term_colors = false,
-         dim_inactive = {
-             enabled = false,
-             shade = "dark",
-             percentage = 0.80,
-         },
-         -- color_overrides = {
-         --     mocha = {
-         --         base = "#000000",
-         --         mantle = "#000000",
-         --         crust = "#000000",
-         --     },
-         -- },
-          highlight_overrides = {
-              mocha = function(C)
-              return {
-                  TabLineSel = { bg = C.pink },
-                  CmpBorder = { fg = C.surface2 },
-                  Pmenu = { bg = C.none },
-                  TelescopeBorder = { link = "FloatBorder" },
-                  }
-          end,
-         },
-         no_italic = false, -- Force no italic
-         no_bold = false, -- Force no bold
-         no_underline = false, -- Force no underline
-         styles = {
-             comments = {},
-             conditionals = {},
-             loops = {},
-             functions = {},
-             keywords = {},
-             strings = {},
-             variables = {},
-             numbers = {},
-             booleans = {},
-             properties = {},
-             types = {},
-             operators = {},
-         },
-         integrations = {
-             telescope = true,
-             lsp_trouble = false,
-             treesitter = true,
-             markdown = true,
-         },
-     })
-
-    require("gruvbox").setup({
-      terminal_colors = true, -- add neovim terminal colors
-      undercurl = false,
-      underline = false,
-      bold = true,
-      italic = {
-        strings = false,
-        emphasis = true,
-        comments = true,
-        operators = false,
-        folds = true,
-      },
-      strikethrough = true,
-      invert_selection = false,
-      invert_signs = false,
-      invert_tabline = false,
-      invert_intend_guides = false,
-      inverse = true, -- invert background for search, diffs, statuslines and errors
-      contrast = "hard", -- can be "hard", "soft" or empty string
-      palette_overrides = {},
-      overrides = {},
-      dim_inactive = false,
-      transparent_mode = false,
-    })
-
-
+-- lualine
     require('lualine').setup {
       options = {
           globalstatus = false,
@@ -1047,6 +940,22 @@ vim.g.rustaceanvim = {
         }
       }
     }
+
+-- theme
+    require("github-monochrome").setup({
+        styles = {
+            comments = { italic = true },
+            keywords = { bold = false },
+            functions = { bold = false },
+            statements = { bold = false }, -- e.g., try/except statements, but also if, for, etc.
+            conditionals = { bold = false }, -- e.g., if statements
+            loops = { bold = false }, -- e.g., for, while statements
+            variables = { bold = false },
+            floats = "normal", -- "dark", "transparent" or "normal"
+            sidebars = "normal", -- "dark", "transparent" or "normal"
+        },
+    })
+
 
 -- tcomment alternative
 require('Comment').setup()
