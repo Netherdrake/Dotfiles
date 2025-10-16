@@ -15,7 +15,6 @@ Plug 'owickstrom/vim-colors-paramount' " minimal
 Plug 'projekt0n/github-nvim-theme'
 Plug 'idr4n/github-monochrome.nvim'
 Plug 'nuvic/flexoki-nvim'
-Plug 'EdenEast/nightfox.nvim' " dayfox
 
 
 " core plugins
@@ -27,7 +26,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'andymass/vim-matchup'
-" Plug 'nvimdev/indentmini.nvim'
+Plug 'nvimdev/indentmini.nvim'
 
 " search
 Plug 'phaazon/hop.nvim'
@@ -462,7 +461,7 @@ fu! TFlexoki()
 endfunction
 
 if hostname() == "fw13"
-    call TNibble()
+    call TFlexoki()
 else
     call TNibble()
 endif
@@ -968,6 +967,7 @@ require("which-key").setup({delay=500})
 
 -- lineguides
 -- require("indentmini").setup({minlevel=1, char='·', only_current=true})
+require("indentmini").setup({minlevel=1, char='|', only_current=true})
 
 
 EOF
