@@ -15,6 +15,7 @@ Plug 'owickstrom/vim-colors-paramount' " minimal
 Plug 'projekt0n/github-nvim-theme'
 Plug 'idr4n/github-monochrome.nvim'
 Plug 'nuvic/flexoki-nvim'
+Plug 'p00f/alabaster.nvim'
 
 
 " core plugins
@@ -60,6 +61,11 @@ Plug 'ray-x/lsp_signature.nvim'
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'mrcjkb/rustaceanvim', { 'for': 'rust' }
+
+" SQL
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'kristijanhusak/vim-dadbod-completion' "Optional
 
 " markdown
 Plug 'preservim/vim-pencil', { 'for': 'markdown' }
@@ -407,11 +413,6 @@ augroup END
 syntax on
 set termguicolors
 
-fu! TDayFox()
-    set background=light
-    colorscheme dayfox
-endfunction
-
 fu! TKanagawaBones()
     set background=dark
     " let g:kanagawabones = #{ darkness: 'stark', darken_comments: 30 }
@@ -448,6 +449,11 @@ endfunction
 fu! TNibble()
     set background=light
     colorscheme nibblelight
+endfunction
+
+fu! TAlabaster()
+    set background=light
+    colorscheme alabaster
 endfunction
 
 fu! TParamount()
