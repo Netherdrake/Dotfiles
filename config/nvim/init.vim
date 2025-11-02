@@ -469,7 +469,7 @@ fu! TFlexoki()
 endfunction
 
 if hostname() == "fw13"
-    call TFlexoki()
+    call TGithub()
 else
     call TNibble()
 endif
@@ -980,12 +980,10 @@ require("indentmini").setup({minlevel=1, char='|', only_current=true})
 
 -- neovide
 if vim.g.neovide then
-    -- TODO: set fallback
-    vim.o.guifont = "JetBrainsMono Nerd Font:h14"
 
     -- sharper fonts
-    -- vim.g.neovide_text_gamma = 0.8
-    -- vim.g.neovide_text_contrast = 0.1
+    -- vim.g.neovide_text_gamma = 1
+    -- vim.g.neovide_text_contrast = 0.3
 
     -- snappier animations
     vim.g.neovide_scroll_animation_length = 0.1
