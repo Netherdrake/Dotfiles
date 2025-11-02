@@ -983,12 +983,22 @@ if vim.g.neovide then
     -- TODO: set fallback
     vim.o.guifont = "JetBrainsMono Nerd Font:h14"
 
+    -- sharper fonts
+    -- vim.g.neovide_text_gamma = 0.8
+    -- vim.g.neovide_text_contrast = 0.1
+
     -- snappier animations
     vim.g.neovide_scroll_animation_length = 0.1
+    vim.g.neovide_cursor_animation_length = 0.01
+    vim.g.neovide_cursor_animate_command_line = false
+
+    -- no cursor effects
     vim.g.neovide_cursor_short_animation_length = 0.00
+    vim.g.neovide_cursor_vfx_mode = {"", ""}
 
     -- max refresh rate
     vim.g.neovide_refresh_rate = 80
+    vim.g.neovide_profiler = false
 
     -- copy/paste
     vim.keymap.set('v', '<C-S-c>', '"+y') -- Copy
@@ -1011,6 +1021,14 @@ if vim.g.neovide then
     vim.keymap.set("n", "<C-0>", function()
       vim.g.neovide_scale_factor = 1
     end)
+
+    -- spawn new terminal in current working dir
+    vim.api.nvim_create_user_command("TermHere", function()
+      local cwd = vim.fn.getcwd()
+      vim.fn.jobstart({ "alacritty", "--working-directory", cwd }, { detach = true })
+    end, {})
+    vim.keymap.set("n", "<C-S-n>", ":TermHere<CR>", { desc = "Open Alacritty in CWD" })
+
 end
 
 -- Allow clipboard copy paste in neovim
