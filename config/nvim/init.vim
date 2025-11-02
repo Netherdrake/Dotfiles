@@ -205,7 +205,7 @@ nnoremap <leader>/ /\v
 nnoremap <leader>s :%s//gc<Left><Left><Left>
 
 " For visual mode — replace only in selection
-vnoremap <leader>s :s//<Left>
+vnoremap <leader>s :s//g<Left><Left>
 
 " open vimrc
 nnoremap <leader>v :e  ~/.config/nvim/init.vim<CR>
