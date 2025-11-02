@@ -976,4 +976,46 @@ require("which-key").setup({delay=500})
 require("indentmini").setup({minlevel=1, char='|', only_current=true})
 
 
+-- neovide
+if vim.g.neovide then
+    -- TODO: set fallback
+    vim.o.guifont = "JetBrainsMono Nerd Font:h14"
+
+    -- snappier animations
+    vim.g.neovide_scroll_animation_length = 0.1
+    vim.g.neovide_cursor_short_animation_length = 0.00
+
+    -- max refresh rate
+    vim.g.neovide_refresh_rate = 80
+
+    -- copy/paste
+    vim.keymap.set('v', '<C-S-c>', '"+y') -- Copy
+    vim.keymap.set('n', '<C-S-v>', '"+P') -- Paste normal mode
+    vim.keymap.set('v', '<C-S-v>', '"+P') -- Paste visual mode
+    vim.keymap.set('c', '<C-S-v>', '<C-R>+') -- Paste command mode
+    vim.keymap.set('i', '<C-S-v>', '<ESC>l"+Pli') -- Paste insert mode
+
+    -- scaling
+    vim.g.neovide_scale_factor = 1.0
+    local change_scale_factor = function(delta)
+      vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+    end
+    vim.keymap.set("n", "<C-=>", function()
+      change_scale_factor(1.1)
+    end)
+    vim.keymap.set("n", "<C-->", function()
+      change_scale_factor(1/1.1)
+    end)
+    vim.keymap.set("n", "<C-0>", function()
+      vim.g.neovide_scale_factor = 1
+    end)
+end
+
+-- Allow clipboard copy paste in neovim
+-- vim.api.nvim_set_keymap('',  '<C-S-v>', '+p<CR>', { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('!', '<C-S-v>', '<C-R>+', { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('t', '<C-S-v>', '<C-R>+', { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('v', '<C-S-v>', '<C-R>+', { noremap = true, silent = true})
+
+
 EOF
