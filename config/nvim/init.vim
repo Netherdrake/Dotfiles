@@ -201,9 +201,11 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 " Use sane regexes
 nnoremap <leader>/ /\v
 
-" Use regular replace
-nnoremap <leader>s :%s /
-vnoremap <leader>s :%s /
+" For normal mode — replace in whole file
+nnoremap <leader>s :%s//gc<Left><Left><Left>
+
+" For visual mode — replace only in selection
+vnoremap <leader>s :s//<Left>
 
 " open vimrc
 nnoremap <leader>v :e  ~/.config/nvim/init.vim<CR>
