@@ -27,7 +27,6 @@ Plug 'tpope/vim-dispatch'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'andymass/vim-matchup'
-Plug 'nvimdev/indentmini.nvim'
 
 " search
 Plug 'phaazon/hop.nvim'
@@ -785,7 +784,20 @@ lua <<EOF
     end
 
 -- LSP config
-    vim.lsp.config('pylsp', {on_attach=on_attach})
+    -- vim.lsp.config('pylsp', {on_attach=on_attach})
+    vim.lsp.config('pylsp', {on_attach=on_attach,
+      settings = {
+        pylsp = {
+          plugins = {
+            pycodestyle = { enabled = false, },
+            pydocstyle = { enabled = false, },
+            pyflakes = { enabled = false, },
+            pylint = { enabled = false, },
+            mccabe = { enabled = false, }
+          }
+        }
+      }
+    })
     vim.lsp.config('ols', {on_attach=on_attach})
     vim.lsp.config('cmake', {on_attach=on_attach})
     vim.lsp.config('clangd', {on_attach=on_attach, cmd = {"clangd", "--header-insertion=never"}})
@@ -972,11 +984,6 @@ require('treesj').setup()
 
 -- hints
 require("which-key").setup({delay=500})
-
--- lineguides
--- require("indentmini").setup({minlevel=1, char='·', only_current=true})
-require("indentmini").setup({minlevel=1, char='|', only_current=true})
-
 
 -- neovide
 if vim.g.neovide then

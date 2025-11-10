@@ -21,3 +21,7 @@ cargo install hyperfine
 
 # file manager
 cargo install --locked yazi-fm yazi-cli
+
+# neovide
+# sudo dnf install freetype-devel fontconfig-devel
+cargo install --git https://github.com/neovide/neovide
