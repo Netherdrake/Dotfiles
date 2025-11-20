@@ -16,6 +16,9 @@ Plug 'projekt0n/github-nvim-theme'
 Plug 'idr4n/github-monochrome.nvim'
 Plug 'nuvic/flexoki-nvim'
 Plug 'p00f/alabaster.nvim'
+Plug 'https://git.sr.ht/~p00f/moduster.nvim'
+Plug 'miikanissi/modus-themes.nvim'
+Plug 'Mofiqul/adwaita.nvim'
 
 
 " core plugins
@@ -468,7 +471,7 @@ fu! TFlexoki()
 endfunction
 
 if hostname() == "fw13"
-    call TGithub()
+    call TAlabaster()
 else
     call TNibble()
 endif
