@@ -9,8 +9,6 @@ sudo dnf install neovim
 sudo dnf install fzf htop nnn
 sudo dnf install fd-find
 
-sudo dnf install fuzzel
-
 sudo dnf install python3-devel
 sudo dnf install python3-neovim
 sudo dnf install python3-pynvim
@@ -40,21 +38,6 @@ sudo dnf install libubsan
 sudo dnf install ninja
 sudo dnf install universal-ctags
 
-# vcpkg
-cd
-git clone https://github.com/microsoft/vcpkg
-./vcpkg/bootstrap-vcpkg.sh -disableMetrics
-
-# common dependencies
-cd ~/vcpkg
-
-./vcpkg install dbg-macro
-./vcpkg install FunctionalPlus
-./vcpkg install plog
-./vcpkg install sqlite3
-./vcpkg install fmt
-./vcpkg install matchit
-./vcpkg install tl-expected
 
 grep -q -F 'fish' ~/.bashrc || echo 'exec fish' >> ~/.bashrc
 
@@ -97,15 +80,6 @@ cd ~/.vim/plugged/YouCompleteMe && python3 install.py --clang-completer --rust-c
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface text-scaling-factor "1"
 
-sudo dnf install power-profile-daemon
-sudo dnf install power-profiles-daemon
-
-sudo powerprofilesctl set balanced
-sudo powerprofilesctl set power-saver
-
 cd
 ln -s pass .password-store
-
-fwupdmgr refresh
-fwupdmgr get-updates
 
