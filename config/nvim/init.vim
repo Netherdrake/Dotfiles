@@ -49,7 +49,6 @@ Plug 'nvim-telescope/telescope.nvim'
 
 " togglable panels
 Plug 'voldikss/vim-floaterm'
-Plug 'nvim-tree/nvim-tree.lua'
 Plug 'preservim/tagbar'
 Plug 'Vigemus/iron.nvim'
 Plug 'folke/which-key.nvim'
@@ -86,12 +85,7 @@ call plug#end()
 "
 """"""""""""""""""""""""""""""""
 set encoding=utf-8
-
-if has("mac")
-    set shell=/opt/homebrew/bin/fish
-else
-    set shell=/usr/bin/fish
-endif
+set shell=/usr/bin/fish
 
 set tabstop=4
 set softtabstop=4
@@ -220,16 +214,13 @@ nnoremap <leader>1 :FloatermToggle<CR>
 tnoremap <leader>1 <C-\><C-n>:FloatermToggle<CR>
 nnoremap <leader>2 :FloatermNew --disposable yazi<CR>
 nnoremap <leader>3 :Telescope diagnostics<CR>
-nnoremap <leader>4 :NvimTreeToggle<CR>
+nnoremap <leader>4 :FloatermNew --disposable yazi<CR>
 nnoremap <leader>5 :TagbarToggle<CR>
 nnoremap <leader>6 :Telescope lsp_workspace_symbols<CR>
 
 nnoremap <leader>7 :call VerticalTerminalCommand('time make debug')<CR>
 nnoremap <leader>8 :call VerticalTerminalCommand('time make run')<CR>
 nnoremap <leader>9 :call VerticalTerminalCommand('time make test')<CR>
-" nnoremap <leader>7 :term time make debug<CR>
-" nnoremap <leader>8 :term time make run<CR>
-" nnoremap <leader>9 :term time make test<CR>
 nnoremap <expr> <leader>0 ':TSToggle highlight<CR>'
 " nnoremap <expr> <leader>0 ':call TGHLight()'."<CR>".":TSToggle highlight<CR>"
 
@@ -321,21 +312,6 @@ nnoremap <leader>g :Git
 let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
-
-
-" Phind
-function! s:Phind(prefix)
-    let old_isk = &iskeyword
-    setl iskeyword+=:
-    let str = expand("<cword>")
-    let &l:iskeyword = old_isk
-    call jobstart('xdg-open "https://www.phind.com/search?q=' . a:prefix . ' ' . str . '"')
-endfunction
-au FileType c        nnoremap <leader>p :call <SID>Phind("c")<CR>
-au FileType cpp      nnoremap <leader>p :call <SID>Phind("cpp")<CR>
-au FileType python   nnoremap <leader>p :call <SID>Phind("python3")<CR>
-au FileType rust     nnoremap <leader>p :call <SID>Phind("rust")<CR>
-
 
 " C++ config
 function! s:CppMan(target)
@@ -635,28 +611,14 @@ augroup FixProportionsOnResize
   au VimResized * exe "normal! \<c-w>="
 augroup END
 
-" vim mode-switch lag fix
-if ! has("gui_running")
-    set ttimeoutlen=10
-    augroup FastEscape
-        autocmd!
-        au InsertEnter * set timeoutlen=0
-        au InsertLeave * set timeoutlen=1000
-    augroup END
-endif
+" make ESC sequence wait faster
+set ttimeoutlen=10
 
-" macos vs linux clipboard
-if has("mac")
-  set clipboard+=unnamed
-else
-  set clipboard=unnamedplus
-endif
+" configure clipboard
+set clipboard=unnamedplus
 
 " make C-a, C-x work properly
 set nrformats=
-
-" make C-j work consistent in C programms
-let g:C_Ctrl_j='off'
 
 " fix bufexplorer bug with hidden
 let g:bufExplorerFindActive=0
@@ -681,77 +643,6 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 """"""""""""""""""""""""""""""""
 
 lua <<EOF
-
--- Nvim Tree
-
-    local function nvim_tree_on_attach(bufnr)
-      local api = require "nvim-tree.api"
-
-      local function opts(desc)
-        return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = false, silent = true, nowait = true }
-      end
-
-      local function nothing()
-          return
-      end
-
-      vim.keymap.set('n', '<C-[>',   api.tree.change_root_to_parent,      opts('Up'))
-      vim.keymap.set('n', '<C-]>',   api.tree.change_root_to_node,        opts('CD'))
-      vim.keymap.set('n', '<C-r>',   api.tree.reload,                     opts('Refresh'))
-      vim.keymap.set('n', '<C-t>',   api.node.open.tab,                   opts('Open: New Tab'))
-      vim.keymap.set('n', '<C-v>',   api.node.open.vertical,              opts('Open: Vertical Split'))
-      vim.keymap.set('n', '<C-x>',   api.node.open.horizontal,            opts('Open: Horizontal Split'))
-      vim.keymap.set('n', '<BS>',    api.node.navigate.parent_close,      opts('Close Directory'))
-      vim.keymap.set('n', '<Esc>',   nothing,                             opts('nil'))
-      vim.keymap.set('n', '<CR>',    api.node.open.edit,                  opts('Open'))
-      vim.keymap.set('n', '<Tab>',   api.node.open.preview,               opts('Open Preview'))
-      vim.keymap.set('n', '.',       api.node.run.cmd,                    opts('Run Command'))
-      vim.keymap.set('n', 'a',       api.fs.create,                       opts('Create File Or Directory'))
-      vim.keymap.set('n', 'c',       api.fs.copy.node,                    opts('Copy'))
-      vim.keymap.set('n', 'd',       api.fs.trash,                        opts('Trash'))
-      vim.keymap.set('n', 'E',       api.tree.expand_all,                 opts('Expand All'))
-      vim.keymap.set('n', 'F',       api.live_filter.clear,               opts('Clean Filter'))
-      vim.keymap.set('n', 'f',       api.live_filter.start,               opts('Filter'))
-      vim.keymap.set('n', 'H',       api.tree.toggle_hidden_filter,       opts('Toggle Filter: Dotfiles'))
-      vim.keymap.set('n', 'i',       api.node.show_info_popup,            opts('Info'))
-      vim.keymap.set('n', 'I',       api.tree.toggle_gitignore_filter,    opts('Toggle Filter: Git Ignore'))
-      vim.keymap.set('n', 'J',       api.node.navigate.sibling.last,      opts('Last Sibling'))
-      vim.keymap.set('n', 'K',       api.node.navigate.sibling.first,     opts('First Sibling'))
-      vim.keymap.set('n', 'm',       api.marks.toggle,                    opts('Toggle Bookmark'))
-      vim.keymap.set('n', 'e',       api.node.open.edit,                  opts('Open'))
-      vim.keymap.set('n', 'o',       api.node.open.edit,                  opts('Open'))
-      vim.keymap.set('n', 'O',       api.node.run.system,                 opts('Open System'))
-      vim.keymap.set('n', 'p',       api.fs.paste,                        opts('Paste'))
-      vim.keymap.set('n', 'P',       api.node.navigate.parent,            opts('Parent Directory'))
-      vim.keymap.set('n', 'q',       api.tree.close,                      opts('Close'))
-      vim.keymap.set('n', 'S',       api.tree.search_node,                opts('Search'))
-      vim.keymap.set('n', 'r',       api.fs.rename_full,                  opts('Rename: Full Path'))
-      vim.keymap.set('n', 'U',       api.tree.toggle_custom_filter,       opts('Toggle Filter: Hidden'))
-      vim.keymap.set('n', 'W',       api.tree.collapse_all,               opts('Collapse'))
-      vim.keymap.set('n', 'x',       api.fs.cut,                          opts('Cut'))
-      vim.keymap.set('n', 'y',       api.fs.copy.filename,                opts('Copy Name'))
-      vim.keymap.set('n', 'Y',       api.fs.copy.absolute_path,           opts('Copy Absolute Path'))
-      vim.keymap.set('n', '?',       api.tree.toggle_help,                opts('Help'))
-    end
-
-    require("nvim-tree").setup({
-    on_attach = nvim_tree_on_attach,
-      sort = {
-        sorter = "case_sensitive",
-      },
-      view = {
-        width = 40,
-      },
-      renderer = {
-        group_empty = true,
-      },
-      git = {
-        enable = false,
-      },
-      filters = {
-        dotfiles = true,
-      },
-    })
 
 -- Telescope
 
@@ -851,16 +742,10 @@ lua <<EOF
   require'nvim-treesitter.configs'.setup {
       ensure_installed = {"vim", "lua", "toml", "rust", "python", "c", "cpp", "cuda", "cmake", "odin" },
       auto_install = true,
-      --ident = { enable = true },
       highlight = {
           enable = false,
           additional_vim_regex_highlighting = false
       },
-      --rainbow = {
-      --    enable = true,
-      --    extended_mode = true,
-      --    max_file_lines = nil,
-      --},
       incremental_selection = {
           enable = true,
           keymaps = {
@@ -871,22 +756,6 @@ lua <<EOF
           },
       },
   }
-
--- Diagnostics
-
---    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
---        vim.lsp.diagnostic.on_publish_diagnostics, {
---            -- disable ugly underlines
---            underline = false,
---            virtual_text = false,
---            -- Enable virtual text, override spacing to 4
---            -- virtual_text = {spacing = 4},
---            -- Use a function to dynamically turn signs off
---            -- and on, using buffer local variables
---            signs = true,
---            update_in_insert = false
---        }
---    )
 
 -- Rust lsp
 vim.g.rustaceanvim = {
