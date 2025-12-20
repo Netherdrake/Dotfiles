@@ -450,6 +450,16 @@ fu! TMonoGithub()
     colorscheme github-monochrome-light
 endfunction
 
+fu! TModuster()
+    set background=light
+    colorscheme moduster
+endfunction
+
+fu! TModus()
+    set background=light
+    colorscheme modus_operandi
+endfunction
+
 fu! TNibble()
     set background=light
     colorscheme nibblelight
@@ -470,10 +480,15 @@ fu! TFlexoki()
     colorscheme flexoki
 endfunction
 
+fu! TGnome()
+    set background=light
+    colorscheme adwaita
+endfunction
+
 if hostname() == "fw13"
     call TAlabaster()
 else
-    call TNibble()
+    call TModus()
 endif
 
 """"""""""""""""""""""""""""""""
@@ -976,6 +991,12 @@ vim.g.rustaceanvim = {
             floats = "normal", -- "dark", "transparent" or "normal"
             sidebars = "normal", -- "dark", "transparent" or "normal"
         },
+    })
+
+    require("modus-themes").setup({
+        variant = "default", -- Theme comes in four variants `default`, `tinted`, `deuteranopia`, and `tritanopia`
+        line_nr_column_background = true, -- Distinct background colors in line number column. `false` will disable background color and fallback to Normal background
+        sign_column_background = true, -- Distinct background colors in sign column. `false` will disable background color and fallback to Normal background
     })
 
 
