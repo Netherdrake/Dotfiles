@@ -56,7 +56,7 @@ Plug 'folke/which-key.nvim'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', { 'branch': 'master' }
 Plug 'ray-x/lsp_signature.nvim'
 
 " Rust
@@ -247,7 +247,7 @@ nnoremap <leader>tgs :Telescope git_status<CR>
 nnoremap <leader>tgf :Telescope git_files<CR>
 nnoremap <leader>tgc :Telescope git_commits<CR>
 
-
+nnoremap <leader>vd :put =execute('messages')<CR>
 
 """"""""""""""""""""""""""""""""
 "
