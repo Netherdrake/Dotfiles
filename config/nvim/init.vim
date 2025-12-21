@@ -238,7 +238,6 @@ nnoremap <leader>tgs :Telescope git_status<CR>
 nnoremap <leader>tgf :Telescope git_files<CR>
 nnoremap <leader>tgc :Telescope git_commits<CR>
 
-nnoremap <leader>vd :put =execute('messages')<CR>
 
 """"""""""""""""""""""""""""""""
 "
@@ -636,6 +635,13 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " disable annoying markdown errors
 " hi link markdownError Normal
 
+" copy messages of lua and other errors into current buffer
+fu! Messages()
+    :put =execute('messages')
+endfunction
+
+
+
 """"""""""""""""""""""""""""""""
 "
 " LUA configs
@@ -749,10 +755,10 @@ lua <<EOF
       incremental_selection = {
           enable = true,
           keymaps = {
-              init_selection = "gnn", -- set to `false` to disable one of the mappings
-              node_incremental = "gni",
-              scope_incremental = "gns",
-              node_decremental = "gnd",
+              init_selection = "vim", -- set to `false` to disable one of the mappings
+              node_incremental = "=",
+              node_decremental = "-",
+              scope_incremental = "]",
           },
       },
   }
