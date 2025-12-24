@@ -8,7 +8,6 @@ call plug#begin('~/.vim/plugged')
 
 " eye candy
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'Netherdrake/nibble'
 Plug 'rktjmp/lush.nvim'
 Plug 'zenbones-theme/zenbones.nvim'
 Plug 'owickstrom/vim-colors-paramount' " minimal
@@ -16,9 +15,10 @@ Plug 'projekt0n/github-nvim-theme'
 Plug 'idr4n/github-monochrome.nvim'
 Plug 'nuvic/flexoki-nvim'
 Plug 'p00f/alabaster.nvim'
-Plug 'https://git.sr.ht/~p00f/moduster.nvim'
 Plug 'miikanissi/modus-themes.nvim'
 Plug 'Mofiqul/adwaita.nvim'
+Plug 'WTFox/jellybeans.nvim'
+Plug 'blazkowolf/gruber-darker.nvim'
 
 
 " core plugins
@@ -398,46 +398,30 @@ fu! TKanagawaBones()
     colorscheme kanagawabones
 endfunction
 
-fu! TTokyoBones()
-    set background=dark
-    let g:tokyobones = #{ darkness: 'stark', darken_comments: 30 }
-    colorscheme tokyobones
-endfunction
-
 fu! TZenbones()
-    set background=light
-    " let g:zenbones = #{ lightness: 'dim' }
+    set background=dark
     colorscheme zenbones
 endfunction
 
 fu! TWritten()
-    set background=light
+    set background=dark
     colorscheme zenwritten
 endfunction
+
+fu! Tokyo()
+    set background=dark
+    colorscheme github-monochrome-tokyonight
+endfunction
+
 
 fu! TGithub()
     set background=light
     colorscheme github_light
 endfunction
 
-fu! TMonoGithub()
-    set background=light
-    colorscheme github-monochrome-light
-endfunction
-
-fu! TModuster()
-    set background=light
-    colorscheme moduster
-endfunction
-
 fu! TModus()
     set background=light
     colorscheme modus_operandi
-endfunction
-
-fu! TNibble()
-    set background=light
-    colorscheme nibblelight
 endfunction
 
 fu! TAlabaster()
@@ -450,15 +434,6 @@ fu! TParamount()
     colorscheme paramount
 endfunction
 
-fu! TFlexoki()
-    set background=light
-    colorscheme flexoki
-endfunction
-
-fu! TGnome()
-    set background=light
-    colorscheme adwaita
-endfunction
 
 if hostname() == "fw13"
     call TAlabaster()
