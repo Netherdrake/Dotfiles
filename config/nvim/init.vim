@@ -19,6 +19,7 @@ Plug 'miikanissi/modus-themes.nvim'
 Plug 'Mofiqul/adwaita.nvim'
 Plug 'WTFox/jellybeans.nvim'
 Plug 'blazkowolf/gruber-darker.nvim'
+Plug 'dybdeskarphet/gruvbox-minimal.nvim'
 
 
 " core plugins
@@ -847,6 +848,20 @@ vim.g.rustaceanvim = {
         variant = "default", -- Theme comes in four variants `default`, `tinted`, `deuteranopia`, and `tritanopia`
         line_nr_column_background = true, -- Distinct background colors in line number column. `false` will disable background color and fallback to Normal background
         sign_column_background = true, -- Distinct background colors in sign column. `false` will disable background color and fallback to Normal background
+    })
+
+    require("gruvbox-minimal").setup({
+        transparent = false, -- Sets all the major background values to 'none'
+        italic_comments = false, -- Italic comments
+        italic_functions = true, -- Italic functions and methods
+        contrast = "low", -- Available values: "high", "low"
+        theme = "light", -- Available values: "dark", "light"
+        accent = "red", -- Changes the definition (functions, structs etc.) colors. Available values: "red", "orange", "yellow", "green", "cyan", "blue", "magenta"
+        semantic_highlights = true, -- Uses LSP semantic highlighting, disable this if you want the highlights of =< 0.3.1
+        overrides = {
+          -- Type = { fg = '#83a598' }, -- Hex override
+          -- ['Type'] = { link = '@function.method.call' }, -- Link to another group
+        },
     })
 
 
