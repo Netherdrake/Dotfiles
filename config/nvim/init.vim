@@ -16,7 +16,6 @@ Plug 'idr4n/github-monochrome.nvim'
 Plug 'nuvic/flexoki-nvim'
 Plug 'p00f/alabaster.nvim'
 Plug 'miikanissi/modus-themes.nvim'
-Plug 'Mofiqul/adwaita.nvim'
 Plug 'WTFox/jellybeans.nvim'
 Plug 'blazkowolf/gruber-darker.nvim'
 Plug 'dybdeskarphet/gruvbox-minimal.nvim'
@@ -409,11 +408,20 @@ fu! TWritten()
     colorscheme zenwritten
 endfunction
 
-fu! Tokyo()
+fu! TTokyo()
     set background=dark
     colorscheme github-monochrome-tokyonight
 endfunction
 
+fu! TGruber()
+    set background=dark
+    colorscheme gruber-darker
+endfunction
+
+fu! TGruvbox()
+    set background=light
+    colorscheme gruvbox-minimal
+endfunction
 
 fu! TGithub()
     set background=light
