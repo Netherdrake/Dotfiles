@@ -19,6 +19,8 @@ Plug 'miikanissi/modus-themes.nvim'
 Plug 'WTFox/jellybeans.nvim'
 Plug 'blazkowolf/gruber-darker.nvim'
 Plug 'dybdeskarphet/gruvbox-minimal.nvim'
+Plug 'Netherdrake/vim-paper-minimal'
+Plug 'oskarnurm/koda.nvim'
 
 
 " core plugins
