@@ -10,16 +10,15 @@ call plug#begin('~/.vim/plugged')
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'rktjmp/lush.nvim'
 Plug 'zenbones-theme/zenbones.nvim'
-Plug 'owickstrom/vim-colors-paramount' " minimal
-Plug 'projekt0n/github-nvim-theme'
 Plug 'idr4n/github-monochrome.nvim'
 Plug 'nuvic/flexoki-nvim'
 Plug 'p00f/alabaster.nvim'
 Plug 'miikanissi/modus-themes.nvim'
-Plug 'WTFox/jellybeans.nvim'
 Plug 'blazkowolf/gruber-darker.nvim'
-Plug 'dybdeskarphet/gruvbox-minimal.nvim'
 Plug 'Netherdrake/vim-paper-minimal'
+ " treesitter ok
+Plug 'WTFox/jellybeans.nvim'
+Plug 'dybdeskarphet/gruvbox-minimal.nvim'
 Plug 'oskarnurm/koda.nvim'
 
 
@@ -425,11 +424,6 @@ fu! TGruvbox()
     colorscheme gruvbox-minimal
 endfunction
 
-fu! TGithub()
-    set background=light
-    colorscheme github_light
-endfunction
-
 fu! TModus()
     set background=light
     colorscheme modus_operandi
@@ -440,9 +434,9 @@ fu! TAlabaster()
     colorscheme alabaster
 endfunction
 
-fu! TParamount()
+fu! TPaper()
     set background=light
-    colorscheme paramount
+    colorscheme paper-minimal
 endfunction
 
 
@@ -855,7 +849,6 @@ vim.g.rustaceanvim = {
     })
 
     require("modus-themes").setup({
-        variant = "default", -- Theme comes in four variants `default`, `tinted`, `deuteranopia`, and `tritanopia`
         line_nr_column_background = true, -- Distinct background colors in line number column. `false` will disable background color and fallback to Normal background
         sign_column_background = true, -- Distinct background colors in sign column. `false` will disable background color and fallback to Normal background
     })
