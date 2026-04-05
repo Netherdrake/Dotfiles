@@ -12,6 +12,7 @@ sudo apt install -y ranger nnn
 sudo apt install -y universal-ctags
 sudo apt install -y python3-pynvim
 sudo apt install -y fd-find
+sudo apt install -y tree-sitter-cli
 
 # neovim snap
 sudo snap install nvim --classic

@@ -56,8 +56,10 @@ Plug 'folke/which-key.nvim'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-treesitter/nvim-treesitter', { 'branch': 'master' }
 Plug 'ray-x/lsp_signature.nvim'
+
+" required for comment.nvim
+Plug 'nvim-treesitter/nvim-treesitter'
 
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
@@ -222,7 +224,7 @@ nnoremap <leader>6 :Telescope lsp_workspace_symbols<CR>
 nnoremap <leader>7 :call VerticalTerminalCommand('time make debug')<CR>
 nnoremap <leader>8 :call VerticalTerminalCommand('time make run')<CR>
 nnoremap <leader>9 :call VerticalTerminalCommand('time make test')<CR>
-nnoremap <expr> <leader>0 ':TSToggle highlight<CR>'
+" nnoremap <expr> <leader>0 ':TSToggle highlight<CR>'
 " nnoremap <expr> <leader>0 ':call TGHLight()'."<CR>".":TSToggle highlight<CR>"
 
 " telescope
@@ -263,12 +265,6 @@ let g:matchup_matchparen_offscreen = {'method': 'popup'}
 let g:floaterm_shell = "fish"
 let g:floaterm_width  = 0.9
 let g:floaterm_height = 0.95
-
-" ALE
-let g:ale_virtualtext_cursor = '0' " all
-let g:ale_completion_autoimport = 0
-" let g:ale_set_highlights = 0
-" let g:ale_use_neovim_diagnostics_api = 1
 
 " YouCompleteMe
 let g:ycm_filetype_blacklist = {}
@@ -724,24 +720,8 @@ lua <<EOF
     })
 
 -- Treesitter LSP
+require('nvim-treesitter').install { 'odin', 'python' }
 
-  require'nvim-treesitter.configs'.setup {
-      ensure_installed = {"vim", "lua", "toml", "rust", "python", "c", "cpp", "cuda", "cmake", "odin" },
-      auto_install = true,
-      highlight = {
-          enable = false,
-          additional_vim_regex_highlighting = false
-      },
-      incremental_selection = {
-          enable = true,
-          keymaps = {
-              init_selection = "vim", -- set to `false` to disable one of the mappings
-              node_incremental = "=",
-              node_decremental = "-",
-              scope_incremental = "]",
-          },
-      },
-  }
 
 -- Rust lsp
 vim.g.rustaceanvim = {

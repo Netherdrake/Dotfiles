@@ -37,6 +37,7 @@ sudo dnf install libasan
 sudo dnf install libubsan
 sudo dnf install ninja
 sudo dnf install universal-ctags
+sudo dnf install tree-sitter-cli
 
 
 grep -q -F 'fish' ~/.bashrc || echo 'exec fish' >> ~/.bashrc
