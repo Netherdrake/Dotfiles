@@ -3,83 +3,90 @@
 " PACKAGE MANAGEMENT
 "
 """"""""""""""""""""""""""""""""
-" start vim-plug
-call plug#begin('~/.vim/plugged')
+"
+lua <<EOF
 
-" eye candy
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'rktjmp/lush.nvim'
-Plug 'zenbones-theme/zenbones.nvim'
-Plug 'idr4n/github-monochrome.nvim'
-Plug 'nuvic/flexoki-nvim'
-Plug 'p00f/alabaster.nvim'
-Plug 'miikanissi/modus-themes.nvim'
-Plug 'blazkowolf/gruber-darker.nvim'
-Plug 'Netherdrake/vim-paper-minimal'
- " treesitter ok
-Plug 'WTFox/jellybeans.nvim'
-Plug 'dybdeskarphet/gruvbox-minimal.nvim'
-Plug 'oskarnurm/koda.nvim'
+local gh = function(x) return 'https://github.com/' .. x end
 
+vim.pack.add({
+  -- themes
+  gh('kyazdani42/nvim-web-devicons'),
+  gh('rktjmp/lush.nvim'),
+  gh('zenbones-theme/zenbones.nvim'),
+  gh('idr4n/github-monochrome.nvim'),
+  gh('nuvic/flexoki-nvim'),
+  gh('p00f/alabaster.nvim'),
+  gh('miikanissi/modus-themes.nvim'),
+  gh('blazkowolf/gruber-darker.nvim'),
+  gh('Netherdrake/vim-paper-minimal'),
+  -- treesitter ok
+  gh('WTFox/jellybeans.nvim'),
+  gh('dybdeskarphet/gruvbox-minimal.nvim'),
+  gh('oskarnurm/koda.nvim'),
 
-" core plugins
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'jlanzarotta/bufexplorer'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-dispatch'
-Plug 'airblade/vim-gitgutter'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'andymass/vim-matchup'
+  -- core plugins
+  gh('nvim-lualine/lualine.nvim'),
+  gh('jlanzarotta/bufexplorer'),
+  gh('tpope/vim-fugitive'),
+  gh('tpope/vim-repeat'),
+  gh('tpope/vim-dispatch'),
+  gh('airblade/vim-gitgutter'),
+  gh('editorconfig/editorconfig-vim'),
+  gh('andymass/vim-matchup'),
 
-" search
-Plug 'phaazon/hop.nvim'
-Plug 'rhysd/clever-f.vim'
+  -- search
+  gh('phaazon/hop.nvim'),
+  gh('rhysd/clever-f.vim'),
 
-" typing automations
-Plug 'tpope/vim-surround'
-Plug 'numToStr/Comment.nvim'
-Plug 'Wansmer/treesj'
+  -- typing automations
+  gh('tpope/vim-surround'),
+  gh('numToStr/Comment.nvim'),
+  gh('Wansmer/treesj'),
 
-" autocomplete
-Plug 'ycm-core/YouCompleteMe'
+  -- autocomplete
+  gh('ycm-core/YouCompleteMe'),
 
-" telescope
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+  -- telescope
+  gh('nvim-lua/plenary.nvim'),
+  gh('nvim-telescope/telescope.nvim'),
 
-" togglable panels
-Plug 'voldikss/vim-floaterm'
-Plug 'preservim/tagbar'
-Plug 'Vigemus/iron.nvim'
-Plug 'folke/which-key.nvim'
+  -- togglable panels
+  gh('voldikss/vim-floaterm'),
+  gh('preservim/tagbar'),
+  gh('Vigemus/iron.nvim'),
+  gh('folke/which-key.nvim'),
 
-" LSP
-Plug 'neovim/nvim-lspconfig'
-Plug 'ray-x/lsp_signature.nvim'
+  -- LSP
+  gh('neovim/nvim-lspconfig'),
+  gh('ray-x/lsp_signature.nvim'),
 
-" required for comment.nvim
-Plug 'nvim-treesitter/nvim-treesitter'
+  -- required for comment.nvim
+  gh('nvim-treesitter/nvim-treesitter'),
 
-" Rust
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'cespare/vim-toml', { 'for': 'toml' }
-Plug 'mrcjkb/rustaceanvim', { 'for': 'rust' }
+  -- SQL
+  gh('tpope/vim-dadbod'),
+  gh('kristijanhusak/vim-dadbod-ui'),
+  gh('kristijanhusak/vim-dadbod-completion'),
 
-" SQL
-Plug 'tpope/vim-dadbod'
-Plug 'kristijanhusak/vim-dadbod-ui'
-Plug 'kristijanhusak/vim-dadbod-completion' "Optional
+  -- markdown
+  gh('preservim/vim-pencil'),
 
-" markdown
-Plug 'preservim/vim-pencil', { 'for': 'markdown' }
+  -- debugging
+  gh('puremourning/vimspector'),
+  gh('sakhnik/nvim-gdb'),
 
-" debugging
-Plug 'puremourning/vimspector', { 'for': ['python', 'cpp', 'c'] }
-Plug 'sakhnik/nvim-gdb'
+})
 
+EOF
 
-call plug#end()
+" call plug#begin('~/.vim/plugged')
+"
+" " Rust
+" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+" Plug 'cespare/vim-toml', { 'for': 'toml' }
+" Plug 'mrcjkb/rustaceanvim', { 'for': 'rust' }
+"
+" call plug#end()
 
 
 """"""""""""""""""""""""""""""""
@@ -148,6 +155,9 @@ set mouse=a
 " disable help screen
 nmap <F1> <nop>
 imap <F1> <nop>
+
+" disable macros thingy
+nnoremap q <nop>
 
 " avoid save typos
 ca w' w
@@ -224,7 +234,7 @@ nnoremap <leader>6 :Telescope lsp_workspace_symbols<CR>
 nnoremap <leader>7 :call VerticalTerminalCommand('time make debug')<CR>
 nnoremap <leader>8 :call VerticalTerminalCommand('time make run')<CR>
 nnoremap <leader>9 :call VerticalTerminalCommand('time make test')<CR>
-" nnoremap <expr> <leader>0 ':TSToggle highlight<CR>'
+nnoremap <expr> <leader>0 ':!make run<CR>'
 " nnoremap <expr> <leader>0 ':call TGHLight()'."<CR>".":TSToggle highlight<CR>"
 
 " telescope

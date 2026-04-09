@@ -34,8 +34,8 @@ function upgrade-all
 end
 
 function vimu
-    vim +PlugUpdate
-    cd ~/.vim/plugged/YouCompleteMe
+    nvim -c 'lua vim.pack.update()'
+    cd ~/.local/share/nvim/site/pack/core/opt/YouCompleteMe
     python3 install.py --clang-completer --rust-completer
     cd -
 end

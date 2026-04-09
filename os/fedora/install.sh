@@ -14,6 +14,7 @@ sudo dnf install python3-neovim
 sudo dnf install python3-pynvim
 sudo dnf install python3-ipython
 sudo dnf install python3-pylsp
+
 pip install python-lsp-server
 pip install -U pipenv
 
@@ -58,14 +59,6 @@ mkdir -p backup
 mkdir -p undo
 mkdir -p swap
 
-cd ~/.vim
-mkdir -p ~/.vim
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-nvim +PlugInstall
-python3 install.py --clang-completer
-cd ~/.vim/plugged/YouCompleteMe && python3 install.py --clang-completer --rust-completer  && cd
-
 sudo update-alternatives --config editor
 sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
 sudo update-alternatives --config vim
@@ -74,9 +67,7 @@ sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
 git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
 mkdir -p ~/.config/alacritty/themes
 
-curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs | sh
-
-cd ~/.vim/plugged/YouCompleteMe && python3 install.py --clang-completer --rust-completer  && cd
+#curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs | sh
 
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface text-scaling-factor "1"
