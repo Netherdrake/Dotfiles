@@ -33,11 +33,21 @@ function upgrade-all
     sudo fwupdmgr update
 end
 
+function update-odin
+    cd ~/Github/Odin
+    git pull
+    sh build_odin.sh release-native
+    cd ~/Github/ols
+    git pull
+    ./build.sh
+end
+
 function vimu
     nvim -c 'lua vim.pack.update()'
     cd ~/.local/share/nvim/site/pack/core/opt/YouCompleteMe
     python3 install.py --clang-completer --rust-completer
     cd -
+    cargo install --git https://github.com/neovide/neovide
 end
 
 function dlaudio
