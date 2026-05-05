@@ -35,8 +35,8 @@ vim.pack.add({
   gh('andymass/vim-matchup'),
 
   -- search
-  gh('phaazon/hop.nvim'),
-  gh('rhysd/clever-f.vim'),
+  gh('smoka7/hop.nvim'),
+  -- gh('rhysd/clever-f.vim'),
 
   -- typing automations
   gh('tpope/vim-surround'),
@@ -673,7 +673,7 @@ lua <<EOF
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
       vim.keymap.set('n', 'gtd', vim.lsp.buf.type_definition, bufopts)
       vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-      vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, bufopts)
+      vim.keymap.set('n', 'grr', require('telescope.builtin').lsp_references, bufopts)
       vim.keymap.set('n', 'H', vim.lsp.buf.hover, bufopts)
       vim.keymap.set('n', 'gh', vim.lsp.buf.signature_help, bufopts)
       vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)

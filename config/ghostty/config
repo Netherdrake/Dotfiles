@@ -1,0 +1,10 @@
+# sway
+window-decoration = false
+
+theme = Gruber Darker
+
+# Primary
+# alabaster
+# raycast light
+# zenbones
+# tokyonight
