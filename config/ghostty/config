@@ -1,10 +1,14 @@
 # sway
 window-decoration = false
 
-theme = Gruber Darker
-
 # Primary
 # alabaster
 # raycast light
 # zenbones
 # tokyonight
+theme = Gruber Darker
+
+# not sure about this, need dynamic cursor for nvim
+cursor-color = #4188d0
+cursor-text = ffffff
+cursor-style = block

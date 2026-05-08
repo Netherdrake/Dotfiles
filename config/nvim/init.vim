@@ -24,24 +24,24 @@ vim.pack.add({
   gh('dybdeskarphet/gruvbox-minimal.nvim'),
   gh('oskarnurm/koda.nvim'),
 
+  -- required for comment.nvim and perhaps a few others
+  gh('nvim-treesitter/nvim-treesitter'),
+
   -- core plugins
   gh('nvim-lualine/lualine.nvim'),
   gh('jlanzarotta/bufexplorer'),
-  gh('tpope/vim-fugitive'),
-  gh('tpope/vim-repeat'),
-  gh('tpope/vim-dispatch'),
-  gh('airblade/vim-gitgutter'),
-  gh('editorconfig/editorconfig-vim'),
-  gh('andymass/vim-matchup'),
-
-  -- search
-  gh('smoka7/hop.nvim'),
-  -- gh('rhysd/clever-f.vim'),
+  gh('smoka7/hop.nvim'),        -- quick jump anywhere
+  gh('andymass/vim-matchup'),   -- smart % with language specific tokens
+  gh('airblade/vim-gitgutter'), -- git +-~ signs on sidebar
+  gh('tpope/vim-fugitive'),     -- :Git command
+  gh('tpope/vim-repeat'),       -- TODO: . repeat, not sure if I need this
+  gh('tpope/vim-dispatch'),     -- TODO: is this used anywhere?
 
   -- typing automations
-  gh('tpope/vim-surround'),
   gh('numToStr/Comment.nvim'),
-  gh('Wansmer/treesj'),
+  gh('tpope/vim-surround'),     -- cs'"
+  gh('Wansmer/treesj'),         -- expand/compact lists
+  gh('editorconfig/editorconfig-vim'),
 
   -- autocomplete
   gh('ycm-core/YouCompleteMe'),
@@ -59,9 +59,6 @@ vim.pack.add({
   -- LSP
   gh('neovim/nvim-lspconfig'),
   gh('ray-x/lsp_signature.nvim'),
-
-  -- required for comment.nvim
-  gh('nvim-treesitter/nvim-treesitter'),
 
   -- SQL
   gh('tpope/vim-dadbod'),
@@ -251,6 +248,9 @@ nnoremap <leader>tgs :Telescope git_status<CR>
 nnoremap <leader>tgf :Telescope git_files<CR>
 nnoremap <leader>tgc :Telescope git_commits<CR>
 
+" custom grep (using ripgrep + quickfix)
+command! -nargs=+ Rg execute 'cgetexpr system("rg --vimgrep --smart-case " . shellescape(<q-args>) . " " . shellescape(expand("%:p:h") == "" ? getcwd() : expand("%:p:h")))' | copen
+
 
 """"""""""""""""""""""""""""""""
 "
@@ -309,10 +309,12 @@ let g:tagbar_autofocus = 1
 let g:tagbar_sort = 0
 
 " git
+nnoremap <leader>g :Git 
+
 let g:gitgutter_enabled = 1
 let g:gitgutter_realtime = 0
-let g:gitgutter_eager = 0
-nnoremap <leader>g :Git 
+" refresh gitgutter sigils on file save
+autocmd BufWritePost * GitGutter
 
 " Rust config
 let g:rustfmt_autosave = 1
