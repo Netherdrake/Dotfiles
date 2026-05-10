@@ -19,10 +19,13 @@ vim.pack.add({
   gh('miikanissi/modus-themes.nvim'),
   gh('blazkowolf/gruber-darker.nvim'),
   gh('Netherdrake/vim-paper-minimal'),
+  gh('OwlfaceGames/owl-naysayer.nvim'),
   -- treesitter ok
   gh('WTFox/jellybeans.nvim'),
   gh('dybdeskarphet/gruvbox-minimal.nvim'),
   gh('oskarnurm/koda.nvim'),
+  -- funky one
+  { src = 'https://github.com/Verf/deepwhite.nvim', version = 'dev' },
 
   -- required for comment.nvim and perhaps a few others
   gh('nvim-treesitter/nvim-treesitter'),
@@ -262,12 +265,6 @@ command! -nargs=+ Rg execute 'cgetexpr system("rg --vimgrep --smart-case " . she
 lua require'hop'.setup()
 nmap <leader>f :HopPattern<CR>
 
-" clever-f prompt
-let g:clever_f_show_prompt = 1
-let g:clever_f_across_no_line = 1
-let g:clever_f_mark_char = 0
-let g:clever_f_fix_key_direction = 1
-
 " paren matching
 let g:matchup_matchparen_offscreen = {'method': 'popup'}
 
@@ -417,6 +414,12 @@ fu! TWritten()
     colorscheme zenwritten
 endfunction
 
+fu! TLight()
+    set background=light
+    " zenbones/zenwritten are both good
+    colorscheme zenbones
+endfunction
+
 fu! TTokyo()
     set background=dark
     colorscheme github-monochrome-tokyonight
@@ -425,11 +428,6 @@ endfunction
 fu! TGruber()
     set background=dark
     colorscheme gruber-darker
-endfunction
-
-fu! TGruvbox()
-    set background=light
-    colorscheme gruvbox-minimal
 endfunction
 
 fu! TModus()
@@ -445,6 +443,11 @@ endfunction
 fu! TPaper()
     set background=light
     colorscheme paper-minimal
+endfunction
+
+fu! TNaysayer()
+    set background=dark
+    colorscheme owl-naysayer
 endfunction
 
 
