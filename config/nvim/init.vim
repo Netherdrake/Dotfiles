@@ -27,7 +27,7 @@ vim.pack.add({
   -- funky one
   { src = 'https://github.com/Verf/deepwhite.nvim', version = 'dev' },
 
-  -- required for comment.nvim and perhaps a few others
+  -- what do I use this for still?
   gh('nvim-treesitter/nvim-treesitter'),
 
   -- core plugins
@@ -41,7 +41,6 @@ vim.pack.add({
   gh('tpope/vim-dispatch'),     -- TODO: is this used anywhere?
 
   -- typing automations
-  gh('numToStr/Comment.nvim'),
   gh('tpope/vim-surround'),     -- cs'"
   gh('Wansmer/treesj'),         -- expand/compact lists
   gh('editorconfig/editorconfig-vim'),
@@ -861,10 +860,6 @@ vim.g.rustaceanvim = {
           -- ['Type'] = { link = '@function.method.call' }, -- Link to another group
         },
     })
-
-
--- tcomment alternative
-require('Comment').setup()
 
 -- split/join
 require('treesj').setup()
