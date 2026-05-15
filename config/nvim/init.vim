@@ -10,25 +10,30 @@ local gh = function(x) return 'https://github.com/' .. x end
 
 vim.pack.add({
   -- themes
-  gh('kyazdani42/nvim-web-devicons'),
   gh('rktjmp/lush.nvim'),
   gh('zenbones-theme/zenbones.nvim'),
-  gh('idr4n/github-monochrome.nvim'),
-  gh('nuvic/flexoki-nvim'),
   gh('p00f/alabaster.nvim'),
   gh('miikanissi/modus-themes.nvim'),
   gh('blazkowolf/gruber-darker.nvim'),
   gh('Netherdrake/vim-paper-minimal'),
   gh('OwlfaceGames/owl-naysayer.nvim'),
-  -- treesitter ok
   gh('WTFox/jellybeans.nvim'),
-  gh('dybdeskarphet/gruvbox-minimal.nvim'),
   gh('oskarnurm/koda.nvim'),
+  gh('webhooked/kanso.nvim'),
+  -- maybe delete
+  gh('dybdeskarphet/gruvbox-minimal.nvim'),
+  gh('idr4n/github-monochrome.nvim'),
+  gh('nuvic/flexoki-nvim'),
+  gh('vague-theme/vague.nvim'),
   -- funky one
   { src = 'https://github.com/Verf/deepwhite.nvim', version = 'dev' },
 
   -- what do I use this for still?
   gh('nvim-treesitter/nvim-treesitter'),
+
+  -- eye candy
+  gh('kyazdani42/nvim-web-devicons'),
+  -- gh('norcalli/nvim-colorizer.lua'), -- color bg #hex values
 
   -- core plugins
   gh('nvim-lualine/lualine.nvim'),
@@ -41,8 +46,8 @@ vim.pack.add({
   gh('tpope/vim-dispatch'),     -- TODO: is this used anywhere?
 
   -- typing automations
-  gh('tpope/vim-surround'),     -- cs'"
-  gh('Wansmer/treesj'),         -- expand/compact lists
+  gh('nvim-mini/mini.surround'), -- saiw", sr"'
+  gh('Wansmer/treesj'),          -- expand/compact lists
   gh('editorconfig/editorconfig-vim'),
 
   -- autocomplete
@@ -863,6 +868,9 @@ vim.g.rustaceanvim = {
 
 -- split/join
 require('treesj').setup()
+
+-- surrounding tags management
+require('mini.surround').setup()
 
 -- hints
 require("which-key").setup({delay=500})
