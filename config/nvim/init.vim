@@ -20,7 +20,6 @@ vim.pack.add({
   gh('WTFox/jellybeans.nvim'),
   gh('oskarnurm/koda.nvim'),
   gh('webhooked/kanso.nvim'),
-  -- maybe delete
   gh('dybdeskarphet/gruvbox-minimal.nvim'),
   gh('idr4n/github-monochrome.nvim'),
   gh('nuvic/flexoki-nvim'),
@@ -44,6 +43,7 @@ vim.pack.add({
   gh('tpope/vim-fugitive'),     -- :Git command
   gh('tpope/vim-repeat'),       -- TODO: . repeat, not sure if I need this
   gh('tpope/vim-dispatch'),     -- TODO: is this used anywhere?
+  -- gh('mikavilpas/yazi.nvim') -- maybe, but maybe not worth it?
 
   -- typing automations
   gh('nvim-mini/mini.surround'), -- saiw", sr"'
@@ -74,6 +74,7 @@ vim.pack.add({
 
   -- markdown
   gh('preservim/vim-pencil'),
+  -- gh('MeanderingProgrammer/render-markdown.nvim'),
 
   -- debugging
   gh('puremourning/vimspector'),
@@ -418,10 +419,10 @@ fu! TWritten()
     colorscheme zenwritten
 endfunction
 
-fu! TLight()
-    set background=light
-    " zenbones/zenwritten are both good
-    colorscheme zenbones
+" a nice muted scheme
+fu! TKanso()
+    set background=dark
+    colorscheme kanso-ink
 endfunction
 
 fu! TTokyo()
@@ -454,6 +455,47 @@ fu! TNaysayer()
     colorscheme owl-naysayer
 endfunction
 
+fu! TLight()
+    call srand(localtime())
+    " zenbones/zenwritten are both good minimal ones
+    " paper-minimal, gruvbox-minimal strong mids
+    " a bit more color in kanso-pearl, koda-glade, koda-light
+    let l:schemes = [
+                \ 'zenbones',
+                \ 'zenwritten',
+                \ 'paper-minimal',
+                \ 'gruvbox-minimal',
+                \ 'kanso-pearl',
+                \ 'flexoki-dawn',
+                \ 'koda-glade',
+                \ 'koda-light'
+                \ ]
+
+    set background=light
+    let l:choice = l:schemes[rand() % len(l:schemes)]
+    execute 'colorscheme ' . l:choice
+    echom 'Loaded colorscheme: ' . l:choice
+endfunction
+
+fu! TDark()
+    call srand(localtime())
+    let l:schemes = [
+                \ 'zenbones',
+                \ 'zenwritten',
+                \ 'github-monochrome-dark',
+                \ 'kanso-ink',
+                \ 'koda-moss',
+                \ 'koda-dark',
+                \ 'jellybeans-default',
+                \ 'flexoki-moon',
+                \ 'vague'
+                \ ]
+
+    set background=dark
+    let l:choice = l:schemes[rand() % len(l:schemes)]
+    execute 'colorscheme ' . l:choice
+    echom 'Loaded colorscheme: ' . l:choice
+endfunction
 
 if hostname() == "fw13"
     call TAlabaster()

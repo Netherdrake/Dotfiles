@@ -7,7 +7,7 @@ profile kuycon {
     output eDP-1 disable
 }
 profile lg {
-    output "LG Electronics LG SDQHD 307NTCZ65139" scale 2.0 transform 270
+    output "LG Electronics LG SDQHD 307NTCZ65139" scale 2.0
     output eDP-1 disable
 }
 profile external {

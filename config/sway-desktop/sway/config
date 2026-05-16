@@ -55,8 +55,8 @@ focus_wrapping no
 ### Startup
 exec_always {
 
-  pkill kanshi
-  kanshi &
+  # pkill kanshi
+  # kanshi &
 
   # pkill nm-applet
   # nm-applet --indicator &
