@@ -11,24 +11,17 @@ function fish_prompt
     echo -n ' % '
 end
 
-function inst
-    sudo apt update
-    sudo apt install $argv
-end
 
-function update
-    sudo apt update
-end
-
-function upgrade
-    sudo apt update
-    sudo apt upgrade
-end
-
-function upgrade-all
+function update-ubuntu
     sudo apt update
     sudo apt upgrade
     sudo snap refresh
+    flatpak update -y
+    sudo fwupdmgr update
+end
+
+function update-fedora
+    sudo dnf update --refresh
     flatpak update -y
     sudo fwupdmgr update
 end
@@ -42,7 +35,7 @@ function update-odin
     ./build.sh
 end
 
-function vimu
+function update-vim
     nvim -c 'lua vim.pack.update()'
     cd ~/.local/share/nvim/site/pack/core/opt/YouCompleteMe
     python3 install.py --clang-completer --rust-completer
@@ -87,10 +80,9 @@ end
 alias cdy "pwd | xclip -i"
 alias cdp "cd (xclip -o)"
 
-alias v "nvim"
+alias v   "nvim"
 alias vim "nvim"
-alias vi "nvim"
-alias nv "neovide"
+alias nv  "neovide"
 alias rrr "ranger"
 alias nnn "nnn -e"
 alias open "xdg-open"
@@ -101,7 +93,11 @@ alias rust "evcxr"
 export PATH="/snap/bin:$PATH"
 
 # Make nvim default
-export EDITOR=/snap/bin/nvim
+if test -x /snap/bin/nvim
+    set -x EDITOR /snap/bin/nvim
+else
+    set -x EDITOR /usr/bin/nvim
+end
 
 # My apps
 export PATH="$HOME/bin:$PATH"
