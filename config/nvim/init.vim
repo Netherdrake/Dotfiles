@@ -750,11 +750,13 @@ lua <<EOF
         }
       }
     })
-    vim.lsp.config('ols', {on_attach=on_attach})
+    vim.lsp.config('zuban', {on_attach=on_attach})
+    vim.lsp.config('ols',   {on_attach=on_attach})
     vim.lsp.config('cmake', {on_attach=on_attach})
-    vim.lsp.config('clangd', {on_attach=on_attach, cmd = {"clangd", "--header-insertion=never"}})
+    vim.lsp.config('clangd',{on_attach=on_attach, cmd = {"clangd", "--header-insertion=never"}})
 
-    vim.lsp.enable('pylsp')
+    vim.lsp.enable('zuban') -- python
+    -- vim.lsp.enable('pylsp') -- python
     vim.lsp.enable('ols')
     vim.lsp.enable('cmake')
     vim.lsp.enable('clangd')
