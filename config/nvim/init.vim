@@ -22,7 +22,6 @@ vim.pack.add({
   gh('webhooked/kanso.nvim'),
   gh('dybdeskarphet/gruvbox-minimal.nvim'),
   gh('idr4n/github-monochrome.nvim'),
-  gh('nuvic/flexoki-nvim'),
   gh('vague-theme/vague.nvim'),
   -- funky one
   { src = 'https://github.com/Verf/deepwhite.nvim', version = 'dev' },
@@ -466,7 +465,6 @@ fu! TLight()
                 \ 'paper-minimal',
                 \ 'gruvbox-minimal',
                 \ 'kanso-pearl',
-                \ 'flexoki-dawn',
                 \ 'koda-glade',
                 \ 'koda-light'
                 \ ]
@@ -487,7 +485,6 @@ fu! TDark()
                 \ 'koda-moss',
                 \ 'koda-dark',
                 \ 'jellybeans-default',
-                \ 'flexoki-moon',
                 \ 'vague'
                 \ ]
 
@@ -970,11 +967,86 @@ if vim.g.neovide then
 
 end
 
+
 -- Allow clipboard copy paste in neovim
 -- vim.api.nvim_set_keymap('',  '<C-S-v>', '+p<CR>', { noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('!', '<C-S-v>', '<C-R>+', { noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('t', '<C-S-v>', '<C-R>+', { noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('v', '<C-S-v>', '<C-R>+', { noremap = true, silent = true})
 
+-- chatgpt wrote this, doesnt work well
+vim.api.nvim_create_autocmd("WinEnter", {
+  callback = function()
+    vim.schedule(function()
+      local current = vim.api.nvim_get_current_win()
+
+      local function is_bad_window(win)
+        local cfg = vim.api.nvim_win_get_config(win)
+        if cfg.relative ~= "" then
+          return true -- floating UI
+        end
+
+        local buf = vim.api.nvim_win_get_buf(win)
+        local bt = vim.bo[buf].buftype
+        local ft = vim.bo[buf].filetype
+
+        -- any special buffer = unsafe layout mode
+        if bt ~= "" then
+          return true
+        end
+
+        local blacklist = {
+          tagbar = true,
+          NvimTree = true,
+          neo_tree = true,
+          Trouble = true,
+          toggleterm = true,
+          iron = true,
+          ipython = true,
+          qf = true,
+          terminal = true,
+        }
+
+        if blacklist[ft] then
+          return true
+        end
+
+        return false
+      end
+
+      local wins = vim.api.nvim_tabpage_list_wins(0)
+
+      -- HARD EXIT: if ANY bad window exists, do nothing
+      for _, win in ipairs(wins) do
+        if is_bad_window(win) then
+          vim.cmd("wincmd =")
+          return
+        end
+      end
+
+      -- collect only safe windows
+      local safe_wins = {}
+      for _, win in ipairs(wins) do
+        table.insert(safe_wins, win)
+      end
+
+      if #safe_wins < 2 then
+        return
+      end
+
+      local total = vim.o.columns
+      local main_w = math.floor(total * 0.60)
+      local side_w = math.floor((total - main_w) / (#safe_wins - 1))
+
+      for _, win in ipairs(safe_wins) do
+        if win == current then
+          pcall(vim.api.nvim_win_set_width, win, main_w)
+        else
+          pcall(vim.api.nvim_win_set_width, win, side_w)
+        end
+      end
+    end)
+  end,
+})
 
 EOF
