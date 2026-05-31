@@ -1,7 +1,3 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
 # Read `man 5 sway` for a complete reference.
 
 # fedora without sudo, ubuntu with
@@ -23,7 +19,6 @@ set $menu dmenu_path | fuzzel | xargs swaymsg exec --
 # what is this?
 # include /etc/sway/config-vars.d/*
 
-# Just black please
 # output * bg #808080 solid_color
 output * bg /home/user/Blog/wallpaper2.jpg fill
 
@@ -49,13 +44,7 @@ focus_wrapping no
 
 ### Startup
 exec_always {
-
-  # pkill kanshi
-  # kanshi &
-
-  # pkill nm-applet
-  # nm-applet --indicator &
-
+  # clipboard manager
   wl-paste --watch $cliphist store &
 
   # firefox hack on 4k screen
@@ -66,17 +55,17 @@ exec_always {
   systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
   # dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
   dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
-
-  # waybar &
 }
-
-for_window [shell="xwayland"] title_format "[X] %title"
 
 # Polkit?
 #exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
+# Requires: lxqt-policykit
+# exec /usr/libexec/lxqt-policykit-agent
+
+# polkit-kde-agent
+
 ### Idle configuration
-# timeout 999 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
 exec swayidle -w \
          timeout 1900 'swaylock -f -c 616060' \
          timeout 1999 'if [ "$(./home/user/.config/sway/check_external_power.sh)" != "ac" ]; then swaymsg "output * power off"; fi' \
@@ -84,21 +73,8 @@ exec swayidle -w \
          before-sleep 'playerctl pause' \
          before-sleep 'swaylock -f -c 616060'
 
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
@@ -141,6 +117,7 @@ input type:touchpad {
 
     # Screenshots
     bindsym Print exec grimshot copy area
+    bindsym Ctrl+Print exec grimshot save area
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -223,7 +200,7 @@ input type:touchpad {
     bindsym $mod+s splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+w layout stacking
+    # bindsym $mod+w layout stacking
     bindsym $mod+t layout tabbed
     bindsym $mod+e layout toggle splith splitv tabbed
 
@@ -287,17 +264,26 @@ bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ 
 bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-bindsym --locked XF86MonBrightnessDown exec $bright set 1%-
-bindsym --locked XF86MonBrightnessUp   exec $bright set 1%+
+bindsym --locked XF86MonBrightnessDown exec $bright set 3%-
+bindsym --locked XF86MonBrightnessUp   exec $bright set 3%+
 
 
 # Rules
+for_window [shell="xwayland"] title_format "[X] %title"
+
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [app_id="yad|nm-connection-editor|pavucontrol"] floating enable
 for_window [app_id="xfce-polkit|kvantummanager|qt5ct"] floating enable
 for_window [class="Yad|feh|Viewnior|Gpicview|Gimp|MPlayer"] floating enable
 for_window [class="VirtualBox Manager|qemu|Qemu-system-x86_64"] floating enable
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"] { floating enable }
+
+for_window [class="Brave-browser"]     { inhibit_idle fullscreen }
+for_window [class="firefox"]           { inhibit_idle fullscreen }
+for_window [app_id="brave-browser"]    { inhibit_idle fullscreen }
+for_window [app_id="firefox"]          { inhibit_idle fullscreen }
+
 
 bar {
     # swaybar_command waybar
