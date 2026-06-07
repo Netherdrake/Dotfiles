@@ -43,8 +43,12 @@ function update-vim
     cargo install --git https://github.com/neovide/neovide
 end
 
-function dlaudio
+function yt-audio
     yt-dlp -f bestaudio --extract-audio --audio-format mp3 $argv
+end
+
+function yt-sub
+    yt-dlp --write-auto-sub --sub-langs "en" --sub-format srt --skip-download $argv
 end
 
 function pyserve
