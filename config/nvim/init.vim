@@ -192,8 +192,8 @@ nnoremap <C-k> <C-u>zz
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
 
-" reload all open buffers
-nnoremap <leader>Ra :tabdo exec "windo e!"<CR>
+" Ripgrep current word under cursor
+nnoremap <leader>R :Rg <C-r><C-w>
 
 " set current file dir as cwd
 nnoremap <leader>C :cd %:p:h<CR>
