@@ -24,7 +24,7 @@ vim.pack.add({
   gh('idr4n/github-monochrome.nvim'),
   gh('vague-theme/vague.nvim'),
   -- funky one
-  { src = 'https://github.com/Verf/deepwhite.nvim', version = 'dev' },
+  -- { src = 'https://github.com/Verf/deepwhite.nvim', version = 'dev' },
 
   -- what do I use this for still?
   gh('nvim-treesitter/nvim-treesitter'),
@@ -76,21 +76,15 @@ vim.pack.add({
   -- gh('MeanderingProgrammer/render-markdown.nvim'),
 
   -- debugging
-  gh('puremourning/vimspector'),
   gh('sakhnik/nvim-gdb'),
 
 })
 
 EOF
 
-" call plug#begin('~/.vim/plugged')
-"
-" " Rust
 " Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 " Plug 'cespare/vim-toml', { 'for': 'toml' }
 " Plug 'mrcjkb/rustaceanvim', { 'for': 'rust' }
-"
-" call plug#end()
 
 
 """"""""""""""""""""""""""""""""
@@ -346,24 +340,6 @@ nnoremap <leader>hd :lua vim.lsp.inlay_hint.enable(false)<CR>
 " switch between source/header files
 nnoremap <silent> gs :ClangdSwitchSourceHeader<CR>
 
-
-" vimspector
-" command! -nargs=+ Vfb call vimspector#AddFunctionBreakpoint(<f-args>)
-"
-nnoremap <leader>dd  :call vimspector#Launch()<CR>
-nnoremap <leader>dz  :call vimspector#Stop()<CR>
-nnoremap <leader>dr  :call vimspector#Reset()<CR>
-nnoremap <leader>dR  :call vimspector#Restart()<CR>
-nnoremap <leader>dp  :call vimspector#Pause()<CR>
-nnoremap <leader>df  :call vimspector#StepOut()<CR>
-nnoremap <leader>dn  :call vimspector#StepOver()<CR>
-nnoremap <leader>ds  :call vimspector#StepInto()<CR>
-nnoremap <leader>dc  :call vimspector#Continue()<CR>
-nnoremap <leader>dt  :call vimspector#RunToCursor()<CR>
-nnoremap <leader>db  :call vimspector#ToggleBreakpoint()<CR>
-nnoremap <leader>dB  :call Vimspector#AddFunctionBreakpoint()<CR>
-nnoremap <leader>di  <Plug>VimspectorBalloonEval
-nnoremap <leader>dib <Plug>VimspectorBreakpoints
 
 " nvim-gdb
 function! NvimGdbNoTKeymaps()
@@ -911,7 +887,7 @@ vim.g.rustaceanvim = {
 require('treesj').setup()
 
 -- surrounding tags management
-require('mini.surround').setup()
+require('mini.surround').setup({ mappings = {replace = 'sc'}})
 
 -- hints
 require("which-key").setup({delay=500})
