@@ -31,7 +31,7 @@ vim.pack.add({
 
   -- eye candy
   gh('kyazdani42/nvim-web-devicons'),
-  -- gh('norcalli/nvim-colorizer.lua'), -- color bg #hex values
+  -- gh('norcalli/nvim-colorizer.lua'), -- color bg #hex values :ColorizerToggle
 
   -- core plugins
   gh('nvim-lualine/lualine.nvim'),
@@ -40,12 +40,12 @@ vim.pack.add({
   gh('andymass/vim-matchup'),   -- smart % with language specific tokens
   gh('airblade/vim-gitgutter'), -- git +-~ signs on sidebar
   gh('tpope/vim-fugitive'),     -- :Git command
-  gh('tpope/vim-repeat'),       -- TODO: . repeat, not sure if I need this
-  gh('tpope/vim-dispatch'),     -- TODO: is this used anywhere?
-  -- gh('mikavilpas/yazi.nvim') -- maybe, but maybe not worth it?
+  -- gh('tpope/vim-dispatch'),     -- TODO: is this used anywhere?
+  -- gh('tpope/vim-repeat'),       -- TODO: . repeat, not sure if I need this
+  -- gh('mikavilpas/yazi.nvim')    -- maybe, but maybe not worth it?
 
   -- typing automations
-  gh('nvim-mini/mini.surround'), -- saiw", sr"'
+  gh('nvim-mini/mini.surround'), -- saiw", sc"'
   gh('Wansmer/treesj'),          -- expand/compact lists
   gh('editorconfig/editorconfig-vim'),
 
@@ -887,7 +887,25 @@ vim.g.rustaceanvim = {
 require('treesj').setup()
 
 -- surrounding tags management
-require('mini.surround').setup({ mappings = {replace = 'sc'}})
+require('mini.surround').setup({
+    mappings = {
+        replace = 'sc',
+    },
+    custom_surroundings = {
+        ['['] = {
+            output = { left = '[', right = ']' },
+        },
+        [']'] = {
+            output = { left = '[', right = ']' },
+        },
+        ['('] = {
+            output = { left = '(', right = ')' },
+        },
+        [')'] = {
+            output = { left = '(', right = ')' },
+        },
+    },
+})
 
 -- hints
 require("which-key").setup({delay=500})
