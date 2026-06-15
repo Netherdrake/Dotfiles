@@ -14,7 +14,6 @@ vim.pack.add({
   gh('zenbones-theme/zenbones.nvim'),
   gh('p00f/alabaster.nvim'),
   gh('miikanissi/modus-themes.nvim'),
-  gh('blazkowolf/gruber-darker.nvim'),
   gh('Netherdrake/vim-paper-minimal'),
   gh('OwlfaceGames/owl-naysayer.nvim'),
   gh('WTFox/jellybeans.nvim'),
@@ -40,9 +39,6 @@ vim.pack.add({
   gh('andymass/vim-matchup'),   -- smart % with language specific tokens
   gh('airblade/vim-gitgutter'), -- git +-~ signs on sidebar
   gh('tpope/vim-fugitive'),     -- :Git command
-  -- gh('tpope/vim-dispatch'),     -- TODO: is this used anywhere?
-  -- gh('tpope/vim-repeat'),       -- TODO: . repeat, not sure if I need this
-  -- gh('mikavilpas/yazi.nvim')    -- maybe, but maybe not worth it?
 
   -- typing automations
   gh('nvim-mini/mini.surround'), -- saiw", sc"'
@@ -394,7 +390,7 @@ fu! TWritten()
     colorscheme zenwritten
 endfunction
 
-" a nice muted scheme
+" a nice muted scheme, prefer kanso-ink
 fu! TKanso()
     set background=dark
     colorscheme kanso-ink
@@ -403,11 +399,6 @@ endfunction
 fu! TTokyo()
     set background=dark
     colorscheme github-monochrome-tokyonight
-endfunction
-
-fu! TGruber()
-    set background=dark
-    colorscheme gruber-darker
 endfunction
 
 fu! TModus()
@@ -440,9 +431,6 @@ fu! TLight()
                 \ 'zenwritten',
                 \ 'paper-minimal',
                 \ 'gruvbox-minimal',
-                \ 'kanso-pearl',
-                \ 'koda-glade',
-                \ 'koda-light'
                 \ ]
 
     set background=light
@@ -456,11 +444,10 @@ fu! TDark()
     let l:schemes = [
                 \ 'zenbones',
                 \ 'zenwritten',
-                \ 'github-monochrome-dark',
+                \ 'github-monochrome-tokyonight',
                 \ 'kanso-ink',
                 \ 'koda-moss',
-                \ 'koda-dark',
-                \ 'jellybeans-default',
+                \ 'jellybeans-warm',
                 \ 'vague'
                 \ ]
 
@@ -903,6 +890,12 @@ require('mini.surround').setup({
         },
         [')'] = {
             output = { left = '(', right = ')' },
+        },
+        ['{'] = {
+            output = { left = '{', right = '}' },
+        },
+        ['}'] = {
+            output = { left = '{', right = '}' },
         },
     },
 })
