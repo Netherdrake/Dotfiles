@@ -421,8 +421,9 @@ fu! TNaysayer()
     colorscheme owl-naysayer
 endfunction
 
+call srand(localtime()) | let g:theme_idx = rand() % 1000
+
 fu! TLight()
-    call srand(localtime())
     " zenbones/zenwritten are both good minimal ones
     " paper-minimal, gruvbox-minimal strong mids
     " a bit more color in kanso-pearl, koda-glade, koda-light
@@ -434,13 +435,13 @@ fu! TLight()
                 \ ]
 
     set background=light
-    let l:choice = l:schemes[rand() % len(l:schemes)]
+    let g:theme_idx += 1
+    let l:choice = l:schemes[g:theme_idx % len(l:schemes)]
     execute 'colorscheme ' . l:choice
     echom 'Loaded colorscheme: ' . l:choice
 endfunction
 
 fu! TDark()
-    call srand(localtime())
     let l:schemes = [
                 \ 'zenbones',
                 \ 'zenwritten',
@@ -452,7 +453,8 @@ fu! TDark()
                 \ ]
 
     set background=dark
-    let l:choice = l:schemes[rand() % len(l:schemes)]
+    let g:theme_idx += 1
+    let l:choice = l:schemes[g:theme_idx % len(l:schemes)]
     execute 'colorscheme ' . l:choice
     echom 'Loaded colorscheme: ' . l:choice
 endfunction
@@ -460,7 +462,7 @@ endfunction
 if hostname() == "fw13"
     call TAlabaster()
 else
-    call TModus()
+    call TPaper()
 endif
 
 """"""""""""""""""""""""""""""""
