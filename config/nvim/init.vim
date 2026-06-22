@@ -440,7 +440,6 @@ fu! TLight()
                 \ 'zenbones',
                 \ 'zenwritten',
                 \ 'paper-minimal',
-                \ 'gruvbox-minimal',
                 \ ]
 
     set background=light
@@ -454,6 +453,7 @@ fu! TDark()
     let l:schemes = [
                 \ 'zenbones',
                 \ 'zenwritten',
+                \ 'gruvbox-minimal',
                 \ 'github-monochrome-tokyonight',
                 \ 'kanso-ink',
                 \ 'koda-moss',
@@ -872,11 +872,21 @@ vim.g.rustaceanvim = {
         italic_comments = false, -- Italic comments
         italic_functions = true, -- Italic functions and methods
         contrast = "low", -- Available values: "high", "low"
-        theme = "light", -- Available values: "dark", "light"
+        theme = "dark", -- Available values: "dark", "light"
         accent = "red", -- Changes the definition (functions, structs etc.) colors. Available values: "red", "orange", "yellow", "green", "cyan", "blue", "magenta"
-        semantic_highlights = true, -- Uses LSP semantic highlighting, disable this if you want the highlights of =< 0.3.1
+        semantic_highlights = false, -- Uses LSP semantic highlighting, disable this if you want the highlights of =< 0.3.1
         overrides = {
-          -- Type = { fg = '#83a598' }, -- Hex override
+            ["TelescopeMatching"] = { fg = "#d8a657" },
+            ["TelescopeSelection"] = { bg = "#3c3836" },
+            ["Type"] = { fg = "#ffffff" },
+            ["Boolean"] = { fg = "#ffffff" },
+            ["Number"] = { fg = "#ffffff" },
+            ["Function"] = { fg = "#ffffff" },
+            ["Structure"] = { fg = "#ffffff" },
+            ["@function"] = { fg = "#ffffff" },
+            ["@function.call"] = { fg = "#ffffff" },
+            ["@function.method"] = { fg = "#ffffff" },
+            ["@function.method.call"] = { fg = "#ffffff" },
           -- ['Type'] = { link = '@function.method.call' }, -- Link to another group
         },
     })
