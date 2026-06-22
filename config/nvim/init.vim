@@ -186,7 +186,7 @@ inoremap <C-k> <C-p>
 nnoremap <leader>R :Rg <C-r><C-w>
 
 " set current file dir as cwd
-nnoremap <leader>C :cd %:p:h<CR>
+nnoremap <leader>cd :cd %:p:h
 nnoremap <C-g> :echo expand('%:p:h')<CR>
 
 "map next-previous jumps
@@ -374,9 +374,18 @@ augroup END
 syntax on
 set termguicolors
 
+let g:zenbones_lightness = 'dim'
+let g:zenbones_lighten_comments = 50
+let g:zenbones_darken_comments = 50
+
+let g:zenwritten_lightness = 'dim'
+let g:zenwritten_lighten_comments = 50
+let g:zenwritten_darken_comments = 50
+
+let g:kanagawabones_lighten_comments = 50
+
 fu! TKanagawaBones()
     set background=dark
-    " let g:kanagawabones = #{ darkness: 'stark', darken_comments: 30 }
     colorscheme kanagawabones
 endfunction
 
