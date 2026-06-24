@@ -16,11 +16,8 @@ vim.pack.add({
   gh('miikanissi/modus-themes.nvim'),
   gh('Netherdrake/vim-paper-minimal'),
   gh('OwlfaceGames/owl-naysayer.nvim'),
-  gh('WTFox/jellybeans.nvim'),
-  gh('oskarnurm/koda.nvim'),
-  gh('webhooked/kanso.nvim'),
   gh('dybdeskarphet/gruvbox-minimal.nvim'),
-  gh('idr4n/github-monochrome.nvim'),
+  gh('webhooked/kanso.nvim'),
   gh('vague-theme/vague.nvim'),
   -- funky one
   -- { src = 'https://github.com/Verf/deepwhite.nvim', version = 'dev' },
@@ -399,15 +396,9 @@ fu! TWritten()
     colorscheme zenwritten
 endfunction
 
-" a nice muted scheme, prefer kanso-ink
 fu! TKanso()
     set background=dark
     colorscheme kanso-ink
-endfunction
-
-fu! TTokyo()
-    set background=dark
-    colorscheme github-monochrome-tokyonight
 endfunction
 
 fu! TModus()
@@ -425,6 +416,11 @@ fu! TPaper()
     colorscheme paper-minimal
 endfunction
 
+fu! TGruvbox()
+    set background=dark
+    colorscheme gruvbox-minimal
+endfunction
+
 fu! TNaysayer()
     set background=dark
     colorscheme owl-naysayer
@@ -440,6 +436,8 @@ fu! TLight()
                 \ 'zenbones',
                 \ 'zenwritten',
                 \ 'paper-minimal',
+                \ 'alabaster',
+                \ 'modus_operandi',
                 \ ]
 
     set background=light
@@ -454,10 +452,7 @@ fu! TDark()
                 \ 'zenbones',
                 \ 'zenwritten',
                 \ 'gruvbox-minimal',
-                \ 'github-monochrome-tokyonight',
                 \ 'kanso-ink',
-                \ 'koda-moss',
-                \ 'jellybeans-warm',
                 \ 'vague'
                 \ ]
 
@@ -848,20 +843,6 @@ vim.g.rustaceanvim = {
     }
 
 -- theme
-    require("github-monochrome").setup({
-        styles = {
-            comments = { italic = true },
-            keywords = { bold = false },
-            functions = { bold = false },
-            statements = { bold = false }, -- e.g., try/except statements, but also if, for, etc.
-            conditionals = { bold = false }, -- e.g., if statements
-            loops = { bold = false }, -- e.g., for, while statements
-            variables = { bold = false },
-            floats = "normal", -- "dark", "transparent" or "normal"
-            sidebars = "normal", -- "dark", "transparent" or "normal"
-        },
-    })
-
     require("modus-themes").setup({
         line_nr_column_background = true, -- Distinct background colors in line number column. `false` will disable background color and fallback to Normal background
         sign_column_background = true, -- Distinct background colors in sign column. `false` will disable background color and fallback to Normal background
