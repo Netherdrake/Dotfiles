@@ -1022,9 +1022,18 @@ vim.api.nvim_create_autocmd("WinEnter", {
       if #safe_wins < 2 then
         return
       end
+      if #safe_wins > 3 then
+        return
+      end
+
+      local focus_w = 0.6
+
+      if #safe_wins == 3 then
+        focus_w = 0.45
+      end
 
       local total = vim.o.columns
-      local main_w = math.floor(total * 0.60)
+      local main_w = math.floor(total * focus_w)
       local side_w = math.floor((total - main_w) / (#safe_wins - 1))
 
       for _, win in ipairs(safe_wins) do
