@@ -2,12 +2,17 @@ profile benq {
     output "BNQ BenQ RD280U G7R0522201Q" mode 3840x2560 scale 2.0
     output eDP-1 disable
 }
-profile kuycon {
-    output "GKT Kuycon G32P Unknown" scale 2.0
-    output eDP-1 disable
-}
 profile lg {
     output "LG Electronics LG SDQHD 307NTCZ65139" scale 2.0
+    output eDP-1 disable
+}
+profile lg_benq {
+    output "BNQ BenQ RD280U G7R0522201Q" scale 2.0
+    output "LG Electronics LG SDQHD 307NTCZ65139" scale 2.0
+    output eDP-1 disable
+}
+profile kuycon {
+    output "GKT Kuycon G32P Unknown" scale 2.0
     output eDP-1 disable
 }
 profile external {
@@ -17,3 +22,4 @@ profile external {
 profile laptop {
     output eDP-1 enable scale 2.0
 }
+
