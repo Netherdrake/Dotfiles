@@ -15,7 +15,7 @@ vim.pack.add({
   gh('p00f/alabaster.nvim'),
   gh('miikanissi/modus-themes.nvim'),
   gh('Netherdrake/vim-paper-minimal'),
-  gh('OwlfaceGames/owl-naysayer.nvim'),
+  gh('Netherdrake/owl-naysayer.nvim'),
   gh('dybdeskarphet/gruvbox-minimal.nvim'),
   gh('webhooked/kanso.nvim'),
   gh('vague-theme/vague.nvim'),
@@ -362,6 +362,9 @@ augroup pencil
   " autocmd FileType text         call pencil#init()
 augroup END
 
+" dont hide code quotes
+autocmd FileType markdown setlocal conceallevel=0
+
 
 """"""""""""""""""""""""""""""""
 "
@@ -451,6 +454,7 @@ fu! TDark()
     let l:schemes = [
                 \ 'zenbones',
                 \ 'zenwritten',
+                \ 'owl-naysayer',
                 \ 'gruvbox-minimal',
                 \ 'kanso-ink',
                 \ 'vague'
