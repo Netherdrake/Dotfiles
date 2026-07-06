@@ -68,17 +68,15 @@ vim.pack.add({
   gh('preservim/vim-pencil'),
   -- gh('MeanderingProgrammer/render-markdown.nvim'),
 
+  -- rust
+  gh('mrcjkb/rustaceanvim'),
+
   -- debugging
   gh('sakhnik/nvim-gdb'),
 
 })
 
 EOF
-
-" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-" Plug 'cespare/vim-toml', { 'for': 'toml' }
-" Plug 'mrcjkb/rustaceanvim', { 'for': 'rust' }
-
 
 """"""""""""""""""""""""""""""""
 "
