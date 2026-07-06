@@ -130,6 +130,9 @@ set undofile
 set history=100
 set undolevels=100
 
+" refresh tagbar more often (default 4000)
+set updatetime=1000
+
 " disable netrw
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
@@ -295,7 +298,7 @@ let g:tagbar_autofocus = 1
 let g:tagbar_sort = 0
 
 " git
-nnoremap <leader>g :Git 
+nnoremap <leader>g :vert Git 
 
 let g:gitgutter_enabled = 1
 let g:gitgutter_realtime = 0
