@@ -1,11 +1,10 @@
 # sway
 window-decoration = false
 
+# default seems to be 12
+font-size = 10
+
 # Primary
-# alabaster
-# raycast light
-# zenbones
-# tokyonight
 theme = Gruber Darker
 
 # not sure about this, need dynamic cursor for nvim
