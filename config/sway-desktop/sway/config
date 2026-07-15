@@ -1,23 +1,23 @@
 # Read `man 5 sway` for a complete reference.
 
-# fedora without sudo, ubuntu with
-set $bright sudo brightnessctl
-
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 
-set $left h
-set $down j
-set $up k
+set $left  h
+set $down  j
+set $up    k
 set $right l
 
-set $term /usr/bin/alacritty
-set $cliphist /usr/bin/cliphist
-set $pw /home/user/bin/pw
-set $menu dmenu_path | fuzzel | xargs swaymsg exec --
+# fedora without sudo, ubuntu with
+set $bright brightnessctl
 
-# what is this?
-# include /etc/sway/config-vars.d/*
+# ubuntu
+# set $filemgr  nautilus --new-window
+set $filemgr  cosmic-files
+set $term     /usr/bin/ghostty
+set $cliphist /usr/bin/cliphist
+set $pw       /home/user/bin/pw
+set $menu dmenu_path | fuzzel | xargs swaymsg exec --
 
 # output * bg #808080 solid_color
 output * bg /home/user/Blog/wallpaper2.jpg fill
@@ -36,19 +36,12 @@ focus_wrapping no
 # Center the mouse into container with new focus
 # mouse_warping container
 
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
-
 ### Startup
 exec_always {
-  # clipboard manager
   wl-paste --watch $cliphist store &
 
   # firefox hack on 4k screen
-  gsettings set org.gnome.desktop.interface text-scaling-factor "1.0"
+  gsettings set org.gnome.desktop.interface text-scaling-factor "1"
 
   # from /etc/sway/config.d/50-systemd-user.conf on ubuntu
   systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP
@@ -60,19 +53,14 @@ exec_always {
 # Polkit?
 #exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-# Requires: lxqt-policykit
-# exec /usr/libexec/lxqt-policykit-agent
-
-# polkit-kde-agent
-
 ### Idle configuration
+# timeout 999 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
 exec swayidle -w \
          timeout 1900 'swaylock -f -c 616060' \
          timeout 1999 'if [ "$(./home/user/.config/sway/check_external_power.sh)" != "ac" ]; then swaymsg "output * power off"; fi' \
          resume 'if [ "$(./home/user/.config/sway/check_external_power.sh)" != "ac" ]; then swaymsg "output * power on"; fi' \
          before-sleep 'playerctl pause' \
          before-sleep 'swaylock -f -c 616060'
-
 
 ### Input configuration
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -102,7 +90,8 @@ input type:touchpad {
   middle_emulation enabled
   pointer_accel 0.1
   scroll_method two_finger
-  tap enabled
+  # ubuntu thinkpad
+  # tap enabled
 }
 
 ### Key bindings
@@ -110,13 +99,13 @@ input type:touchpad {
 # Basics:
 #
     # Apps
-    bindsym $mod+Return exec $term
-    bindsym $mod+b exec firefox --new-window
-    bindsym $mod+n exec nautilus --new-window
+    bindsym $mod+Return  exec $term
+    bindsym $mod+b       exec firefox  --new-window
+    bindsym $mod+n       exec $filemgr
     bindsym $mod+Shift+p exec $pw
 
     # Screenshots
-    bindsym Print exec grimshot copy area
+    bindsym Print      exec grimshot copy area
     bindsym Ctrl+Print exec grimshot save area
 
     # Kill focused window
@@ -151,9 +140,9 @@ input type:touchpad {
 # Moving around:
 #
     # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
+    bindsym $mod+$left  focus left
+    bindsym $mod+$down  focus down
+    bindsym $mod+$up    focus up
     bindsym $mod+$right focus right
 
     # Move the focused window with the same, but add Shift
@@ -163,8 +152,10 @@ input type:touchpad {
     bindsym $mod+Shift+$right move right
 
     # Move to workspace
-    bindsym $mod+Left workspace prev
+    bindsym $mod+Left  workspace prev
     bindsym $mod+Right workspace next
+    # bindsym $mod+Up    workspace prev
+    # bindsym $mod+Down  workspace next
 #
 # Workspaces:
 #
@@ -278,19 +269,16 @@ for_window [app_id="xfce-polkit|kvantummanager|qt5ct"] floating enable
 for_window [class="Yad|feh|Viewnior|Gpicview|Gimp|MPlayer"] floating enable
 for_window [class="VirtualBox Manager|qemu|Qemu-system-x86_64"] floating enable
 for_window [app_id="firefox" title="Firefox — Sharing Indicator"] { floating enable }
+for_window [app_id="light" title="Light"] { floating enable }
 
 for_window [class="Brave-browser"]     { inhibit_idle fullscreen }
 for_window [class="firefox"]           { inhibit_idle fullscreen }
 for_window [app_id="brave-browser"]    { inhibit_idle fullscreen }
 for_window [app_id="firefox"]          { inhibit_idle fullscreen }
 
-
 bar {
-    # swaybar_command waybar
     position bottom
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
     # status_command while echo "$(upower -i $(upower -e | grep BAT) | grep --color=never -E "percentage" | cut -d':' -f2 | tr -d ' ') \| $(date +'%Y-%m-%d %X')" ; do sleep 1; done
     status_command ~/.config/sway/status.sh
 
@@ -301,4 +289,5 @@ bar {
     # }
 }
 
-# include /etc/sway/config.d/*
+# hmmm, disabled on ubuntu?
+include /etc/sway/config.d/*
