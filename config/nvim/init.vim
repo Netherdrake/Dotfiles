@@ -299,6 +299,7 @@ let g:tagbar_sort = 0
 
 " git
 nnoremap <leader>g :vert Git 
+nnoremap <leader>d :GitGutterDiffOrig<CR>
 
 let g:gitgutter_enabled = 1
 let g:gitgutter_realtime = 0
