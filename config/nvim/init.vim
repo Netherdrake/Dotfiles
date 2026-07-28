@@ -852,6 +852,12 @@ vim.g.rustaceanvim = {
     require("modus-themes").setup({
         line_nr_column_background = true, -- Distinct background colors in line number column. `false` will disable background color and fallback to Normal background
         sign_column_background = true, -- Distinct background colors in sign column. `false` will disable background color and fallback to Normal background
+        on_colors = function(colors)
+            -- colors.comment = "#22832b"
+        end,
+        on_highlights = function(highlight, color)
+            highlight.Comment = { fg = color.green, style = { italic = true } }
+        end,
     })
 
     require("gruvbox-minimal").setup({
