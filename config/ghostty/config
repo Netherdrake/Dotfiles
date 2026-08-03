@@ -1,6 +1,13 @@
 # sway
 window-decoration = false
 
+# dont be annoying, just exit
+confirm-close-surface = false
+
+# dont be smart, start from home
+# working-directory = home
+# window-inherit-working-directory = false
+
 # default seems to be 12
 font-size = 10
 
