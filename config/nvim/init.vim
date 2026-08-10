@@ -71,10 +71,16 @@ vim.pack.add({
   -- rust
   gh('mrcjkb/rustaceanvim'),
 
+  -- clojure
+  -- gh('gpanders/nvim-parinfer'),
+  -- have to manually run: cargo build --release
+  gh('eraserhd/parinfer-rust'),
+
   -- debugging
   gh('sakhnik/nvim-gdb'),
 
 })
+
 
 EOF
 
@@ -807,6 +813,8 @@ vim.g.rustaceanvim = {
             visual_send = "<leader>il",
             send_file = "<leader>if",
             send_line = "<leader>il",
+            send_paragraph = "<leader>ib",
+            -- send_code_block = "<leader>ib",
             send_until_cursor = "<leader>ir",
             send_mark = "<leader>im",
             mark_motion = "<leader>iic",
@@ -819,7 +827,7 @@ vim.g.rustaceanvim = {
         },
         -- If the highlight is on, you can change how it looks
         -- For the available options, check nvim_set_hl
-        highlight = { bold = true },
+        -- highlight = { bold = true },
         -- ignore blank lines when sending visual select lines
         ignore_blank_lines = true,
     }
