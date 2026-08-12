@@ -272,7 +272,13 @@ let g:floaterm_width  = 0.9
 let g:floaterm_height = 0.95
 
 " YouCompleteMe
-let g:ycm_filetype_blacklist = {}
+let g:ycm_filetype_blacklist = {
+      \ 'tagbar': 1,
+      \ 'notes': 1,
+      \ 'text': 1,
+      \ 'markdown': 1,
+      \ 'clojure': 1
+      \}
 let g:ycm_key_list_select_completion = []
 let g:ycm_key_list_previous_completion = []
 let g:ycm_key_invoke_completion = "<C-j>"
