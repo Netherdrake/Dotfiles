@@ -98,7 +98,7 @@ input type:touchpad {
     # Apps
     bindsym $mod+Return  exec $term
     bindsym $mod+b       exec firefox  --new-window
-    bindsym $mod+n       exec $filemgr
+    bindsym $mod+m       exec $filemgr
     bindsym $mod+Shift+p exec $pw
 
     # Screenshots
