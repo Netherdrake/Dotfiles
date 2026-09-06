@@ -446,12 +446,7 @@ endfunction
 call srand(localtime()) | let g:theme_idx = rand() % 1000
 
 fu! TLight()
-    " zenbones/zenwritten are both good minimal ones
-    " paper-minimal, gruvbox-minimal strong mids
-    " a bit more color in kanso-pearl, koda-glade, koda-light
     let l:schemes = [
-                \ 'zenbones',
-                \ 'zenwritten',
                 \ 'paper-minimal',
                 \ 'alabaster',
                 \ 'modus_operandi',
@@ -467,7 +462,7 @@ endfunction
 fu! TDark()
     let l:schemes = [
                 \ 'zenbones',
-                \ 'zenwritten',
+                \ 'kanagawabones',
                 \ 'owl-naysayer',
                 \ 'gruvbox-minimal',
                 \ 'kanso-ink',
@@ -482,7 +477,7 @@ fu! TDark()
 endfunction
 
 if hostname() == "fw13"
-    call TAlabaster()
+    call TPaper()
 else
     call TPaper()
 endif
@@ -885,6 +880,11 @@ vim.g.rustaceanvim = {
         overrides = {
             ["TelescopeMatching"] = { fg = "#d8a657" },
             ["TelescopeSelection"] = { bg = "#3c3836" },
+            ["MatchParen"] = {
+                fg = "#1d2021",
+                bg = "#fabd2f",
+                bold = true,
+            },
             ["Type"] = { fg = "#ffffff" },
             ["Boolean"] = { fg = "#ffffff" },
             ["Number"] = { fg = "#ffffff" },
