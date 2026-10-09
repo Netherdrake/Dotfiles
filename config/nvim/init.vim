@@ -10,12 +10,10 @@ local gh = function(x) return 'https://github.com/' .. x end
 
 vim.pack.add({
   -- themes
-  gh('rktjmp/lush.nvim'),
-  gh('zenbones-theme/zenbones.nvim'),
-  gh('p00f/alabaster.nvim'),
-  gh('miikanissi/modus-themes.nvim'),
   gh('Netherdrake/vim-paper-minimal'),
   gh('Netherdrake/owl-naysayer.nvim'),
+  gh('p00f/alabaster.nvim'),
+  gh('miikanissi/modus-themes.nvim'),
   gh('dybdeskarphet/gruvbox-minimal.nvim'),
   gh('webhooked/kanso.nvim'),
   gh('vague-theme/vague.nvim'),
@@ -72,8 +70,8 @@ vim.pack.add({
   gh('mrcjkb/rustaceanvim'),
 
   -- clojure
-  -- gh('gpanders/nvim-parinfer'),
-  -- have to manually run: cargo build --release
+  -- have to manually run:
+  --  cd ~/.local/share/nvim/site/pack/core/opt/parinfer-rust/ && cargo build --release
   gh('eraserhd/parinfer-rust'),
 
   -- debugging
@@ -388,32 +386,12 @@ autocmd FileType markdown setlocal conceallevel=0
 syntax on
 set termguicolors
 
-let g:zenbones_lightness = 'dim'
-let g:zenbones_lighten_comments = 50
-let g:zenbones_darken_comments = 50
-
-let g:zenwritten_lightness = 'dim'
-let g:zenwritten_lighten_comments = 50
-let g:zenwritten_darken_comments = 50
-
-let g:kanagawabones_lighten_comments = 50
-
-fu! TKanagawaBones()
-    set background=dark
-    colorscheme kanagawabones
-endfunction
-
-fu! TZenbones()
-    set background=dark
-    colorscheme zenbones
-endfunction
-
-fu! TWritten()
-    set background=dark
-    colorscheme zenwritten
-endfunction
-
 fu! TKanso()
+    set background=dark
+    colorscheme kanso-ink
+endfunction
+
+fu! TVague()
     set background=dark
     colorscheme kanso-ink
 endfunction
@@ -461,10 +439,8 @@ endfunction
 
 fu! TDark()
     let l:schemes = [
-                \ 'zenbones',
-                \ 'kanagawabones',
-                \ 'owl-naysayer',
                 \ 'gruvbox-minimal',
+                \ 'owl-naysayer',
                 \ 'kanso-ink',
                 \ 'vague'
                 \ ]
