@@ -12,11 +12,13 @@ vim.pack.add({
   -- themes
   gh('Netherdrake/vim-paper-minimal'),
   gh('Netherdrake/owl-naysayer.nvim'),
+  gh('yorickpeterse/nvim-grey'), -- made by creator of vim-paper
   gh('p00f/alabaster.nvim'),
   gh('miikanissi/modus-themes.nvim'),
   gh('dybdeskarphet/gruvbox-minimal.nvim'),
   gh('webhooked/kanso.nvim'),
   gh('vague-theme/vague.nvim'),
+  gh('WTFox/luna.nvim'),
   -- funky one
   -- { src = 'https://github.com/Verf/deepwhite.nvim', version = 'dev' },
 
@@ -386,14 +388,9 @@ autocmd FileType markdown setlocal conceallevel=0
 syntax on
 set termguicolors
 
-fu! TKanso()
-    set background=dark
-    colorscheme kanso-ink
-endfunction
-
-fu! TVague()
-    set background=dark
-    colorscheme kanso-ink
+fu! TPaper()
+    set background=light
+    colorscheme paper-minimal
 endfunction
 
 fu! TModus()
@@ -401,14 +398,26 @@ fu! TModus()
     colorscheme modus_operandi
 endfunction
 
+fu! TGrey()
+    set background=light
+    colorscheme grey
+    highlight CursorLine guibg=#e5e5e5 ctermbg=254
+endfunction
+
 fu! TAlabaster()
     set background=light
     colorscheme alabaster
 endfunction
 
-fu! TPaper()
-    set background=light
-    colorscheme paper-minimal
+
+fu! TKanso()
+    set background=dark
+    colorscheme kanso-ink
+endfunction
+
+fu! TVague()
+    set background=dark
+    colorscheme vague
 endfunction
 
 fu! TGruvbox()
@@ -427,6 +436,7 @@ fu! TLight()
     let l:schemes = [
                 \ 'paper-minimal',
                 \ 'alabaster',
+                \ 'grey',
                 \ 'modus_operandi',
                 \ ]
 
@@ -442,7 +452,8 @@ fu! TDark()
                 \ 'gruvbox-minimal',
                 \ 'owl-naysayer',
                 \ 'kanso-ink',
-                \ 'vague'
+                \ 'vague',
+                \ 'luna',
                 \ ]
 
     set background=dark
@@ -841,7 +852,8 @@ vim.g.rustaceanvim = {
             -- colors.comment = "#22832b"
         end,
         on_highlights = function(highlight, color)
-            highlight.Comment = { fg = color.green, style = { italic = true } }
+            highlight.Comment = { fg = color.red_warmer, style = { italic = true } }
+            --highlight.Comment = { fg = color.red_cooler, bg = color.bg_alt, style = { italic = true } }
         end,
     })
 
