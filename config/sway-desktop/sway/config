@@ -201,7 +201,8 @@ input type:touchpad {
     bindsym $mod+space floating toggle
 
     # Make the floating window of fixed size relative to screen size
-    bindsym $mod+d exec swaymsg resize set 70ppt 95ppt
+    bindsym $mod+d       exec swaymsg resize set 70ppt 90ppt
+    bindsym $mod+Shift+d exec swaymsg resize set 50ppt 65ppt
 
     # Swap focus between the tiling area and the floating area
     bindsym $mod+tab focus mode_toggle
