@@ -11,9 +11,8 @@ local gh = function(x) return 'https://github.com/' .. x end
 vim.pack.add({
   -- themes
   gh('Netherdrake/vim-paper-minimal'),
+  gh('Netherdrake/nvim-grey-minimal'),
   gh('Netherdrake/owl-naysayer.nvim'),
-  gh('yorickpeterse/nvim-grey'), -- made by creator of vim-paper
-  gh('p00f/alabaster.nvim'),
   gh('miikanissi/modus-themes.nvim'),
   gh('dybdeskarphet/gruvbox-minimal.nvim'),
   gh('webhooked/kanso.nvim'),
@@ -81,6 +80,8 @@ vim.pack.add({
 
 })
 
+-- load folder manually
+-- vim.opt.rtp:append("/home/user/Github/vendor/nvim-grey-minimal")
 
 EOF
 
@@ -401,14 +402,7 @@ endfunction
 fu! TGrey()
     set background=light
     colorscheme grey
-    highlight CursorLine guibg=#e5e5e5 ctermbg=254
 endfunction
-
-fu! TAlabaster()
-    set background=light
-    colorscheme alabaster
-endfunction
-
 
 fu! TKanso()
     set background=dark
@@ -435,7 +429,6 @@ call srand(localtime()) | let g:theme_idx = rand() % 1000
 fu! TLight()
     let l:schemes = [
                 \ 'paper-minimal',
-                \ 'alabaster',
                 \ 'grey',
                 \ 'modus_operandi',
                 \ ]
@@ -852,7 +845,7 @@ vim.g.rustaceanvim = {
             -- colors.comment = "#22832b"
         end,
         on_highlights = function(highlight, color)
-            highlight.Comment = { fg = color.red_warmer, style = { italic = true } }
+            -- highlight.Comment = { fg = color.red_warmer, style = { italic = true } }
             --highlight.Comment = { fg = color.red_cooler, bg = color.bg_alt, style = { italic = true } }
         end,
     })
